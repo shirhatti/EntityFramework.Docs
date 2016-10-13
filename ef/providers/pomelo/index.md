@@ -1,0 +1,40 @@
+---
+uid: providers/pomelo/index
+---
+Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
+  # Pomelo (MySQL)
+
+This database provider allows Entity Framework Core to be used with MySQL. The provider is maintained as part of the [Pomelo Foundation Project](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql).
+
+Note: This provider is not maintained as part of the Entity Framework Core project. When considering a third party provider, be sure to evaluate quality, licensing, support, etc. to ensure they meet your requirements.
+
+  ## Install
+
+Install the [Pomelo.EntityFrameworkCore.MySQL NuGet package](https://www.nuget.org/packages/Pomelo.EntityFrameworkCore.MySQL).
+
+<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+
+````text
+
+   PM>  Install-Package Pomelo.EntityFrameworkCore.MySQL
+   ````
+
+  ## Get Started
+
+The following resources will help you get started with this provider.
+   * [Getting started documentation](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql/blob/master/README.md#getting-started)
+
+   * [Yuuko Blog sample application](https://github.com/Kagamine/YuukoBlog-NETCore-MySql)
+
+  ## Supported Database Engines
+
+   * MySQL
+
+  ## Supported Platforms
+
+   * Full .NET (4.5.1 onwards)
+
+   * .NET Core
+
+   * Mono (4.2.0 onwards)
