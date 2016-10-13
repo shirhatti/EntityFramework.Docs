@@ -35,7 +35,7 @@ By convention, primary keys that are of an integer or GUID data type will be set
 
   ## Data Annotations  ### No value generation (Data Annotations)
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/ValueGeneratedNever.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [3], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/ValueGeneratedNever.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [3], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -50,7 +50,7 @@ By convention, primary keys that are of an integer or GUID data type will be set
 
   ### Value generated on add (Data Annotations)
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/ValueGeneratedOnAdd.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [5], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/ValueGeneratedOnAdd.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [5], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -68,7 +68,7 @@ Caution: This just lets EF know that values are generated for added entities, it
 
   ### Value generated on add or update (Data Annotations)
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/ValueGeneratedOnAddOrUpdate.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [5], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/ValueGeneratedOnAddOrUpdate.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [5], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -90,7 +90,7 @@ You can use the Fluent API to change the value generation pattern for a given pr
 
   ### No value generation (Fluent API)
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/ValueGeneratedNever.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [7, 8, 9], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/ValueGeneratedNever.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [7, 8, 9], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -116,7 +116,7 @@ You can use the Fluent API to change the value generation pattern for a given pr
 
   ### Value generated on add (Fluent API)
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/ValueGeneratedOnAdd.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [7, 8, 9], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/ValueGeneratedOnAdd.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [7, 8, 9], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -145,7 +145,7 @@ Caution: This just lets EF know that values are generated for added entities, it
 
   ### Value generated on add or update (Fluent API)
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/ValueGeneratedOnAddOrUpdate.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [7, 8, 9], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/ValueGeneratedOnAddOrUpdate.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [7, 8, 9], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 

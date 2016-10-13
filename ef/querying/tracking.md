@@ -15,7 +15,7 @@ By default, queries that return entity types are tracking. This means you can ma
 
 In the following example, the change to the blogs rating will be detected and persisted to the database during `SaveChanges()`.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/Tracking/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/Tracking/Sample.cs"} -->
 
 ````c#
 
@@ -34,7 +34,7 @@ No tracking queries are useful when the results are used in a read-only scenario
 
 You can swap an individual query to be no-tracking:
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/Tracking/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [4], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [4]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/Tracking/Sample.cs"} -->
 
 ````c#
 
@@ -49,7 +49,7 @@ You can swap an individual query to be no-tracking:
 
 You can also change the default tracking behavior at the context instance level:
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/Tracking/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [3], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [3]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/Tracking/Sample.cs"} -->
 
 ````c#
 
@@ -66,7 +66,7 @@ You can also change the default tracking behavior at the context instance level:
 
 Even if the result type of the query isn't an entity type, if the result contains entity types they will still be tracked by default. In the following query, which returns an anonymous type, the instances of `Blog` in the result set will be tracked.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/Tracking/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [7], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [7]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/Tracking/Sample.cs"} -->
 
 ````c#
 
@@ -85,7 +85,7 @@ Even if the result type of the query isn't an entity type, if the result contain
 
 If the result set does not contain any entity types, then no tracking is performed. In the following query, which returns an anonymous type with some of the values from the entity (but no instances of the actual entity type), there is no tracking performed.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/Tracking/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/Tracking/Sample.cs"} -->
 
 ````c#
 

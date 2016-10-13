@@ -18,7 +18,7 @@ By convention, the following fields will be discovered as backing fields for a g
 
    * m_<propertyName>
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/BackingField.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [3, 7, 8, 9, 10, 11], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [3, 7, 8, 9, 10, 11]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/BackingField.cs"} -->
 
 ````c#
 
@@ -45,7 +45,7 @@ Backing fields cannot be configured with data annotations.
 
 There is no top level API for configuring backing fields, but you can use the Fluent API to set annotations that are used to store backing field information.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/BackingField.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [7, 8, 9, 15, 18], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [7, 8, 9, 15, 18]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/BackingField.cs"} -->
 
 ````c#
 

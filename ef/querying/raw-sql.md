@@ -24,7 +24,7 @@ There are a couple of limitations to be aware of when using raw SQL queries:
 
 You can use the *FromSql* extension method to begin a LINQ query based on a raw SQL query.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs"} -->
 
 ````c#
 
@@ -36,7 +36,7 @@ You can use the *FromSql* extension method to begin a LINQ query based on a raw 
 
 Raw SQL queries can be used to execute a stored procedure.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs"} -->
 
 ````c#
 
@@ -52,7 +52,7 @@ As with any API that accepts SQL, it is important to parameterize any user input
 
 The following example passes a single parameter to a stored procedure. While this may look like `String.Format` syntax, the supplied value is wrapped in a parameter and the generated parameter name inserted where the `{0}` placeholder was specified.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs"} -->
 
 ````c#
 
@@ -66,7 +66,7 @@ The following example passes a single parameter to a stored procedure. While thi
 
 You can also construct a DbParameter and supply it as a parameter value. This allows you to use named parameters in the SQL query string
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs"} -->
 
 ````c#
 
@@ -84,7 +84,7 @@ If the SQL query can be composed on in the database, then you can compose on top
 
 The following example uses a raw SQL query that selects from a Table-Valued Function (TVF) and then composes on it using LINQ to perform filtering and sorting.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs"} -->
 
 ````c#
 
@@ -102,7 +102,7 @@ The following example uses a raw SQL query that selects from a Table-Valued Func
 
 Composing with LINQ operators can be used to include related data in the query.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RawSQL/Sample.cs"} -->
 
 ````c#
 

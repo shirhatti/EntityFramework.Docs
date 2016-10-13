@@ -17,7 +17,7 @@ Each context instance has a *ChangeTracker* that is responsible for keeping trac
 
 Use the *DbSet.Add* method to add new instances of your entity classes. The data will be inserted in the database when you call *SaveChanges*.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Basics/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Basics/Sample.cs"} -->
 
 ````c#
 
@@ -38,7 +38,7 @@ EF will automatically detect changes made to an existing entity that is tracked 
 
 Simply modify the values assigned to properties and then call *SaveChanges*.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Basics/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Basics/Sample.cs"} -->
 
 ````c#
 
@@ -57,7 +57,7 @@ Use the *DbSet.Remove* method to delete instances of you entity classes.
 
 If the entity already exists in the database, it will be deleted during *SaveChanges*. If the entity has not yet been saved to the database (i.e. it is tracked as added) then it will be removed from the context and will no longer be inserted when *SaveChanges* is called.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Basics/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Basics/Sample.cs"} -->
 
 ````c#
 
@@ -76,7 +76,7 @@ You can combine multiple Add/Update/Remove operations into a single call to *Sav
 
 Note: For most database providers, *SaveChanges* is transactional. This means  all the operations will either succeed or fail and the operations will never be left partially applied.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Basics/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Basics/Sample.cs"} -->
 
 ````c#
 

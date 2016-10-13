@@ -43,7 +43,7 @@ Note: If you have already created the **Blogging** database as part of another t
 
 * Right-click on the query editor and select **Execute**
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/_shared/create-blogging-database-script.sql", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "sql", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "sql", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/_shared/create-blogging-database-script.sql", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````sql
 
@@ -115,7 +115,7 @@ To enable reverse engineering from an existing database we need to install a cou
 
    * Locate the `tools` section and add the highlighted lines as shown below
 
-   <!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/project.json", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [2], "linenostart": 1}, "names": [], "xml:space": "preserve"} -->
+   <!-- literal_block {"source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/project.json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [2], "linenostart": 1}, "ids": [], "linenos": true} -->
 
    ````
 
@@ -135,7 +135,7 @@ Now it's time to create the EF model based on your existing database.
 
 * Run the following command to create a model from the existing database. If you receive an error stating the term 'Scaffold-DbContext' is not recognized as the name of a cmdlet, then close and reopen Visual Studio.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -144,7 +144,7 @@ Now it's time to create the EF model based on your existing database.
 
 The reverse engineer process created entity classes and a derived context based on the schema of the existing database. The entity classes are simple C# objects that represent the data you will be querying and saving.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/Blog.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/Blog.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -171,7 +171,7 @@ The reverse engineer process created entity classes and a derived context based 
 
 The context represents a session with the database and allows you to query and save instances of the entity classes.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/BloggingContextUnmodified.txt", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/BloggingContextUnmodified.txt", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -221,7 +221,7 @@ In ASP.NET Core, configuration is generally performed in **Startup.cs**. To conf
 
    * Delete the lines of code highlighted below
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/BloggingContextUnmodified.txt", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [3, 4, 5, 6, 7], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/BloggingContextUnmodified.txt", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [3, 4, 5, 6, 7], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -238,7 +238,7 @@ In ASP.NET Core, configuration is generally performed in **Startup.cs**. To conf
 
 * Add the lines of code highlighted below
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/BloggingContext.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [3, 4, 5], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/BloggingContext.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [3, 4, 5], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -258,7 +258,7 @@ In order for our MVC controllers to make use of `BloggingContext` we are going t
 
    * Add the following `using` statements at the start of the file
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Startup.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Startup.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -273,7 +273,7 @@ Now we can use the `AddDbContext` method to register it as a service.
 
    * Add the lines that are highlighted in the following code
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Startup.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [3, 4], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Startup.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [3, 4], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -299,7 +299,7 @@ Next, we'll add an MVC controller that will use EF to query and save data.
 
    * Replace the contents of the file with the following code
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Controllers/BlogsController.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Controllers/BlogsController.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -371,7 +371,7 @@ We'll start with the view for our `Index` action, that displays all blogs.
 
    * Replace the contents of the file with the following code
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Views/Blogs/Index.cshtml", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Views/Blogs/Index.cshtml", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````
 
@@ -419,7 +419,7 @@ We'll also add a view for the `Create` action, which allows the user to enter de
 
    * Replace the contents of the file with the following code
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Views/Blogs/Create.cshtml", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.ExistingDb/Views/Blogs/Create.cshtml", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````
 

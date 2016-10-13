@@ -31,7 +31,7 @@ EF command-line tools for .NET Core CLI are installed by manually editing `proje
 
 The resulting project.json should include these items (in addition to your other project dependencies).
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "json"} -->
+<!-- literal_block {"language": "json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````json
 
@@ -61,7 +61,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "none"} -->
+<!-- literal_block {"language": "none", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````none
 
@@ -84,7 +84,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-database
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -101,7 +101,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-database-drop
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -117,7 +117,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-database-update
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -135,7 +135,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-dbcontext
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -152,7 +152,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-dbcontext-list
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -167,7 +167,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-dbcontext-scaffold
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -191,7 +191,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-migrations
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -210,7 +210,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-migrations-add
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -230,7 +230,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-migrations-list
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -246,7 +246,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-migrations-remove
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -262,7 +262,7 @@ Commands can be run from the command line by navigating to the project directory
 
   ### dotnet-ef-migrations-script
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -285,7 +285,7 @@ Commands can be run from the command line by navigating to the project directory
 
 Design-time tools attempt to automatically find how your application creates instances of your DbContext type. If EF cannot find a suitable way to initialize your DbContext, you may encounter this error.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -302,7 +302,7 @@ As the error message suggests, one solution is to add an implementation of `IDbC
 
 .NET Core CLI does not support running commands on class libraries as of Preview 2. Despite being able to install EF tools, executing commands may throw this error message.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -325,7 +325,7 @@ Convert the class library project into an "app" project. This can either be a .N
 
 Example:
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "json"} -->
+<!-- literal_block {"language": "json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````json
 
@@ -347,7 +347,7 @@ Be sure to register the EntityFramework Tools as a project dependency and in the
 
 Example:
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "json"} -->
+<!-- literal_block {"language": "json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````json
 
@@ -368,7 +368,7 @@ Finally, specify a startup project that is a "runnable app."
 
 Example:
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "console"} -->
+<!-- literal_block {"language": "console", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````console
 
@@ -381,7 +381,7 @@ Convert the class library project into an "app" project. This can either be a .N
 
 To make the project a .NET Core App, add the "netcoreapp1.0" framework to project.json along with the other settings in the sample below:
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "json"} -->
+<!-- literal_block {"language": "json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````json
 
@@ -404,7 +404,7 @@ To make the project a .NET Core App, add the "netcoreapp1.0" framework to projec
 
 To make a desktop .NET app, ensure you project targets "net451" or newer (example "net461" also works) and ensure the build option `"emitEntryPoint"` is set to true.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "json"} -->
+<!-- literal_block {"language": "json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````json
 

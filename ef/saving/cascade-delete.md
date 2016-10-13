@@ -26,7 +26,7 @@ Consider a simple *Blog* and *Post* model where the relationship between the two
 
 The following code loads a Blog and all its related Posts from the database (using the *Include* method). The code then deletes the Blog.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/CascadeDelete/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/CascadeDelete/Sample.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -41,7 +41,7 @@ The following code loads a Blog and all its related Posts from the database (usi
 
 Because all the Posts are tracked by the context, the cascade behavior is applied to them before saving to the database. EF therefore issues a  *DELETE* statement for each entity.
 
-<!-- literal_block {"ids": [], "classes": [], "dupnames": [], "backrefs": [], "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "ids": []} -->
 
 ````
 
@@ -57,7 +57,7 @@ Because all the Posts are tracked by the context, the cascade behavior is applie
 
 The following code is almost the same as our previous example, except it does not load the related Posts from the database.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/CascadeDelete/Sample.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/CascadeDelete/Sample.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -72,7 +72,7 @@ The following code is almost the same as our previous example, except it does no
 
 Because the Posts are not tracked by the context, a *DELETE* statement is only issued for the *Blog*. This relies on a corresponding cascade behavior being present in the database to ensure data that is not tracked by the context is also deleted. If you use EF to create the database, this cascade behavior will be setup for you.
 
-<!-- literal_block {"ids": [], "classes": [], "dupnames": [], "backrefs": [], "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "ids": []} -->
 
 ````
 

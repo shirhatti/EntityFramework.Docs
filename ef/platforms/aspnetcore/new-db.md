@@ -55,7 +55,7 @@ Later in this walkthrough we will also be using some Entity Framework commands t
 
 * Locate the `tools` section and add the `ef` command as shown below
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/project.json", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [2], "linenostart": 1}, "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/project.json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [2], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````
 
@@ -85,7 +85,7 @@ Now it's time to define a context and entity classes that make up your model.
 
    * Replace the contents of the file with the following code
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Models/Model.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Models/Model.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -137,7 +137,7 @@ In order for our MVC controllers to make use of `BloggingContext` we are going t
 
    * Add the following `using` statements at the start of the file
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Startup.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Startup.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -152,7 +152,7 @@ Now we can use the `AddDbContext` method to register it as a service.
 
    * Add the lines that are highlighted in the following code
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Startup.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [3, 4], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Startup.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [3, 4], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -189,7 +189,7 @@ Next, we'll add an MVC controller that will use EF to query and save data.
 
    * Replace the contents of the file with the following code
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Controllers/BlogsController.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Controllers/BlogsController.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -260,7 +260,7 @@ We'll start with the view for our `Index` action, that displays all blogs.
 
    * Replace the contents of the file with the following code
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Views/Blogs/Index.cshtml", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Views/Blogs/Index.cshtml", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````
 
@@ -309,7 +309,7 @@ We'll also add a view for the `Create` action, which allows the user to enter de
 
    * Replace the contents of the file with the following code
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Views/Blogs/Create.cshtml", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/Views/Blogs/Create.cshtml", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````
 

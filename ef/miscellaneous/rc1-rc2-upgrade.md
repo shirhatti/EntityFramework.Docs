@@ -24,7 +24,7 @@ A significant functional change we took in RC2 was to use the name of the `DbSet
 
 For existing RC1 applications, we recommend adding the following code to the start of your `OnModelCreating` method to keep the RC1 naming strategy:
 
-<!-- literal_block {"ids": [], "classes": [], "dupnames": [], "backrefs": [], "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "ids": []} -->
 
 ````
 
@@ -40,7 +40,7 @@ If you want to adopt the new naming strategy, we would recommend successfully co
 
 In RC1, you had to add Entity Framework services to the application service provider - in `Startup.ConfigureServices(...)`:
 
-<!-- literal_block {"ids": [], "classes": [], "dupnames": [], "backrefs": [], "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "ids": []} -->
 
 ````
 
@@ -52,7 +52,7 @@ In RC1, you had to add Entity Framework services to the application service prov
 
 In RC2, you can remove the calls to `AddEntityFramework()`, `AddSqlServer()`, etc.:
 
-<!-- literal_block {"ids": [], "classes": [], "dupnames": [], "backrefs": [], "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "ids": []} -->
 
 ````
 
@@ -62,7 +62,7 @@ In RC2, you can remove the calls to `AddEntityFramework()`, `AddSqlServer()`, et
 
 You also need to add a constructor, to your derived context, that takes context options and passes them to the base constructor. This is needed because we removed some of the scary magic that snuck them in behind the scenes:
 
-<!-- literal_block {"ids": [], "classes": [], "dupnames": [], "backrefs": [], "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "ids": []} -->
 
 ````
 
@@ -84,7 +84,7 @@ The most common scenario for doing this was to control the scope of an InMemory 
 
 If you have an ASP.NET Core application and you want EF to resolve internal services from the application service provider, there is an overload of `AddDbContext` that allows you to configure this:
 
-<!-- literal_block {"ids": [], "classes": [], "dupnames": [], "backrefs": [], "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "ids": []} -->
 
 ````
 
@@ -102,7 +102,7 @@ If you previously used the `dnx ef` commands for ASP.NET 5 projects, these have 
 
 The way commands are registered has changed in RC2, due to DNX being replaced by .NET CLI. Commands are now registered in a `tools` section in `project.json`:
 
-<!-- literal_block {"ids": [], "classes": [], "dupnames": [], "backrefs": [], "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "ids": []} -->
 
 ````
 
@@ -129,7 +129,7 @@ Some of EF Core's dependencies do not support .NET Standard yet. EF Core in .NET
 
 When adding EF, NuGet restore will display this error message:
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -148,7 +148,7 @@ The workaround is to manually import the portable profile "portable-net451+win8"
 
 Multiple frameworks can be added to "imports" in array syntax. Other imports may be necessary if you add additional libraries to your project.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "json"} -->
+<!-- literal_block {"language": "json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````json
 

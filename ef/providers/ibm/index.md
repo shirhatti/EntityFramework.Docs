@@ -15,7 +15,7 @@ Caution: This provider currently only supports the Entity Framework Core RC1 pre
 
 Install the [EntityFramework.IBMDataServer NuGet package](https://www.nuget.org/packages/EntityFramework.IBMDataServer).
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": false, "dupnames": [], "language": "text", "highlight_args": {}, "names": []} -->
 
 ````text
 

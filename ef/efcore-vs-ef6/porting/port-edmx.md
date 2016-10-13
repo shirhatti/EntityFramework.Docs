@@ -19,7 +19,7 @@ You can now use the reverse engineer functionality to create a model based on yo
 
 Run the following command in Package Manager Console (Tools –> NuGet Package Manager –> Package Manager Console). See [Package Manager Console (Visual Studio)](../../miscellaneous/cli/powershell.md) for command options to scaffold a subset of tables etc.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "text", "highlight_args": {}, "names": []} -->
 
 ````text
 
@@ -28,7 +28,7 @@ Run the following command in Package Manager Console (Tools –> NuGet Package M
 
 For example, here is the command to scaffold a model from the Blogging database on your SQL Server LocalDB instance.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {}, "names": [], "language": "text"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "text", "highlight_args": {}, "names": []} -->
 
 ````text
 

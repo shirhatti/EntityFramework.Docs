@@ -9,7 +9,7 @@ Shadow properties are properties that do not exist in your entity class. The val
 
 Shadow property values can be obtained and changed through the `ChangeTracker` API.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "csharp"} -->
+<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````csharp
 
@@ -18,7 +18,7 @@ Shadow property values can be obtained and changed through the `ChangeTracker` A
 
 Shadow properties can be referenced in LINQ queries via the `EF.Property` static method.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "csharp"} -->
+<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````csharp
 
@@ -32,7 +32,7 @@ By convention, shadow properties are only created when a relationship is discove
 
 For example, the following code listing will result in a `BlogId` shadow property being introduced to the `Post` entity.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/ShadowForeignKey.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/ShadowForeignKey.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -71,7 +71,7 @@ You can use the Fluent API to configure shadow properties. Once you have called 
 
 If the name supplied to the `Property` method matches the name of an existing property (a shadow property or one defined on the entity class), then the code will configure that existing property rather than introducing a new shadow property.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/ShadowProperty.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [7, 8], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/ShadowProperty.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [7, 8], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 

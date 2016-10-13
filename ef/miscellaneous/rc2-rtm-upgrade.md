@@ -50,7 +50,7 @@ Failure to make this change will result in the following exception when the init
 
 If you were targeting .NET Core with RC2, you needed to add `imports` to project.json as a temporary workaround for some of EF Core's dependencies not supporting .NET Standard. These can now be removed.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {"hl_lines": [4]}, "names": [], "language": "json"} -->
+<!-- literal_block {"language": "json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [4]}, "ids": [], "linenos": false} -->
 
 ````json
 
@@ -70,7 +70,7 @@ Attempting to run EF commands on Universal Windows Platform (UWP) projects resul
 
 You need to manually add binding redirects to the UWP project. Create a file named `App.config` in the project root folder and add redirects to the correct assembly versions.
 
-<!-- literal_block {"ids": [], "xml:space": "preserve", "classes": [], "dupnames": [], "linenos": false, "backrefs": [], "highlight_args": {}, "names": [], "language": "xml"} -->
+<!-- literal_block {"language": "xml", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````xml
 

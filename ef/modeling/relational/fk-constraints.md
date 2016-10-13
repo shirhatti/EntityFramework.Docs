@@ -21,7 +21,7 @@ Foreign key constraint names cannot be configured using data annotations.
 
 You can use the Fluent API to configure the foreign key constraint name for a relationship.
 
-<!-- literal_block {"ids": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/RelationshipConstraintName.cs", "classes": [], "dupnames": [], "linenos": true, "backrefs": [], "highlight_args": {"hl_lines": [12], "linenostart": 1}, "language": "c#", "names": [], "xml:space": "preserve"} -->
+<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/RelationshipConstraintName.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [12], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
