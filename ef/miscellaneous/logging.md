@@ -16,7 +16,7 @@ The first step is to create an implementation of `ILoggerProvider` and `ILogger`
 
 Here is a simple implementation that logs a human readable representation of every event to a text file and the Console.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "csharp", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Logging/Logging/MyLoggerProvider.cs"} -->
+<!-- [!code-csharp[Main](samples/Miscellaneous/Logging/Logging/MyLoggerProvider.cs)] -->
 
 ````csharp
 
@@ -76,7 +76,7 @@ Tip:
 
 In an ASP.NET Core application, you register your logger in the Configure method of Startup.cs:
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "dupnames": [], "names": []} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "dupnames  "names": [] -->
 
 ````
 
@@ -94,7 +94,7 @@ In your application startup code, create and instance of you context and registe
 
 Note: You only need to register the logger with a single context instance. Once you have registered it, it will be used for all other instances of the context in the same AppDomain.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "csharp", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Logging/Logging.ConsoleApp/Program.cs"} -->
+<!-- [!code-csharp[Main](samples/Miscellaneous/Logging/Logging.ConsoleApp/Program.cs)] -->
 
 ````csharp
 
@@ -113,7 +113,7 @@ The easiest way to filter what is logged, is to adjust your logger provider to o
 
 For example, here is a logger provider that returns the logger only for events related to executing SQL against a relational database. For all other categories of events, a null logger (which does nothing) is returned.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "csharp", "highlight_args": {"linenostart": 1, "hl_lines": [9, 10, 11, 12, 13, 17, 18, 19, 20, 21, 22]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Logging/Logging/MyFilteredLoggerProvider.cs"} -->
+<!-- [!code-csharp[Main](samples/Miscellaneous/Logging/Logging/MyFilteredLoggerProvider.cs?highlight=9,10,11,12,13,17,18,19,20,21,22)] -->
 
 ````csharp
 

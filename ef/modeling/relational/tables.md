@@ -17,7 +17,7 @@ By convention, each entity will be setup to map to a table with the same name as
 
 You can use Data Annotations to configure the table that a type maps to.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/DataAnnotations/Samples/Relational/Table.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [1], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/Table.cs?highlight=1)] -->
 
 ````c#
 
@@ -32,7 +32,7 @@ You can use Data Annotations to configure the table that a type maps to.
 
 You can also specify a schema that the table belongs to.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/DataAnnotations/Samples/Relational/TableAndSchema.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [1], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/TableAndSchema.cs?highlight=1)] -->
 
 ````c#
 
@@ -49,7 +49,7 @@ You can also specify a schema that the table belongs to.
 
 You can use the Fluent API to configure the table that a type maps to.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/Table.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [7, 8], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/Table.cs?highlight=7,8)] -->
 
 ````c#
 
@@ -74,7 +74,7 @@ You can use the Fluent API to configure the table that a type maps to.
 
 You can also specify a schema that the table belongs to.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/TableAndSchema.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [2], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/TableAndSchema.cs?highlight=2)] -->
 
 ````c#
 

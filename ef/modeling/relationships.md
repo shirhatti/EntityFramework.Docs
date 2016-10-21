@@ -43,7 +43,7 @@ The following code listing shows a one-to-many relationship between `Blog` and `
 
    * `Post.Blog` is the inverse navigation property of `Blog.Posts` (and vice versa)
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/Relationships/Full.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/Relationships/Full.cs)] -->
 
 ````c#
 
@@ -80,7 +80,7 @@ The most common pattern for relationships is to have navigation properties defin
 
    * If the dependent entity contains a property named `<primary key property name>`, `<navigation property name><primary key property name>`, or `<principal entity name><primary key property name>` then it will be configured as the foreign key.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/Relationships/Full.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [6, 15, 16], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/Relationships/Full.cs?highlight=6,15,16)] -->
 
 ````c#
 
@@ -110,7 +110,7 @@ Caution: If there are multiple navigation properties defined between two types (
 
 While it is recommended to have a foreign key property defined in the dependent entity class, it is not required. If no foreign key property is found, a shadow foreign key property will be introduced with the name `<navigation property name><principal key property name>` (see [Shadow Properties](shadow-properties.md) for more information).
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/Relationships/NoForeignKey.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [6, 15], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/Relationships/NoForeignKey.cs?highlight=6,15)] -->
 
 ````c#
 
@@ -137,7 +137,7 @@ While it is recommended to have a foreign key property defined in the dependent 
 
 Including just one navigation property (no inverse navigation, and no foreign key property) is enough to have a relationship defined by convention. You can also have a single navigation property and a foreign key property.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/Relationships/OneNavigation.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [6], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/Relationships/OneNavigation.cs?highlight=6)] -->
 
 ````c#
 
@@ -172,7 +172,7 @@ There are two data annotations that can be used to configure relationships, `[Fo
 
 You can use the Data Annotations to configure which property should be used as the foreign key property for a given relationship. This is typically done when the foreign key property is not discovered by convention.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/Relationships/ForeignKey.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [17], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/Relationships/ForeignKey.cs?highlight=17)] -->
 
 ````c#
 
@@ -204,7 +204,7 @@ Note: The `[ForeignKey]` annotation can be placed on either navigation property 
 
 You can use the Data Annotations to configure how navigation properties on the dependent and principal entities pair up. This is typically done when there is more than one pair of navigation properties between two entity types.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/Relationships/InverseProperty.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [20, 23], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/Relationships/InverseProperty.cs?highlight=20,23)] -->
 
 ````c#
 
@@ -240,7 +240,7 @@ You can use the Data Annotations to configure how navigation properties on the d
 
 To configure a relationship in the Fluent API, you start by identifying the navigation properties that make up the relationship. `HasOne` or `HasMany` identifies the navigation property on the entity type you are beginning the configuration on. You then chain a call to `WithOne` or `WithMany` to identify the inverse navigation. `HasOne`/`WithOne` are used for reference navigation properties and `HasMany`/`WithMany` are used for collection navigation properties.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Relationships/NoForeignKey.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [8, 9, 10], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/NoForeignKey.cs?highlight=8,9,10)] -->
 
 ````c#
 
@@ -280,7 +280,7 @@ To configure a relationship in the Fluent API, you start by identifying the navi
 
 If you only have one navigation property then there are parameterless overloads of `WithOne` and `WithMany`. This indicates that there is conceptually a reference or collection on the other end of the relationship, but there is no navigation property included in the entity class.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Relationships/OneNavigation.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [10], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/OneNavigation.cs?highlight=10)] -->
 
 ````c#
 
@@ -318,7 +318,7 @@ If you only have one navigation property then there are parameterless overloads 
 
 You can use the Fluent API to configure which property should be used as the foreign key property for a given relationship.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Relationships/ForeignKey.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [11], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/ForeignKey.cs?highlight=11)] -->
 
 ````c#
 
@@ -358,7 +358,7 @@ You can use the Fluent API to configure which property should be used as the for
 
 The following code listing shows how to configure a composite foreign key.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Relationships/CompositeForeignKey.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [13], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/CompositeForeignKey.cs?highlight=13)] -->
 
 ````c#
 
@@ -405,7 +405,7 @@ The following code listing shows how to configure a composite foreign key.
 
 If you want the foreign key to reference a property other than the primary key, you can use the Fluent API to configure the principal key property for the relationship. The property that you configure as the principal key will automatically be setup as an alternate key (see [Alternate Keys](alternate-keys.md) for more information).
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Relationships/PrincipalKey.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [11], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/PrincipalKey.cs?highlight=11)] -->
 
 ````c#
 
@@ -447,7 +447,7 @@ If you want the foreign key to reference a property other than the primary key, 
 
 The following code listing shows how to configure a composite principal key.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Relationships/CompositePrincipalKey.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [11], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/CompositePrincipalKey.cs?highlight=11)] -->
 
 ````c#
 
@@ -495,7 +495,7 @@ Caution: The order that you specify principal key properties must match the orde
 
 You can use the Fluent API to configure whether the relationship is required or optional. Ultimately this controls whether the foreign key property is required or optional. This is most useful when you are using a shadow state foreign key. If you have a foreign key property in your entity class then the requiredness of the relationship is determined based on whether the foreign key property is required or optional (see [Required/optional properties](required-optional.md) for more information).
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Relationships/Required.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [11], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/Required.cs?highlight=11)] -->
 
 ````c#
 
@@ -545,7 +545,7 @@ There are three behaviors that control how a delete operation is applied to depe
 
 Note: This cascading behavior is only applied to entities that are being tracked by the context. A corresponding cascade behavior should be setup in the database to ensure data that is not being tracked by the context has the same action applied. If you use EF to create the database, this cascade behavior will be setup for you.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Relationships/CascadeDelete.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [11], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/CascadeDelete.cs?highlight=11)] -->
 
 ````c#
 
@@ -587,7 +587,7 @@ Note: This cascading behavior is only applied to entities that are being tracked
 
 One to one relationships have a reference navigation property on both sides. They follow the same conventions as one-to-many relationships, but a unique index is introduced on the foreign key property to ensure only one dependent is related to each principal.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/Relationships/OneToOne.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [6, 15, 16], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/Relationships/OneToOne.cs?highlight=6,15,16)] -->
 
 ````c#
 
@@ -617,7 +617,7 @@ When configuring the relationship with the Fluent API, you use the `HasOne` and 
 
 When configuring the foreign key you need to specify the dependent entity type - notice the generic parameter provided to `HasForeignKey` in the listing below. In a one-to-many relationship it is clear that the entity with the reference navigation is the dependent and the one with the collection is the principal. But this is not so in a one-to-one relationship - hence the need to explicitly define it.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Relationships/OneToOne.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [11], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/OneToOne.cs?highlight=11)] -->
 
 ````c#
 
@@ -659,7 +659,7 @@ When configuring the foreign key you need to specify the dependent entity type -
 
 Many-to-many relationships without an entity class to represent the join table are not yet supported. However, you can represent a many-to-many relationship by including an entity class for the join table and mapping two separate one-to-many relationships.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Relationships/ManyToMany.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [11, 12, 13, 14, 16, 17, 18, 19, 39, 40, 41, 42, 43, 44, 45, 46], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/ManyToMany.cs?highlight=11,12,13,14,16,17,18,19,39,40,41,42,43,44,45,46)] -->
 
 ````c#
 

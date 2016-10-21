@@ -19,7 +19,7 @@ Indexes can not be created using data annotations.
 
 You can use the Fluent API specify an index on a single property. By default, indexes are non-unique.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [7, 8]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Index.cs"} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Index.cs?highlight=7,8)] -->
 
 ````c#
 
@@ -44,7 +44,7 @@ You can use the Fluent API specify an index on a single property. By default, in
 
 You can also specify that an index should be unique, meaning that no two entities can have the same value(s) for the given property(s).
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [3]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/IndexUnique.cs"} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/IndexUnique.cs?highlight=3)] -->
 
 ````c#
 
@@ -56,7 +56,7 @@ You can also specify that an index should be unique, meaning that no two entitie
 
 You can also specify an index over more than one column.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [7, 8]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/IndexComposite.cs"} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/IndexComposite.cs?highlight=7,8)] -->
 
 ````c#
 

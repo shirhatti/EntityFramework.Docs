@@ -39,7 +39,7 @@ Tip: When defining an extension method, define it in the namespace of the object
 
 By convention, providers define a `UseX()` extension on `DbContextOptionsBuilder`. This configures **options** which it typically takes as arguments to method.
 
-<!-- literal_block {"xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "ids": []} -->
+<!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
 
 ````
 
@@ -50,7 +50,7 @@ The `UseX()` extension method creates a provider-specific implementation of `IDb
 
 An example implementation of the "Use" method
 
-<!-- literal_block {"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/internals/Miscellaneous/Internals/WritingAProvider/EntityFrameworkCore.ProviderStarter/Extensions/MyProviderDbContextOptionsExtensions.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/internals/Miscellaneous/Internals/WritingAProvider/EntityFrameworkCore.ProviderStarter/Extensions/MyProviderDbContextOptionsExtensions.cs)] -->
 
 ````csharp
 
@@ -87,7 +87,7 @@ EF provides many complete or partial implementations of the required services to
 
 An example implementation of the "Add" method
 
-<!-- literal_block {"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/internals/Miscellaneous/Internals/WritingAProvider/EntityFrameworkCore.ProviderStarter/Extensions/MyProviderServiceCollectionExtensions.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/internals/Miscellaneous/Internals/WritingAProvider/EntityFrameworkCore.ProviderStarter/Extensions/MyProviderServiceCollectionExtensions.cs)] -->
 
 ````csharp
 

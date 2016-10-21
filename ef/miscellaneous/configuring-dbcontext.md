@@ -19,7 +19,7 @@ If both are used, "OnConfiguring" takes higher priority, which means it can over
 
   ### Constructor argumentContext code with constructor
 
-<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
 ````csharp
 
@@ -37,7 +37,7 @@ Tip: The base constructor of DbContext also accepts the non-generic version of `
 
 Application code to initialize from constructor argument
 
-<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
 ````csharp
 
@@ -56,7 +56,7 @@ Caution: `OnConfiguring` occurs last and can overwrite options obtained from DI 
 
 Context code with OnConfiguring
 
-<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
 ````csharp
 
@@ -73,7 +73,7 @@ Context code with OnConfiguring
 
 Application code to initialize with "OnConfiguring"
 
-<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
 ````csharp
 
@@ -93,7 +93,7 @@ See [more reading](#more-reading) below for information on dependency injection.
 
 Adding dbcontext to dependency injection
 
-<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
 ````csharp
 
@@ -107,7 +107,7 @@ This requires adding a [constructor argument](#constructor-argument) to you DbCo
 
 Context code
 
-<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
 ````csharp
 
@@ -123,7 +123,7 @@ Context code
 
 Application code (in ASP.NET Core)
 
-<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
 ````csharp
 
@@ -132,7 +132,7 @@ Application code (in ASP.NET Core)
 
 Application code (using ServiceProvider directly, less common)
 
-<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
 ````csharp
 
@@ -154,7 +154,7 @@ Implement this interface to enable design-time services for context types that d
 
 Example:
 
-<!-- literal_block {"language": "csharp", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
 ````csharp
 

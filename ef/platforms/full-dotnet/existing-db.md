@@ -1,4 +1,4 @@
----
+﻿---
 uid: platforms/full-dotnet/existing-db
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
@@ -45,7 +45,7 @@ Note: If you have already created the **Blogging** database as part of another t
 
 * Right-click on the query editor and select **Execute**
 
-<!-- literal_block {"language": "sql", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/_shared/create-blogging-database-script.sql", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-sql[Main](platforms/_shared/create-blogging-database-script.sql)] -->
 
 ````sql
 
@@ -115,7 +115,7 @@ Now it's time to create the EF model based on your existing database.
 
 * Run the following command to create a model from the existing database
 
-<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
 ````text
 
@@ -124,7 +124,7 @@ Now it's time to create the EF model based on your existing database.
 
 The reverse engineer process created entity classes and a derived context based on the schema of the existing database. The entity classes are simple C# objects that represent the data you will be querying and saving.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/full-dotnet/Platforms/FullNet/ConsoleApp.ExistingDb/Blog.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/Blog.cs)] -->
 
 ````c#
 
@@ -151,7 +151,7 @@ The reverse engineer process created entity classes and a derived context based 
 
 The context represents a session with the database and allows you to query and save instances of the entity classes.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/full-dotnet/Platforms/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs)] -->
 
 ````c#
 
@@ -197,7 +197,7 @@ You can now use your model to perform data access.
 
 * Replace the contents of the file with the following code
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/full-dotnet/Platforms/FullNet/ConsoleApp.ExistingDb/Program.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/Program.cs)] -->
 
 ````c#
 

@@ -21,7 +21,7 @@ You can use the `DbContext.Database` API to begin, commit, and rollback transact
 
 Not all database providers support transactions. Some providers may throw or no-op when transaction APIs are called.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [3, 17, 18, 19]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Transactions/ControllingTransaction/Sample.cs"} -->
+<!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/ControllingTransaction/Sample.cs?highlight=3,17,18,19)] -->
 
 ````c#
 
@@ -68,7 +68,7 @@ The easiest way to allow `DbConnection` to be externally provided, is to stop us
 
 Tip: `DbContextOptionsBuilder` is the API you used in `DbContext.OnConfiguring` to configure the context, you are now going to use it externally to create `DbContextOptions`.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [3, 4, 5]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Transactions/SharingTransaction/Sample.cs"} -->
+<!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/SharingTransaction/Sample.cs?highlight=3,4,5)] -->
 
 ````c#
 
@@ -85,7 +85,7 @@ Tip: `DbContextOptionsBuilder` is the API you used in `DbContext.OnConfiguring` 
 
 An alternative is to keep using `DbContext.OnConfiguring`, but accept a `DbConnection` that is saved and then used in `DbContext.OnConfiguring`.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": false, "dupnames": [], "language": "c#", "highlight_args": {}, "names": []} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp", highlight_args}, "names": [] -->
 
 ````c#
 
@@ -111,7 +111,7 @@ An alternative is to keep using `DbContext.OnConfiguring`, but accept a `DbConne
 
 You can now create multiple context instances that share the same connection. Then use the `DbContext.Database.UseTransaction(DbTransaction)` API to enlist both contexts in the same transaction.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [1, 2, 3, 7, 16, 23, 24, 25]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Transactions/SharingTransaction/Sample.cs"} -->
+<!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/SharingTransaction/Sample.cs?highlight=1,2,3,7,16,23,24,25)] -->
 
 ````c#
 
@@ -156,7 +156,7 @@ If you are using multiple data access technologies to access a relational databa
 
 The following example, shows how to perform an ADO.NET SqlClient operation and an Entity Framework Core operation in the same transaction.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [4, 10, 21, 26, 27, 28]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Transactions/ExternalDbTransaction/Sample.cs"} -->
+<!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/ExternalDbTransaction/Sample.cs?highlight=4,10,21,26,27,28)] -->
 
 ````c#
 
