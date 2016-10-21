@@ -15,7 +15,7 @@ If you like to learn by writing code, we'd recommend one of our [Getting Started
 
 [Install the NuGet package](https://docs.nuget.org/consume) for the database provider you want to use. See [Database Providers](providers/index.md) for information.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": false, "dupnames": [], "language": "text", "highlight_args": {}, "names": []} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": false, "dupnames": [], {"language": "csharp",", "highlight_args": {}, "names": []} -->
 
 ````text
 
@@ -28,7 +28,7 @@ With EF Core, data access is performed using a model. A model is made up of enti
 
 You can generate a model from an existing database, hand code a model to match your database, or use EF Migrations to create a database from your model (and evolve it as your model changes over time).
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {}, "names": []} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp", "highlight_args": {}, "names": []} -->
 
 ````c#
 
@@ -72,7 +72,7 @@ You can generate a model from an existing database, hand code a model to match y
 
 Instances of your entity classes are retrieved from the database using Language Integrated Query (LINQ). See [Querying Data](querying/index.md) to learn more.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {}, "names": []} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp", "highlight_args": {}, "names": []} -->
 
 ````c#
 
@@ -89,7 +89,7 @@ Instances of your entity classes are retrieved from the database using Language 
 
 Data is created, deleted, and modified in the database using instances of your entity classes. See [Saving Data](saving/index.md) to learn more.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {}, "names": []} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp", "highlight_args": {}, "names": []} -->
 
 ````c#
 

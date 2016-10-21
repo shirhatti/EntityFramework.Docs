@@ -28,7 +28,7 @@ To handle a concurrency conflict, catch a `DbUpdateConcurrencyException` during 
 
 In the following example, `Person.FirstName` and `Person.LastName` are setup as concurrency token. There is a `// TODO:` comment in the location where you would include application specific logic to choose the value to be saved to the database.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [53, 54]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Concurrency/Sample.cs"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp", "highlight_args": {"linenostart": 1, "hl_lines": [53, 54]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/Concurrency/Sample.cs"} -->
 
 ````c#
 

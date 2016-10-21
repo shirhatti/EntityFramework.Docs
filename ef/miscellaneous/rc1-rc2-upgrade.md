@@ -129,7 +129,7 @@ Some of EF Core's dependencies do not support .NET Standard yet. EF Core in .NET
 
 When adding EF, NuGet restore will display this error message:
 
-<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -148,7 +148,7 @@ The workaround is to manually import the portable profile "portable-net451+win8"
 
 Multiple frameworks can be added to "imports" in array syntax. Other imports may be necessary if you add additional libraries to your project.
 
-<!-- literal_block {"language": "json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````json
 

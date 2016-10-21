@@ -21,7 +21,7 @@ You can not set the default schema using Data Annotations.
 
 You can use the Fluent API to specify a default schema.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/DefaultSchema.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [7], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- literal_block {"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/DefaultSchema.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [7], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 

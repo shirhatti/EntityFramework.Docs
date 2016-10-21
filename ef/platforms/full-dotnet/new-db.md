@@ -1,4 +1,4 @@
----
+﻿---
 uid: platforms/full-dotnet/new-db
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
@@ -55,7 +55,7 @@ Now it's time to define a context and entity classes that make up your model.
 
 * Replace the contents of the file with the following code
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/full-dotnet/Platforms/FullNet/ConsoleApp.NewDb/Model.cs"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/full-dotnet/Platforms/FullNet/ConsoleApp.NewDb/Model.cs"} -->
 
 ````c#
 
@@ -117,7 +117,7 @@ You can now use your model to perform data access.
 
 * Replace the contents of the file with the following code
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/full-dotnet/Platforms/FullNet/ConsoleApp.NewDb/Program.cs"} -->
+<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/full-dotnet/Platforms/FullNet/ConsoleApp.NewDb/Program.cs"} -->
 
 ````c#
 

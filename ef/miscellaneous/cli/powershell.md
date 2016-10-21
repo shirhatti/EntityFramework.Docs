@@ -1,4 +1,4 @@
----
+﻿---
 uid: miscellaneous/cli/powershell
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
@@ -37,7 +37,7 @@ Note: All commands support the common parameters: `-Verbose`, `-Debug`, `-ErrorA
 
 Adds a new migration.
 
-<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -69,7 +69,7 @@ Adds a new migration.
 
 Removes the last migration.
 
-<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -98,7 +98,7 @@ Removes the last migration.
 
 Scaffolds a DbContext and entity type classes for a specified database.
 
-<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -146,7 +146,7 @@ Scaffolds a DbContext and entity type classes for a specified database.
 
 Generates a SQL script from migrations.
 
-<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -184,7 +184,7 @@ Generates a SQL script from migrations.
 
 Updates the database to a specified migration.
 
-<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -213,7 +213,7 @@ Updates the database to a specified migration.
 
 Sets the default DbContext to use.
 
-<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 
@@ -239,7 +239,7 @@ Sets the default DbContext to use.
 
 EF Core commands do not work on EF 6 or earlier version of EF. However, EF Core re-uses some of the same command names from these earlier versions. These commands can be installed side-by-side, however, EF does not automatically know which version of the command to use. This is solved by prefixing the command with the module name. The EF 6 commands PowerShell module is named "EntityFramework", and the EF Core module is named "EntityFrameworkCore". Without the prefix, PowerShell may call the wrong version of the command.
 
-<!-- literal_block {"language": "PowerShell", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block {"language": "csharp",rShell", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````PowerShell
 
@@ -254,7 +254,7 @@ EF Core commands do not work on EF 6 or earlier version of EF. However, EF Core 
 
 Design-time tools attempt to automatically find how your application creates instances of your DbContext type. If EF cannot find a suitable way to initialize your DbContext, you may encounter this error.
 
-<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+<!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
 
 ````text
 

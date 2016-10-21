@@ -18,7 +18,7 @@ For example, in the following code listing all three types are discovered:
 
    * `AuditEntry` because it is mentioned in `OnModelCreating`
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/IncludedTypes.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [3, 7, 16], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- literal_block {"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/IncludedTypes.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [3, 7, 16], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -62,7 +62,7 @@ For example, in the following code listing all three types are discovered:
 
 You can use Data Annotations to exclude a type from the model.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/IgnoreType.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [9], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- literal_block {"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/IgnoreType.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [9], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
@@ -86,7 +86,7 @@ You can use Data Annotations to exclude a type from the model.
 
 You can use the Fluent API to exclude a type from the model.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/IgnoreType.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [7], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- literal_block {"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/IgnoreType.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [7], "linenostart": 1}, "ids": [], "linenos": true} -->
 
 ````c#
 
