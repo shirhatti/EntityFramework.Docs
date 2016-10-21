@@ -18,7 +18,7 @@ Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramew
 
 You can use the `Include` method to specify related data to be included in query results. In the following example, the blogs that are returned in the results will have their `Posts` property populated with the related posts.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RelatedData/Sample.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
 ````c#
 
@@ -32,7 +32,7 @@ Tip: Entity Framework Core will automatically fix-up navigation properties to an
 
 You can include related data from multiple relationships in a single query.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RelatedData/Sample.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
 ````c#
 
@@ -47,7 +47,7 @@ You can include related data from multiple relationships in a single query.
 
 You can drill down thru relationships to include multiple levels of related data using the `ThenInclude` method. The following example loads all blogs, their related posts, and the author of each post.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RelatedData/Sample.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
 ````c#
 
@@ -60,7 +60,7 @@ You can drill down thru relationships to include multiple levels of related data
 
 You can chain multiple calls to `ThenInclude` to continue including further levels of related data.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RelatedData/Sample.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
 ````c#
 
@@ -74,7 +74,7 @@ You can chain multiple calls to `ThenInclude` to continue including further leve
 
 You can combine all of this to include related data from multiple levels and multiple roots in the same query.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RelatedData/Sample.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
 ````c#
 
@@ -94,7 +94,7 @@ If you change the query so that it no longer returns instances of the entity typ
 
 In the following example, the include operators are based on the `Blog`, but then the `Select` operator is used to change the query to return an anonymous type. In this case, the include operators have no effect.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RelatedData/Sample.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
 ````c#
 
@@ -111,7 +111,7 @@ In the following example, the include operators are based on the `Blog`, but the
 
 By default, EF Core will log a warning when include operators are ignored. See [Logging](../miscellaneous/logging.md) for more information on viewing logging output. You can change the behavior when an include operator is ignored to either throw or do nothing. This is done when setting up the options for your context - typically in `DbContext.OnConfiguring`, or in `Startup.cs` if you are using ASP.NET Core.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":5 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RelatedData/ThrowOnIgnoredInclude/BloggingContext.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/ThrowOnIgnoredInclude/BloggingContext.cs?highlight=5)] -->
 
 ````c#
 
@@ -132,7 +132,7 @@ However, you can use a LINQ query to load the data related to an existing entity
 
 In the following example, a query is used to load a blog, and then a later query is used to load the posts related to the blog. The loaded posts will be present in the `Posts` property of the previously loaded blog.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/RelatedData/Sample.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
 ````c#
 

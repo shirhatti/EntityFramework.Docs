@@ -26,7 +26,7 @@ Consider a simple *Blog* and *Post* model where the relationship between the two
 
 The following code loads a Blog and all its related Posts from the database (using the *Include* method). The code then deletes the Blog.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/CascadeDelete/Sample.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Saving/Saving/CascadeDelete/Sample.cs)] -->
 
 ````c#
 
@@ -57,7 +57,7 @@ Because all the Posts are tracked by the context, the cascade behavior is applie
 
 The following code is almost the same as our previous example, except it does not load the related Posts from the database.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/saving/Saving/Saving/CascadeDelete/Sample.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Saving/Saving/CascadeDelete/Sample.cs)] -->
 
 ````c#
 

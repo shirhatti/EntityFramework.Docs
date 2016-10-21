@@ -62,7 +62,7 @@ Now it's time to define a context and entity classes that make up your model.
 
 * Replace the contents of the file with the following code
 
-<!-- literal_block"language": "csharp",rp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/uwp/Platforms/UWP/UWP.SQLite/Model.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/Model.cs)] -->
 
 ````csharp
 
@@ -117,7 +117,7 @@ Warning: **Known Issue in Preview 2**Using EF Tools on UWP projects does not wor
 
   * Add the following contents to the file
 
-  <!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/uwp/Platforms/UWP/UWP.SQLite/App.config", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  "ids  "linenos": false -->
+<!-- [!code-xml[Main](samples/Platforms/UWP/UWP.SQLite/App.config)] -->
 
   ````xml
 
@@ -155,7 +155,7 @@ Since we want the database to be created on the device that the app runs on, we 
 
 * Add the highlighted using to the start of the file
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/uwp/Platforms/UWP/UWP.SQLite/App.xaml.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":1, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/App.xaml.cs?highlight=1)] -->
 
 ````c#
 
@@ -170,7 +170,7 @@ Since we want the database to be created on the device that the app runs on, we 
 
 * Add the highlighted code to apply any pending migrations
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/uwp/Platforms/UWP/UWP.SQLite/App.xaml.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":6, 7, 8, 9, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/App.xaml.cs?highlight=6,7,8,9)] -->
 
 ````c#
 
@@ -197,7 +197,7 @@ You can now use your model to perform data access.
 
 * Add the page load handler and UI content highlighted below
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/uwp/Platforms/UWP/UWP.SQLite/MainPage.xaml", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/MainPage.xaml?highlight=9,12,13,14,15,16,17,18,19,20,21,22)] -->
 
 ````c#
 
@@ -234,7 +234,7 @@ Now we'll add code to wire up the UI with the database
 
 * Add the highlighted code from the following listing
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/uwp/Platforms/UWP/UWP.SQLite/MainPage.xaml.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/MainPage.xaml.cs?highlight=8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26)] -->
 
 ````c#
 

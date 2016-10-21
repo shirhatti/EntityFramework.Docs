@@ -17,7 +17,7 @@ By convention, each property will be setup to map to a column with the same name
 
 You can use Data Annotations to configure the column to which a property is mapped.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/DataAnnotations/Samples/Relational/Column.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":3, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/Column.cs?highlight=3)] -->
 
 ````c#
 
@@ -34,7 +34,7 @@ You can use Data Annotations to configure the column to which a property is mapp
 
 You can use the Fluent API to configure the column to which a property is mapped.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/Column.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":7, 8, 9, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/Column.cs?highlight=7,8,9)] -->
 
 ````c#
 

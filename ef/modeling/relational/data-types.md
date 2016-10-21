@@ -19,7 +19,7 @@ For example, SQL Server uses `datetime2(7)` for `DateTime` properties, and `nvar
 
 You can use Data Annotations to specify an exact data type for the column.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/DataAnnotations/Samples/Relational/DataType.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":4, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/DataType.cs?highlight=4)] -->
 
 ````c#
 
@@ -36,7 +36,7 @@ You can use Data Annotations to specify an exact data type for the column.
 
 You can use the Fluent API to specify an exact data type for the column.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/DataType.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":7, 8, 9, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/DataType.cs?highlight=7,8,9)] -->
 
 ````c#
 
@@ -62,7 +62,7 @@ You can use the Fluent API to specify an exact data type for the column.
 
 If you are targeting more than one relational provider with the same model then you probably want to specify a data type for each provider rather than a global one to be used for all relational providers.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/DataTypeForProvider.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":3, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/DataTypeForProvider.cs?highlight=3)] -->
 
 ````c#
 

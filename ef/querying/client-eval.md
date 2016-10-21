@@ -13,7 +13,7 @@ Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramew
 
 In the following example a helper method is used to standardize URLs for blogs that are returned from a SQL Server database. Because the SQL Server provider has no insight into how this method is implemented, it is not possible to translate it into SQL. All other aspects of the query are evaluated in the database, but passing the returned `URL` through this method is performed on the client.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":6 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/ClientEval/Sample.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/Sample.cs?highlight=6)] -->
 
 ````c#
 
@@ -28,7 +28,7 @@ In the following example a helper method is used to standardize URLs for blogs t
 
    ````
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/ClientEval/Sample.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/Sample.cs)] -->
 
 ````c#
 
@@ -50,7 +50,7 @@ In the following example a helper method is used to standardize URLs for blogs t
 
 While client evaluation can be very useful, in some instances it can result in poor performance. Consider the following query, where the helper method is now used in a filter. Because this can't be performed in the database, all the data is pulled into memory and then the filter is applied on the client. Depending on the amount of data, and how much of that data is filtered out, this could result in poor performance.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/ClientEval/Sample.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/Sample.cs)] -->
 
 ````c#
 
@@ -62,7 +62,7 @@ While client evaluation can be very useful, in some instances it can result in p
 
 By default, EF Core will log a warning when client evaluation is performed. See [Logging](../miscellaneous/logging.md) for more information on viewing logging output. You can change the behavior when client evaluation occurs to either throw or do nothing. This is done when setting up the options for your context - typically in `DbContext.OnConfiguring`, or in `Startup.cs` if you are using ASP.NET Core.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":5 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/querying/Querying/Querying/ClientEval/ThrowOnClientEval/BloggingContext.cs" -->
+<!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/ThrowOnClientEval/BloggingContext.cs?highlight=5)] -->
 
 ````c#
 

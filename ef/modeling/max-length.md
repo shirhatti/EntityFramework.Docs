@@ -17,7 +17,7 @@ By convention, it is left up to the database provider to choose an appropriate d
 
 You can use the Data Annotations to configure a maximum length for a property. In this example, targeting SQL Server this would result in the `nvarchar(500)` data type being used.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":4 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/MaxLength.cs" -->
+<!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/MaxLength.cs?highlight=4)] -->
 
 ````c#
 
@@ -34,7 +34,7 @@ You can use the Data Annotations to configure a maximum length for a property. I
 
 You can use the Fluent API to configure a maximum length for a property. In this example, targeting SQL Server this would result in the `nvarchar(500)` data type being used.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":7, 8, 9 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/MaxLength.cs" -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/MaxLength.cs?highlight=7,8,9)] -->
 
 ````c#
 

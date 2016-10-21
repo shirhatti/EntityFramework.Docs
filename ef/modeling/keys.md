@@ -11,7 +11,7 @@ A key serves as the primary unique identifier for each entity instance. When usi
 
 By convention, a property named `Id` or `<type name>Id` will be configured as the key of an entity.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":3 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/KeyId.cs" -->
+<!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/KeyId.cs?highlight=3)] -->
 
 ````c#
 
@@ -25,7 +25,7 @@ By convention, a property named `Id` or `<type name>Id` will be configured as th
 
    ````
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":3 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/KeyTypeNameId.cs" -->
+<!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/KeyTypeNameId.cs?highlight=3)] -->
 
 ````c#
 
@@ -43,7 +43,7 @@ By convention, a property named `Id` or `<type name>Id` will be configured as th
 
 You can use Data Annotations to configure a single property to be the key of an entity.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":3, 4 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/KeySingle.cs" -->
+<!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/KeySingle.cs?highlight=3,4)] -->
 
 ````c#
 
@@ -62,7 +62,7 @@ You can use Data Annotations to configure a single property to be the key of an 
 
 You can use the Fluent API to configure a single property to be the key of an entity.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":7, 8 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/KeySingle.cs" -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/KeySingle.cs?highlight=7,8)] -->
 
 ````c#
 
@@ -89,7 +89,7 @@ You can use the Fluent API to configure a single property to be the key of an en
 
 You can also use the Fluent API to configure multiple properties to be the key of an entity (known as a composite key). Composite keys can only be configured using the Fluent API - conventions will never setup a composite key and you can not use Data Annotations to configure one.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":7, 8 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/KeyComposite.cs" -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/KeyComposite.cs?highlight=7,8)] -->
 
 ````c#
 

@@ -15,7 +15,7 @@ Alternate keys are typically introduced for you when needed and you do not need 
 
 By convention, an alternate key is introduced for you when you identify a property, that is not the primary key, as the target of a relationship.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":12 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/Conventions/Samples/AlternateKey.cs" -->
+<!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/AlternateKey.cs?highlight=12)] -->
 
 ````c#
 
@@ -62,7 +62,7 @@ Alternate keys can not be configured using Data Annotations.
 
 You can use the Fluent API to configure a single property to be an alternate key.
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":7, 8 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/AlternateKeySingle.cs" -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/AlternateKeySingle.cs?highlight=7,8)] -->
 
 ````c#
 
@@ -89,7 +89,7 @@ You can use the Fluent API to configure a single property to be an alternate key
 
 You can also use the Fluent API to configure multiple properties to be an alternate key (known as a composite alternate key).
 
-<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":7, 8 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/AlternateKeyComposite.cs" -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/AlternateKeyComposite.cs?highlight=7,8)] -->
 
 ````c#
 

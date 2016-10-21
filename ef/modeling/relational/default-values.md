@@ -21,7 +21,7 @@ You can not set a default value using Data Annotations.
 
 You can use the Fluent API to specify the default value for a property.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/DefaultValue.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":9, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/DefaultValue.cs?highlight=9)] -->
 
 ````c#
 
@@ -48,7 +48,7 @@ You can use the Fluent API to specify the default value for a property.
 
 You can also specify a SQL fragment that is used to calculate the default value.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/DefaultValueSql.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":9, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/DefaultValueSql.cs?highlight=9)] -->
 
 ````c#
 

@@ -21,7 +21,7 @@ No relational database specific aspects of a primary key can be configured using
 
 You can use the Fluent API to configure the name of the primary key constraint in the database.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/KeyName.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":9, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/KeyName.cs?highlight=9)] -->
 
 ````c#
 

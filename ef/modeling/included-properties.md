@@ -15,7 +15,7 @@ By convention, public properties with a getter and a setter will be included in 
 
 You can use Data Annotations to exclude a property from the model.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/IgnoreProperty.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":6, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/IgnoreProperty.cs?highlight=6)] -->
 
 ````c#
 
@@ -34,7 +34,7 @@ You can use Data Annotations to exclude a property from the model.
 
 You can use the Fluent API to exclude a property from the model.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/IgnoreProperty.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":7, 8, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/IgnoreProperty.cs?highlight=7,8)] -->
 
 ````c#
 

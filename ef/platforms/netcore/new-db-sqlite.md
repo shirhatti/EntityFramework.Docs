@@ -55,7 +55,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
    * To add EF to your project, modify `project.json` so it matches the following sample.
 
-        <!-- literal_block"language": "csharp",", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/project.json", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":8, 9, 10, 11, 12, 25, 26, 27, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-json[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/project.json?highlight=8,9,10,11,12,25,26,27)] -->
 
         ````json
 
@@ -116,7 +116,7 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
         All classes in the following steps will be added to this file.
 
-           <!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Model.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Model.cs)] -->
 
            ````c#
 
@@ -133,7 +133,7 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
         We will call this `BloggingContext`. The call to `UseSqlite()` configures EF to point to a *.db file.
 
-           <!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Model.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":1, 8, "linenostart": 1}, "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Model.cs?highlight=1,8)] -->
 
            ````c#
 
@@ -155,7 +155,7 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
         Note that we will be using foreign keys to associate many posts to one blog.
 
-           <!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Model.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Model.cs)] -->
 
            ````c#
 
@@ -223,7 +223,7 @@ Note: When using relative paths with SQLite, the path will be relative to the ap
 
 Now that we have configured our model and created the database schema, we can use BloggingContext to create, update, and delete objects.
 
-<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Program.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  "ids  "linenos": true -->
+<!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Program.cs)] -->
 
 ````c#
 
