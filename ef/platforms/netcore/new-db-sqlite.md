@@ -32,7 +32,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
    * Create a new folder `ConsoleApp/` for your project. All files for the project should be in this folder.
 
-        <!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+        <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
         ````bash
 
@@ -42,7 +42,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
    * Execute the following .NET Core CLI commands to create a new console application, download dependencies, and run the .NET Core app.
 
-     <!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+     <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
      ````bash
 
@@ -55,7 +55,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
    * To add EF to your project, modify `project.json` so it matches the following sample.
 
-        <!-- literal_block {"language": "csharp",", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/project.json", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [8, 9, 10, 11, 12, 25, 26, 27], "linenostart": 1}, "ids": [], "linenos": true} -->
+        <!-- literal_block"language": "csharp",", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/project.json", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":8, 9, 10, 11, 12, 25, 26, 27, "linenostart": 1}, "ids  "linenos": true -->
 
         ````json
 
@@ -92,7 +92,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
    * Run `dotnet restore` again to install the new packages.
 
-        <!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+        <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
         ````bash
 
@@ -101,7 +101,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
    * Verify that Entity Framework is installed by running `dotnet ef --help`.
 
-        <!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+        <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
         ````bash
 
@@ -116,7 +116,7 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
         All classes in the following steps will be added to this file.
 
-           <!-- literal_block {"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Model.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+           <!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Model.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  "ids  "linenos": true -->
 
            ````c#
 
@@ -133,7 +133,7 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
         We will call this `BloggingContext`. The call to `UseSqlite()` configures EF to point to a *.db file.
 
-           <!-- literal_block {"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Model.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [1, 8], "linenostart": 1}, "ids": [], "linenos": true} -->
+           <!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Model.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":1, 8, "linenostart": 1}, "ids  "linenos": true -->
 
            ````c#
 
@@ -155,7 +155,7 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
         Note that we will be using foreign keys to associate many posts to one blog.
 
-           <!-- literal_block {"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Model.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+           <!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Model.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  "ids  "linenos": true -->
 
            ````c#
 
@@ -182,7 +182,7 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
    * To make sure the files are correct, you can compile the project on the command line by running `dotnet build`
 
-        <!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+        <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
         ````bash
 
@@ -197,7 +197,7 @@ We can now use Entity Framework command line tools to create and manage the sche
 
         Execute the command below to generate your first migration. This will find our context and models, and generate a migration for us in a folder named `Migrations/`
 
-        <!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+        <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
         ````bash
 
@@ -208,7 +208,7 @@ We can now use Entity Framework command line tools to create and manage the sche
 
         You can now begin using the existing migration to create the database file and creates the tables.
 
-        <!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+        <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
         ````bash
 
@@ -223,7 +223,7 @@ Note: When using relative paths with SQLite, the path will be relative to the ap
 
 Now that we have configured our model and created the database schema, we can use BloggingContext to create, update, and delete objects.
 
-<!-- literal_block {"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Program.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- literal_block"language": "csharp", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/netcore/Platforms/NetCore/ConsoleApp.SQLite/Program.cs", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  "ids  "linenos": true -->
 
 ````c#
 
@@ -258,7 +258,7 @@ Now that we have configured our model and created the database schema, we can us
 
 Run the application from the command line.
 
-   <!-- literal_block {"language": "csharp",", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
+   <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
    ````bash
 

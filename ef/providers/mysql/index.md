@@ -15,7 +15,7 @@ Note: This provider is not maintained as part of the Entity Framework Core proje
 
 Install the [MySql.Data.EntityFrameworkCore NuGet package](https://www.nuget.org/packages/MySql.Data.EntityFrameworkCore).
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": false, "dupnames": [], {"language": "csharp",", "highlight_args": {}, "names": []} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp",", highlight_args}, "names": [] -->
 
 ````text
 

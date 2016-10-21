@@ -17,7 +17,7 @@ The InMemory provider is useful when you want to test components using something
 
 For example, consider the following service that allows application code to perform some operations related to blogs. Internally it uses a `DbContext` that connects to a SQL Server database. It would be useful to swap this context to connect to an InMemory database so that we can write efficient tests for this service without having to modify the code, or do a lot of work to create a test double of the context.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp",rp", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Testing/BusinessLogic/BlogService.cs"} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp",rp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Testing/BusinessLogic/BlogService.cs" -->
 
 ````csharp
 
@@ -65,7 +65,7 @@ In your tests you are going to externally configure the context to use the InMem
 
 Note: If you are using ASP.NET Core, then you should not need this code since your database provider is configured outside of the context (in Startup.cs).
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp",rp", "highlight_args": {"linenostart": 1, "hl_lines": [3]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Testing/BusinessLogic/BloggingContext.cs"} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp",rp", highlight_args"linenostart": 1, "h1_lines":3 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Testing/BusinessLogic/BloggingContext.cs" -->
 
 ````csharp
 
@@ -83,7 +83,7 @@ Note: If you are using ASP.NET Core, then you should not need this code since yo
 
 The simplest way to enable testing with the InMemory provider is to modify your context to expose a constructor that accepts a `DbContextOptions<TContext>`.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp",rp", "highlight_args": {"linenostart": 1, "hl_lines": [6, 7, 8]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Testing/BusinessLogic/BloggingContext.cs"} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp",rp", highlight_args"linenostart": 1, "h1_lines":6, 7, 8 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Testing/BusinessLogic/BloggingContext.cs" -->
 
 ````csharp
 
@@ -108,7 +108,7 @@ The key to testing with this provider is the ability to tell the context to use 
 
 Here is an example of a test class that uses the InMemory database. Each test method creates a new `DbContextOptions<TContext>` with a new `IServiceProvider`, meaning each method has its own InMemory database.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp",rp", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Testing/TestProject/BlogServiceTests.cs"} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp",rp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Testing/TestProject/BlogServiceTests.cs" -->
 
 ````csharp
 
@@ -194,7 +194,7 @@ Here is an example of a test class that uses the InMemory database. Each test me
 
 If a test class has read-only tests that share the same seed data, then you can share the InMemory database instance for the whole class (rather than a new one for each method). This means you have a single  `DbContextOptions<TContext>` and `IServiceProvider` for the test class, rather than one for each test method.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp",rp", "highlight_args": {"linenostart": 1}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Testing/TestProject/BlogServiceTestsReadOnly.cs"} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp",rp", "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/miscellaneous/Miscellaneous/Testing/TestProject/BlogServiceTestsReadOnly.cs" -->
 
 ````csharp
 

@@ -15,7 +15,7 @@ Data stores can enforce concurrency tokens by checking that any record being upd
 
 For example, relational database achieve this by including the concurrency token in the `WHERE` clause of any `UPDATE` or `DELETE` commands and checking the number of rows that were affected. If the concurrency token still matches then one row will be updated. If the value in the database has changed, then no rows are updated.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": false, "dupnames": [], {"language": "csharp",, "highlight_args": {}, "names": []} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp",, highlight_args}, "names": [] -->
 
 ````sql
 
@@ -31,7 +31,7 @@ By convention, properties are never configured as concurrency tokens.
 
 You can use the Data Annotations to configure a property as a concurrency token.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp", "highlight_args": {"linenostart": 1, "hl_lines": [4]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/Concurrency.cs"} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":4 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/Concurrency.cs" -->
 
 ````c#
 
@@ -49,7 +49,7 @@ You can use the Data Annotations to configure a property as a concurrency token.
 
 You can use the Fluent API to configure a property as a concurrency token.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp", "highlight_args": {"linenostart": 1, "hl_lines": [7, 8, 9]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Concurrency.cs"} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":7, 8, 9 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Concurrency.cs" -->
 
 ````c#
 
@@ -88,7 +88,7 @@ By convention, properties are never configured as timestamps.
 
 You can use Data Annotations to configure a property as a timestamp.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp", "highlight_args": {"linenostart": 1, "hl_lines": [6]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/Timestamp.cs"} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":6 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/Timestamp.cs" -->
 
 ````c#
 
@@ -107,7 +107,7 @@ You can use Data Annotations to configure a property as a timestamp.
 
 You can use the Fluent API to configure a property as a timestamp.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], {"language": "csharp", "highlight_args": {"linenostart": 1, "hl_lines": [7, 8, 9, 10]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Timestamp.cs"} -->
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args"linenostart": 1, "h1_lines":7, 8, 9, 10 "names  "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Timestamp.cs" -->
 
 ````c#
 
