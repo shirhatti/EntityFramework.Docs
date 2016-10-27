@@ -15,27 +15,27 @@ In this walkthrough, you will build an ASP.NET Core MVC application that perform
 
 The following prerequisites are needed to complete this walkthrough:
 
-    * [Visual Studio 2015 Update 3](https://go.microsoft.com/fwlink/?LinkId=691129)
+* [Visual Studio 2015 Update 3](https://go.microsoft.com/fwlink/?LinkId=691129)
 
-    * [.NET Core for Visual Studio](https://go.microsoft.com/fwlink/?LinkId=817245)
+* [.NET Core for Visual Studio](https://go.microsoft.com/fwlink/?LinkId=817245)
 
 ## Create a new project
 
-    * Open Visual Studio 2015
+* Open Visual Studio 2015
 
-    * File ‣ New ‣ Project...
+* File ‣ New ‣ Project...
 
-    * From the left menu select Templates ‣ Visual C# ‣ Web
+* From the left menu select Templates ‣ Visual C# ‣ Web
 
-    * Select the **ASP.NET Core Web Application (.NET Core)** project template
+* Select the **ASP.NET Core Web Application (.NET Core)** project template
 
-    * Enter **EFGetStarted.AspNetCore.NewDb** as the name and click **OK**
+* Enter **EFGetStarted.AspNetCore.NewDb** as the name and click **OK**
 
-    * Wait for the **New ASP.NET Core Web Application** dialog to appear
+* Wait for the **New ASP.NET Core Web Application** dialog to appear
 
-    * Select the **Web Application** template and ensure that **Authentication** is set to **No Authentication**
+* Select the **Web Application** template and ensure that **Authentication** is set to **No Authentication**
 
-    * Click **OK**
+* Click **OK**
 
 > [!WARNING]
 > If you use **Individual User Accounts** instead of **None** for **Authentication** then an Entity Framework model will be added to your project in *Models\IdentityModel.cs*. Using the techniques you will learn in this walkthrough, you can choose to add a second model, or extend this existing model to contain your entity classes.
@@ -60,74 +60,69 @@ Later in this walkthrough we will also be using some Entity Framework commands t
 * Locate the `tools` section and add the `ef` command as shown below
 
 <!-- [!code-json[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/project.json?highlight=2)] -->
-
 ````
 
      "tools": {
-       "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
-       "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
-       "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+"Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
+"Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
+"Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
      },
-
-   ````
+````
 
 ## Create your model
 
 Now it's time to define a context and entity classes that make up your model.
 
-    * Right-click on the project in **Solution Explorer** and select Add ‣ New Folder
+* Right-click on the project in **Solution Explorer** and select Add ‣ New Folder
 
-    * Enter **Models** as the name of the folder
+* Enter **Models** as the name of the folder
 
-    * Right-click on the **Models** folder and select Add ‣ New Item...
+* Right-click on the **Models** folder and select Add ‣ New Item...
 
-    * From the left menu select Installed ‣ Code
+* From the left menu select Installed ‣ Code
 
-    * Select the **Class** item template
+* Select the **Class** item template
 
-    * Enter **Model.cs** as the name and click **OK**
+* Enter **Model.cs** as the name and click **OK**
 
-    * Replace the contents of the file with the following code
+* Replace the contents of the file with the following code
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Models/Model.cs)] -->
-
 ````csharp
-
    using Microsoft.EntityFrameworkCore;
    using System.Collections.Generic;
 
    namespace EFGetStarted.AspNetCore.NewDb.Models
    {
-       public class BloggingContext : DbContext
-       {
-           public BloggingContext(DbContextOptions<BloggingContext> options)
-               : base(options)
-           { }
+public class BloggingContext : DbContext
+{
+    public BloggingContext(DbContextOptions<BloggingContext> options)
+        : base(options)
+    { }
 
-           public DbSet<Blog> Blogs { get; set; }
-           public DbSet<Post> Posts { get; set; }
-       }
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
+}
 
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
 
-           public List<Post> Posts { get; set; }
-       }
+    public List<Post> Posts { get; set; }
+}
 
-       public class Post
-       {
-           public int PostId { get; set; }
-           public string Title { get; set; }
-           public string Content { get; set; }
+public class Post
+{
+    public int PostId { get; set; }
+    public string Title { get; set; }
+    public string Content { get; set; }
 
-           public int BlogId { get; set; }
-           public Blog Blog { get; set; }
-       }
+    public int BlogId { get; set; }
+    public Blog Blog { get; set; }
+}
    }
-
-   ````
+````
 
 > [!NOTE]
 > In a real application you would typically put each class from your model in a separate file. For the sake of simplicity, we are putting all the classes in one file for this tutorial.
@@ -138,35 +133,29 @@ The concept of dependency injection is central to ASP.NET Core. Services (such a
 
 In order for our MVC controllers to make use of `BloggingContext` we are going to register it as a service.
 
-    * Open **Startup.cs**
+* Open **Startup.cs**
 
-    * Add the following `using` statements at the start of the file
+* Add the following `using` statements at the start of the file
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Startup.cs)] -->
-
 ````csharp
-
    using EFGetStarted.AspNetCore.NewDb.Models;
    using Microsoft.EntityFrameworkCore;
-
-   ````
+````
 
 Now we can use the `AddDbContext` method to register it as a service.
 
-    * Locate the `ConfigureServices` method
+* Locate the `ConfigureServices` method
 
-    * Add the lines that are highlighted in the following code
+* Add the lines that are highlighted in the following code
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Startup.cs?highlight=3,4)] -->
-
 ````csharp
-
-           public void ConfigureServices(IServiceCollection services)
-           {
-               var connection = @"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
-               services.AddDbContext<BloggingContext>(options => options.UseSqlServer(connection));
-
-   ````
+    public void ConfigureServices(IServiceCollection services)
+    {
+        var connection = @"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
+        services.AddDbContext<BloggingContext>(options => options.UseSqlServer(connection));
+````
 
 ## Create your database
 
@@ -185,62 +174,59 @@ Now that you have a model, you can use migrations to create a database for you.
 
 Next, we'll add an MVC controller that will use EF to query and save data.
 
-    * Right-click on the **Controllers** folder in **Solution Explorer** and select Add ‣ New Item...
+* Right-click on the **Controllers** folder in **Solution Explorer** and select Add ‣ New Item...
 
-    * From the left menu select Installed ‣ Server-side
+* From the left menu select Installed ‣ Server-side
 
-    * Select the **Class** item template
+* Select the **Class** item template
 
-    * Enter **BlogsController.cs** as the name and click **OK**
+* Enter **BlogsController.cs** as the name and click **OK**
 
-    * Replace the contents of the file with the following code
+* Replace the contents of the file with the following code
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Controllers/BlogsController.cs)] -->
-
 ````csharp
-
    using EFGetStarted.AspNetCore.NewDb.Models;
    using Microsoft.AspNetCore.Mvc;
    using System.Linq;
 
    namespace EFGetStarted.AspNetCore.NewDb.Controllers
    {
-       public class BlogsController : Controller
-       {
-           private BloggingContext _context;
+public class BlogsController : Controller
+{
+    private BloggingContext _context;
 
-           public BlogsController(BloggingContext context)
-           {
-               _context = context;
-           }
+    public BlogsController(BloggingContext context)
+    {
+        _context = context;
+    }
 
-           public IActionResult Index()
-           {
-               return View(_context.Blogs.ToList());
-           }
+    public IActionResult Index()
+    {
+        return View(_context.Blogs.ToList());
+    }
 
-           public IActionResult Create()
-           {
-               return View();
-           }
+    public IActionResult Create()
+    {
+        return View();
+    }
 
-           [HttpPost]
-           [ValidateAntiForgeryToken]
-           public IActionResult Create(Blog blog)
-           {
-               if (ModelState.IsValid)
-               {
-                   _context.Blogs.Add(blog);
-                   _context.SaveChanges();
-                   return RedirectToAction("Index");
-               }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(Blog blog)
+    {
+        if (ModelState.IsValid)
+        {
+            _context.Blogs.Add(blog);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-               return View(blog);
-           }
+        return View(blog);
+    }
 
-       }
-   }
-   ````
+}
+   }````
 
 You'll notice that the controller takes a `BloggingContext` as a constructor parameter. ASP.NET dependency injection will take care of passing an instance of `BloggingContext` into your controller.
 
@@ -252,113 +238,109 @@ Now that we have a controller it's time to add the views that will make up the u
 
 We'll start with the view for our `Index` action, that displays all blogs.
 
-    * Right-click on the **Views** folder in **Solution Explorer** and select Add ‣ New Folder
+* Right-click on the **Views** folder in **Solution Explorer** and select Add ‣ New Folder
 
-    * Enter **Blogs** as the name of the folder
+* Enter **Blogs** as the name of the folder
 
-    * Right-click on the **Blogs** folder and select Add ‣ New Item...
+* Right-click on the **Blogs** folder and select Add ‣ New Item...
 
-    * From the left menu select Installed ‣ ASP.NET
+* From the left menu select Installed ‣ ASP.NET
 
-    * Select the **MVC View Page** item template
+* Select the **MVC View Page** item template
 
-    * Enter **Index.cshtml** as the name and click **Add**
+* Enter **Index.cshtml** as the name and click **Add**
 
-    * Replace the contents of the file with the following code
+* Replace the contents of the file with the following code
 
 <!-- [!code-html[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Views/Blogs/Index.cshtml)] -->
-
 ````
 
    @model IEnumerable<EFGetStarted.AspNetCore.NewDb.Models.Blog>
 
    @{
-       ViewBag.Title = "Blogs";
+ViewBag.Title = "Blogs";
    }
 
    <h2>Blogs</h2>
 
    <p>
-       <a asp-controller="Blogs" asp-action="Create">Create New</a>
+<a asp-controller="Blogs" asp-action="Create">Create New</a>
    </p>
 
    <table class="table">
-       <tr>
-           <th>Id</th>
-           <th>Url</th>
-       </tr>
+<tr>
+    <th>Id</th>
+    <th>Url</th>
+</tr>
 
-       @foreach (var item in Model)
-       {
-           <tr>
-               <td>
-                   @Html.DisplayFor(modelItem => item.BlogId)
-               </td>
-               <td>
-                   @Html.DisplayFor(modelItem => item.Url)
-               </td>
-           </tr>
-       }
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BlogId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Url)
+        </td>
+    </tr>
+}
    </table>
-
-   ````
+````
 
 We'll also add a view for the `Create` action, which allows the user to enter details for a new blog.
 
-    * Right-click on the **Blogs** folder and select Add ‣ New Item...
+* Right-click on the **Blogs** folder and select Add ‣ New Item...
 
-    * From the left menu select Installed ‣ ASP.NET Core
+* From the left menu select Installed ‣ ASP.NET Core
 
-    * Select the **MVC View Page** item template
+* Select the **MVC View Page** item template
 
-    * Enter **Create.cshtml** as the name and click **Add**
+* Enter **Create.cshtml** as the name and click **Add**
 
-    * Replace the contents of the file with the following code
+* Replace the contents of the file with the following code
 
 <!-- [!code-html[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Views/Blogs/Create.cshtml)] -->
-
 ````
 
    @model EFGetStarted.AspNetCore.NewDb.Models.Blog
 
    @{
-       ViewBag.Title = "New Blog";
+ViewBag.Title = "New Blog";
    }
 
    <h2>@ViewData["Title"]</h2>
 
    <form asp-controller="Blogs" asp-action="Create" method="post" class="form-horizontal" role="form">
-       <div class="form-horizontal">
-           <div asp-validation-summary="All" class="text-danger"></div>
-           <div class="form-group">
-               <label asp-for="Url" class="col-md-2 control-label"></label>
-               <div class="col-md-10">
-                   <input asp-for="Url" class="form-control" />
-                   <span asp-validation-for="Url" class="text-danger"></span>
-               </div>
-           </div>
-           <div class="form-group">
-               <div class="col-md-offset-2 col-md-10">
-                   <input type="submit" value="Create" class="btn btn-default" />
-               </div>
-           </div>
-       </div>
-   </form>
-   ````
+<div class="form-horizontal">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Url" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Url" class="form-control" />
+            <span asp-validation-for="Url" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+   </form>````
 
 ## Run the application
 
 You can now run the application to see it in action.
 
-    * Debug ‣ Start Without Debugging
+* Debug ‣ Start Without Debugging
 
-    * The application will build and open in a web browser
+* The application will build and open in a web browser
 
-    * Navigate to **/Blogs**
+* Navigate to **/Blogs**
 
-    * Click **Create New**
+* Click **Create New**
 
-    * Enter a **Url** for the new blog and click **Create**
+* Enter a **Url** for the new blog and click **Create**
 
 ![image](aspnetcore/_static/create.png)
 

@@ -21,18 +21,15 @@ If both are used, "OnConfiguring" takes higher priority, which means it can over
 ### Constructor argumentContext code with constructor
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````csharp
-
    public class BloggingContext : DbContext
    {
-       public BloggingContext(DbContextOptions<BloggingContext> options)
-           : base(options)
-       { }
+public BloggingContext(DbContextOptions<BloggingContext> options)
+    : base(options)
+{ }
 
-       public DbSet<Blog> Blogs { get; set; }
-   }
-   ````
+public DbSet<Blog> Blogs { get; set; }
+   }````
 
 > [!TIP]
 > The base constructor of DbContext also accepts the non-generic version of `DbContextOptions`. Using the non-generic version is not recommended for applications with multiple context types.
@@ -40,17 +37,14 @@ If both are used, "OnConfiguring" takes higher priority, which means it can over
 Application code to initialize from constructor argument
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````csharp
-
    var optionsBuilder = new DbContextOptionsBuilder<BloggingContext>();
    optionsBuilder.UseSqlite("Filename=./blog.db");
 
    using (var context = new BloggingContext(optionsBuilder.Options))
    {
-       // do stuff
-   }
-   ````
+// do stuff
+   }````
 
 ### OnConfiguring
 
@@ -60,31 +54,25 @@ Application code to initialize from constructor argument
 Context code with OnConfiguring
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````csharp
-
    public class BloggingContext : DbContext
    {
-       public DbSet<Blog> Blogs { get; set; }
+public DbSet<Blog> Blogs { get; set; }
 
-       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-       {
-           optionsBuilder.UseSqlite("Filename=./blog.db");
-       }
-   }
-   ````
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    optionsBuilder.UseSqlite("Filename=./blog.db");
+}
+   }````
 
 Application code to initialize with "OnConfiguring"
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````csharp
-
    using (var context = new BloggingContext())
    {
-       // do stuff
-   }
-   ````
+// do stuff
+   }````
 
 ## Using DbContext with dependency injection
 
@@ -97,55 +85,43 @@ See [more reading](#more-reading) below for information on dependency injection.
 Adding dbcontext to dependency injection
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````csharp
-
    public void ConfigureServices(IServiceCollection services)
    {
-       services.AddDbContext<BloggingContext>(options => options.UseSqlite("Filename=./blog.db"));
-   }
-   ````
+services.AddDbContext<BloggingContext>(options => options.UseSqlite("Filename=./blog.db"));
+   }````
 
 This requires adding a [constructor argument](#constructor-argument) to you DbContext type that accepts `DbContextOptions`.
 
 Context code
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````csharp
-
    public class BloggingContext : DbContext
    {
-       public BloggingContext(DbContextOptions<BloggingContext> options)
-         :base(options)
-       { }
+public BloggingContext(DbContextOptions<BloggingContext> options)
+  :base(options)
+{ }
 
-       public DbSet<Blog> Blogs { get; set; }
-   }
-   ````
+public DbSet<Blog> Blogs { get; set; }
+   }````
 
 Application code (in ASP.NET Core)
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````csharp
-
-   public MyController(BloggingContext context)
-   ````
+   public MyController(BloggingContext context)````
 
 Application code (using ServiceProvider directly, less common)
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````csharp
-
    using (var context = serviceProvider.GetService<BloggingContext>())
    {
      // do stuff
    }
 
-   var options = serviceProvider.GetService<DbContextOptions<BloggingContext>>();
-   ````
+   var options = serviceProvider.GetService<DbContextOptions<BloggingContext>>();````
 
 <a name=use-idbcontextfactory></a>
 
@@ -158,26 +134,23 @@ Implement this interface to enable design-time services for context types that d
 Example:
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````csharp
-
    using Microsoft.EntityFrameworkCore;
    using Microsoft.EntityFrameworkCore.Infrastructure;
 
    namespace MyProject
    {
-       public class BloggingContextFactory : IDbContextFactory<BloggingContext>
-       {
-           public BloggingContext Create()
-           {
-               var optionsBuilder = new DbContextOptionsBuilder<BloggingContext>();
-               optionsBuilder.UseSqlite("Filename=./blog.db");
+public class BloggingContextFactory : IDbContextFactory<BloggingContext>
+{
+    public BloggingContext Create()
+    {
+        var optionsBuilder = new DbContextOptionsBuilder<BloggingContext>();
+        optionsBuilder.UseSqlite("Filename=./blog.db");
 
-               return new BloggingContext(optionsBuilder.Options);
-           }
-       }
-   }
-   ````
+        return new BloggingContext(optionsBuilder.Options);
+    }
+}
+   }````
 
 ## More reading
 

@@ -24,37 +24,34 @@ You can use the `DbContext.Database` API to begin, commit, and rollback transact
 Not all database providers support transactions. Some providers may throw or no-op when transaction APIs are called.
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/ControllingTransaction/Sample.cs?highlight=3,17,18,19)] -->
-
 ````csharp
+        using (var context = new BloggingContext())
+        {
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
+                    context.SaveChanges();
 
-               using (var context = new BloggingContext())
-               {
-                   using (var transaction = context.Database.BeginTransaction())
-                   {
-                       try
-                       {
-                           context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
-                           context.SaveChanges();
+                    context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/visualstudio" });
+                    context.SaveChanges();
 
-                           context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/visualstudio" });
-                           context.SaveChanges();
+                    var blogs = context.Blogs
+                        .OrderBy(b => b.Url)
+                        .ToList();
 
-                           var blogs = context.Blogs
-                               .OrderBy(b => b.Url)
-                               .ToList();
-
-                           // Commit transaction if all commands succeed, transaction will auto-rollback
-                           // when disposed if either commands fails
-                           transaction.Commit();
-                       }
-                       catch (Exception)
-                       {
-                           // TODO: Handle failure
-                       }
-                   }
-               }
-
-   ````
+                    // Commit transaction if all commands succeed, transaction will auto-rollback
+                    // when disposed if either commands fails
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    // TODO: Handle failure
+                }
+            }
+        }
+````
 
 ## Cross-context transaction (relational databases only)
 
@@ -72,86 +69,77 @@ The easiest way to allow `DbConnection` to be externally provided, is to stop us
 > `DbContextOptionsBuilder` is the API you used in `DbContext.OnConfiguring` to configure the context, you are now going to use it externally to create `DbContextOptions`.
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/SharingTransaction/Sample.cs?highlight=3,4,5)] -->
-
 ````csharp
+    public class BloggingContext : DbContext
+    {
+        public BloggingContext(DbContextOptions<BloggingContext> options)
+            : base(options)
+        { }
 
-           public class BloggingContext : DbContext
-           {
-               public BloggingContext(DbContextOptions<BloggingContext> options)
-                   : base(options)
-               { }
-
-               public DbSet<Blog> Blogs { get; set; }
-           }
-
-   ````
+        public DbSet<Blog> Blogs { get; set; }
+    }
+````
 
 An alternative is to keep using `DbContext.OnConfiguring`, but accept a `DbConnection` that is saved and then used in `DbContext.OnConfiguring`.
 
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp", highlight_args}, "names": [] -->
-
 ````csharp
-
    public class BloggingContext : DbContext
    {
-       private DbConnection _connection;
+private DbConnection _connection;
 
-       public BloggingContext(DbConnection connection)
-       {
-         _connection = connection;
-       }
+public BloggingContext(DbConnection connection)
+{
+  _connection = connection;
+}
 
-       public DbSet<Blog> Blogs { get; set; }
+public DbSet<Blog> Blogs { get; set; }
 
-       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-       {
-           optionsBuilder.UseSqlServer(_connection);
-       }
-   }
-   ````
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    optionsBuilder.UseSqlServer(_connection);
+}
+   }````
 
 ### Share connection and transaction
 
 You can now create multiple context instances that share the same connection. Then use the `DbContext.Database.UseTransaction(DbTransaction)` API to enlist both contexts in the same transaction.
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/SharingTransaction/Sample.cs?highlight=1,2,3,7,16,23,24,25)] -->
-
 ````csharp
+        var options = new DbContextOptionsBuilder<BloggingContext>()
+            .UseSqlServer(new SqlConnection(connectionString))
+            .Options;
 
-               var options = new DbContextOptionsBuilder<BloggingContext>()
-                   .UseSqlServer(new SqlConnection(connectionString))
-                   .Options;
+        using (var context1 = new BloggingContext(options))
+        {
+            using (var transaction = context1.Database.BeginTransaction())
+            {
+                try
+                {
+                    context1.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
+                    context1.SaveChanges();
 
-               using (var context1 = new BloggingContext(options))
-               {
-                   using (var transaction = context1.Database.BeginTransaction())
-                   {
-                       try
-                       {
-                           context1.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
-                           context1.SaveChanges();
+                    using (var context2 = new BloggingContext(options))
+                    {
+                        context2.Database.UseTransaction(transaction.GetDbTransaction());
 
-                           using (var context2 = new BloggingContext(options))
-                           {
-                               context2.Database.UseTransaction(transaction.GetDbTransaction());
+                        var blogs = context2.Blogs
+                            .OrderBy(b => b.Url)
+                            .ToList();
+                    }
 
-                               var blogs = context2.Blogs
-                                   .OrderBy(b => b.Url)
-                                   .ToList();
-                           }
-
-                           // Commit transaction if all commands succeed, transaction will auto-rollback
-                           // when disposed if either commands fails
-                           transaction.Commit();
-                       }
-                       catch (Exception)
-                       {
-                           // TODO: Handle failure
-                       }
-                   }
-               }
-
-   ````
+                    // Commit transaction if all commands succeed, transaction will auto-rollback
+                    // when disposed if either commands fails
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    // TODO: Handle failure
+                }
+            }
+        }
+````
 
 ## Using external DbTransactions (relational databases only)
 
@@ -160,41 +148,38 @@ If you are using multiple data access technologies to access a relational databa
 The following example, shows how to perform an ADO.NET SqlClient operation and an Entity Framework Core operation in the same transaction.
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/ExternalDbTransaction/Sample.cs?highlight=4,10,21,26,27,28)] -->
-
 ````csharp
+        var connection = new SqlConnection(connectionString);
+        connection.Open();
 
-               var connection = new SqlConnection(connectionString);
-               connection.Open();
+        using (var transaction = connection.BeginTransaction())
+        {
+            try
+            {
+                // Run raw ADO.NET command in the transaction
+                var command = connection.CreateCommand();
+                command.Transaction = transaction;
+                command.CommandText = "DELETE FROM dbo.Blogs";
+                command.ExecuteNonQuery();
 
-               using (var transaction = connection.BeginTransaction())
-               {
-                   try
-                   {
-                       // Run raw ADO.NET command in the transaction
-                       var command = connection.CreateCommand();
-                       command.Transaction = transaction;
-                       command.CommandText = "DELETE FROM dbo.Blogs";
-                       command.ExecuteNonQuery();
+                // Run an EF Core command in the transaction
+                var options = new DbContextOptionsBuilder<BloggingContext>()
+                    .UseSqlServer(connection)
+                    .Options;
 
-                       // Run an EF Core command in the transaction
-                       var options = new DbContextOptionsBuilder<BloggingContext>()
-                           .UseSqlServer(connection)
-                           .Options;
+                using (var context = new BloggingContext(options))
+                {
+                    context.Database.UseTransaction(transaction);
+                    context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
+                    context.SaveChanges();
+                }
 
-                       using (var context = new BloggingContext(options))
-                       {
-                           context.Database.UseTransaction(transaction);
-                           context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
-                           context.SaveChanges();
-                       }
-
-                       // Commit transaction if all commands succeed, transaction will auto-rollback
-                       // when disposed if either commands fails
-                       transaction.Commit();
-                   }
-                   catch (System.Exception)
-                   {
-                       // TODO: Handle failure
-                   }
-
-   ````
+                // Commit transaction if all commands succeed, transaction will auto-rollback
+                // when disposed if either commands fails
+                transaction.Commit();
+            }
+            catch (System.Exception)
+            {
+                // TODO: Handle failure
+            }
+````

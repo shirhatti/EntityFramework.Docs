@@ -11,7 +11,9 @@ EF command-line tools for .NET Core Command Line Interface (CLI).
 > [!NOTE]
 > Command-line tools for .NET Core CLI has known issues. See [Preview 2 Known Issues](#preview-2-known-issues) for more details.
 
-## Installation### Prerequisites
+## Installation
+
+### Prerequisites
 
 EF command-line tools requires .NET Core CLI Preview 2 or newer. See the [.NET Core](https://www.microsoft.com/net/core) website for installation instructions.
 
@@ -19,9 +21,9 @@ EF command-line tools requires .NET Core CLI Preview 2 or newer. See the [.NET C
 
 EF supports .NET Core CLI commands on these frameworks:
 
-    * .NET Framework 4.5.1 and newer. ("net451", "net452", "net46", etc.)
+* .NET Framework 4.5.1 and newer. ("net451", "net452", "net46", etc.)
 
-    * .NET Core App 1.0. ("netcoreapp1.0")
+* .NET Core App 1.0. ("netcoreapp1.0")
 
 ### Install by editing project.json
 
@@ -34,26 +36,24 @@ EF command-line tools for .NET Core CLI are installed by manually editing `proje
 The resulting project.json should include these items (in addition to your other project dependencies).
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````json
 
    {
-       "dependencies": {
-           "Microsoft.EntityFrameworkCore.Design": {
-               "type": "build",
-               "version": "1.0.0-preview2-final"
-           }
-       },
+"dependencies": {
+    "Microsoft.EntityFrameworkCore.Design": {
+        "type": "build",
+        "version": "1.0.0-preview2-final"
+    }
+},
 
-       "tools": {
-           "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final"
-       },
+"tools": {
+    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final"
+},
 
-       "frameworks": {
-           "netcoreapp1.0": { }
-       }
-   }
-   ````
+"frameworks": {
+    "netcoreapp1.0": { }
+}
+   }````
 
 > [!TIP]
 > A build-only dependency (`"type": "build"`) means this dependency is local to the current project. For example, if Project A has a build only dependency and Project B depends on A, `dotnet restore` will not add A's build-only dependencies into Project B.
@@ -65,7 +65,6 @@ Commands can be run from the command line by navigating to the project directory
 ### dotnet-ef
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````none
 
    Usage: dotnet ef [options] [command]
@@ -82,13 +81,11 @@ Commands can be run from the command line by navigating to the project directory
    Commands:
      database    Commands to manage your database
      dbcontext   Commands to manage your DbContext types
-     migrations  Commands to manage your migrations
-   ````
+     migrations  Commands to manage your migrations````
 
 ### dotnet-ef-database
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef database [options] [command]
@@ -99,13 +96,11 @@ Commands can be run from the command line by navigating to the project directory
 
    Commands:
      drop    Drop the database for specific environment
-     update  Updates the database to a specified migration
-   ````
+     update  Updates the database to a specified migration````
 
 ### dotnet-ef-database-drop
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef database drop [options]
@@ -115,13 +110,11 @@ Commands can be run from the command line by navigating to the project directory
      -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
      -f|--force                      Drop without confirmation
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
-   ````
+     -v|--verbose                    Enable verbose output````
 
 ### dotnet-ef-database-update
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef database update [arguments] [options]
@@ -133,13 +126,11 @@ Commands can be run from the command line by navigating to the project directory
      -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
-   ````
+     -v|--verbose                    Enable verbose output````
 
 ### dotnet-ef-dbcontext
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef dbcontext [options] [command]
@@ -150,13 +141,11 @@ Commands can be run from the command line by navigating to the project directory
 
    Commands:
      list      List your DbContext types
-     scaffold  Scaffolds a DbContext and entity type classes for a specified database
-   ````
+     scaffold  Scaffolds a DbContext and entity type classes for a specified database````
 
 ### dotnet-ef-dbcontext-list
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef dbcontext list [options]
@@ -165,13 +154,11 @@ Commands can be run from the command line by navigating to the project directory
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
-   ````
+     -v|--verbose                    Enable verbose output````
 
 ### dotnet-ef-dbcontext-scaffold
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef dbcontext scaffold [arguments] [options]
@@ -189,13 +176,11 @@ Commands can be run from the command line by navigating to the project directory
      -t|--table <schema.table>       Selects a table for which to generate classes.
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
-   ````
+     -v|--verbose                    Enable verbose output````
 
 ### dotnet-ef-migrations
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef migrations [options] [command]
@@ -208,13 +193,11 @@ Commands can be run from the command line by navigating to the project directory
      add     Add a new migration
      list    List the migrations
      remove  Remove the last migration
-     script  Generate a SQL script from migrations
-   ````
+     script  Generate a SQL script from migrations````
 
 ### dotnet-ef-migrations-add
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef migrations add [arguments] [options]
@@ -228,13 +211,11 @@ Commands can be run from the command line by navigating to the project directory
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
-   ````
+     -v|--verbose                    Enable verbose output````
 
 ### dotnet-ef-migrations-list
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef migrations list [options]
@@ -244,13 +225,11 @@ Commands can be run from the command line by navigating to the project directory
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
-   ````
+     -v|--verbose                    Enable verbose output````
 
 ### dotnet-ef-migrations-remove
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef migrations remove [options]
@@ -260,13 +239,11 @@ Commands can be run from the command line by navigating to the project directory
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      -f|--force                      Removes the last migration without checking the database. If the last migration has been applied to the database, you will need to manually reverse the changes it made.
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
-   ````
+     -v|--verbose                    Enable verbose output````
 
 ### dotnet-ef-migrations-script
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    Usage: dotnet ef migrations script [arguments] [options]
@@ -281,36 +258,35 @@ Commands can be run from the command line by navigating to the project directory
      -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
-   ````
+     -v|--verbose                    Enable verbose output````
 
-## Common Errors### Error: "No parameterless constructor was found"
+## Common Errors
+
+### Error: "No parameterless constructor was found"
 
 Design-time tools attempt to automatically find how your application creates instances of your DbContext type. If EF cannot find a suitable way to initialize your DbContext, you may encounter this error.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
    No parameterless constructor was found on 'TContext'. Either add a parameterless constructor to
    'TContext' or add an implementation of 'IDbContextFactory<TContext>' in the same assembly as
-   'TContext'.
-   ````
+   'TContext'.````
 
 As the error message suggests, one solution is to add an implementation of `IDbContextFactory<TContext>` to the current project. See [Using IDbContextFactory<TContext>](../configuring-dbcontext.md#use-idbcontextfactory.md) for an example of how to create this factory.
 
 <a name=dotnet-cli-issues></a>
 
-## Preview 2 Known Issues### Targeting class library projects is not supported
+## Preview 2 Known Issues
+
+### Targeting class library projects is not supported
 
 .NET Core CLI does not support running commands on class libraries as of Preview 2. Despite being able to install EF tools, executing commands may throw this error message.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
-   Could not invoke this command on the startup project '(your project name)'. This preview of Entity Framework tools does not support commands on class library projects in ASP.NET Core and .NET Core applications.
-   ````
+   Could not invoke this command on the startup project '(your project name)'. This preview of Entity Framework tools does not support commands on class library projects in ASP.NET Core and .NET Core applications.````
 
 See issue [https://github.com/dotnet/cli/issues/2645](https://github.com/dotnet/cli/issues/2645).
 
@@ -329,54 +305,48 @@ Convert the class library project into an "app" project. This can either be a .N
 Example:
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````json
 
    {
-       "frameworks": {
-           "netcoreapp1.0": {
-               "dependencies": {
-                   "Microsoft.NETCore.App": {
-                       "type": "platform",
-                       "version": "1.0.0-*"
-                   }
-               }
-           }
-       }
-   }
-   ````
+"frameworks": {
+    "netcoreapp1.0": {
+        "dependencies": {
+            "Microsoft.NETCore.App": {
+                "type": "platform",
+                "version": "1.0.0-*"
+            }
+        }
+    }
+}
+   }````
 
 Be sure to register the EntityFramework Tools as a project dependency and in the tools section of your project.json.
 
 Example:
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````json
 
    {
-       "dependencies": {
-           "Microsoft.EntityFrameworkCore.Tools": {
-               "version": "1.0.0-preview2-final",
-               "type": "build"
-           }
-       },
-       "tools": {
-           "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final"
-       }
-   }
-   ````
+"dependencies": {
+    "Microsoft.EntityFrameworkCore.Tools": {
+        "version": "1.0.0-preview2-final",
+        "type": "build"
+    }
+},
+"tools": {
+    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final"
+}
+   }````
 
 Finally, specify a startup project that is a "runnable app."
 
 Example:
 
 <!-- literal_block"language": "csharp",ole", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````console
 
-   dotnet ef --startup-project ../MyConsoleApplication/ migrations list
-   ````
+   dotnet ef --startup-project ../MyConsoleApplication/ migrations list````
 
 #### Workaround 2 - Modify your class library to be a startup application
 
@@ -385,38 +355,34 @@ Convert the class library project into an "app" project. This can either be a .N
 To make the project a .NET Core App, add the "netcoreapp1.0" framework to project.json along with the other settings in the sample below:
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````json
 
    {
-       "buildOptions": {
-           "emitEntryPoint": true
-       },
-       "frameworks": {
-           "netcoreapp1.0": {
-               "dependencies": {
-                   "Microsoft.NETCore.App": {
-                       "type": "platform",
-                       "version": "1.0.0-*"
-                   }
-               }
-           }
-       }
-   }
-   ````
+"buildOptions": {
+    "emitEntryPoint": true
+},
+"frameworks": {
+    "netcoreapp1.0": {
+        "dependencies": {
+            "Microsoft.NETCore.App": {
+                "type": "platform",
+                "version": "1.0.0-*"
+            }
+        }
+    }
+}
+   }````
 
 To make a desktop .NET app, ensure you project targets "net451" or newer (example "net461" also works) and ensure the build option `"emitEntryPoint"` is set to true.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````json
 
    {
-       "buildOptions": {
-           "emitEntryPoint": true
-       },
-       "frameworks": {
-           "net451": { }
-       }
-   }
-   ````
+"buildOptions": {
+    "emitEntryPoint": true
+},
+"frameworks": {
+    "net451": { }
+}
+   }````

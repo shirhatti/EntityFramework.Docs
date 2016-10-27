@@ -17,12 +17,10 @@ Data stores can enforce concurrency tokens by checking that any record being upd
 For example, relational database achieve this by including the concurrency token in the `WHERE` clause of any `UPDATE` or `DELETE` commands and checking the number of rows that were affected. If the concurrency token still matches then one row will be updated. If the value in the database has changed, then no rows are updated.
 
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp",, highlight_args}, "names": [] -->
-
 ````sql
 
    UPDATE [Person] SET [FirstName] = @p1
-   WHERE [PersonId] = @p0 AND [LastName] = @p2;
-   ````
+   WHERE [PersonId] = @p0 AND [LastName] = @p2;````
 
 ## Conventions
 
@@ -33,47 +31,41 @@ By convention, properties are never configured as concurrency tokens.
 You can use the Data Annotations to configure a property as a concurrency token.
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/Concurrency.cs?highlight=4)] -->
-
 ````csharp
-
-       public class Person
-       {
-           public int PersonId { get; set; }
-           [ConcurrencyCheck]
-           public string LastName { get; set; }
-           public string FirstName { get; set; }
-       }
-
-   ````
+public class Person
+{
+    public int PersonId { get; set; }
+    [ConcurrencyCheck]
+    public string LastName { get; set; }
+    public string FirstName { get; set; }
+}
+````
 
 ## Fluent API
 
 You can use the Fluent API to configure a property as a concurrency token.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Concurrency.cs?highlight=7,8,9)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Person> People { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Person> People { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Person>()
+            .Property(p => p.LastName)
+            .IsConcurrencyToken();
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Person>()
-                   .Property(p => p.LastName)
-                   .IsConcurrencyToken();
-           }
-       }
-
-       public class Person
-       {
-           public int PersonId { get; set; }
-           public string LastName { get; set; }
-           public string FirstName { get; set; }
-       }
-
-   ````
+public class Person
+{
+    public int PersonId { get; set; }
+    public string LastName { get; set; }
+    public string FirstName { get; set; }
+}
+````
 
 ## Timestamp/row version
 
@@ -90,46 +82,40 @@ By convention, properties are never configured as timestamps.
 You can use Data Annotations to configure a property as a timestamp.
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/Timestamp.cs?highlight=6)] -->
-
 ````csharp
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-           
-           [Timestamp]
-           public byte[] Timestamp { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+    
+    [Timestamp]
+    public byte[] Timestamp { get; set; }
+}
+````
 
 ### Fluent API
 
 You can use the Fluent API to configure a property as a timestamp.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Timestamp.cs?highlight=7,8,9,10)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .Property(p => p.Timestamp)
+            .ValueGeneratedOnAddOrUpdate()
+            .IsConcurrencyToken();
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .Property(p => p.Timestamp)
-                   .ValueGeneratedOnAddOrUpdate()
-                   .IsConcurrencyToken();
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-           public byte[] Timestamp { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+    public byte[] Timestamp { get; set; }
+}
+````

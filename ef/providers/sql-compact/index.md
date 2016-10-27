@@ -16,20 +16,16 @@ This database provider allows Entity Framework Core to be used with SQL Server C
 To work with SQL Server Compact Edition 4.0, install the [EntityFrameworkCore.SqlServerCompact40 NuGet package](https://www.nuget.org/packages/EntityFrameworkCore.SqlServerCompact40).
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
-   PM>  Install-Package EntityFrameworkCore.SqlServerCompact40
-   ````
+   PM>  Install-Package EntityFrameworkCore.SqlServerCompact40````
 
 To work with SQL Server Compact Edition 3.5, install the [EntityFrameworkCore.SqlServerCompact35](https://www.nuget.org/packages/EntityFrameworkCore.SqlServerCompact35).
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````text
 
-   PM>  Install-Package EntityFrameworkCore.SqlServerCompact35
-   ````
+   PM>  Install-Package EntityFrameworkCore.SqlServerCompact35````
 
 ## Get Started
 
@@ -37,10 +33,10 @@ See the [getting started documentation on the project site](https://github.com/E
 
 ## Supported Database Engines
 
-    * SQL Server Compact Edition 3.5
+* SQL Server Compact Edition 3.5
 
-    * SQL Server Compact Edition 4.0
+* SQL Server Compact Edition 4.0
 
 ## Supported Platforms
 
-    * Full .NET (4.5.1 onwards)
+* Full .NET (4.5.1 onwards)

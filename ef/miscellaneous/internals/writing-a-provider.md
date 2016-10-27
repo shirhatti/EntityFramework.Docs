@@ -45,36 +45,31 @@ As explained above, EF uses options and services. Each provider must create API 
 By convention, providers define a `UseX()` extension on `DbContextOptionsBuilder`. This configures **options** which it typically takes as arguments to method.
 
 <!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
-
 ````
 
-   optionsBuilder.UseMyProvider("Server=contoso.com")
-   ````
+   optionsBuilder.UseMyProvider("Server=contoso.com")````
 
 The `UseX()` extension method creates a provider-specific implementation of `IDbContextOptionsExtension` which is added to the collection of extensions stored within `DbContextOptions`. This is done by a call to the API `IDbContextOptionsBuilderInfrastructure.AddOrUpdateExtension`.
 
 An example implementation of the "Use" method
 
 <!-- [!code-csharp[Main](samples/internals/Miscellaneous/Internals/WritingAProvider/EntityFrameworkCore.ProviderStarter/Extensions/MyProviderDbContextOptionsExtensions.cs)] -->
-
 ````csharp
+public static class MyProviderDbContextOptionsExtensions
+{
+    public static DbContextOptionsBuilder UseMyProvider(this DbContextOptionsBuilder optionsBuilder,
+        string connectionString)
+    {
+        ((IDbContextOptionsBuilderInfrastructure) optionsBuilder).AddOrUpdateExtension(
+            new MyProviderOptionsExtension
+            {
+                ConnectionString = connectionString
+            });
 
-       public static class MyProviderDbContextOptionsExtensions
-       {
-           public static DbContextOptionsBuilder UseMyProvider(this DbContextOptionsBuilder optionsBuilder,
-               string connectionString)
-           {
-               ((IDbContextOptionsBuilderInfrastructure) optionsBuilder).AddOrUpdateExtension(
-                   new MyProviderOptionsExtension
-                   {
-                       ConnectionString = connectionString
-                   });
-
-               return optionsBuilder;
-           }
-       }
-
-   ````
+        return optionsBuilder;
+    }
+}
+````
 
 > [!TIP]
 > The `UseX()` method can also be used to return a special wrapper around `DbContextOptionsBuilder` that allows users to configure multiple options with chained calls. See `SqlServerDbContextOptionsBuilder` as an example.
@@ -94,36 +89,33 @@ EF provides many complete or partial implementations of the required services to
 An example implementation of the "Add" method
 
 <!-- [!code-csharp[Main](samples/internals/Miscellaneous/Internals/WritingAProvider/EntityFrameworkCore.ProviderStarter/Extensions/MyProviderServiceCollectionExtensions.cs)] -->
-
 ````csharp
+public static class MyProviderServiceCollectionExtensions
+{
+    public static IServiceCollection AddEntityFrameworkMyProvider(this IServiceCollection services)
+    {
+        services.AddEntityFramework();
 
-       public static class MyProviderServiceCollectionExtensions
-       {
-           public static IServiceCollection AddEntityFrameworkMyProvider(this IServiceCollection services)
-           {
-               services.AddEntityFramework();
+        services.TryAddEnumerable(ServiceDescriptor
+            .Singleton<IDatabaseProvider, DatabaseProvider<MyDatabaseProviderServices, MyProviderOptionsExtension>>());
 
-               services.TryAddEnumerable(ServiceDescriptor
-                   .Singleton<IDatabaseProvider, DatabaseProvider<MyDatabaseProviderServices, MyProviderOptionsExtension>>());
+        services.TryAdd(new ServiceCollection()
+            // singleton services
+            .AddSingleton<MyModelSource>()
+            .AddSingleton<MyValueGeneratorCache>()
+            // scoped services
+            .AddScoped<MyDatabaseProviderServices>()
+            .AddScoped<MyDatabaseCreator>()
+            .AddScoped<MyDatabase>()
+            .AddScoped<MyEntityQueryableExpressionVisitorFactory>()
+            .AddScoped<MyEntityQueryModelVisitorFactory>()
+            .AddScoped<MyQueryContextFactory>()
+            .AddScoped<MyTransactionManager>());
 
-               services.TryAdd(new ServiceCollection()
-                   // singleton services
-                   .AddSingleton<MyModelSource>()
-                   .AddSingleton<MyValueGeneratorCache>()
-                   // scoped services
-                   .AddScoped<MyDatabaseProviderServices>()
-                   .AddScoped<MyDatabaseCreator>()
-                   .AddScoped<MyDatabase>()
-                   .AddScoped<MyEntityQueryableExpressionVisitorFactory>()
-                   .AddScoped<MyEntityQueryModelVisitorFactory>()
-                   .AddScoped<MyQueryContextFactory>()
-                   .AddScoped<MyTransactionManager>());
-
-               return services;
-           }
-       }
-
-   ````
+        return services;
+    }
+}
+````
 
 ## Next Steps
 

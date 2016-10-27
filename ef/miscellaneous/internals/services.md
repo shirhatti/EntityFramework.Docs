@@ -60,11 +60,11 @@ Singleton
 
 EF provides an extension method `AddDbContext<TContext>()` for adding using EF into a service collection. This method adds the following into a service collection:
 
-    * `TContext` as "scoped"
+* `TContext` as "scoped"
 
-    * `DbContextOptions` as a "singleton"
+* `DbContextOptions` as a "singleton"
 
-    * `DbContextOptionsFactory<T>` as a "singleton"
+* `DbContextOptionsFactory<T>` as a "singleton"
 
 `AddDbContext` does not add any context services, provider services, or design-time services to the service collection (except for [special cases](#special-cases)). DbContext constructs its own internal service provider for this.
 
@@ -87,23 +87,20 @@ If a custom service provider is provided, DbContext will not use `DbContextOptio
 Database provider writers should provided methods such as AddEntityFrameworkSqlServer" or "AddEntityFrameworkSqlite" to simplify the process of creating a custom service container.
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-
 ````csharp
-
    var services = new ServiceCollection()
-       .AddEntityFrameworkSqlServer()
-       .AddSingleton<MyCustomService>()
-       .BuildServiceProvider();
+.AddEntityFrameworkSqlServer()
+.AddSingleton<MyCustomService>()
+.BuildServiceProvider();
 
    var options = new DbContextOptionsBuilder();
 
    options
-       .UseInternalServiceProvider(services)
-       .UseSqlServer(connectionString);
+.UseInternalServiceProvider(services)
+.UseSqlServer(connectionString);
 
    using (var context = new DbContext(options))
-   { }
-   ````
+   { }````
 
 ### Service provider caching
 

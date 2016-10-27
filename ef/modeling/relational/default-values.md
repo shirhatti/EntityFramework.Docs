@@ -24,53 +24,47 @@ You can not set a default value using Data Annotations.
 You can use the Fluent API to specify the default value for a property.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/DefaultValue.cs?highlight=9)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .Property(b => b.Rating)
+            .HasDefaultValue(3);
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .Property(b => b.Rating)
-                   .HasDefaultValue(3);
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-           public int Rating { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+    public int Rating { get; set; }
+}
+````
 
 You can also specify a SQL fragment that is used to calculate the default value.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/DefaultValueSql.cs?highlight=9)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .Property(b => b.Created)
+            .HasDefaultValueSql("getdate()");
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .Property(b => b.Created)
-                   .HasDefaultValueSql("getdate()");
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-           public DateTime Created { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+    public DateTime Created { get; set; }
+}
+````

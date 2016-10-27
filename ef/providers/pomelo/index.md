@@ -16,27 +16,25 @@ This database provider allows Entity Framework Core to be used with MySQL. The p
 Install the [Pomelo.EntityFrameworkCore.MySQL NuGet package](https://www.nuget.org/packages/Pomelo.EntityFrameworkCore.MySQL).
 
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp",", highlight_args}, "names": [] -->
-
 ````text
 
-   PM>  Install-Package Pomelo.EntityFrameworkCore.MySQL
-   ````
+   PM>  Install-Package Pomelo.EntityFrameworkCore.MySQL````
 
 ## Get Started
 
 The following resources will help you get started with this provider.
-    * [Getting started documentation](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql/blob/master/README.md#getting-started)
+* [Getting started documentation](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql/blob/master/README.md#getting-started)
 
-    * [Yuuko Blog sample application](https://github.com/Kagamine/YuukoBlog-NETCore-MySql)
+* [Yuuko Blog sample application](https://github.com/Kagamine/YuukoBlog-NETCore-MySql)
 
 ## Supported Database Engines
 
-    * MySQL
+* MySQL
 
 ## Supported Platforms
 
-    * Full .NET (4.5.1 onwards)
+* Full .NET (4.5.1 onwards)
 
-    * .NET Core
+* .NET Core
 
-    * Mono (4.2.0 onwards)
+* Mono (4.2.0 onwards)

@@ -22,54 +22,45 @@ For example, SQL Server uses `datetime2(7)` for `DateTime` properties, and `nvar
 You can use Data Annotations to specify an exact data type for the column.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/DataType.cs?highlight=4)] -->
-
 ````csharp
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           [Column(TypeName = "varchar(200)")]
-           public string Url { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    [Column(TypeName = "varchar(200)")]
+    public string Url { get; set; }
+}
+````
 
 ## Fluent API
 
 You can use the Fluent API to specify an exact data type for the column.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/DataType.cs?highlight=7,8,9)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .Property(b => b.Url)
+            .HasColumnType("varchar(200)");
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .Property(b => b.Url)
-                   .HasColumnType("varchar(200)");
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
+````
 
 If you are targeting more than one relational provider with the same model then you probably want to specify a data type for each provider rather than a global one to be used for all relational providers.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/DataTypeForProvider.cs?highlight=3)] -->
-
 ````csharp
-
-               modelBuilder.Entity<Blog>()
-                   .Property(b => b.Url)
-                   .ForSqlServerHasColumnType("varchar(200)");
-
-   ````
+        modelBuilder.Entity<Blog>()
+            .Property(b => b.Url)
+            .ForSqlServerHasColumnType("varchar(200)");
+````

@@ -24,25 +24,22 @@ Indexes can not be configured using Data Annotations.
 You can use the Fluent API to configure the name of an index.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/IndexName.cs?highlight=9)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .HasIndex(b => b.Url)
+            .HasName("Index_Url");
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .HasIndex(b => b.Url)
-                   .HasName("Index_Url");
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
+````

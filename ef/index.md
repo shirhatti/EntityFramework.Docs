@@ -17,11 +17,9 @@ If you like to learn by writing code, we'd recommend one of our [Getting Started
 [Install the NuGet package](https://docs.nuget.org/consume) for the database provider you want to use. See [Database Providers](providers/index.md) for information.
 
 <!-- literal_block"ids  "dupnames  "names  "xml:space": "preserve", : "csharp",", "classes  "linenos": false, "backrefs  highlight_args} -->
-
 ````text
 
-   PM>  Install-Package Microsoft.EntityFrameworkCore.SqlServer
-   ````
+   PM>  Install-Package Microsoft.EntityFrameworkCore.SqlServer````
 
 ## The Model
 
@@ -30,74 +28,65 @@ With EF Core, data access is performed using a model. A model is made up of enti
 You can generate a model from an existing database, hand code a model to match your database, or use EF Migrations to create a database from your model (and evolve it as your model changes over time).
 
 <!-- literal_block"ids  "dupnames  "names  "xml:space": "preserve", : "csharp", "classes  "linenos": true, "backrefs  highlight_args} -->
-
 ````csharp
-
    using Microsoft.EntityFrameworkCore;
    using System.Collections.Generic;
 
    namespace Intro
    {
-       public class BloggingContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
-           public DbSet<Post> Posts { get; set; }
+public class BloggingContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
 
-           protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-           {
-               optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;");
-           }
-       }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;");
+    }
+}
 
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
 
-           public List<Post> Posts { get; set; }
-       }
+    public List<Post> Posts { get; set; }
+}
 
-       public class Post
-       {
-           public int PostId { get; set; }
-           public string Title { get; set; }
-           public string Content { get; set; }
+public class Post
+{
+    public int PostId { get; set; }
+    public string Title { get; set; }
+    public string Content { get; set; }
 
-           public int BlogId { get; set; }
-           public Blog Blog { get; set; }
-       }
-   }
-   ````
+    public int BlogId { get; set; }
+    public Blog Blog { get; set; }
+}
+   }````
 
 ## Querying
 
 Instances of your entity classes are retrieved from the database using Language Integrated Query (LINQ). See [Querying Data](querying/index.md) to learn more.
 
 <!-- literal_block"ids  "dupnames  "names  "xml:space": "preserve", : "csharp", "classes  "linenos": true, "backrefs  highlight_args} -->
-
 ````csharp
-
    using (var db = new BloggingContext())
    {
-       var blogs = db.Blogs
-           .Where(b => b.Rating > 3)
-           .OrderBy(b => b.Url)
-           .ToList();
-   }
-   ````
+var blogs = db.Blogs
+    .Where(b => b.Rating > 3)
+    .OrderBy(b => b.Url)
+    .ToList();
+   }````
 
 ## Saving Data
 
 Data is created, deleted, and modified in the database using instances of your entity classes. See [Saving Data](saving/index.md) to learn more.
 
 <!-- literal_block"ids  "dupnames  "names  "xml:space": "preserve", : "csharp", "classes  "linenos": true, "backrefs  highlight_args} -->
-
 ````csharp
-
    using (var db = new BloggingContext())
    {
-       var blog = new Blog { Url = "http://sample.com" };
-       db.Blogs.Add(blog);
-       db.SaveChanges();
-   }
-   ````
+var blog = new Blog { Url = "http://sample.com" };
+db.Blogs.Add(blog);
+db.SaveChanges();
+   }````

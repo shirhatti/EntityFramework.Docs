@@ -24,26 +24,23 @@ Unique constraints can not be configured using Data Annotations.
 You can use the Fluent API to configure the index and constraint name for an alternate key.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/AlternateKeyName.cs?highlight=9)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Car> Cars { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Car> Cars { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Car>()
+            .HasAlternateKey(c => c.LicensePlate)
+            .HasName("AlternateKey_LicensePlate");
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Car>()
-                   .HasAlternateKey(c => c.LicensePlate)
-                   .HasName("AlternateKey_LicensePlate");
-           }
-       }
-
-       class Car
-       {
-           public int CarId { get; set; }
-           public string LicensePlate { get; set; }
-           public string Make { get; set; }
-           public string Model { get; set; }
-
-   ````
+class Car
+{
+    public int CarId { get; set; }
+    public string LicensePlate { get; set; }
+    public string Make { get; set; }
+    public string Model { get; set; }
+````

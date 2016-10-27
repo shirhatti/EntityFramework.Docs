@@ -43,8 +43,8 @@ The following is a high level overview of the process each query goes through.
 When you call LINQ operators, you are simply building up an in-memory representation of the query. The query is only sent to the database when the results are consumed.
 
 The most common operations that result in the query being sent to the database are:
-    * Iterating the results in a `for` loop
+* Iterating the results in a `for` loop
 
-    * Using an operator such as `ToList`, `ToArray`, `Single`, `Count`
+* Using an operator such as `ToList`, `ToArray`, `Single`, `Count`
 
-    * Databinding the results of a query to a UI
+* Databinding the results of a query to a UI

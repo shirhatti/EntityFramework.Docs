@@ -24,27 +24,24 @@ Computed columns can not be configured with Data Annotations.
 You can use the Fluent API to specify that a property should map to a computed column.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/ComputedColumn.cs?highlight=9)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Person> People { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Person> People { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Person>()
+            .Property(p => p.DisplayName)
+            .HasComputedColumnSql("[LastName] + ', ' + [FirstName]");
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Person>()
-                   .Property(p => p.DisplayName)
-                   .HasComputedColumnSql("[LastName] + ', ' + [FirstName]");
-           }
-       }
-
-       public class Person
-       {
-           public int PersonId { get; set; }
-           public string FirstName { get; set; }
-           public string LastName { get; set; }
-           public string DisplayName { get; set; }
-       }
-
-   ````
+public class Person
+{
+    public int PersonId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string DisplayName { get; set; }
+}
+````

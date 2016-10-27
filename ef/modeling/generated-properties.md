@@ -36,36 +36,32 @@ Like 'value generated on add', if you specify a value for the property on a newl
 
 By convention, primary keys that are of an integer or GUID data type will be setup to have values generated on add. All other properties will be setup with no value generation.
 
-## Data Annotations### No value generation (Data Annotations)
+## Data Annotations
+
+### No value generation (Data Annotations)
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/ValueGeneratedNever.cs?highlight=3)] -->
-
 ````csharp
-
-       public class Blog
-       {
-           [DatabaseGenerated(DatabaseGeneratedOption.None)]
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
+````
 
 ### Value generated on add (Data Annotations)
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/ValueGeneratedOnAdd.cs?highlight=5)] -->
-
 ````csharp
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-           [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-           public DateTime Inserted { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public DateTime Inserted { get; set; }
+}
+````
 
 > [!WARNING]
 > This just lets EF know that values are generated for added entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add](#value-generated-on-add) section for more details.
@@ -73,18 +69,15 @@ By convention, primary keys that are of an integer or GUID data type will be set
 ### Value generated on add or update (Data Annotations)
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/ValueGeneratedOnAddOrUpdate.cs?highlight=5)] -->
-
 ````csharp
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-           [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-           public DateTime LastUpdated { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+    public DateTime LastUpdated { get; set; }
+}
+````
 
 > [!WARNING]
 > This just lets EF know that values are generated for added or updated entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add or update](#value-generated-on-add-or-update) section for more details.
@@ -96,55 +89,49 @@ You can use the Fluent API to change the value generation pattern for a given pr
 ### No value generation (Fluent API)
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/ValueGeneratedNever.cs?highlight=7,8,9)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .Property(b => b.BlogId)
+            .ValueGeneratedNever();
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .Property(b => b.BlogId)
-                   .ValueGeneratedNever();
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
+````
 
 ### Value generated on add (Fluent API)
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/ValueGeneratedOnAdd.cs?highlight=7,8,9)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .Property(b => b.Inserted)
+            .ValueGeneratedOnAdd();
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .Property(b => b.Inserted)
-                   .ValueGeneratedOnAdd();
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-           public DateTime Inserted { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+    public DateTime Inserted { get; set; }
+}
+````
 
 > [!WARNING]
 > This just lets EF know that values are generated for added entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add](#value-generated-on-add) section for more details.
@@ -152,29 +139,26 @@ You can use the Fluent API to change the value generation pattern for a given pr
 ### Value generated on add or update (Fluent API)
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/ValueGeneratedOnAddOrUpdate.cs?highlight=7,8,9)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .Property(b => b.LastUpdated)
+            .ValueGeneratedOnAddOrUpdate();
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .Property(b => b.LastUpdated)
-                   .ValueGeneratedOnAddOrUpdate();
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-           public DateTime LastUpdated { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+    public DateTime LastUpdated { get; set; }
+}
+````
 
 > [!WARNING]
 > This just lets EF know that values are generated for added or updated entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add or update](#value-generated-on-add-or-update) section for more details.

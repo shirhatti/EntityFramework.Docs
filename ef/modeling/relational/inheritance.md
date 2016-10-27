@@ -20,27 +20,24 @@ EF will only setup inheritance if two or more inherited types are explicitly inc
 Below is an example showing a simple inheritance scenario and the data stored in a relational database table using the TPH pattern. The *Discriminator* column identifies which type of *Blog* is stored in each row.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/Conventions/Samples/InheritanceDbSets.cs)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<RssBlog> RssBlogs { get; set; }
+}
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
-           public DbSet<RssBlog> RssBlogs { get; set; }
-       }
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
 
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-       public class RssBlog : Blog
-       {
-           public string RssUrl { get; set; }
-       }
-
-   ````
+public class RssBlog : Blog
+{
+    public string RssUrl { get; set; }
+}
+````
 
 ![image](relational/_static/inheritance-tph-data.png)
 
@@ -53,31 +50,28 @@ You cannot use Data Annotations to configure inheritance.
 You can use the Fluent API to configure the name and type of the discriminator column and the values that are used to identify each type in the hierarchy.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/InheritanceTPHDiscriminator.cs?highlight=7,8,9,10)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .HasDiscriminator<string>("blog_type")
+            .HasValue<Blog>("blog_base")
+            .HasValue<RssBlog>("blog_rss");
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .HasDiscriminator<string>("blog_type")
-                   .HasValue<Blog>("blog_base")
-                   .HasValue<RssBlog>("blog_rss");
-           }
-       }
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
 
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-       public class RssBlog : Blog
-       {
-           public string RssUrl { get; set; }
-       }
-
-   ````
+public class RssBlog : Blog
+{
+    public string RssUrl { get; set; }
+}
+````

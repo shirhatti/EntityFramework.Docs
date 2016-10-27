@@ -21,65 +21,56 @@ Indexes can not be created using data annotations.
 You can use the Fluent API specify an index on a single property. By default, indexes are non-unique.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Index.cs?highlight=7,8)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .HasIndex(b => b.Url);
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .HasIndex(b => b.Url);
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
+````
 
 You can also specify that an index should be unique, meaning that no two entities can have the same value(s) for the given property(s).
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/IndexUnique.cs?highlight=3)] -->
-
 ````csharp
-
-               modelBuilder.Entity<Blog>()
-                   .HasIndex(b => b.Url)
-                   .IsUnique();
-
-   ````
+        modelBuilder.Entity<Blog>()
+            .HasIndex(b => b.Url)
+            .IsUnique();
+````
 
 You can also specify an index over more than one column.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/IndexComposite.cs?highlight=7,8)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Person> People { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Person> People { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Person>()
+            .HasIndex(p => new { p.FirstName, p.LastName });
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Person>()
-                   .HasIndex(p => new { p.FirstName, p.LastName });
-           }
-       }
-
-       public class Person
-       {
-           public int PersonId { get; set; }
-           public string FirstName { get; set; }
-           public string LastName { get; set; }
-       }
-
-   ````
+public class Person
+{
+    public int PersonId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+````
 
 > [!NOTE]
 > There is only one index per distinct set of properties. If you use the Fluent API to configure an index on a set of properties that already has an index defined, either by convention or previous configuration, then you will be changing the definition of that index. This is useful if you want to further configure an index that was created by convention.

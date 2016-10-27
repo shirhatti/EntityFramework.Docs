@@ -20,67 +20,55 @@ By convention, each entity will be setup to map to a table with the same name as
 You can use Data Annotations to configure the table that a type maps to.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/Table.cs?highlight=1)] -->
-
 ````csharp
-
-       [Table("blogs")]
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-   ````
+[Table("blogs")]
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
+````
 
 You can also specify a schema that the table belongs to.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/TableAndSchema.cs?highlight=1)] -->
-
 ````csharp
-
-       [Table("blogs", Schema = "blogging")]
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-   ````
+[Table("blogs", Schema = "blogging")]
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
+````
 
 ## Fluent API
 
 You can use the Fluent API to configure the table that a type maps to.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/Table.cs?highlight=7,8)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .ToTable("blogs");
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .ToTable("blogs");
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
+````
 
 You can also specify a schema that the table belongs to.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/TableAndSchema.cs?highlight=2)] -->
-
 ````csharp
-
-               modelBuilder.Entity<Blog>()
-                   .ToTable("blogs", schema: "blogging");
-
-   ````
+        modelBuilder.Entity<Blog>()
+            .ToTable("blogs", schema: "blogging");
+````

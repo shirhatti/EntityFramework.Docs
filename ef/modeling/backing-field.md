@@ -14,30 +14,27 @@ When a backing field is configured, EF will write directly to that field when ma
 ## Conventions
 
 By convention, the following fields will be discovered as backing fields for a given property (listed in precedence order):
-    * <propertyName> differing only by case
+* <propertyName> differing only by case
 
-    * _<propertyName>
+* _<propertyName>
 
-    * m_<propertyName>
+* m_<propertyName>
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/BackingField.cs?highlight=3,7,8,9,10,11)] -->
-
 ````csharp
+public class Blog
+{
+    private string _url;
 
-       public class Blog
-       {
-           private string _url;
+    public int BlogId { get; set; }
 
-           public int BlogId { get; set; }
-
-           public string Url
-           {
-               get { return _url; }
-               set { _url = value; }
-           }
-       }
-
-   ````
+    public string Url
+    {
+        get { return _url; }
+        set { _url = value; }
+    }
+}
+````
 
 ## Data Annotations
 
@@ -48,27 +45,24 @@ Backing fields cannot be configured with data annotations.
 There is no top level API for configuring backing fields, but you can use the Fluent API to set annotations that are used to store backing field information.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/BackingField.cs?highlight=7,8,9,15,18)] -->
-
 ````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .Property(b => b.Url)
+            .HasAnnotation("BackingField", "_blogUrl");
+    }
+}
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .Property(b => b.Url)
-                   .HasAnnotation("BackingField", "_blogUrl");
-           }
-       }
+public class Blog
+{
+    private string _blogUrl;
 
-       public class Blog
-       {
-           private string _blogUrl;
-
-           public int BlogId { get; set; }
-           public string Url => _blogUrl;
-       }
-
-   ````
+    public int BlogId { get; set; }
+    public string Url => _blogUrl;
+}
+````

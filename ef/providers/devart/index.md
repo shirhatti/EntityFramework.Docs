@@ -25,20 +25,20 @@ See the [Devart dotConnect Entity Framework documentation](https://www.devart.co
 
 ## Supported Database Engines
 
-    * MySQL
+* MySQL
 
-    * Oracle
+* Oracle
 
-    * PostgreSQL
+* PostgreSQL
 
-    * SQLite
+* SQLite
 
-    * DB2
+* DB2
 
-    * SQL Server
+* SQL Server
 
-    * [Cloud apps](https://www.devart.com/dotconnect/#cloud)
+* [Cloud apps](https://www.devart.com/dotconnect/#cloud)
 
 ## Supported Platforms
 
-    * Full .NET (4.5.1 onwards)
+* Full .NET (4.5.1 onwards)

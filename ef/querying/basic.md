@@ -18,41 +18,32 @@ This page shows a few examples to achieve common tasks with Entity Framework Cor
 ## Loading all data
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Basics/Sample.cs)] -->
-
 ````csharp
-
    using (var context = new BloggingContext())
    {
-       var blogs = context.Blogs.ToList();
+var blogs = context.Blogs.ToList();
    }
-
-   ````
+````
 
 ## Loading a single entity
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Basics/Sample.cs)] -->
-
 ````csharp
-
    using (var context = new BloggingContext())
    {
-       var blog = context.Blogs
-           .Single(b => b.BlogId == 1);
+var blog = context.Blogs
+    .Single(b => b.BlogId == 1);
    }
-
-   ````
+````
 
 ## Filtering
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Basics/Sample.cs)] -->
-
 ````csharp
-
    using (var context = new BloggingContext())
    {
-       var blogs = context.Blogs
-           .Where(b => b.Url.Contains("dotnet"))
-           .ToList();
+var blogs = context.Blogs
+    .Where(b => b.Url.Contains("dotnet"))
+    .ToList();
    }
-
-   ````
+````
