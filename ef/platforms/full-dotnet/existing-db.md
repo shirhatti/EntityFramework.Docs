@@ -3,13 +3,13 @@ uid: platforms/full-dotnet/existing-db
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Console Application to Existing Database (Database First)
+# Console Application to Existing Database (Database First)
 
 In this walkthrough, you will build a console application that performs basic data access against a Microsoft SQL Server database using Entity Framework. You will use reverse engineering to create an Entity Framework model based on an existing database.
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/FullNet/ConsoleApp.ExistingDb) on GitHub.
 
-  ## Prerequisites
+## Prerequisites
 
 The following prerequisites are needed to complete this walkthrough:
 
@@ -21,7 +21,7 @@ The following prerequisites are needed to complete this walkthrough:
 
 * [Blogging database](#blogging-database)
 
-  ### Blogging database
+### Blogging database
 
 This tutorial uses a **Blogging** database on your LocalDb instance as the existing database.
 
@@ -79,7 +79,7 @@ Note: If you have already created the **Blogging** database as part of another t
    GO
    ````
 
-  ## Create a new project
+## Create a new project
 
 * Open Visual Studio 2015
 
@@ -93,7 +93,7 @@ Note: If you have already created the **Blogging** database as part of another t
 
 * Give the project a name and click **OK**
 
-  ## Install Entity Framework
+## Install Entity Framework
 
 To use EF Core, install the package for the database provider(s) you want to target. This walkthrough uses SQL Server. For a list of available providers see [Database Providers](../../providers/index.md).
 
@@ -107,7 +107,7 @@ To enable reverse engineering from an existing database we need to install a cou
 
 * Run `Install-Package Microsoft.EntityFrameworkCore.SqlServer.Design`
 
-  ## Reverse engineer your model
+## Reverse engineer your model
 
 Now it's time to create the EF model based on your existing database.
 
@@ -164,7 +164,7 @@ The context represents a session with the database and allows you to query and s
        {
            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
            {
-               #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
            }
 
@@ -189,7 +189,7 @@ The context represents a session with the database and allows you to query and s
    }
    ````
 
-  ## Use your model
+## Use your model
 
 You can now use your model to perform data access.
 

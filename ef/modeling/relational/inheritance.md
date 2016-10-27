@@ -5,11 +5,11 @@ Caution: This documentation is for EF Core. For EF6.x and earlier release see [h
 
 Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
-  # Inheritance (Relational Database)
+# Inheritance (Relational Database)
 
 Inheritance in the EF model is used to control how inheritance in the entity classes is represented in the database.
 
-  ## Conventions
+## Conventions
 
 By convention, inheritance will be mapped using the table-per-hierarchy (TPH) pattern. TPH uses a single table to store the data for all types in the hierarchy. A discriminator column is used to identify which type each row represents.
 
@@ -42,11 +42,11 @@ Below is an example showing a simple inheritance scenario and the data stored in
 
 ![image](relational/_static/inheritance-tph-data.png)
 
-  ## Data Annotations
+## Data Annotations
 
 You cannot use Data Annotations to configure inheritance.
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to configure the name and type of the discriminator column and the values that are used to identify each type in the hierarchy.
 

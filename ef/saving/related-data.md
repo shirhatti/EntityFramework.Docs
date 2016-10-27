@@ -3,13 +3,13 @@ uid: saving/related-data
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Related Data
+# Related Data
 
 In addition to isolated entities, you can also make use of the relationships defined in your model.
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/RelatedData/) on GitHub.
 
-  ## Adding a graph of new entities
+## Adding a graph of new entities
 
 If you create several new related entities, adding one of them to the context will cause the others to be added too.
 
@@ -38,7 +38,7 @@ In the following example, the blog and three related posts are all inserted into
 
    ````
 
-  ## Adding a related entity
+## Adding a related entity
 
 If you reference a new entity from the navigation property of an entity that is already tracked by the context, the entity will be discovered and inserted into the database.
 
@@ -59,7 +59,7 @@ In the following example, the `post` entity is inserted because it is added to t
 
    ````
 
-  ## Changing relationships
+## Changing relationships
 
 If you change the navigation property of an entity, the corresponding changes will be made to the foreign key column in the database.
 
@@ -80,7 +80,7 @@ In the following example, the `post` entity is updated to belong to the new `blo
 
    ````
 
-  ## Removing relationships
+## Removing relationships
 
 You can remove a relationship by setting a reference navigation to `null`, or removing the related entity from a collection navigation.
 

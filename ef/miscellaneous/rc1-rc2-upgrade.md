@@ -3,22 +3,22 @@ uid: miscellaneous/rc1-rc2-upgrade
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Upgrading from RC1 to RC2
+# Upgrading from RC1 to RC2
 
 This article provides guidance for moving an application built with the RC1 packages to RC2.
 
-  ## Package Names and Versions
+## Package Names and Versions
 
 Between RC1 and RC2, we changed from "Entity Framework 7" to "Entity Framework Core". You can read more about the reasons for the change in [this post by Scott Hanselman](http://www.hanselman.com/blog/ASPNET5IsDeadIntroducingASPNETCore10AndNETCore10.aspx). Because of this change, our package names changed from `EntityFramework.*` to `Microsoft.EntityFrameworkCore.*` and our versions from `7.0.0-rc1-final` to `1.0.0-rc2-final` (or `1.0.0-preview1-final` for tooling).
 
 **You will need to completely remove the RC1 packages and then install the RC2 ones.** Here is the mapping for some common packages.
 
 <!--     RC1 Package  RC2 Equivalent  EntityFramework.MicrosoftSqlServer        7.0.0-rc1-final  Microsoft.EntityFrameworkCore.SqlServer         1.0.0-rc2-final  EntityFramework.SQLite                    7.0.0-rc1-final  Microsoft.EntityFrameworkCore.SQLite            1.0.0-rc2-final  EntityFramework7.Npgsql                   3.1.0-rc1-3  NpgSql.EntityFrameworkCore.Postgres             <to be advised>  EntityFramework.SqlServerCompact35        7.0.0-rc1-final  EntityFrameworkCore.SqlServerCompact35          1.0.0-rc2-final  EntityFramework.SqlServerCompact40        7.0.0-rc1-final  EntityFrameworkCore.SqlServerCompact40          1.0.0-rc2-final  EntityFramework.InMemory                  7.0.0-rc1-final  Microsoft.EntityFrameworkCore.InMemory          1.0.0-rc2-final  EntityFramework.IBMDataServer             7.0.0-beta1  Not yet available for RC2  EntityFramework.Commands                  7.0.0-rc1-final  Microsoft.EntityFrameworkCore.Tools             1.0.0-preview1-final
-EntityFramework.MicrosoftSqlServer.Design 7.0.0-rc1-final  Microsoft.EntityFrameworkCore.SqlServer.Design  1.0.0-rc2-final -->  ## Namespaces
+EntityFramework.MicrosoftSqlServer.Design 7.0.0-rc1-final  Microsoft.EntityFrameworkCore.SqlServer.Design  1.0.0-rc2-final -->## Namespaces
 
 Along with package names, namespaces changed from `Microsoft.Data.Entity.*` to `Microsoft.EntityFrameworkCore.*`. You can handle this change with a find/replace of `using Microsoft.Data.Entity` with `using Microsoft.EntityFrameworkCore`.
 
-  ## Table Naming Convention Changes
+## Table Naming Convention Changes
 
 A significant functional change we took in RC2 was to use the name of the `DbSet<TEntity>` property for a given entity as the table name it maps to, rather than just the class name. You can read more about this change in [the related announcement issue](https://github.com/aspnet/Announcements/issues/167).
 
@@ -36,7 +36,7 @@ For existing RC1 applications, we recommend adding the following code to the sta
 
 If you want to adopt the new naming strategy, we would recommend successfully completing the rest of the upgrade steps and then removing the code and creating a migration to apply the table renames.
 
-  ## AddDbContext / Startup.cs Changes (ASP.NET Core Projects Only)
+## AddDbContext / Startup.cs Changes (ASP.NET Core Projects Only)
 
 In RC1, you had to add Entity Framework services to the application service provider - in `Startup.ConfigureServices(...)`:
 
@@ -72,15 +72,15 @@ You also need to add a constructor, to your derived context, that takes context 
    }
    ````
 
-  ## Passing in an IServiceProvider
+## Passing in an IServiceProvider
 
 If you have RC1 code that passes an `IServiceProvider` to the context, this has now moved to `DbContextOptions`, rather than being a separate constructor parameter. Use `DbContextOptionsBuilder.UseInternalServiceProvider(...)` to set the service provider.
 
-  ### Testing
+### Testing
 
 The most common scenario for doing this was to control the scope of an InMemory database when testing. See the updated [Testing with InMemory](testing.md) article for an example of doing this with RC2.
 
-  ### Resolving Internal Services from Application Service Provider (ASP.NET Core Projects Only)
+### Resolving Internal Services from Application Service Provider (ASP.NET Core Projects Only)
 
 If you have an ASP.NET Core application and you want EF to resolve internal services from the application service provider, there is an overload of `AddDbContext` that allows you to configure this:
 
@@ -96,7 +96,7 @@ If you have an ASP.NET Core application and you want EF to resolve internal serv
 
 Caution: We recommend allowing EF to internally manage its own services, unless you have a reason to combine the internal EF services into your application service provider. The main reason you may want to do this is to use your application service provider to replace services that EF uses internally
 
-  ## DNX Commands => .NET CLI (ASP.NET Core Projects Only)
+## DNX Commands => .NET CLI (ASP.NET Core Projects Only)
 
 If you previously used the `dnx ef` commands for ASP.NET 5 projects, these have now moved to `dotnet ef` commands. The same command syntax still applies. You can use `dotnet ef --help` for syntax information.
 
@@ -119,11 +119,11 @@ The way commands are registered has changed in RC2, due to DNX being replaced by
 
 Tip: If you use Visual Studio, you can now use Package Manager Console to run EF commands for ASP.NET Core projects (this was not supported in RC1). You still need to register the commands in the `tools` section of `project.json` to do this.
 
-  ## Package Manager Commands Require PowerShell 5
+## Package Manager Commands Require PowerShell 5
 
 If you use the Entity Framework commands in Package Manager Console in Visual Studio, then you will need to ensure you have PowerShell 5 installed. This is a temporary requirement that will be removed in the next release (see [issue #5327](https://github.com/aspnet/EntityFramework/issues/5327) for more details).
 
-  ## Using "imports" in project.json
+## Using "imports" in project.json
 
 Some of EF Core's dependencies do not support .NET Standard yet. EF Core in .NET Standard and .NET Core projects may require adding "imports" to project.json as a temporary workaround.
 

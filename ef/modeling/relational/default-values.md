@@ -5,19 +5,19 @@ Caution: This documentation is for EF Core. For EF6.x and earlier release see [h
 
 Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
-  # Default Values
+# Default Values
 
 The default value of a column is the value that will be inserted if a new row is inserted but no value is specified for the column.
 
-  ## Conventions
+## Conventions
 
 By convention, a default value is not configured.
 
-  ## Data Annotations
+## Data Annotations
 
 You can not set a default value using Data Annotations.
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to specify the default value for a property.
 

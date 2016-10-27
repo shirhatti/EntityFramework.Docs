@@ -3,13 +3,13 @@ uid: querying/client-eval
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Client vs. Server Evaluation
+# Client vs. Server Evaluation
 
 Entity Framework Core supports parts of the query being evaluated on the client and parts of it being pushed to the database. It is up to the database provider to determine which parts of the query will be evaluated in the database.
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
 
-  ## Client eval
+## Client eval
 
 In the following example a helper method is used to standardize URLs for blogs that are returned from a SQL Server database. Because the SQL Server provider has no insight into how this method is implemented, it is not possible to translate it into SQL. All other aspects of the query are evaluated in the database, but passing the returned `URL` through this method is performed on the client.
 
@@ -46,7 +46,7 @@ In the following example a helper method is used to standardize URLs for blogs t
 
    ````
 
-  ## Disabling client evaluation
+## Disabling client evaluation
 
 While client evaluation can be very useful, in some instances it can result in poor performance. Consider the following query, where the helper method is now used in a filter. Because this can't be performed in the database, all the data is pulled into memory and then the filter is applied on the client. Depending on the amount of data, and how much of that data is filtered out, this could result in poor performance.
 

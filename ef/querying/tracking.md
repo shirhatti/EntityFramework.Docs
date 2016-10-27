@@ -3,13 +3,13 @@ uid: querying/tracking
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Tracking vs. No-Tracking
+# Tracking vs. No-Tracking
 
 Tracking behavior controls whether or not Entity Framework Core will keep information about an entity instance in its change tracker. If an entity is tracked, any changes detected in the entity will be persisted to the database during `SaveChanges()`. Entity Framework Core will also fix-up navigation properties between entities that are obtained from a tracking query and entities that were previously loaded into the DbContext instance.
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
 
-  ## Tracking queries
+## Tracking queries
 
 By default, queries that return entity types are tracking. This means you can make changes to those entity instances and have those changes persisted by `SaveChanges()`.
 
@@ -28,7 +28,7 @@ In the following example, the change to the blogs rating will be detected and pe
 
    ````
 
-  ## No-tracking queries
+## No-tracking queries
 
 No tracking queries are useful when the results are used in a read-only scenario. They are quicker to execute because there is no need to setup change tracking information.
 
@@ -62,7 +62,7 @@ You can also change the default tracking behavior at the context instance level:
 
    ````
 
-  ## Tracking and projections
+## Tracking and projections
 
 Even if the result type of the query isn't an entity type, if the result contains entity types they will still be tracked by default. In the following query, which returns an anonymous type, the instances of `Blog` in the result set will be tracked.
 

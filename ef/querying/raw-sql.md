@@ -3,13 +3,13 @@ uid: querying/raw-sql
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Raw SQL Queries
+# Raw SQL Queries
 
 Entity Framework Core allows you to drop down to raw SQL queries when working with a relational database. This can be useful if the query you want to perform can't be expressed using LINQ, or if using a LINQ query is resulting in inefficient SQL being sent to the database.
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
 
-  ## Limitations
+## Limitations
 
 There are a couple of limitations to be aware of when using raw SQL queries:
    * SQL queries can only be used to return entity types that are part of your model. There is an enhancement on our backlog to [enable returning ad-hoc types from raw SQL queries](https://github.com/aspnet/EntityFramework/issues/1862).
@@ -20,7 +20,7 @@ There are a couple of limitations to be aware of when using raw SQL queries:
 
    * The SQL query cannot contain related data. However, in many cases you can compose on top of the query using the `Include` operator to return related data (see [Including related data](#including-related-data)).
 
-  ## Basic raw SQL queries
+## Basic raw SQL queries
 
 You can use the *FromSql* extension method to begin a LINQ query based on a raw SQL query.
 
@@ -46,7 +46,7 @@ Raw SQL queries can be used to execute a stored procedure.
 
    ````
 
-  ## Passing parameters
+## Passing parameters
 
 As with any API that accepts SQL, it is important to parameterize any user input to protect against a SQL injection attack. You can include parameter placeholders in the SQL query string and then supply parameter values as additional arguments. Any parameter values you supply will automatically be converted to a `DbParameter`.
 
@@ -78,7 +78,7 @@ You can also construct a DbParameter and supply it as a parameter value. This al
 
    ````
 
-  ## Composing with LINQ
+## Composing with LINQ
 
 If the SQL query can be composed on in the database, then you can compose on top of the initial raw SQL query using LINQ operators. SQL queries that can be composed on being with the `SELECT` keyword.
 
@@ -98,7 +98,7 @@ The following example uses a raw SQL query that selects from a Table-Valued Func
 
    ````
 
-  ### Including related data
+### Including related data
 
 Composing with LINQ operators can be used to include related data in the query.
 

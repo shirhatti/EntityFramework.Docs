@@ -5,15 +5,15 @@ Caution: This documentation is for EF Core. For EF6.x and earlier release see [h
 
 Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
-  # Column Mapping
+# Column Mapping
 
 Column mapping identifies which column data should be queried from and saved to in the database.
 
-  ## Conventions
+## Conventions
 
 By convention, each property will be setup to map to a column with the same name as the property.
 
-  ## Data Annotations
+## Data Annotations
 
 You can use Data Annotations to configure the column to which a property is mapped.
 
@@ -30,7 +30,7 @@ You can use Data Annotations to configure the column to which a property is mapp
 
    ````
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to configure the column to which a property is mapped.
 

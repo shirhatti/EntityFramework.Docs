@@ -3,11 +3,11 @@ uid: miscellaneous/logging
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Logging
+# Logging
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Miscellaneous/Logging) on GitHub.
 
-  ## Create a logger
+## Create a logger
 
 The first step is to create an implementation of `ILoggerProvider` and `ILogger`.
    * `ILoggerProvider` is the component that decides when to create instances of your logger(s). The provider may choose to create different loggers in different situations.
@@ -72,7 +72,7 @@ Tip:
 
      * `formatter` uses state and exception to create a human readable string to be logged
 
-  ## Register your logger  ### ASP.NET Core
+## Register your logger### ASP.NET Core
 
 In an ASP.NET Core application, you register your logger in the Configure method of Startup.cs:
 
@@ -88,7 +88,7 @@ In an ASP.NET Core application, you register your logger in the Configure method
    }
    ````
 
-  ### Other applications
+### Other applications
 
 In your application startup code, create and instance of you context and register your logger.
 
@@ -107,7 +107,7 @@ Note: You only need to register the logger with a single context instance. Once 
 
    ````
 
-  ## Filtering what is logged
+## Filtering what is logged
 
 The easiest way to filter what is logged, is to adjust your logger provider to only return your logger for certain categories of events. For EF, the category passed to your logger provider will be the type name of the component that is logging the event.
 

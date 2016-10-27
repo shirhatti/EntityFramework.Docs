@@ -3,7 +3,7 @@ uid: platforms/uwp/getting-started
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Local SQLite on UWP
+# Local SQLite on UWP
 
 In this walkthrough, you will build a Universal Windows Platform (UWP) application that performs basic data access against a local SQLite database using Entity Framework.
 
@@ -11,7 +11,7 @@ Caution: **Avoid using anonymous types in LINQ queries on UWP**. Deploying a UWP
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/UWP/UWP.SQLite) on GitHub.
 
-  ## Prerequisites
+## Prerequisites
 
 The following items are required to complete this walkthrough:
    * Windows 10
@@ -20,7 +20,7 @@ The following items are required to complete this walkthrough:
 
    * The latest version of [Windows 10 Developer Tools](https://dev.windows.com/en-us/downloads)
 
-  ## Create a new project
+## Create a new project
 
 * Open Visual Studio 2015
 
@@ -32,7 +32,7 @@ The following items are required to complete this walkthrough:
 
 * Give the project a name and click **OK**
 
-  ## Upgrade Microsoft.NETCore.UniversalWindowsPlatform
+## Upgrade Microsoft.NETCore.UniversalWindowsPlatform
 
 Depending on your version of Visual Studio, the template may have generated your project with an old version of .NET Core for UWP. EF Core requires `Microsoft.NETCore.UniversalWindowsPlatform` version **5.2.2** or greater.
 
@@ -40,7 +40,7 @@ Depending on your version of Visual Studio, the template may have generated your
 
 * Run `Update-Package Microsoft.NETCore.UniversalWindowsPlatform`
 
-  ## Install Entity Framework
+## Install Entity Framework
 
 To use EF Core, install the package for the database provider(s) you want to target. This walkthrough uses SQLite. For a list of available providers see [Database Providers](../../providers/index.md).
 
@@ -52,7 +52,7 @@ Later in this walkthrough we will also be using some Entity Framework commands t
 
 * Run `Install-Package Microsoft.EntityFrameworkCore.Tools –Pre`
 
-  ## Create your model
+## Create your model
 
 Now it's time to define a context and entity classes that make up your model.
 
@@ -105,7 +105,7 @@ Now it's time to define a context and entity classes that make up your model.
 
 Tip: In a real application you would put each class in a separate file and put the connection string in the `App.Config` file and read it out using `ConfigurationManager`. For the sake of simplicity, we are putting everything in a single code file for this tutorial.
 
-  ## Create your database
+## Create your database
 
 Warning: **Known Issue in Preview 2**Using EF Tools on UWP projects does not work without manually adding binding redirects.
 
@@ -189,7 +189,7 @@ Since we want the database to be created on the device that the app runs on, we 
 
 Tip: If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to apply the corresponding changes to the database. Any pending migrations will be applied to the local database on each device when the application starts.EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.
 
-  ## Use your model
+## Use your model
 
 You can now use your model to perform data access.
 
@@ -280,7 +280,7 @@ You can now run the application to see it in action.
 
 ![image](uwp/_static/list.png)
 
-  ## Next steps
+## Next steps
 
 Tada! You now have a simple UWP app running Entity Framework.
 

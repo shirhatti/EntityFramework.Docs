@@ -3,13 +3,13 @@ uid: platforms/netcore/new-db-sqlite
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # .NET Core Application to New SQLite Database
+# .NET Core Application to New SQLite Database
 
 In this walkthrough, you will build a .NET Core console application that performs basic data access using Entity Framework. You will use migrations to create the database from your model.
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/NetCore/ConsoleApp.SQLite) on GitHub.
 
-  ## Prerequisites
+## Prerequisites
 
 Minimum system requirements
    * An operating system that supports .NET Core
@@ -22,13 +22,13 @@ Caution: **Known Issues**
 
   * Migrations on SQLite do not support more complex schema changes due to limitations in SQLite itself. See [SQLite Limitations](../../providers/sqlite/limitations.md)
 
-  ### Install the .NET Core SDK
+### Install the .NET Core SDK
 
 The .NET Core SDK provides the command-line tool `dotnet` which will be used to build and run our sample application.
 
 See the [.NET Core website](https://www.microsoft.com/net/core) for instructions on installing the SDK on your operating system.
 
-  ## Create a new project
+## Create a new project
 
    * Create a new folder `ConsoleApp/` for your project. All files for the project should be in this folder.
 
@@ -51,7 +51,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
         dotnet run
         ````
 
-  ## Install Entity Framework
+## Install Entity Framework
 
    * To add EF to your project, modify `project.json` so it matches the following sample.
 
@@ -108,7 +108,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
            dotnet ef --help
            ````
 
-  ## Create your model
+## Create your model
 
 With this new project, you are ready to begin using Entity Framework. The next steps will add code to configure and access a SQLite database file.
 
@@ -189,7 +189,7 @@ With this new project, you are ready to begin using Entity Framework. The next s
            dotnet build
            ````
 
-  ## Create your database
+## Create your database
 
 We can now use Entity Framework command line tools to create and manage the schema of the database.
 
@@ -219,7 +219,7 @@ We can now use Entity Framework command line tools to create and manage the sche
 
 Note: When using relative paths with SQLite, the path will be relative to the application's main assembly. In this sample, the main binary is `bin/Debug/netcoreapp1.0/ConsoleApp.dll`, so the SQLite database will be in `bin/Debug/netcoreapp1.0/blog.db`
 
-  ## Use your model
+## Use your model
 
 Now that we have configured our model and created the database schema, we can use BloggingContext to create, update, and delete objects.
 
@@ -254,7 +254,7 @@ Now that we have configured our model and created the database schema, we can us
 
    ````
 
-  ## Start your app
+## Start your app
 
 Run the application from the command line.
 

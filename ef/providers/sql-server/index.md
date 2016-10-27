@@ -3,11 +3,11 @@ uid: providers/sql-server/index
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Microsoft SQL Server
+# Microsoft SQL Server
 
 This database provider allows Entity Framework Core to be used with Microsoft SQL Server (including SQL Azure). The provider is maintained as part of the [EntityFramework GitHub project](https://github.com/aspnet/EntityFramework).
 
-  ## Install
+## Install
 
 Install the [Microsoft.EntityFrameworkCore.SqlServer NuGet package](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/).
 
@@ -18,7 +18,7 @@ Install the [Microsoft.EntityFrameworkCore.SqlServer NuGet package](https://www.
    PM>  Install-Package Microsoft.EntityFrameworkCore.SqlServer
    ````
 
-  ## Get Started
+## Get Started
 
 The following resources will help you get started with this provider.
    * [Getting Started on Full .NET (Console, WinForms, WPF, etc.)](../../platforms/full-dotnet/index.md)
@@ -27,11 +27,11 @@ The following resources will help you get started with this provider.
 
    * [UnicornStore Sample Application](https://github.com/rowanmiller/UnicornStore/tree/master/UnicornStore)
 
-  ## Supported Database Engines
+## Supported Database Engines
 
    * Microsoft SQL Server (2008 onwards)
 
-  ## Supported Platforms
+## Supported Platforms
 
    * Full .NET (4.5.1 onwards)
 

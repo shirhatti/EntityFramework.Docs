@@ -3,7 +3,7 @@ uid: intro
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Entity Framework Core
+# Entity Framework Core
 
 Entity Framework (EF) Core is a lightweight and extensible version of the popular Entity Framework data access technology.
 
@@ -11,7 +11,7 @@ EF Core is an object-relational mapper (O/RM) that enables .NET developers to wo
 
 If you like to learn by writing code, we'd recommend one of our [Getting Started](platforms/index.md) guides to get you started with EF Core.
 
-  ## Get Entity Framework Core
+## Get Entity Framework Core
 
 [Install the NuGet package](https://docs.nuget.org/consume) for the database provider you want to use. See [Database Providers](providers/index.md) for information.
 
@@ -22,7 +22,7 @@ If you like to learn by writing code, we'd recommend one of our [Getting Started
    PM>  Install-Package Microsoft.EntityFrameworkCore.SqlServer
    ````
 
-  ## The Model
+## The Model
 
 With EF Core, data access is performed using a model. A model is made up of entity classes and a derived context that represents a session with the database, allowing you to query and save data. See [Creating a Model](modeling/index.md) to learn more.
 
@@ -68,7 +68,7 @@ You can generate a model from an existing database, hand code a model to match y
    }
    ````
 
-  ## Querying
+## Querying
 
 Instances of your entity classes are retrieved from the database using Language Integrated Query (LINQ). See [Querying Data](querying/index.md) to learn more.
 
@@ -85,7 +85,7 @@ Instances of your entity classes are retrieved from the database using Language 
    }
    ````
 
-  ## Saving Data
+## Saving Data
 
 Data is created, deleted, and modified in the database using instances of your entity classes. See [Saving Data](saving/index.md) to learn more.
 

@@ -3,11 +3,11 @@ uid: miscellaneous/connection-strings
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Connection Strings
+# Connection Strings
 
 Most database providers require some form of connection string to connect to the database. Sometimes this connection string contains sensitive information that needs to be protected. You may also need to change the connection string as you move your application between environments, such as development, testing, and production.
 
-  ## Full .NET Applications
+## Full .NET Applications
 
 Full .NET applications, such as WinForms, WPF, Console, and ASP.NET 4, have a tried and tested connection string pattern. The connection string should be added to your applications App.config file (Web.config if you are using ASP.NET). If your connection string contains sensitive information, such as username and password, you can protect the contents of the configuration file using [Protected Configuration](https://msdn.microsoft.com/en-us/library/53tyfkaw.aspx).
 
@@ -45,7 +45,7 @@ You can then read the connection string using the `ConfigurationManager` API in 
    }
    ````
 
-  ## Universal Windows Platform (UWP)
+## Universal Windows Platform (UWP)
 
 Connection strings in a UWP application are typically a SQLite connection that just specifies a local filename. They typically do not contain sensitive information, and do not need to be changed as an application is deployed. As such, these connection strings are usually fine to be left in code, as shown below. If you wish to move them out of code then UWP supports the concept of settings, see the [App Settings section of the UWP documentation](https://msdn.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data) for details.
 
@@ -65,7 +65,7 @@ Connection strings in a UWP application are typically a SQLite connection that j
    }
    ````
 
-  ## ASP.NET Core
+## ASP.NET Core
 
 In ASP.NET Core the configuration system is very flexible, and the connection string could be stored in `appsettings.json`, an environment variable, the user secret store, or another configuration source. See the [Configuration section of the ASP.NET Core documentation](https://docs.asp.net/en/latest/fundamentals/configuration.html) for more details. The following example shows the connection string stored in `appsettings.json`.
 

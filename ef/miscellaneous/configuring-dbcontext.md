@@ -3,11 +3,11 @@ uid: miscellaneous/configuring-dbcontext
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Configuring a DbContext
+# Configuring a DbContext
 
 This article shows patterns for configuring a `DbContext` with `DbContextOptions`. Options are primarily used to select and configure the data store.
 
-  ## Configuring DbContextOptions
+## Configuring DbContextOptions
 
 `DbContext` must have an instance of `DbContextOptions` in order to execute. This can be supplied to `DbContext` in one of two ways.
 
@@ -17,7 +17,7 @@ This article shows patterns for configuring a `DbContext` with `DbContextOptions
 
 If both are used, "OnConfiguring" takes higher priority, which means it can overwrite or change options supplied by the constructor argument.
 
-  ### Constructor argumentContext code with constructor
+### Constructor argumentContext code with constructor
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -50,7 +50,7 @@ Application code to initialize from constructor argument
    }
    ````
 
-  ### OnConfiguring
+### OnConfiguring
 
 Caution: `OnConfiguring` occurs last and can overwrite options obtained from DI or the constructor. This approach does not lend itself to testing (unless you target the full database).
 
@@ -83,7 +83,7 @@ Application code to initialize with "OnConfiguring"
    }
    ````
 
-  ## Using DbContext with dependency injection
+## Using DbContext with dependency injection
 
 EF supports using `DbContext` with a dependency injection container. Your DbContext type can be added to the service container by using `AddDbContext<TContext>`.
 
@@ -146,7 +146,7 @@ Application code (using ServiceProvider directly, less common)
 
 <a name=use-idbcontextfactory></a>
 
-  ## Using `IDbContextFactory<TContext>`
+## Using `IDbContextFactory<TContext>`
 
 As an alternative to the options above, you may also provide an implementation of `IDbContextFactory<TContext>`. EF command line tools and dependency injection can use this factory to create an instance of your DbContext. This may be required in order to enable specific design-time experiences such as migrations.
 
@@ -176,7 +176,7 @@ Example:
    }
    ````
 
-  ## More reading
+## More reading
 
 * Read [Getting Started on ASP.NET Core](../platforms/aspnetcore/index.md) for more information on using EF with ASP.NET Core.
 

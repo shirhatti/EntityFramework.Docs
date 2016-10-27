@@ -3,19 +3,19 @@ uid: efcore-vs-ef6/porting/ensure-requirements
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Ensure EF Core Will Work for Your Application
+# Ensure EF Core Will Work for Your Application
 
 Before you start the porting process it is important to validate that EF Core meets the data access requirements for your application.
 
-  ## Missing features
+## Missing features
 
 Make sure that EF Core has all the features you need to use in your application. See [Feature Comparison](../features.md) for a detailed comparison of how the feature set in EF Core compares to EF6.x. If any required features are missing, ensure that you can compensate for the lack of these features before porting to EF Core.
 
-  ## Behavior changes
+## Behavior changes
 
 This is a non-exhaustive list of some changes in behavior between EF6.x and EF Core. It is important to keep these in mind as your port your application as they may change the way your application behaves, but will not show up as compilation errors after swapping to EF Core.
 
-  ### DbSet.Add/Attach and graph behavior
+### DbSet.Add/Attach and graph behavior
 
 In EF6.x, calling `DbSet.Add()` on an entity results in a recursive search for all entities referenced in its navigation properties. Any entities that are found, and are not already tracked by the context, are also be marked as added. `DbSet.Attach()` behaves the same, except all entities are marked as unchanged.
 
@@ -32,7 +32,7 @@ EF Core performs a similar recursive search, but with some slightly different ru
 
         * If the primary key is not database generated, the entity is put in the same state as the root.
 
-  ### Code First database initialization
+### Code First database initialization
 
 EF6.x has a significant amount of magic it performs around selecting the database connection and initializing the database. Some of these rules include:
    * If no configuration is performed, EF6.x will select a database on SQL Express or LocalDb.
@@ -50,7 +50,7 @@ EF Core does not perform any of this magic.
 
    * No initialization is performed. You must use `DbContext.Database.Migrate()` to apply migrations (or `DbContext.Database.EnsureCreated()` and `EnsureDeleted()` to create/delete the database without using migrations).
 
-  ### Code First table naming convention
+### Code First table naming convention
 
 EF6.x runs the entity class name through a pluralization service to calculate the default table name that the entity is mapped to.
 

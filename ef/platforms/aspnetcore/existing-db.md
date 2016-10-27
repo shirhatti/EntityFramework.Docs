@@ -3,13 +3,13 @@ uid: platforms/aspnetcore/existing-db
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # ASP.NET Core Application to Existing Database (Database First)
+# ASP.NET Core Application to Existing Database (Database First)
 
 In this walkthrough, you will build an ASP.NET Core MVC application that performs basic data access using Entity Framework.  You will use reverse engineering to create an Entity Framework model based on an existing database.
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/AspNetCore/AspNetCore.ExistingDb) on GitHub.
 
-  ## Prerequisites
+## Prerequisites
 
 The following prerequisites are needed to complete this walkthrough:
 
@@ -19,7 +19,7 @@ The following prerequisites are needed to complete this walkthrough:
 
    * [Blogging database](#blogging-database)
 
-  ### Blogging database
+### Blogging database
 
 This tutorial uses a **Blogging** database on your LocalDb instance as the existing database.
 
@@ -77,7 +77,7 @@ Note: If you have already created the **Blogging** database as part of another t
    GO
    ````
 
-  ## Create a new project
+## Create a new project
 
 * Open Visual Studio 2015
 
@@ -95,7 +95,7 @@ Note: If you have already created the **Blogging** database as part of another t
 
 * Click **OK**
 
-  ## Install Entity Framework
+## Install Entity Framework
 
 To use EF Core, install the package for the database provider(s) you want to target. This walkthrough uses SQL Server. For a list of available providers see [Database Providers](../../providers/index.md).
 
@@ -127,7 +127,7 @@ To enable reverse engineering from an existing database we need to install a cou
 
       ````
 
-  ## Reverse engineer your model
+## Reverse engineer your model
 
 Now it's time to create the EF model based on your existing database.
 
@@ -184,7 +184,7 @@ The context represents a session with the database and allows you to query and s
        {
            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
            {
-               #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
            }
 
@@ -209,11 +209,11 @@ The context represents a session with the database and allows you to query and s
    }
    ````
 
-  ## Register your context with dependency injection
+## Register your context with dependency injection
 
 The concept of dependency injection is central to ASP.NET Core. Services (such as `BloggingContext`) are registered with dependency injection during application startup. Components that require these services (such as your MVC controllers) are then provided these services via constructor parameters or properties. For more information on dependency injection see the [Dependency Injection](http://docs.asp.net/en/latest/fundamentals/dependency-injection.html) article on the ASP.NET site.
 
-  ### Remove inline context configuration
+### Remove inline context configuration
 
 In ASP.NET Core, configuration is generally performed in **Startup.cs**. To conform to this pattern, we will move configuration of the database provider to **Startup.cs**.
 
@@ -229,7 +229,7 @@ In ASP.NET Core, configuration is generally performed in **Startup.cs**. To conf
        {
            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
            {
-               #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
            }
 
@@ -250,7 +250,7 @@ In ASP.NET Core, configuration is generally performed in **Startup.cs**. To conf
 
    ````
 
-  ### Register and configure your context in Startup.cs
+### Register and configure your context in Startup.cs
 
 In order for our MVC controllers to make use of `BloggingContext` we are going to register it as a service.
 
@@ -285,7 +285,7 @@ Now we can use the `AddDbContext` method to register it as a service.
 
    ````
 
-  ## Create a controller
+## Create a controller
 
 Next, we'll add an MVC controller that will use EF to query and save data.
 
@@ -351,7 +351,7 @@ You'll notice that the controller takes a `BloggingContext` as a constructor par
 
 The controller contains an `Index` action, which displays all blogs in the database, and a `Create` action, which inserts a new blogs into the database.
 
-  ## Create views
+## Create views
 
 Now that we have a controller it's time to add the views that will make up the user interface.
 
@@ -450,7 +450,7 @@ We'll also add a view for the `Create` action, which allows the user to enter de
    </form>
    ````
 
-  ## Run the application
+## Run the application
 
 You can now run the application to see it in action.
 

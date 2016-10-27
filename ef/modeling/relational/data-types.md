@@ -5,17 +5,17 @@ Caution: This documentation is for EF Core. For EF6.x and earlier release see [h
 
 Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
-  # Data Types
+# Data Types
 
 Data type refers to the database specific type of the column to which a property is mapped.
 
-  ## Conventions
+## Conventions
 
 By convention, the database provider selects a data type based on the CLR type of the property. It also takes into account other metadata, such as the configured [Maximum Length](../max-length.md), whether the property is part of a primary key, etc.
 
 For example, SQL Server uses `datetime2(7)` for `DateTime` properties, and `nvarchar(max)` for `string` properties (or `nvarchar(450)` for `string` properties that are used as a key).
 
-  ## Data Annotations
+## Data Annotations
 
 You can use Data Annotations to specify an exact data type for the column.
 
@@ -32,7 +32,7 @@ You can use Data Annotations to specify an exact data type for the column.
 
    ````
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to specify an exact data type for the column.
 

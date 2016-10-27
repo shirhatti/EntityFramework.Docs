@@ -3,13 +3,13 @@ uid: platforms/full-dotnet/new-db
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Console Application to New Database
+# Console Application to New Database
 
 In this walkthrough, you will build a console application that performs basic data access against a Microsoft SQL Server database using Entity Framework. You will use migrations to create the database from your model.
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/FullNet/ConsoleApp.NewDb) on GitHub.
 
-  ## Prerequisites
+## Prerequisites
 
 The following prerequisites are needed to complete this walkthrough:
 
@@ -19,7 +19,7 @@ The following prerequisites are needed to complete this walkthrough:
 
 * [Latest version of Windows PowerShell](https://www.microsoft.com/en-us/download/details.aspx?id=40855)
 
-  ## Create a new project
+## Create a new project
 
 * Open Visual Studio 2015
 
@@ -33,7 +33,7 @@ The following prerequisites are needed to complete this walkthrough:
 
 * Give the project a name and click **OK**
 
-  ## Install Entity Framework
+## Install Entity Framework
 
 To use EF Core, install the package for the database provider(s) you want to target. This walkthrough uses SQL Server. For a list of available providers see [Database Providers](../../providers/index.md).
 
@@ -45,7 +45,7 @@ Later in this walkthrough we will also be using some Entity Framework commands t
 
 * Run `Install-Package Microsoft.EntityFrameworkCore.Tools –Pre`
 
-  ## Create your model
+## Create your model
 
 Now it's time to define a context and entity classes that make up your model.
 
@@ -97,7 +97,7 @@ Now it's time to define a context and entity classes that make up your model.
 
 Tip: In a real application you would put each class in a separate file and put the connection string in the `App.Config` file and read it out using `ConfigurationManager`. For the sake of simplicity, we are putting everything in a single code file for this tutorial.
 
-  ## Create your database
+## Create your database
 
 Now that you have a model, you can use migrations to create a database for you.
 
@@ -109,7 +109,7 @@ Now that you have a model, you can use migrations to create a database for you.
 
 Tip: If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to make the corresponding schema changes to the database. Once you have checked the scaffolded code (and made any required changes), you can use the `Update-Database` command to apply the changes to the database.EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.
 
-  ## Use your model
+## Use your model
 
 You can now use your model to perform data access.
 

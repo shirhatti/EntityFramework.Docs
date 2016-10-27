@@ -3,7 +3,7 @@ uid: efcore-vs-ef6/porting/index
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Porting from EF6.x to EF Core
+# Porting from EF6.x to EF Core
 
 The following articles cover porting from EF6.x to EF Core
 

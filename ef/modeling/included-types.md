@@ -3,11 +3,11 @@ uid: modeling/included-types
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Including & Excluding Types
+# Including & Excluding Types
 
 Including a type in the model means that EF has metadata about that type and will attempt to read and write instances from/to the database.
 
-  ## Conventions
+## Conventions
 
 By convention, types that are exposed in `DbSet` properties on your context are included in your model. In addition, types that are mentioned in the `OnModelCreating` method are also included. Finally, any types that are found by recursively exploring the navigation properties of discovered types are also included in the model.
 
@@ -58,7 +58,7 @@ For example, in the following code listing all three types are discovered:
 
    ````
 
-  ## Data Annotations
+## Data Annotations
 
 You can use Data Annotations to exclude a type from the model.
 
@@ -82,7 +82,7 @@ You can use Data Annotations to exclude a type from the model.
 
    ````
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to exclude a type from the model.
 

@@ -3,7 +3,7 @@ uid: querying/related-data
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Loading Related Data
+# Loading Related Data
 
 Entity Framework Core allows you to use the navigation properties in your model to load related entities. There are three common O/RM patterns used to load related data.
    * **Eager loading** means that the related data is loaded from the database as part of the initial query.
@@ -14,7 +14,7 @@ Entity Framework Core allows you to use the navigation properties in your model 
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
 
-  ## Eager loading
+## Eager loading
 
 You can use the `Include` method to specify related data to be included in query results. In the following example, the blogs that are returned in the results will have their `Posts` property populated with the related posts.
 
@@ -43,7 +43,7 @@ You can include related data from multiple relationships in a single query.
 
    ````
 
-  ### Including multiple levels
+### Including multiple levels
 
 You can drill down thru relationships to include multiple levels of related data using the `ThenInclude` method. The following example loads all blogs, their related posts, and the author of each post.
 
@@ -88,7 +88,7 @@ You can combine all of this to include related data from multiple levels and mul
 
    ````
 
-  ### Ignored includes
+### Ignored includes
 
 If you change the query so that it no longer returns instances of the entity type that the query began with, then the include operators are ignored.
 
@@ -124,7 +124,7 @@ By default, EF Core will log a warning when include operators are ignored. See [
 
    ````
 
-  ## Explicit loading
+## Explicit loading
 
 Explicit loading does not yet have a first class API in EF Core. You can view the [explicit loading item on our backlog](https://github.com/aspnet/EntityFramework/issues/625) to track this feature.
 
@@ -145,6 +145,6 @@ In the following example, a query is used to load a blog, and then a later query
 
    ````
 
-  ## Lazy loading
+## Lazy loading
 
 Lazy loading is not yet supported by EF Core. You can view the [lazy loading item on our backlog](https://github.com/aspnet/EntityFramework/issues/3797) to track this feature.

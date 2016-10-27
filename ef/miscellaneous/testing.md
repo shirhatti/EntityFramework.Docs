@@ -3,7 +3,7 @@ uid: miscellaneous/testing
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Testing with InMemory
+# Testing with InMemory
 
 This article covers how to use the InMemory provider to write efficient tests with minimal impact to the code being tested.
 
@@ -11,7 +11,7 @@ Caution: Currently you need to use `ServiceCollection` and `IServiceProvider` to
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Miscellaneous/Testing) on GitHub.
 
-  ## When to use InMemory for testing
+## When to use InMemory for testing
 
 The InMemory provider is useful when you want to test components using something that approximates connecting to the real database, without the overhead of actual database operations.
 
@@ -48,7 +48,7 @@ For example, consider the following service that allows application code to perf
 
    ````
 
-  ### InMemory is not a relational database
+### InMemory is not a relational database
 
 EF Core database providers do not have to be relational databases. InMemory is designed to be a general purpose database for testing, and is not designed to mimic a relational database.
 
@@ -59,7 +59,7 @@ Some examples of this include:
 
 Tip: For many test purposes these difference will not matter. However, if you want to test against something that behaves more like a true relational database, then consider using [SQLite in-memory mode](http://www.sqlite.org/inmemorydb.html).
 
-  ## Get your context ready  ### Avoid configuring two database providers
+## Get your context ready### Avoid configuring two database providers
 
 In your tests you are going to externally configure the context to use the InMemory provider. If you are configuring a database provider by overriding `OnConfiguring` in your context, then you need to add some conditional code to ensure that you only configure the database provider if one has not already been configured.
 
@@ -79,7 +79,7 @@ Note: If you are using ASP.NET Core, then you should not need this code since yo
 
    ````
 
-  ### Add a constructor for testing
+### Add a constructor for testing
 
 The simplest way to enable testing with the InMemory provider is to modify your context to expose a constructor that accepts a `DbContextOptions<TContext>`.
 
@@ -100,7 +100,7 @@ The simplest way to enable testing with the InMemory provider is to modify your 
 
 Note: `DbContextOptions<TContext>` tells the context all of its settings, such as which database to connect to. This is the same object that is built by running the OnConfiguring method in your context.
 
-  ## Writing tests
+## Writing tests
 
 The key to testing with this provider is the ability to tell the context to use the InMemory provider, and control the scope of the in-memory database. Typically you want a clean database for each test method.
 
@@ -190,7 +190,7 @@ Here is an example of a test class that uses the InMemory database. Each test me
 
    ````
 
-  ## Sharing a database instance for read-only tests
+## Sharing a database instance for read-only tests
 
 If a test class has read-only tests that share the same seed data, then you can share the InMemory database instance for the whole class (rather than a new one for each method). This means you have a single  `DbContextOptions<TContext>` and `IServiceProvider` for the test class, rather than one for each test method.
 

@@ -3,11 +3,11 @@ uid: modeling/inheritance
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Inheritance
+# Inheritance
 
 Inheritance in the EF model is used to control how inheritance in the entity classes is represented in the database.
 
-  ## Conventions
+## Conventions
 
 By convention, it is up to the database provider to determine how inheritance will be represented in the database. See [Inheritance (Relational Database)](relational/inheritance.md) for how this is handled with a relational database provider.
 
@@ -54,10 +54,10 @@ If you don't want to expose a *DbSet<TEntity>* for one or more entities in the h
 
    ````
 
-  ## Data Annotations
+## Data Annotations
 
 You cannot use Data Annotations to configure inheritance.
 
-  ## Fluent API
+## Fluent API
 
 The Fluent API for inheritance depends on the database provider you are using. See [Inheritance (Relational Database)](relational/inheritance.md) for the configuration you can perform for a relational database provider.

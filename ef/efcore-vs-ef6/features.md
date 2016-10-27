@@ -3,11 +3,11 @@ uid: efcore-vs-ef6/features
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Feature Comparison
+# Feature Comparison
 
 The following information will help you choose between Entity Framework Core and Entity Framework 6.x.
 
-  ## Features not in EF Core
+## Features not in EF Core
 
 This is a list of features not currently implemented in EF Core that are likely to impact your ability to use it in a given application. This is by no means an exhaustive list of possible O/RM features, but the features that we feel have the highest impact on developers.
 
@@ -55,7 +55,7 @@ This is a list of features not currently implemented in EF Core that are likely 
 
      * **Seed data** allows a set of data to be easily upserted to the database.
 
-  ## Side-by-side comparison
+## Side-by-side comparison
 
 The following table compares the features available in EF Core and EF6.x. It is intended to give a high level comparison and does not list every feature, or attempt to give details on possible differences between how the same feature works.
 

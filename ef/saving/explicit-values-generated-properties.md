@@ -3,7 +3,7 @@ uid: saving/explicit-values-generated-properties
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Setting explicit values for generated properties
+# Setting explicit values for generated properties
 
 A generated property is a property whose value is generated (either by EF or the database) when the entity is added and/or updated. See [Generated Properties](../modeling/generated-properties.md) for more information.
 
@@ -11,7 +11,7 @@ There may be situations where you want to set an explicit value for a generated 
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/ExplicitValuesGenerateProperties/) on GitHub.
 
-  ## The model
+## The model
 
 The model used in this article contains a single `Employee` entity.
 
@@ -56,7 +56,7 @@ The context is setup to target SQL Server:
 
    ````
 
-  ## Saving an explicit value during add
+## Saving an explicit value during add
 
 In the following code, two employees are being inserted into the database
    * For the first, no value is assigned to `Employee.EmploymentStarted` property, so it remains set to the CLR default value for `DateTime`.
@@ -91,7 +91,7 @@ The code results in the following output, showing that the database generated a 
    2: Jane Doe, 1/1/2000 12:00:00 AM
    ````
 
-  ### Explicit values into SQL Server IDENTITY columns
+### Explicit values into SQL Server IDENTITY columns
 
 For most situations, the approach shown above will work for key properties. However, to insert explicit values into a SQL Server `IDENTITY` column, you need to manually enable `IDENTITY_INSERT` before calling `SaveChanges()`.
 
@@ -127,6 +127,6 @@ Note: We have a [feature request](https://github.com/aspnet/EntityFramework/issu
 
    ````
 
-  ## Setting an explicit values during update
+## Setting an explicit values during update
 
 Caution: Due to various bugs, this scenario is not properly supported in the current pre-release of EF Core. See [documentation issue #122](https://github.com/aspnet/EntityFramework.Docs/issues/122) for more details.

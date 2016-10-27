@@ -3,7 +3,7 @@ uid: saving/cascade-delete
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Cascade Delete
+# Cascade Delete
 
 Cascade delete allows deletion of a principal/parent entity to have a side effect on dependent/child entities it is related to.
 
@@ -18,7 +18,7 @@ See [Relationships](../modeling/relationships.md) for more information about con
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/CascadeDelete/) on GitHub.
 
-  ## Cascading to tracked entities
+## Cascading to tracked entities
 
 When you call *SaveChanges*, the cascade delete rules will be applied to any entities that are being tracked by the context.
 
@@ -53,7 +53,7 @@ Because all the Posts are tracked by the context, the cascade behavior is applie
    WHERE [BlogId] = @p2;
    ````
 
-  ## Cascading to untracked entities
+## Cascading to untracked entities
 
 The following code is almost the same as our previous example, except it does not load the related Posts from the database.
 

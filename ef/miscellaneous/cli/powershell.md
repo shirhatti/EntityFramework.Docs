@@ -3,13 +3,13 @@ uid: miscellaneous/cli/powershell
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Package Manager Console (Visual Studio)
+# Package Manager Console (Visual Studio)
 
 EF command line tools for Visual Studio's Package Manager Console (PMC) window.
 
 Caution: The commands require the [latest version of Windows PowerShell](https://www.microsoft.com/en-us/download/details.aspx?id=50395)
 
-  ## Installation
+## Installation
 
 Package Manager Console commands are installed with the *Microsoft.EntityFrameworkCore.Tools* package.
 
@@ -21,7 +21,7 @@ To open the console, follow these steps.
 
 * Execute `Install-Package Microsoft.EntityFrameworkCore.Tools -Pre`
 
-  ### .NET Core and ASP.NET Core Projects
+### .NET Core and ASP.NET Core Projects
 
 .NET Core and ASP.NET Core projects also require installing .NET Core CLI. See [.NET Core CLI](dotnet.md) for more information about this installation.
 
@@ -29,11 +29,11 @@ Note: .NET Core CLI has known issues in Preview 1. Because PMC commands call .NE
 
 Tip: On .NET Core and ASP.NET Core projects, add `-Verbose` to any Package Manager Console command to see the equivalent .NET Core CLI command that was invoked.
 
-  ## Usage
+## Usage
 
 Note: All commands support the common parameters: `-Verbose`, `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-WarningAction`, `-WarningVariable`, `-OutBuffer`, `-PipelineVariable`, and `-OutVariable`. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-  ### Add-Migration
+### Add-Migration
 
 Adds a new migration.
 
@@ -65,7 +65,7 @@ Adds a new migration.
            Specifies the environment to use. If omitted, "Development" is used.
    ````
 
-  ### Remove-Migration
+### Remove-Migration
 
 Removes the last migration.
 
@@ -94,7 +94,7 @@ Removes the last migration.
            Removes the last migration without checking the database. If the last migration has been applied to the database, you will need to manually reverse the changes it made.
    ````
 
-  ### Scaffold-DbContext
+### Scaffold-DbContext
 
 Scaffolds a DbContext and entity type classes for a specified database.
 
@@ -142,7 +142,7 @@ Scaffolds a DbContext and entity type classes for a specified database.
            Specifies the environment to use. If omitted, "Development" is used.
    ````
 
-  ### Script-Migration
+### Script-Migration
 
 Generates a SQL script from migrations.
 
@@ -180,7 +180,7 @@ Generates a SQL script from migrations.
            Specifies the environment to use. If omitted, "Development" is used.
    ````
 
-  ### Update-Database
+### Update-Database
 
 Updates the database to a specified migration.
 
@@ -209,7 +209,7 @@ Updates the database to a specified migration.
            Specifies the environment to use. If omitted, "Development" is used.
    ````
 
-  ### Use-DbContext
+### Use-DbContext
 
 Sets the default DbContext to use.
 
@@ -235,7 +235,7 @@ Sets the default DbContext to use.
            Specifies the environment to use. If omitted, "Development" is used.
    ````
 
-  ## Using EF Core commands and EF 6 commands side-by-side
+## Using EF Core commands and EF 6 commands side-by-side
 
 EF Core commands do not work on EF 6 or earlier version of EF. However, EF Core re-uses some of the same command names from these earlier versions. These commands can be installed side-by-side, however, EF does not automatically know which version of the command to use. This is solved by prefixing the command with the module name. The EF 6 commands PowerShell module is named "EntityFramework", and the EF Core module is named "EntityFrameworkCore". Without the prefix, PowerShell may call the wrong version of the command.
 
@@ -243,14 +243,14 @@ EF Core commands do not work on EF 6 or earlier version of EF. However, EF Core 
 
 ````PowerShell
 
-   # Invokes the EF Core command
+ # Invokes the EF Core command
    PS> EntityFrameworkCore\Add-Migration
 
-   # Invokes the EF 6 command
+ # Invokes the EF 6 command
    PS> EntityFramework\Add-Migration
    ````
 
-  ## Common Errors  ### Error: "No parameterless constructor was found"
+## Common Errors### Error: "No parameterless constructor was found"
 
 Design-time tools attempt to automatically find how your application creates instances of your DbContext type. If EF cannot find a suitable way to initialize your DbContext, you may encounter this error.
 

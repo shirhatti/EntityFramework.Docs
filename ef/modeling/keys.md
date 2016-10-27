@@ -3,11 +3,11 @@ uid: modeling/keys
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Keys (primary)
+# Keys (primary)
 
 A key serves as the primary unique identifier for each entity instance. When using a relational database this maps to the concept of a *primary key*. You can also configure a unique identifier that is not the primary key (see [Alternate Keys](alternate-keys.md) for more information).
 
-  ## Conventions
+## Conventions
 
 By convention, a property named `Id` or `<type name>Id` will be configured as the key of an entity.
 
@@ -39,7 +39,7 @@ By convention, a property named `Id` or `<type name>Id` will be configured as th
 
    ````
 
-  ## Data Annotations
+## Data Annotations
 
 You can use Data Annotations to configure a single property to be the key of an entity.
 
@@ -58,7 +58,7 @@ You can use Data Annotations to configure a single property to be the key of an 
 
    ````
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to configure a single property to be the key of an entity.
 

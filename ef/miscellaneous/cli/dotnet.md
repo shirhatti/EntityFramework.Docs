@@ -3,17 +3,17 @@ uid: miscellaneous/cli/dotnet
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # .NET Core CLI
+# .NET Core CLI
 
 EF command-line tools for .NET Core Command Line Interface (CLI).
 
 Note: Command-line tools for .NET Core CLI has known issues. See [Preview 2 Known Issues](#preview-2-known-issues) for more details.
 
-  ## Installation  ### Prerequisites
+## Installation### Prerequisites
 
 EF command-line tools requires .NET Core CLI Preview 2 or newer. See the [.NET Core](https://www.microsoft.com/net/core) website for installation instructions.
 
-  ### Supported Frameworks
+### Supported Frameworks
 
 EF supports .NET Core CLI commands on these frameworks:
 
@@ -21,7 +21,7 @@ EF supports .NET Core CLI commands on these frameworks:
 
    * .NET Core App 1.0. ("netcoreapp1.0")
 
-  ### Install by editing project.json
+### Install by editing project.json
 
 EF command-line tools for .NET Core CLI are installed by manually editing `project.json`.
 
@@ -55,11 +55,11 @@ The resulting project.json should include these items (in addition to your other
 
 Tip: A build-only dependency (`"type": "build"`) means this dependency is local to the current project. For example, if Project A has a build only dependency and Project B depends on A, `dotnet restore` will not add A's build-only dependencies into Project B.
 
-  ## Usage
+## Usage
 
 Commands can be run from the command line by navigating to the project directory and executing `dotnet ef [subcommand]`. To see usage, add `--help` to any command to see more information about parameters and subcommands.
 
-  ### dotnet-ef
+### dotnet-ef
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -82,7 +82,7 @@ Commands can be run from the command line by navigating to the project directory
      migrations  Commands to manage your migrations
    ````
 
-  ### dotnet-ef-database
+### dotnet-ef-database
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -99,7 +99,7 @@ Commands can be run from the command line by navigating to the project directory
      update  Updates the database to a specified migration
    ````
 
-  ### dotnet-ef-database-drop
+### dotnet-ef-database-drop
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -115,7 +115,7 @@ Commands can be run from the command line by navigating to the project directory
      -v|--verbose                    Enable verbose output
    ````
 
-  ### dotnet-ef-database-update
+### dotnet-ef-database-update
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -133,7 +133,7 @@ Commands can be run from the command line by navigating to the project directory
      -v|--verbose                    Enable verbose output
    ````
 
-  ### dotnet-ef-dbcontext
+### dotnet-ef-dbcontext
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -150,7 +150,7 @@ Commands can be run from the command line by navigating to the project directory
      scaffold  Scaffolds a DbContext and entity type classes for a specified database
    ````
 
-  ### dotnet-ef-dbcontext-list
+### dotnet-ef-dbcontext-list
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -165,7 +165,7 @@ Commands can be run from the command line by navigating to the project directory
      -v|--verbose                    Enable verbose output
    ````
 
-  ### dotnet-ef-dbcontext-scaffold
+### dotnet-ef-dbcontext-scaffold
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -189,7 +189,7 @@ Commands can be run from the command line by navigating to the project directory
      -v|--verbose                    Enable verbose output
    ````
 
-  ### dotnet-ef-migrations
+### dotnet-ef-migrations
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -208,7 +208,7 @@ Commands can be run from the command line by navigating to the project directory
      script  Generate a SQL script from migrations
    ````
 
-  ### dotnet-ef-migrations-add
+### dotnet-ef-migrations-add
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -228,7 +228,7 @@ Commands can be run from the command line by navigating to the project directory
      -v|--verbose                    Enable verbose output
    ````
 
-  ### dotnet-ef-migrations-list
+### dotnet-ef-migrations-list
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -244,7 +244,7 @@ Commands can be run from the command line by navigating to the project directory
      -v|--verbose                    Enable verbose output
    ````
 
-  ### dotnet-ef-migrations-remove
+### dotnet-ef-migrations-remove
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -260,7 +260,7 @@ Commands can be run from the command line by navigating to the project directory
      -v|--verbose                    Enable verbose output
    ````
 
-  ### dotnet-ef-migrations-script
+### dotnet-ef-migrations-script
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -281,7 +281,7 @@ Commands can be run from the command line by navigating to the project directory
      -v|--verbose                    Enable verbose output
    ````
 
-  ## Common Errors  ### Error: "No parameterless constructor was found"
+## Common Errors### Error: "No parameterless constructor was found"
 
 Design-time tools attempt to automatically find how your application creates instances of your DbContext type. If EF cannot find a suitable way to initialize your DbContext, you may encounter this error.
 
@@ -298,7 +298,7 @@ As the error message suggests, one solution is to add an implementation of `IDbC
 
 <a name=dotnet-cli-issues></a>
 
-  ## Preview 2 Known Issues  ### Targeting class library projects is not supported
+## Preview 2 Known Issues### Targeting class library projects is not supported
 
 .NET Core CLI does not support running commands on class libraries as of Preview 2. Despite being able to install EF tools, executing commands may throw this error message.
 
@@ -311,7 +311,7 @@ As the error message suggests, one solution is to add an implementation of `IDbC
 
 See issue [https://github.com/dotnet/cli/issues/2645](https://github.com/dotnet/cli/issues/2645).
 
-  #### Explanation
+#### Explanation
 
 If `dotnet run` does not work in the startup project, then `dotnet ef` cannot run either.
 
@@ -319,7 +319,7 @@ If `dotnet run` does not work in the startup project, then `dotnet ef` cannot ru
 
 The "startup" project defaults to the current project, unless specified differently with the parameter `--startup-project`.
 
-  #### Workaround 1 - Utilize a separate startup project
+#### Workaround 1 - Utilize a separate startup project
 
 Convert the class library project into an "app" project. This can either be a .NET Core app or a desktop .NET app.
 
@@ -375,7 +375,7 @@ Example:
    dotnet ef --startup-project ../MyConsoleApplication/ migrations list
    ````
 
-  #### Workaround 2 - Modify your class library to be a startup application
+#### Workaround 2 - Modify your class library to be a startup application
 
 Convert the class library project into an "app" project. This can either be a .NET Core app or a desktop .NET app.
 

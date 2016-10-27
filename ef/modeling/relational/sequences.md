@@ -5,19 +5,19 @@ Caution: This documentation is for EF Core. For EF6.x and earlier release see [h
 
 Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
-  # Sequences
+# Sequences
 
 A sequence generates a sequential numeric values in the database. Sequences are not associated with a specific table.
 
-  ## Conventions
+## Conventions
 
 By convention, sequences are not introduced in to the model.
 
-  ## Data Annotations
+## Data Annotations
 
 You can not configure a sequence using Data Annotations.
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to create a sequence in the model.
 

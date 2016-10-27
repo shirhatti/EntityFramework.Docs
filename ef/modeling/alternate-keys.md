@@ -3,7 +3,7 @@ uid: modeling/alternate-keys
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Alternate Keys
+# Alternate Keys
 
 An alternate key serves as an alternate unique identifier for each entity instance in addition to the primary key. Alternate keys can be used as the target of a relationship. When using a relational database this maps to the concept of a unique index/constraint on the alternate key column(s) and one or more foreign key constraints that reference the column(s).
 
@@ -11,7 +11,7 @@ Note: If you just want to enforce uniqeness of a column then you want a unique i
 
 Alternate keys are typically introduced for you when needed and you do not need to manually configure them. See [Conventions](#conventions) for more details.
 
-  ## Conventions
+## Conventions
 
 By convention, an alternate key is introduced for you when you identify a property, that is not the primary key, as the target of a relationship.
 
@@ -54,11 +54,11 @@ By convention, an alternate key is introduced for you when you identify a proper
 
    ````
 
-  ## Data Annotations
+## Data Annotations
 
 Alternate keys can not be configured using Data Annotations.
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to configure a single property to be an alternate key.
 

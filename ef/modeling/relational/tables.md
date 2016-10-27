@@ -5,15 +5,15 @@ Caution: This documentation is for EF Core. For EF6.x and earlier release see [h
 
 Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
-  # Table Mapping
+# Table Mapping
 
 Table mapping identifies which table data should be queried from and saved to in the database.
 
-  ## Conventions
+## Conventions
 
 By convention, each entity will be setup to map to a table with the same name as the `DbSet<TEntity>` property that exposes the entity on the derived context. If no `DbSet<TEntity>` is included for the given entity, the class name is used.
 
-  ## Data Annotations
+## Data Annotations
 
 You can use Data Annotations to configure the table that a type maps to.
 
@@ -45,7 +45,7 @@ You can also specify a schema that the table belongs to.
 
    ````
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to configure the table that a type maps to.
 

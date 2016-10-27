@@ -3,19 +3,19 @@ uid: modeling/indexes
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Indexes
+# Indexes
 
 Indexes are a common concept across many data stores. While their implementation in the data store may vary, they are used to make lookups based on a column (or set of columns) more efficient.
 
-  ## Conventions
+## Conventions
 
 By convention, an index is created in each property (or set of properties) that are used as a foreign key.
 
-  ## Data Annotations
+## Data Annotations
 
 Indexes can not be created using data annotations.
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API specify an index on a single property. By default, indexes are non-unique.
 

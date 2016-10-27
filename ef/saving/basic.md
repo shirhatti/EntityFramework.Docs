@@ -3,17 +3,17 @@ uid: saving/basic
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Basic Save
+# Basic Save
 
 Learn how to add, modify, and remove data using your context and entity classes.
 
 Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/Basics/) on GitHub.
 
-  ## ChangeTracker & SaveChanges
+## ChangeTracker & SaveChanges
 
 Each context instance has a *ChangeTracker* that is responsible for keeping track of changes that need to be written to the database. As you make changes to instances of your entity classes, these changes are recorded in the *ChangeTracker* and then written to the database when you call *SaveChanges*.
 
-  ## Adding Data
+## Adding Data
 
 Use the *DbSet.Add* method to add new instances of your entity classes. The data will be inserted in the database when you call *SaveChanges*.
 
@@ -32,7 +32,7 @@ Use the *DbSet.Add* method to add new instances of your entity classes. The data
 
    ````
 
-  ## Updating Data
+## Updating Data
 
 EF will automatically detect changes made to an existing entity that is tracked by the context. This includes entities that you load/query from the database, and entities that were previously added and saved to the database.
 
@@ -51,7 +51,7 @@ Simply modify the values assigned to properties and then call *SaveChanges*.
 
    ````
 
-  ## Deleting Data
+## Deleting Data
 
 Use the *DbSet.Remove* method to delete instances of you entity classes.
 
@@ -70,7 +70,7 @@ If the entity already exists in the database, it will be deleted during *SaveCha
 
    ````
 
-  ## Multiple Operations in a single SaveChanges
+## Multiple Operations in a single SaveChanges
 
 You can combine multiple Add/Update/Remove operations into a single call to *SaveChanges*.
 

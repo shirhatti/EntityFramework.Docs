@@ -1,13 +1,13 @@
----
+﻿---
 uid: providers/sqlite/limitations
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # SQLite Limitations
+# SQLite Limitations
 
 When using the SQLite provider, there are a number of limitations you should be aware of. Most of these are a result of limitations in the underlying SQLite database engine and are not specific to EF.
 
-  ## Modeling Limitations
+## Modeling Limitations
 
 The common relational library (shared by Entity Framework relational database providers) defines APIs for modelling concepts that are common to most relational database engines. A number of these concepts are not supported by the SQLite provider.
 
@@ -15,7 +15,7 @@ The common relational library (shared by Entity Framework relational database pr
 
 * Sequences
 
-  ## Migrations Limitations
+## Migrations Limitations
 
 The SQLite database engine does not support a number of schema operations that are supported by the majority of other relational databases. If you attempt to apply one of the unsupported operations to a SQLite database then a `NotSupportedException` will be thrown.
 

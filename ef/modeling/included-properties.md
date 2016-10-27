@@ -3,15 +3,15 @@ uid: modeling/included-properties
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Including & Excluding Properties
+# Including & Excluding Properties
 
 Including a property in the model means that EF has metadata about that property and will attempt to read and write values from/to the database.
 
-  ## Conventions
+## Conventions
 
 By convention, public properties with a getter and a setter will be included in the model.
 
-  ## Data Annotations
+## Data Annotations
 
 You can use Data Annotations to exclude a property from the model.
 
@@ -30,7 +30,7 @@ You can use Data Annotations to exclude a property from the model.
 
    ````
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to exclude a property from the model.
 

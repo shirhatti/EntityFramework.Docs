@@ -5,19 +5,19 @@ Caution: This documentation is for EF Core. For EF6.x and earlier release see [h
 
 Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
-  # Primary Keys
+# Primary Keys
 
 A primary key constraint is introduced for the key of each entity type.
 
-  ## Conventions
+## Conventions
 
 By convention, the primary key in the database will be named `PK_<type name>`.
 
-  ## Data Annotations
+## Data Annotations
 
 No relational database specific aspects of a primary key can be configured using Data Annotations.
 
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to configure the name of the primary key constraint in the database.
 

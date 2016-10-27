@@ -3,11 +3,11 @@ uid: providers/sqlite/index
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # SQLite
+# SQLite
 
 This database provider allows Entity Framework Core to be used with SQLite. The provider is maintained as part of the [EntityFramework GitHub project](https://github.com/aspnet/EntityFramework).
 
-  ## Install
+## Install
 
 Install the [Microsoft.EntityFrameworkCore.SQLite NuGet package](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SQLite/).
 
@@ -18,7 +18,7 @@ Install the [Microsoft.EntityFrameworkCore.SQLite NuGet package](https://www.nug
    PM>  Install-Package Microsoft.EntityFrameworkCore.SQLite
    ````
 
-  ## Get Started
+## Get Started
 
 The following resources will help you get started with this provider.
    * [Local SQLite on UWP](../../platforms/uwp/getting-started.md)
@@ -29,11 +29,11 @@ The following resources will help you get started with this provider.
 
    * [Unicorn Packer Sample Application](https://github.com/rowanmiller/UnicornStore/tree/master/UnicornPacker)
 
-  ## Supported Database Engines
+## Supported Database Engines
 
    * SQLite (3.7 onwards)
 
-  ## Supported Platforms
+## Supported Platforms
 
    * Full .NET (4.5.1 onwards)
 
@@ -43,6 +43,6 @@ The following resources will help you get started with this provider.
 
    * Universal Windows Platform
 
-  ## Limitations
+## Limitations
 
 See [SQLite Limitations](limitations.md) for some important limitations of the SQLite provider.

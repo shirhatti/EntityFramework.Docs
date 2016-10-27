@@ -3,13 +3,13 @@ uid: modeling/backing-field
 ---
 Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Backing Fields
+# Backing Fields
 
 When a backing field is configured, EF will write directly to that field when materializing entity instances from the database (rather than using the property setter). This is useful when there is no property setter, or the setter contains logic that should not be executed when setting initial property values for existing entities being loaded from the database.
 
 Caution: The `ChangeTracker` has not yet been enabled to use backing fields when it needs to set the value of a property. This is only an issue for foreign key properties and generated properties - as the change tracker needs to propagate values into these properties. For these properties, a property setter must still be exposed.[Issue #4461](https://github.com/aspnet/EntityFramework/issues/4461) is tracking enabling the `ChangeTracker` to write to backing fields for properties with no setter.
 
-  ## Conventions
+## Conventions
 
 By convention, the following fields will be discovered as backing fields for a given property (listed in precedence order):
    * <propertyName> differing only by case
@@ -37,11 +37,11 @@ By convention, the following fields will be discovered as backing fields for a g
 
    ````
 
-  ## Data Annotations
+## Data Annotations
 
 Backing fields cannot be configured with data annotations.
 
-  ## Fluent API
+## Fluent API
 
 There is no top level API for configuring backing fields, but you can use the Fluent API to set annotations that are used to store backing field information.
 
