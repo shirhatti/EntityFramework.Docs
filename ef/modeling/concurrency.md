@@ -18,7 +18,6 @@ For example, relational database achieve this by including the concurrency token
 
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp",, highlight_args}, "names": [] -->
 ````sql
-
    UPDATE [Person] SET [FirstName] = @p1
    WHERE [PersonId] = @p0 AND [LastName] = @p2;
 ````

@@ -59,40 +59,40 @@ Now it's time to define a context and entity classes that make up your model.
 
 <!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.NewDb/Model.cs)] -->
 ````csharp
-   using Microsoft.EntityFrameworkCore;
-   using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
-   namespace EFGetStarted.ConsoleApp
-   {
-public class BloggingContext : DbContext
+namespace EFGetStarted.ConsoleApp
 {
-    public DbSet<Blog> Blogs { get; set; }
-    public DbSet<Post> Posts { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public class BloggingContext : DbContext
     {
-        optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;");
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post> Posts { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;");
+        }
+    }
+
+    public class Blog
+    {
+        public int BlogId { get; set; }
+        public string Url { get; set; }
+
+        public List<Post> Posts { get; set; }
+    }
+
+    public class Post
+    {
+        public int PostId { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+
+        public int BlogId { get; set; }
+        public Blog Blog { get; set; }
     }
 }
-
-public class Blog
-{
-    public int BlogId { get; set; }
-    public string Url { get; set; }
-
-    public List<Post> Posts { get; set; }
-}
-
-public class Post
-{
-    public int PostId { get; set; }
-    public string Title { get; set; }
-    public string Content { get; set; }
-
-    public int BlogId { get; set; }
-    public Blog Blog { get; set; }
-}
-   }
 ````
 
 > [!TIP]
@@ -109,7 +109,9 @@ Now that you have a model, you can use migrations to create a database for you.
 * Run `Update-Database` to apply the new migration to the database. Because your database doesn't exist yet, it will be created for you before the migration is applied.
 
 > [!TIP]
-> If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to make the corresponding schema changes to the database. Once you have checked the scaffolded code (and made any required changes), you can use the `Update-Database` command to apply the changes to the database.EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.
+> If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to make the corresponding schema changes to the database. Once you have checked the scaffolded code (and made any required changes), you can use the `Update-Database` command to apply the changes to the database.
+>
+>EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.
 
 ## Use your model
 
@@ -121,30 +123,30 @@ You can now use your model to perform data access.
 
 <!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.NewDb/Program.cs)] -->
 ````csharp
-   using System;
+using System;
 
-   namespace EFGetStarted.ConsoleApp
-   {
-class Program
+namespace EFGetStarted.ConsoleApp
 {
-    static void Main(string[] args)
+    class Program
     {
-        using (var db = new BloggingContext())
+        static void Main(string[] args)
         {
-            db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-            var count = db.SaveChanges();
-            Console.WriteLine("{0} records saved to database", count);
-
-            Console.WriteLine();
-            Console.WriteLine("All blogs in database:");
-            foreach (var blog in db.Blogs)
+            using (var db = new BloggingContext())
             {
-                Console.WriteLine(" - {0}", blog.Url);
+                db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+                var count = db.SaveChanges();
+                Console.WriteLine("{0} records saved to database", count);
+
+                Console.WriteLine();
+                Console.WriteLine("All blogs in database:");
+                foreach (var blog in db.Blogs)
+                {
+                    Console.WriteLine(" - {0}", blog.Url);
+                }
             }
         }
     }
 }
-   }
 ````
 
 * Debug ‣ Start Without Debugging

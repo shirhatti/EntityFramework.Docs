@@ -28,18 +28,18 @@ You can use the *FromSql* extension method to begin a LINQ query based on a raw 
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RawSQL/Sample.cs)] -->
 ````csharp
-   var blogs = context.Blogs
-.FromSql("SELECT * FROM dbo.Blogs")
-.ToList();
+var blogs = context.Blogs
+    .FromSql("SELECT * FROM dbo.Blogs")
+    .ToList();
 ````
 
 Raw SQL queries can be used to execute a stored procedure.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RawSQL/Sample.cs)] -->
 ````csharp
-   var blogs = context.Blogs
-.FromSql("EXECUTE dbo.GetMostPopularBlogs")
-.ToList();
+var blogs = context.Blogs
+    .FromSql("EXECUTE dbo.GetMostPopularBlogs")
+    .ToList();
 ````
 
 ## Passing parameters
@@ -61,11 +61,11 @@ You can also construct a DbParameter and supply it as a parameter value. This al
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RawSQL/Sample.cs)] -->
 ````csharp
-   var user = new SqlParameter("user", "johndoe");
+var user = "johndoe";
 
-   var blogs = context.Blogs
-.FromSql("EXECUTE dbo.GetMostPopularBlogsForUser @user", user)
-.ToList();
+var blogs = context.Blogs
+    .FromSql("EXECUTE dbo.GetMostPopularBlogsForUser {0}", user)
+    .ToList();
 ````
 
 ## Composing with LINQ
@@ -91,10 +91,9 @@ Composing with LINQ operators can be used to include related data in the query.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RawSQL/Sample.cs)] -->
 ````csharp
-   var searchTerm = ".NET";
+var user = new SqlParameter("user", "johndoe");
 
-   var blogs = context.Blogs
-.FromSql("SELECT * FROM dbo.SearchBlogs {0}", searchTerm)
-.Include(b => b.Posts)
-.ToList();
+var blogs = context.Blogs
+    .FromSql("EXECUTE dbo.GetMostPopularBlogsForUser @user", user)
+    .ToList();
 ````
