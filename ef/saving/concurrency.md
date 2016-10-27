@@ -19,7 +19,8 @@ For a detailed description of how concurrency works in Entity Framework Core, se
 
 Resolving a concurrency conflict involves using an algorithm to merge the pending changes from the current user with the changes made in the database. The exact approach will vary based on your application, but a common approach is to display the values to the user and have them decide the correct values to be stored in the database.
 
-There are three sets of values available to help resolve a concurrency conflict.
+**There are three sets of values available to help resolve a concurrency conflict.**
+
 * **Current values** are the values that the application was attempting to write to the database.
 
 * **Original values** are the values that were originally retrieved from the database, before any edits were made.
@@ -32,100 +33,100 @@ In the following example, `Person.FirstName` and `Person.LastName` are setup as 
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Concurrency/Sample.cs?highlight=53,54)] -->
 ````csharp
-   using Microsoft.EntityFrameworkCore;
-   using System;
-   using System.ComponentModel.DataAnnotations;
-   using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
-   namespace EFSaving.Concurrency
-   {
-public class Sample
+namespace EFSaving.Concurrency
 {
-    public static void Run()
+    public class Sample
     {
-        // Ensure database is created and has a person in it
-        using (var context = new PersonContext())
+        public static void Run()
         {
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-
-            context.People.Add(new Person { FirstName = "John", LastName = "Doe" });
-            context.SaveChanges();
-        }
-
-        using (var context = new PersonContext())
-        {
-            // Fetch a person from database and change phone number
-            var person = context.People.Single(p => p.PersonId == 1);
-            person.PhoneNumber = "555-555-5555";
-
-            // Change the persons name in the database (will cause a concurrency conflict)
-            context.Database.ExecuteSqlCommand("UPDATE dbo.People SET FirstName = 'Jane' WHERE PersonId = 1");
-
-            try
+            // Ensure database is created and has a person in it
+            using (var context = new PersonContext())
             {
-                // Attempt to save changes to the database
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                context.People.Add(new Person { FirstName = "John", LastName = "Doe" });
                 context.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException ex)
+
+            using (var context = new PersonContext())
             {
-                foreach (var entry in ex.Entries)
+                // Fetch a person from database and change phone number
+                var person = context.People.Single(p => p.PersonId == 1);
+                person.PhoneNumber = "555-555-5555";
+
+                // Change the persons name in the database (will cause a concurrency conflict)
+                context.Database.ExecuteSqlCommand("UPDATE dbo.People SET FirstName = 'Jane' WHERE PersonId = 1");
+
+                try
                 {
-                    if (entry.Entity is Person)
+                    // Attempt to save changes to the database
+                    context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    foreach (var entry in ex.Entries)
                     {
-                        // Using a NoTracking query means we get the entity but it is not tracked by the context
-                        // and will not be merged with existing entities in the context.
-                        var databaseEntity = context.People.AsNoTracking().Single(p => p.PersonId == ((Person)entry.Entity).PersonId);
-                        var databaseEntry = context.Entry(databaseEntity);
-
-                        foreach (var property in entry.Metadata.GetProperties())
+                        if (entry.Entity is Person)
                         {
-                            var proposedValue = entry.Property(property.Name).CurrentValue;
-                            var originalValue = entry.Property(property.Name).OriginalValue;
-                            var databaseValue = databaseEntry.Property(property.Name).CurrentValue;
+                            // Using a NoTracking query means we get the entity but it is not tracked by the context
+                            // and will not be merged with existing entities in the context.
+                            var databaseEntity = context.People.AsNoTracking().Single(p => p.PersonId == ((Person)entry.Entity).PersonId);
+                            var databaseEntry = context.Entry(databaseEntity);
 
-                            // TODO: Logic to decide which value should be written to database
-                            // entry.Property(property.Name).CurrentValue = <value to be saved>;
+                            foreach (var property in entry.Metadata.GetProperties())
+                            {
+                                var proposedValue = entry.Property(property.Name).CurrentValue;
+                                var originalValue = entry.Property(property.Name).OriginalValue;
+                                var databaseValue = databaseEntry.Property(property.Name).CurrentValue;
 
-                            // Update original values to 
-                            entry.Property(property.Name).OriginalValue = databaseEntry.Property(property.Name).CurrentValue;
+                                // TODO: Logic to decide which value should be written to database
+                                // entry.Property(property.Name).CurrentValue = <value to be saved>;
+
+                                // Update original values to 
+                                entry.Property(property.Name).OriginalValue = databaseEntry.Property(property.Name).CurrentValue;
+                            }
+                        }
+                        else
+                        {
+                            throw new NotSupportedException("Don't know how to handle concurrency conflicts for " + entry.Metadata.Name);
                         }
                     }
-                    else
-                    {
-                        throw new NotSupportedException("Don't know how to handle concurrency conflicts for " + entry.Metadata.Name);
-                    }
-                }
 
-                // Retry the save operation
-                context.SaveChanges();
+                    // Retry the save operation
+                    context.SaveChanges();
+                }
             }
         }
-    }
 
-    public class PersonContext : DbContext
-    {
-        public DbSet<Person> People { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public class PersonContext : DbContext
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFSaving.Concurrency;Trusted_Connection=True;");
+            public DbSet<Person> People { get; set; }
+
+            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            {
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFSaving.Concurrency;Trusted_Connection=True;");
+            }
         }
+
+        public class Person
+        {
+            public int PersonId { get; set; }
+
+            [ConcurrencyCheck]
+            public string FirstName { get; set; }
+
+            [ConcurrencyCheck]
+            public string LastName { get; set; }
+
+            public string PhoneNumber { get; set; }
+        }
+
     }
-
-    public class Person
-    {
-        public int PersonId { get; set; }
-
-        [ConcurrencyCheck]
-        public string FirstName { get; set; }
-
-        [ConcurrencyCheck]
-        public string LastName { get; set; }
-
-        public string PhoneNumber { get; set; }
-    }
-
 }
-   }
 ````
