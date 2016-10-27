@@ -1,15 +1,17 @@
----
+﻿---
 uid: platforms/full-dotnet/existing-db
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+# Console Application to Existing Database (Database First)
 
-  # Console Application to Existing Database (Database First)
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 In this walkthrough, you will build a console application that performs basic data access against a Microsoft SQL Server database using Entity Framework. You will use reverse engineering to create an Entity Framework model based on an existing database.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/FullNet/ConsoleApp.ExistingDb) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/FullNet/ConsoleApp.ExistingDb) on GitHub.
 
-  ## Prerequisites
+## Prerequisites
 
 The following prerequisites are needed to complete this walkthrough:
 
@@ -21,11 +23,12 @@ The following prerequisites are needed to complete this walkthrough:
 
 * [Blogging database](#blogging-database)
 
-  ### Blogging database
+### Blogging database
 
 This tutorial uses a **Blogging** database on your LocalDb instance as the existing database.
 
-Note: If you have already created the **Blogging** database as part of another tutorial, you can skip these steps.
+> [!NOTE]
+> If you have already created the **Blogging** database as part of another tutorial, you can skip these steps.
 
 * Open Visual Studio
 
@@ -45,41 +48,39 @@ Note: If you have already created the **Blogging** database as part of another t
 
 * Right-click on the query editor and select **Execute**
 
-<!-- literal_block {"language": "sql", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/_shared/create-blogging-database-script.sql", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
-
+<!-- [!code-sql[Main](platforms/_shared/create-blogging-database-script.sql)] -->
 ````sql
+CREATE DATABASE [Blogging]
+GO
 
-   CREATE DATABASE [Blogging]
-   GO
+USE [Blogging]
+GO
 
-   USE [Blogging]
-   GO
+CREATE TABLE [Blog] (
+    [BlogId] int NOT NULL IDENTITY,
+    [Url] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Blog] PRIMARY KEY ([BlogId])
+);
+GO
 
-   CREATE TABLE [Blog] (
-       [BlogId] int NOT NULL IDENTITY,
-       [Url] nvarchar(max) NOT NULL,
-       CONSTRAINT [PK_Blog] PRIMARY KEY ([BlogId])
-   );
-   GO
+CREATE TABLE [Post] (
+    [PostId] int NOT NULL IDENTITY,
+    [BlogId] int NOT NULL,
+    [Content] nvarchar(max),
+    [Title] nvarchar(max),
+    CONSTRAINT [PK_Post] PRIMARY KEY ([PostId]),
+    CONSTRAINT [FK_Post_Blog_BlogId] FOREIGN KEY ([BlogId]) REFERENCES [Blog] ([BlogId]) ON DELETE CASCADE
+);
+GO
 
-   CREATE TABLE [Post] (
-       [PostId] int NOT NULL IDENTITY,
-       [BlogId] int NOT NULL,
-       [Content] nvarchar(max),
-       [Title] nvarchar(max),
-       CONSTRAINT [PK_Post] PRIMARY KEY ([PostId]),
-       CONSTRAINT [FK_Post_Blog_BlogId] FOREIGN KEY ([BlogId]) REFERENCES [Blog] ([BlogId]) ON DELETE CASCADE
-   );
-   GO
+INSERT INTO [Blog] (Url) VALUES 
+('http://blogs.msdn.com/dotnet'), 
+('http://blogs.msdn.com/webdev'), 
+('http://blogs.msdn.com/visualstudio')
+GO
+````
 
-   INSERT INTO [Blog] (Url) VALUES 
-   ('http://blogs.msdn.com/dotnet'), 
-   ('http://blogs.msdn.com/webdev'), 
-   ('http://blogs.msdn.com/visualstudio')
-   GO
-   ````
-
-  ## Create a new project
+## Create a new project
 
 * Open Visual Studio 2015
 
@@ -93,7 +94,7 @@ Note: If you have already created the **Blogging** database as part of another t
 
 * Give the project a name and click **OK**
 
-  ## Install Entity Framework
+## Install Entity Framework
 
 To use EF Core, install the package for the database provider(s) you want to target. This walkthrough uses SQL Server. For a list of available providers see [Database Providers](../../providers/index.md).
 
@@ -107,7 +108,7 @@ To enable reverse engineering from an existing database we need to install a cou
 
 * Run `Install-Package Microsoft.EntityFrameworkCore.SqlServer.Design`
 
-  ## Reverse engineer your model
+## Reverse engineer your model
 
 Now it's time to create the EF model based on your existing database.
 
@@ -115,81 +116,74 @@ Now it's time to create the EF model based on your existing database.
 
 * Run the following command to create a model from the existing database
 
-<!-- literal_block {"language": "text", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {}, "ids": [], "linenos": false} -->
-
+<!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
-
-   Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
-   ````
+Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
+````
 
 The reverse engineer process created entity classes and a derived context based on the schema of the existing database. The entity classes are simple C# objects that represent the data you will be querying and saving.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/full-dotnet/Platforms/FullNet/ConsoleApp.ExistingDb/Blog.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/Blog.cs)] -->
+````csharp
+using System;
+using System.Collections.Generic;
 
-````c#
+namespace EFGetStarted.ConsoleApp.ExistingDb
+{
+    public partial class Blog
+    {
+        public Blog()
+        {
+            Post = new HashSet<Post>();
+        }
 
-   using System;
-   using System.Collections.Generic;
+        public int BlogId { get; set; }
+        public string Url { get; set; }
 
-   namespace EFGetStarted.ConsoleApp.ExistingDb
-   {
-       public partial class Blog
-       {
-           public Blog()
-           {
-               Post = new HashSet<Post>();
-           }
-
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-
-           public virtual ICollection<Post> Post { get; set; }
-       }
-   }
-
-   ````
+        public virtual ICollection<Post> Post { get; set; }
+    }
+}
+````
 
 The context represents a session with the database and allows you to query and save instances of the entity classes.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/full-dotnet/Platforms/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs)] -->
+````csharp
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-````c#
+namespace EFGetStarted.ConsoleApp.ExistingDb
+{
+    public partial class BloggingContext : DbContext
+    {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
+        }
 
-   using Microsoft.EntityFrameworkCore;
-   using Microsoft.EntityFrameworkCore.Metadata;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Blog>(entity =>
+            {
+                entity.Property(e => e.Url).IsRequired();
+            });
 
-   namespace EFGetStarted.ConsoleApp.ExistingDb
-   {
-       public partial class BloggingContext : DbContext
-       {
-           protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-           {
-               #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-               optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
-           }
+            modelBuilder.Entity<Post>(entity =>
+            {
+                entity.HasOne(d => d.Blog)
+                    .WithMany(p => p.Post)
+                    .HasForeignKey(d => d.BlogId);
+            });
+        }
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>(entity =>
-               {
-                   entity.Property(e => e.Url).IsRequired();
-               });
+        public virtual DbSet<Blog> Blog { get; set; }
+        public virtual DbSet<Post> Post { get; set; }
+    }
+}
+````
 
-               modelBuilder.Entity<Post>(entity =>
-               {
-                   entity.HasOne(d => d.Blog)
-                       .WithMany(p => p.Post)
-                       .HasForeignKey(d => d.BlogId);
-               });
-           }
-
-           public virtual DbSet<Blog> Blog { get; set; }
-           public virtual DbSet<Post> Post { get; set; }
-       }
-   }
-   ````
-
-  ## Use your model
+## Use your model
 
 You can now use your model to perform data access.
 
@@ -197,39 +191,36 @@ You can now use your model to perform data access.
 
 * Replace the contents of the file with the following code
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/platforms/full-dotnet/Platforms/FullNet/ConsoleApp.ExistingDb/Program.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/Program.cs)] -->
+````csharp
+using System;
 
-````c#
+namespace EFGetStarted.ConsoleApp.ExistingDb
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            using (var db = new BloggingContext())
+            {
+                db.Blog.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+                var count = db.SaveChanges();
+                Console.WriteLine("{0} records saved to database", count);
 
-   using System;
-
-   namespace EFGetStarted.ConsoleApp.ExistingDb
-   {
-       class Program
-       {
-           static void Main(string[] args)
-           {
-               using (var db = new BloggingContext())
-               {
-                   db.Blog.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-                   var count = db.SaveChanges();
-                   Console.WriteLine("{0} records saved to database", count);
-
-                   Console.WriteLine();
-                   Console.WriteLine("All blogs in database:");
-                   foreach (var blog in db.Blog)
-                   {
-                       Console.WriteLine(" - {0}", blog.Url);
-                   }
-               }
-           }
-       }
-   }
-
-   ````
+                Console.WriteLine();
+                Console.WriteLine("All blogs in database:");
+                foreach (var blog in db.Blog)
+                {
+                    Console.WriteLine(" - {0}", blog.Url);
+                }
+            }
+        }
+    }
+}
+````
 
 * Debug ‣ Start Without Debugging
 
 You will see that one blog is saved to the database and then the details of all blogs are printed to the console.
 
-![image](full-dotnet/_static/output-existing-db.png)
+![image](_static/output-existing-db.png)

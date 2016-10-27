@@ -1,13 +1,14 @@
 ---
 uid: querying/overview
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+# How Query Works
 
-  # How Query Works
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Entity Framework Core uses Language Integrate Query (LINQ) to query data from the database. LINQ allows you to use C# (or your .NET language of choice) to write strongly typed queries based on your derived context and entity classes.
 
-  ## The life of a query
+## The life of a query
 
 The following is a high level overview of the process each query goes through.
 
@@ -37,13 +38,13 @@ The following is a high level overview of the process each query goes through.
 
       * If not, a new entity is created and returned
 
-  ## When queries are executed
+## When queries are executed
 
 When you call LINQ operators, you are simply building up an in-memory representation of the query. The query is only sent to the database when the results are consumed.
 
 The most common operations that result in the query being sent to the database are:
-   * Iterating the results in a `for` loop
+* Iterating the results in a `for` loop
 
-   * Using an operator such as `ToList`, `ToArray`, `Single`, `Count`
+* Using an operator such as `ToList`, `ToArray`, `Single`, `Count`
 
-   * Databinding the results of a query to a UI
+* Databinding the results of a query to a UI

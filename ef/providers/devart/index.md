@@ -1,42 +1,44 @@
 ---
 uid: providers/devart/index
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+# Devart (MySQL, Oracle, PostgreSQL, SQLite, DB2, SQL Server, and more)
 
-  # Devart (MySQL, Oracle, PostgreSQL, SQLite, DB2, SQL Server, and more)
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Devart is a third party provider writer that offers database providers for a wide range of databases. Find out more at [devart.com/dotconnect](https://www.devart.com/dotconnect/).
 
-Note: This provider is not maintained as part of the Entity Framework Core project. When considering a third party provider, be sure to evaluate quality, licensing, support, etc. to ensure they meet your requirements.
+> [!NOTE]
+> This provider is not maintained as part of the Entity Framework Core project. When considering a third party provider, be sure to evaluate quality, licensing, support, etc. to ensure they meet your requirements.
 
-  ## Paid Versions Only
+## Paid Versions Only
 
 Devart dotConnect is a commercial third party provider. Entity Framework support is only available in paid versions of dotConnect.
 
-  ## Install
+## Install
 
 See the [Devart dotConnect documentation](https://www.devart.com/dotconnect/) for installation instructions.
 
-  ## Get Started
+## Get Started
 
 See the [Devart dotConnect Entity Framework documentation](https://www.devart.com/dotconnect/entityframework.html) and [blog article about Entity Framework Core 1 Support](http://blog.devart.com/entity-framework-core-1-entity-framework-7-support.html) to get started.
 
-  ## Supported Database Engines
+## Supported Database Engines
 
-   * MySQL
+* MySQL
 
-   * Oracle
+* Oracle
 
-   * PostgreSQL
+* PostgreSQL
 
-   * SQLite
+* SQLite
 
-   * DB2
+* DB2
 
-   * SQL Server
+* SQL Server
 
-   * [Cloud apps](https://www.devart.com/dotconnect/#cloud)
+* [Cloud apps](https://www.devart.com/dotconnect/#cloud)
 
-  ## Supported Platforms
+## Supported Platforms
 
-   * Full .NET (4.5.1 onwards)
+* Full .NET (4.5.1 onwards)

@@ -1,134 +1,121 @@
 ---
 uid: modeling/concurrency
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+# Concurrency Tokens
 
-  # Concurrency Tokens
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 If a property is configured as a concurrency token then EF will check that no other user has modified that value in the database when saving changes to that record. EF uses an optimistic concurrency pattern, meaning it will assume the value has not changed and try to save the data, but throw if it finds the value has been changed.
 
 For example we may want to configure `LastName` on `Person` to be a concurrency token. This means that if one user tries to save some changes to a `Person`, but another user has changed the `LastName` then an exception will be thrown. This may be desirable so that your application can prompt the user to ensure this record still represents the same actual person before saving their changes.
 
-  ## How concurrency tokens work in EF
+## How concurrency tokens work in EF
 
 Data stores can enforce concurrency tokens by checking that any record being updated or deleted still has the same value for the concurrency token that was assigned when the context originally loaded the data from the database.
 
 For example, relational database achieve this by including the concurrency token in the `WHERE` clause of any `UPDATE` or `DELETE` commands and checking the number of rows that were affected. If the concurrency token still matches then one row will be updated. If the value in the database has changed, then no rows are updated.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": false, "dupnames": [], "language": "sql", "highlight_args": {}, "names": []} -->
-
+<!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp",, highlight_args}, "names": [] -->
 ````sql
+UPDATE [Person] SET [FirstName] = @p1
+WHERE [PersonId] = @p0 AND [LastName] = @p2;
+````
 
-   UPDATE [Person] SET [FirstName] = @p1
-   WHERE [PersonId] = @p0 AND [LastName] = @p2;
-   ````
-
-  ## Conventions
+## Conventions
 
 By convention, properties are never configured as concurrency tokens.
 
-  ## Data Annotations
+## Data Annotations
 
 You can use the Data Annotations to configure a property as a concurrency token.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [4]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/Concurrency.cs"} -->
+<!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/Concurrency.cs?highlight=4)] -->
+````csharp
+public class Person
+{
+    public int PersonId { get; set; }
+    [ConcurrencyCheck]
+    public string LastName { get; set; }
+    public string FirstName { get; set; }
+}
+````
 
-````c#
-
-       public class Person
-       {
-           public int PersonId { get; set; }
-           [ConcurrencyCheck]
-           public string LastName { get; set; }
-           public string FirstName { get; set; }
-       }
-
-   ````
-
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to configure a property as a concurrency token.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [7, 8, 9]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Concurrency.cs"} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Concurrency.cs?highlight=7,8,9)] -->
+````csharp
+class MyContext : DbContext
+{
+    public DbSet<Person> People { get; set; }
 
-````c#
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Person>()
+            .Property(p => p.LastName)
+            .IsConcurrencyToken();
+    }
+}
 
-       class MyContext : DbContext
-       {
-           public DbSet<Person> People { get; set; }
+public class Person
+{
+    public int PersonId { get; set; }
+    public string LastName { get; set; }
+    public string FirstName { get; set; }
+}
+````
 
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Person>()
-                   .Property(p => p.LastName)
-                   .IsConcurrencyToken();
-           }
-       }
-
-       public class Person
-       {
-           public int PersonId { get; set; }
-           public string LastName { get; set; }
-           public string FirstName { get; set; }
-       }
-
-   ````
-
-  ## Timestamp/row version
+## Timestamp/row version
 
 A timestamp is a property where a new value is generated by the database every time a row is inserted or updated. The property is also treated as a concurrency token. This ensures you will get an exception if anyone else has modified a row that you are trying to update since you queried for the data.
 
 How this is achieved is up to the database provider being used. For SQL Server, timestamp is usually used on a *byte[]* property, which will be setup as a *ROWVERSION* column in the database.
 
-  ### Conventions
+### Conventions
 
 By convention, properties are never configured as timestamps.
 
-  ### Data Annotations
+### Data Annotations
 
 You can use Data Annotations to configure a property as a timestamp.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [6]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/DataAnnotations/Samples/Timestamp.cs"} -->
+<!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/Timestamp.cs?highlight=6)] -->
+````csharp
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+    
+    [Timestamp]
+    public byte[] Timestamp { get; set; }
+}
+````
 
-````c#
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-           
-           [Timestamp]
-           public byte[] Timestamp { get; set; }
-       }
-
-   ````
-
-  ### Fluent API
+### Fluent API
 
 You can use the Fluent API to configure a property as a timestamp.
 
-<!-- literal_block {"ids": [], "classes": [], "xml:space": "preserve", "backrefs": [], "linenos": true, "dupnames": [], "language": "c#", "highlight_args": {"linenostart": 1, "hl_lines": [7, 8, 9, 10]}, "names": [], "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/Modeling/FluentAPI/Samples/Timestamp.cs"} -->
+<!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Timestamp.cs?highlight=7,8,9,10)] -->
+````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-````c#
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .Property(p => p.Timestamp)
+            .ValueGeneratedOnAddOrUpdate()
+            .IsConcurrencyToken();
+    }
+}
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
-
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .Property(p => p.Timestamp)
-                   .ValueGeneratedOnAddOrUpdate()
-                   .IsConcurrencyToken();
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-           public byte[] Timestamp { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+    public byte[] Timestamp { get; set; }
+}
+````

@@ -1,13 +1,14 @@
 ---
 uid: efcore-vs-ef6/features
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+# Feature Comparison
 
-  # Feature Comparison
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 The following information will help you choose between Entity Framework Core and Entity Framework 6.x.
 
-  ## Features not in EF Core
+## Features not in EF Core
 
 This is a list of features not currently implemented in EF Core that are likely to impact your ability to use it in a given application. This is by no means an exhaustive list of possible O/RM features, but the features that we feel have the highest impact on developers.
 
@@ -55,15 +56,91 @@ This is a list of features not currently implemented in EF Core that are likely 
 
      * **Seed data** allows a set of data to be easily upserted to the database.
 
-  ## Side-by-side comparison
+## Side-by-side comparison
 
 The following table compares the features available in EF Core and EF6.x. It is intended to give a high level comparison and does not list every feature, or attempt to give details on possible differences between how the same feature works.
 
-<!--       Creating a Model  EF6.x  EF Core 1.0.0  Basic modelling (classes, properties, etc.)  Yes  Yes  Conventions  Yes  Yes  Custom conventions  Yes  Partial  Data annotations  Yes  Yes  Fluent API  Yes  Yes  Inheritance: Table per hierarchy (TPH)  Yes  Yes  Inheritance: Table per type (TPT)  Yes    Inheritance: Table per concrete class (TPC)  Yes    Shadow state properties    Yes  Alternate keys    Yes  Many-to-many: With join entity  Yes  Yes  Many-to-many: Without join entity  Yes    Key generation: Database  Yes  Yes  Key generation: Client    Yes  Complex/value types  Yes    Spatial data  Yes    Graphical visualization of model  Yes    Graphical drag/drop editor  Yes    Model format: Code  Yes  Yes  Model format: EDMX (XML)  Yes    Reverse engineer model from database: Command line    Yes  Reverse engineer model from database: VS wizard  Yes    Incremental update model from database  Yes          Querying Data  EF6.x  EF Core 1.0.0  LINQ: Simple queries  Stable  Stable  LINQ:
-Moderate queries  Stable  Stabilizing  LINQ: Complex queries  Stable  In-Progress  LINQ: Queries using navigation properties  Stable  In-Progress  "Pretty" SQL generation  Poor  Yes  Mixed client/server evaluation    Yes  Loading related data: Eager  Yes  Yes  Loading related data: Lazy  Yes    Loading related data: Explicit  Yes    Raw SQL queries: Model types  Yes  Yes  Raw SQL queries: Un-mapped types  Yes    Raw SQL queries: Composing with LINQ    Yes        Saving Data  EF6.x  EF Core 1.0.0  SaveChanges  Yes  Yes  Change tracking: Snapshot  Yes  Yes  Change tracking: Notification  Yes  Yes  Accessing tracked state  Yes  Partial  Optimistic concurrency  Yes  Yes  Transactions  Yes  Yes  Batching of statements    Yes  Stored procedure  Yes    Detached graph support (N-Tier): Low level APIs  Poor  Yes  Detached graph support (N-Tier): End-to-end    Poor        Other Features  EF6.x  EF Core 1.0.0  Migrations  Yes  Yes  Database creation/deletion APIs  Yes  Yes  Seed data  Yes
-Connection resiliency  Yes    Lifecycle hooks (events, command interception, ...)  Yes          Database Providers  EF6.x  EF Core 1.0.0  SQL Server  Yes  Yes  MySQL  Yes  Paid only, unpaid coming soon 1  PostgreSQL  Yes  Yes  Oracle  Yes  Paid only, unpaid coming soon 1  SQLite  Yes  Yes  SQL Compact  Yes  Yes  DB2  Yes  Yes  InMemory (for testing)    Yes  Azure Table Storage    Prototype  Redis    Prototype        Application Models  EF6.x  EF Core 1.0.0  WinForms  Yes  Yes  WPF  Yes  Yes  Console  Yes  Yes  ASP.NET  Yes  Yes  ASP.NET Core    Yes  Xamarin    Coming soon 2  UWP    Yes -->
+| Creating a Model                                    | EF6.x  | EF Core 1.0.0                   |
+| --------------------------------------------------- | ------ | ------------------------------- |
+| Basic modelling (classes, properties, etc.)         | Yes    | Yes                             |
+| Conventions                                         | Yes    | Yes                             |
+| Custom conventions                                  | Yes    | Partial                         |
+| Data annotations                                    | Yes    | Yes                             |
+| Fluent API                                          | Yes    | Yes                             |
+| Inheritance: Table per hierarchy (TPH)              | Yes    | Yes                             |
+| Inheritance: Table per type (TPT)                   | Yes    |                                 |
+| Inheritance: Table per concrete class (TPC)         | Yes    |                                 |
+| Shadow state properties                             |        | Yes                             |
+| Alternate keys                                      |        | Yes                             |
+| Many-to-many: With join entity                      | Yes    | Yes                             |
+| Many-to-many: Without join entity                   | Yes    |                                 |
+| Key generation: Database                            | Yes    | Yes                             |
+| Key generation: Client                              |        | Yes                             |
+| Complex/value types                                 | Yes    |                                 |
+| Spatial data                                        | Yes    |                                 |
+| Graphical visualization of model                    | Yes    |                                 |
+| Graphical drag/drop editor                          | Yes    |                                 |
+| Model format: Code                                  | Yes    | Yes                             |
+| Model format: EDMX (XML)                            | Yes    |                                 |
+| Reverse engineer model from database: Command line  |        | Yes                             |
+| Reverse engineer model from database: VS wizard     | Yes    |                                 |
+| Incremental update model from database              | Yes    |                                 |
+|                                                     |        |                                 |
+| **Querying Data**                                     |**EF6.x**| **EF Core 1.0.0**                |
+| LINQ: Simple queries                                | Stable | Stable                          |
+| LINQ: Moderate queries                              | Stable | Stabilizing                     |
+| LINQ: Complex queries                               | Stable | In-Progress                     |
+| LINQ: Queries using navigation properties           | Stable | In-Progress                     |
+| “Pretty” SQL generation                             | Poor   | Yes                             |
+| Mixed client/server evaluation                      |        | Yes                             |
+| Loading related data: Eager                         | Yes    | Yes                             |
+| Loading related data: Lazy                          | Yes    |                                 |
+| Loading related data: Explicit                      | Yes    |                                 |
+| Raw SQL queries: Model types                        | Yes    | Yes                             |
+| Raw SQL queries: Un-mapped types                    | Yes    |                                 |
+| Raw SQL queries: Composing with LINQ                |        | Yes                             |
+|                                                     |        |                                 |
+| **Saving Data**                                       | **EF6.x** | **EF Core 1.0.0**                 |
+| SaveChanges                                         | Yes    | Yes                             |
+| Change tracking: Snapshot                           | Yes    | Yes                             |
+| Change tracking: Notification                       | Yes    | Yes                             |
+| Accessing tracked state                             | Yes    | Partial                         |
+| Optimistic concurrency                              | Yes    | Yes                             |
+| Transactions                                        | Yes    | Yes                             |
+| Batching of statements                              |        | Yes                             |
+| Stored procedure                                    | Yes    |                                 |
+| Detached graph support (N-Tier): Low level APIs     | Poor   | Yes                             |
+| Detached graph support (N-Tier): End-to-end         |        | Poor                            |
+|                                                     |        |                                 |
+| **Other Features**                                     | **EF6.x**  | **EF Core 1.0.0**                  |
+| Migrations                                          | Yes    | Yes                             |
+| Database creation/deletion APIs                     | Yes    | Yes                             |
+| Seed data                                           | Yes    |                                 |
+| Connection resiliency                               | Yes    |                                 |
+| Lifecycle hooks (events, command interception, ...) | Yes    |                                 |
+|                                                     |        |                                 |
+| **Database Providers**                                 | **EF6.x** | **EF Core 1.0.0**                 |
+| SQL Server                                          | Yes    | Yes                             |
+| MySQL                                               | Yes    | Paid only, unpaid coming soon 1 |
+| PostgreSQL                                          | Yes    | Yes                             |
+| Oracle                                              | Yes    | Paid only, unpaid coming soon 1 |
+| SQLite                                              | Yes    | Yes                             |
+| SQL Compact                                         | Yes    | Yes                             |
+| DB2                                                 | Yes    | Yes                             |
+| InMemory (for testing)                              |        | Yes                             |
+| Azure Table Storage                                 |        | Prototype                       |
+| Redis                                               |        | Prototype                       |
+|                                                     |        |                                 |
+| **Application Models**                                  | **EF6.x**  | **EF Core 1.0.0**                   |
+| WinForms                                            | Yes    | Yes                             |
+| WPF                                                 | Yes    | Yes                             |
+| Console                                             | Yes    | Yes                             |
+| ASP.NET                                             | Yes    | Yes                             |
+| ASP.NET Core                                        |        | Yes                             |
+| Xamarin                                             |        | Coming soon 2                   |
+| UWP                                                 |        | Yes                             |
 
 Footnotes:
-   * ^1 Paid providers are available, unpaid providers are being worked on. The teams working on the unpaid providers have not shared public details of timeline etc.
+* <sup>1</sup> Paid providers are available, unpaid providers are being worked on. The teams working on the unpaid providers have not shared public details of timeline etc.
 
-   * ^2 EF Core is built to work on Xamarin when support for .NET Standard is enabled in Xamarin.
+* <sup>2</sup> EF Core is built to work on Xamarin when support for .NET Standard is enabled in Xamarin.

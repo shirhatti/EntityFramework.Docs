@@ -1,59 +1,55 @@
 ---
 uid: modeling/relational/columns
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+# Column Mapping
 
-Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
-  # Column Mapping
+> [!NOTE]
+> The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
 Column mapping identifies which column data should be queried from and saved to in the database.
 
-  ## Conventions
+## Conventions
 
 By convention, each property will be setup to map to a column with the same name as the property.
 
-  ## Data Annotations
+## Data Annotations
 
 You can use Data Annotations to configure the column to which a property is mapped.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/DataAnnotations/Samples/Relational/Column.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [3], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/Column.cs?highlight=3)] -->
+````csharp
+public class Blog
+{
+    [Column("blog_id")]
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
+````
 
-````c#
-
-       public class Blog
-       {
-           [Column("blog_id")]
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-   ````
-
-  ## Fluent API
+## Fluent API
 
 You can use the Fluent API to configure the column to which a property is mapped.
 
-<!-- literal_block {"language": "c#", "source": "/Users/shirhatti/src/EntityFramework.Docs/docs/modeling/relational/Modeling/FluentAPI/Samples/Relational/Column.cs", "xml:space": "preserve", "classes": [], "backrefs": [], "names": [], "dupnames": [], "highlight_args": {"hl_lines": [7, 8, 9], "linenostart": 1}, "ids": [], "linenos": true} -->
+<!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/Column.cs?highlight=7,8,9)] -->
+````csharp
+class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
 
-````c#
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Blog>()
+            .Property(b => b.BlogId)
+            .HasColumnName("blog_id");
+    }
+}
 
-       class MyContext : DbContext
-       {
-           public DbSet<Blog> Blogs { get; set; }
-
-           protected override void OnModelCreating(ModelBuilder modelBuilder)
-           {
-               modelBuilder.Entity<Blog>()
-                   .Property(b => b.BlogId)
-                   .HasColumnName("blog_id");
-           }
-       }
-
-       public class Blog
-       {
-           public int BlogId { get; set; }
-           public string Url { get; set; }
-       }
-
-   ````
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+}
+````
