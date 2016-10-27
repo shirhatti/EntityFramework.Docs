@@ -8,7 +8,8 @@ uid: saving/cascade-delete
 
 Cascade delete allows deletion of a principal/parent entity to have a side effect on dependent/child entities it is related to.
 
-There are three cascade delete behaviors:
+**There are three cascade delete behaviors:**
+
 * **Cascade:** Dependent entities are also deleted.
 
 * **SetNull:** The foreign key properties in dependent entities are set to null.
@@ -42,7 +43,6 @@ Because all the Posts are tracked by the context, the cascade behavior is applie
 
 <!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
 ````
-
    DELETE FROM [Post]
    WHERE [PostId] = @p0;
    DELETE FROM [Post]
@@ -69,7 +69,6 @@ Because the Posts are not tracked by the context, a *DELETE* statement is only i
 
 <!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
 ````
-
    DELETE FROM [Blog]
    WHERE [BlogId] = @p0;
 ````

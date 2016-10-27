@@ -28,16 +28,16 @@ Most EF6.x applications store the connection string in the applications `App/Web
 
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args}, "names": [] -->
 ````csharp
-   public class BloggingContext : DbContext
-   {
-public DbSet<Blog> Blogs { get; set; }
-public DbSet<Post> Posts { get; set; }
-
-protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+public class BloggingContext : DbContext
 {
-  optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["BloggingDatabase"].ConnectionString);
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+      optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["BloggingDatabase"].ConnectionString);
+    }
 }
-   }
 ````
 
 ## Update your code
