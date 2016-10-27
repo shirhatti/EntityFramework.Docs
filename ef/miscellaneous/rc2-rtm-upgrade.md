@@ -12,7 +12,8 @@ This article provides guidance for moving an application built with the RC2 pack
 
 The names of the top level packages that you would typically install into an application did not change between RC2 and RTM.
 
-You need to upgrade the installed packages to the RTM versions:
+**You need to upgrade the installed packages to the RTM versions:**
+
 * Runtime packages (e.g. `Microsoft.EntityFrameworkCore.SqlServer`) changed from `1.0.0-rc2-final` to `1.0.0`.
 
 * The `Microsoft.EntityFrameworkCore.Tools` package changed from `1.0.0-preview1-final` to `1.0.0-preview2-final`. Note that tooling is still pre-release.
@@ -27,25 +28,25 @@ Any existing migrations that were scaffolded prior to using RTM will not have th
 
 This change impacts projects that use ASP.NET Identity and were created from a pre-RTM project template. The project template includes a migration used to create the database. This migration must be edited to specify a maximum length of `256` for the following columns.
 
-* AspNetRoles
+*  **AspNetRoles**
 
- * Name
+    * Name
 
- * NormalizedName
+    * NormalizedName
 
-* AspNetUsers
+*  **AspNetUsers**
 
- * Email
-
- * NormalizedEmail
-
- * NormalizedUserName
-
- * UserName
+   * Email
+   
+   * NormalizedEmail
+   
+   * NormalizedUserName
+   
+   * UserName
 
 Failure to make this change will result in the following exception when the initial migration is applied to a database.
 
-   System.Data.SqlClient.SqlException (0x80131904): Column 'NormalizedName' in table 'AspNetRoles' is of a type that is invalid for use as a key column in an index.
+    System.Data.SqlClient.SqlException (0x80131904): Column 'NormalizedName' in table 'AspNetRoles' is of a type that is invalid for use as a key column in an index.
 
 ## .NET Core: Remove "imports" in project.json
 
@@ -53,44 +54,42 @@ If you were targeting .NET Core with RC2, you needed to add `imports` to project
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args"h1_lines":4}, "ids  "linenos": false -->
 ````json
-
-   {
-     "frameworks": {
-"netcoreapp1.0": {
-  "imports": ["dnxcore50", "portable-net451+win8"]
+{
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": ["dnxcore50", "portable-net451+win8"]
+    }
 }
-   }
 ````
 
 ## UWP: Add binding redirects
 
 Attempting to run EF commands on Universal Windows Platform (UWP) projects results in the following error:
 
-   System.IO.FileLoadException: Could not load file or assembly 'System.IO.FileSystem.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference.
+    System.IO.FileLoadException: Could not load file or assembly 'System.IO.FileSystem.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference.
 
 You need to manually add binding redirects to the UWP project. Create a file named `App.config` in the project root folder and add redirects to the correct assembly versions.
 
 <!-- literal_block"language": "csharp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````xml
-
-   <configuration>
-    <runtime>
-      <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
- <dependentAssembly>
-   <assemblyIdentity name="System.IO.FileSystem.Primitives"
-                     publicKeyToken="b03f5f7f11d50a3a"
-                     culture="neutral" />
-   <bindingRedirect oldVersion="4.0.0.0"
-                    newVersion="4.0.1.0"/>
- </dependentAssembly>
- <dependentAssembly>
-   <assemblyIdentity name="System.Threading.Overlapped"
-                     publicKeyToken="b03f5f7f11d50a3a"
-                     culture="neutral" />
-   <bindingRedirect oldVersion="4.0.0.0"
-                    newVersion="4.0.1.0"/>
- </dependentAssembly>
-      </assemblyBinding>
-    </runtime>
-   </configuration>
+<configuration>
+ <runtime>
+   <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+     <dependentAssembly>
+       <assemblyIdentity name="System.IO.FileSystem.Primitives"
+                         publicKeyToken="b03f5f7f11d50a3a"
+                         culture="neutral" />
+       <bindingRedirect oldVersion="4.0.0.0"
+                        newVersion="4.0.1.0"/>
+     </dependentAssembly>
+     <dependentAssembly>
+       <assemblyIdentity name="System.Threading.Overlapped"
+                         publicKeyToken="b03f5f7f11d50a3a"
+                         culture="neutral" />
+       <bindingRedirect oldVersion="4.0.0.0"
+                        newVersion="4.0.1.0"/>
+     </dependentAssembly>
+   </assemblyBinding>
+ </runtime>
+</configuration>
 ````

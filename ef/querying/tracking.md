@@ -19,12 +19,12 @@ In the following example, the change to the blogs rating will be detected and pe
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Tracking/Sample.cs)] -->
 ````csharp
-   using (var context = new BloggingContext())
-   {
-var blog = context.Blogs.SingleOrDefault(b => b.BlogId == 1);
-blog.Rating = 5;
-context.SaveChanges();
-   }
+using (var context = new BloggingContext())
+{
+    var blog = context.Blogs.SingleOrDefault(b => b.BlogId == 1);
+    blog.Rating = 5;
+    context.SaveChanges();
+}
 ````
 
 ## No-tracking queries
@@ -35,24 +35,24 @@ You can swap an individual query to be no-tracking:
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Tracking/Sample.cs?highlight=4)] -->
 ````csharp
-   using (var context = new BloggingContext())
-   {
-var blogs = context.Blogs
-    .AsNoTracking()
-    .ToList();
-   }
+using (var context = new BloggingContext())
+{
+    var blogs = context.Blogs
+        .AsNoTracking()
+        .ToList();
+}
 ````
 
 You can also change the default tracking behavior at the context instance level:
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Tracking/Sample.cs?highlight=3)] -->
 ````csharp
-   using (var context = new BloggingContext())
-   {
-context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+using (var context = new BloggingContext())
+{
+    context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 
-var blogs = context.Blogs.ToList();
-   }
+    var blogs = context.Blogs.ToList();
+}
 ````
 
 ## Tracking and projections
@@ -61,30 +61,30 @@ Even if the result type of the query isn't an entity type, if the result contain
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Tracking/Sample.cs?highlight=7)] -->
 ````csharp
-   using (var context = new BloggingContext())
-   {
-var blog = context.Blogs
-    .Select(b =>
-        new
-        {
-            Blog = b,
-            Posts = b.Posts.Count()
-        });
-   }
+using (var context = new BloggingContext())
+{
+    var blog = context.Blogs
+        .Select(b =>
+            new
+            {
+                Blog = b,
+                Posts = b.Posts.Count()
+            });
+}
 ````
 
 If the result set does not contain any entity types, then no tracking is performed. In the following query, which returns an anonymous type with some of the values from the entity (but no instances of the actual entity type), there is no tracking performed.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Tracking/Sample.cs)] -->
 ````csharp
-   using (var context = new BloggingContext())
-   {
-var blog = context.Blogs
-    .Select(b =>
-        new
-        {
-            Id = b.BlogId,
-            Url = b.Url
-        });
-   }
+using (var context = new BloggingContext())
+{
+    var blog = context.Blogs
+        .Select(b =>
+            new
+            {
+                Id = b.BlogId,
+                Url = b.Url
+            });
+}
 ````

@@ -14,15 +14,14 @@ Full .NET applications, such as WinForms, WPF, Console, and ASP.NET 4, have a tr
 
 <!-- literal_block"language": "csharp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": true -->
 ````xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
 
-   <?xml version="1.0" encoding="utf-8"?>
-   <configuration>
-
-     <connectionStrings>
-<add name="BloggingDatabase"
-     connectionString="Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" />
-     </connectionStrings>
-   </configuration>
+  <connectionStrings>
+    <add name="BloggingDatabase"
+         connectionString="Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" />
+  </connectionStrings>
+</configuration>
 ````
 
 > [!NOTE]
@@ -32,16 +31,16 @@ You can then read the connection string using the `ConfigurationManager` API in 
 
 <!-- literal_block"language": "csharp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": true -->
 ````csharp
-   public class BloggingContext : DbContext
-   {
-public DbSet<Blog> Blogs { get; set; }
-public DbSet<Post> Posts { get; set; }
-
-protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+public class BloggingContext : DbContext
 {
-  optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["BloggingDatabase"].ConnectionString);
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+      optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["BloggingDatabase"].ConnectionString);
+    }
 }
-   }
 ````
 
 ## Universal Windows Platform (UWP)
@@ -50,16 +49,16 @@ Connection strings in a UWP application are typically a SQLite connection that j
 
 <!-- literal_block"language": "csharp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": true -->
 ````csharp
-   public class BloggingContext : DbContext
-   {
-public DbSet<Blog> Blogs { get; set; }
-public DbSet<Post> Posts { get; set; }
-
-protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+public class BloggingContext : DbContext
 {
-        optionsBuilder.UseSqlite("Filename=Blogging.db");
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+            optionsBuilder.UseSqlite("Filename=Blogging.db");
+    }
 }
-   }
 ````
 
 ## ASP.NET Core
@@ -68,21 +67,20 @@ In ASP.NET Core the configuration system is very flexible, and the connection st
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": true -->
 ````json
-
-   {
-     "ConnectionStrings": {
-"BloggingDatabase": "Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;"
-     },
-   }
+{
+  "ConnectionStrings": {
+    "BloggingDatabase": "Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;"
+  },
+}
 ````
 
 The context is typically configured in `Startup.cs` with the connection string being read from configuration. Note the `GetConnectionString()` method simply looks for a configuration value whose key is `ConnectionStrings:<connection string name>`.
 
 <!-- literal_block"language": "csharp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": true -->
 ````csharp
-   public void ConfigureServices(IServiceCollection services)
-   {
-services.AddDbContext<BloggingContext>(options =>
-    options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
-   }
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<BloggingContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
+}
 ````
