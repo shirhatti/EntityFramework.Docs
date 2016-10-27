@@ -20,56 +20,57 @@ Here is a simple implementation that logs a human readable representation of eve
 
 <!-- [!code-csharp[Main](samples/Miscellaneous/Logging/Logging/MyLoggerProvider.cs)] -->
 ````csharp
-   using Microsoft.Extensions.Logging;
-   using System;
-   using System.IO;
+using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
 
-   namespace EFLogging
-   {
-public class MyLoggerProvider : ILoggerProvider
+namespace EFLogging
 {
-    public ILogger CreateLogger(string categoryName)
+    public class MyLoggerProvider : ILoggerProvider
     {
-        return new MyLogger();
+        public ILogger CreateLogger(string categoryName)
+        {
+            return new MyLogger();
+        }
+
+        public void Dispose()
+        { }
+
+        private class MyLogger : ILogger
+        {
+            public bool IsEnabled(LogLevel logLevel)
+            {
+                return true;
+            }
+
+            public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+            {
+                File.AppendAllText(@"C:\temp\log.txt", formatter(state, exception));
+                Console.WriteLine(formatter(state, exception));
+            }
+
+            public IDisposable BeginScope<TState>(TState state)
+            {
+                return null;
+            }
+        } 
     }
-
-    public void Dispose()
-    { }
-
-    private class MyLogger : ILogger
-    {
-        public bool IsEnabled(LogLevel logLevel)
-        {
-            return true;
-        }
-
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
-        {
-            File.AppendAllText(@"C:\temp\log.txt", formatter(state, exception));
-            Console.WriteLine(formatter(state, exception));
-        }
-
-        public IDisposable BeginScope<TState>(TState state)
-        {
-            return null;
-        }
-    } 
 }
-   }
 ````
 
-Tip:
-
-  The arguments passed to the Log method are:
-     * `logLevel` is the level (e.g. Warning, Info, Verbose, etc.) of the event being logged
-
-     * `eventId` is a library/assembly specific id that represents the type of event being logged
-
-     * `state` can be any object that holds state relevant to what is being logged
-
-     * `exception` gives you the exception that occurred if an error is being logged
-
-     * `formatter` uses state and exception to create a human readable string to be logged
+> [!TIP]
+>
+>The arguments passed to the Log method are:
+>
+>* `logLevel` is the level (e.g. Warning, Info, Verbose, etc.) of the event being logged
+>
+>* `eventId` is a library/assembly specific id that represents the type of event being logged
+>
+>* `state` can be any object that holds state relevant to what is being logged
+>
+>* `exception` gives you the exception that occurred if an error is being logged
+>
+>* `formatter` uses state and exception to create a human readable string to be logged
 
 ## Register your logger
 
@@ -79,13 +80,12 @@ In an ASP.NET Core application, you register your logger in the Configure method
 
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "dupnames  "names": [] -->
 ````
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddProvider(new MyLoggerProvider());
 
-   public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-   {
-loggerFactory.AddProvider(new MyLoggerProvider());
-
-...
-   }
+    ...
+}
 ````
 
 ### Other applications
@@ -113,66 +113,66 @@ For example, here is a logger provider that returns the logger only for events r
 
 <!-- [!code-csharp[Main](samples/Miscellaneous/Logging/Logging/MyFilteredLoggerProvider.cs?highlight=9,10,11,12,13,17,18,19,20,21,22)] -->
 ````csharp
-   using Microsoft.Extensions.Logging;
-   using System;
-   using System.Linq;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
 
-   namespace EFLogging
-   {
-public class MyFilteredLoggerProvider : ILoggerProvider
+namespace EFLogging
 {
-    private static string[] _categories =
+    public class MyFilteredLoggerProvider : ILoggerProvider
     {
-        typeof(Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommandBuilderFactory).FullName,
-        typeof(Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerConnection).FullName
-    };
-
-    public ILogger CreateLogger(string categoryName)
-    {
-        if( _categories.Contains(categoryName))
+        private static string[] _categories =
         {
-            return new MyLogger();
+            typeof(Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommandBuilderFactory).FullName,
+            typeof(Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerConnection).FullName
+        };
+
+        public ILogger CreateLogger(string categoryName)
+        {
+            if( _categories.Contains(categoryName))
+            {
+                return new MyLogger();
+            }
+
+            return new NullLogger();
         }
 
-        return new NullLogger();
-    }
-
-    public void Dispose()
-    { }
-
-    private class MyLogger : ILogger
-    {
-        public bool IsEnabled(LogLevel logLevel)
-        {
-            return true;
-        }
-
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
-        {
-            Console.WriteLine(formatter(state, exception));
-        }
-
-        public IDisposable BeginScope<TState>(TState state)
-        {
-            return null;
-        }
-    }
-
-    private class NullLogger : ILogger
-    {
-        public bool IsEnabled(LogLevel logLevel)
-        {
-            return false;
-        }
-
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        public void Dispose()
         { }
 
-        public IDisposable BeginScope<TState>(TState state)
+        private class MyLogger : ILogger
         {
-            return null;
+            public bool IsEnabled(LogLevel logLevel)
+            {
+                return true;
+            }
+
+            public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+            {
+                Console.WriteLine(formatter(state, exception));
+            }
+
+            public IDisposable BeginScope<TState>(TState state)
+            {
+                return null;
+            }
+        }
+
+        private class NullLogger : ILogger
+        {
+            public bool IsEnabled(LogLevel logLevel)
+            {
+                return false;
+            }
+
+            public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+            { }
+
+            public IDisposable BeginScope<TState>(TState state)
+            {
+                return null;
+            }
         }
     }
 }
-   }
 ````

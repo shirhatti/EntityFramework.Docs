@@ -22,9 +22,9 @@ You can use the `Include` method to specify related data to be included in query
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 ````csharp
-   var blogs = context.Blogs
-.Include(blog => blog.Posts)
-.ToList();
+var blogs = context.Blogs
+    .Include(blog => blog.Posts)
+    .ToList();
 ````
 
 > [!TIP]
@@ -34,10 +34,10 @@ You can include related data from multiple relationships in a single query.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 ````csharp
-   var blogs = context.Blogs
-.Include(blog => blog.Posts)
-.Include(blog => blog.Owner)
-.ToList();
+var blogs = context.Blogs
+    .Include(blog => blog.Posts)
+    .Include(blog => blog.Owner)
+    .ToList();
 ````
 
 ### Including multiple levels
@@ -46,34 +46,34 @@ You can drill down thru relationships to include multiple levels of related data
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 ````csharp
-   var blogs = context.Blogs
-.Include(blog => blog.Posts)
-    .ThenInclude(post => post.Author)
-.ToList();
+var blogs = context.Blogs
+    .Include(blog => blog.Posts)
+        .ThenInclude(post => post.Author)
+    .ToList();
 ````
 
 You can chain multiple calls to `ThenInclude` to continue including further levels of related data.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 ````csharp
-   var blogs = context.Blogs
-.Include(blog => blog.Posts)
-    .ThenInclude(post => post.Author)
-    .ThenInclude(author => author.Photo)
-.ToList();
+var blogs = context.Blogs
+    .Include(blog => blog.Posts)
+        .ThenInclude(post => post.Author)
+        .ThenInclude(author => author.Photo)
+    .ToList();
 ````
 
 You can combine all of this to include related data from multiple levels and multiple roots in the same query.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 ````csharp
-   var blogs = context.Blogs
-.Include(blog => blog.Posts)
-    .ThenInclude(post => post.Author)
-    .ThenInclude(author => author.Photo)
-.Include(blog => blog.Owner)
-    .ThenInclude(owner => owner.Photo)
-.ToList();
+var blogs = context.Blogs
+    .Include(blog => blog.Posts)
+        .ThenInclude(post => post.Author)
+        .ThenInclude(author => author.Photo)
+    .Include(blog => blog.Owner)
+        .ThenInclude(owner => owner.Photo)
+    .ToList();
 ````
 
 ### Ignored includes
@@ -84,26 +84,26 @@ In the following example, the include operators are based on the `Blog`, but the
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 ````csharp
-   var blogs = context.Blogs
-.Include(blog => blog.Posts)
-.Select(blog => new
-{
-    Id = blog.BlogId,
-    Url = blog.Url
-})
-.ToList();
+var blogs = context.Blogs
+    .Include(blog => blog.Posts)
+    .Select(blog => new
+    {
+        Id = blog.BlogId,
+        Url = blog.Url
+    })
+    .ToList();
 ````
 
 By default, EF Core will log a warning when include operators are ignored. See [Logging](../miscellaneous/logging.md) for more information on viewing logging output. You can change the behavior when an include operator is ignored to either throw or do nothing. This is done when setting up the options for your context - typically in `DbContext.OnConfiguring`, or in `Startup.cs` if you are using ASP.NET Core.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/ThrowOnIgnoredInclude/BloggingContext.cs?highlight=5)] -->
 ````csharp
-   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-   {
-optionsBuilder
-    .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFQuerying;Trusted_Connection=True;")
-    .ConfigureWarnings(warnings => warnings.Throw(CoreEventId.IncludeIgnoredWarning));
-   }
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    optionsBuilder
+        .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFQuerying;Trusted_Connection=True;")
+        .ConfigureWarnings(warnings => warnings.Throw(CoreEventId.IncludeIgnoredWarning));
+}
 ````
 
 ## Explicit loading
@@ -116,12 +116,12 @@ In the following example, a query is used to load a blog, and then a later query
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 ````csharp
-   var blog = context.Blogs
-.Single(b => b.BlogId == 1);
+var blog = context.Blogs
+    .Single(b => b.BlogId == 1);
 
-   context.Posts
-.Where(p => p.BlogId == blog.BlogId)
-.Load();
+context.Posts
+    .Where(p => p.BlogId == blog.BlogId)
+    .Load();
 ````
 
 ## Lazy loading

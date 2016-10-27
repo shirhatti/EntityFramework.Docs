@@ -12,32 +12,40 @@ This article covers some fundamentals principles for understanding how EF uses s
 
 ## Terms
 
-Service
+**Service**
+
    A reusable component. In .NET, a service can be identified by a class or interface. By convention, Entity Framework only uses interfaces to identify services.
 
-Service lifetime
+**Service lifetime**
+
    A description of the way in which a service is persisted and disposed across multiple uses of the same service type.
 
-Service provider
+**Service provider**
+
    The mechanism for storing a collection of services. Also known as a service container.
 
-Service collection
+**Service collection**
+   
    The mechanism for constructing a service provider.
 
 ## Categories of Services
 
 Services fall into one or more categories.
 
-Context services
+**Context services**
+
    Services that are related to a specific instance of  `DbContext`. They provide functionality for working with the user model and context options.
 
-Provider services
+**Provider services**
+
    Provider-specific implementations of services. For example, SQLite uses "provider services" to customize the behavior of SQL generation, migrations, and file I/O.
 
-Design-time services
+**Design-time services**
+
    Services used when a developer is creating an application. For example, EF commands uses design-time services to execute migrations and code generation (aka scaffolding).
 
-User services
+**User services**
+
    A user can define custom services to interact with EF. These are written in application code, not provider code. For example, users can provide an implementation of `IModelCustomizer` for controlling how a model is created.
 
 > [!NOTE]
@@ -47,13 +55,16 @@ User services
 
 EF services can be registered with different lifetime options. The suitable option depends on how the service is used and implemented.
 
-Transient
+**Transient**
+
    Transient lifetime services are created each time they are injected into other services. This isolates each instance of the service. For example, `MigrationsScaffolder` should not be reused, therefore it is registered as transient.
 
-Scoped
+**Scoped**
+
    Scoped lifetime services are created once per `DbContext` instance. This is used to isolate instance of `DbContext`. For example, `StateManager` is added as scoped because it should only track entity states for one context.
 
-Singleton
+**Singleton**
+
    Singleton lifetime services exists once per service provider and span all scopes. Each time the service is injected, the same instance is used. For example, `IModelCustomizer` is a singleton because it is idempotent, meaning each call to `IModelCustomizer.Customize()` does not change the customizer.
 
 ## How AddDbContext works
@@ -88,19 +99,19 @@ Database provider writers should provided methods such as AddEntityFrameworkSqlS
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````csharp
-   var services = new ServiceCollection()
-.AddEntityFrameworkSqlServer()
-.AddSingleton<MyCustomService>()
-.BuildServiceProvider();
+var services = new ServiceCollection()
+    .AddEntityFrameworkSqlServer()
+    .AddSingleton<MyCustomService>()
+    .BuildServiceProvider();
 
-   var options = new DbContextOptionsBuilder();
+var options = new DbContextOptionsBuilder();
 
-   options
-.UseInternalServiceProvider(services)
-.UseSqlServer(connectionString);
+options
+    .UseInternalServiceProvider(services)
+    .UseSqlServer(connectionString);
 
-   using (var context = new DbContext(options))
-   { }
+using (var context = new DbContext(options))
+{ }
 ````
 
 ### Service provider caching

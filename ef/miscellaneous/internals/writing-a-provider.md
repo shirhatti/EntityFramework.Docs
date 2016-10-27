@@ -46,8 +46,7 @@ By convention, providers define a `UseX()` extension on `DbContextOptionsBuilder
 
 <!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
 ````
-
-   optionsBuilder.UseMyProvider("Server=contoso.com")
+optionsBuilder.UseMyProvider("Server=contoso.com")
 ````
 
 The `UseX()` extension method creates a provider-specific implementation of `IDbContextOptionsExtension` which is added to the collection of extensions stored within `DbContextOptions`. This is done by a call to the API `IDbContextOptionsBuilderInfrastructure.AddOrUpdateExtension`.
