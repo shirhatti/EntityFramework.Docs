@@ -50,35 +50,34 @@ This tutorial uses a **Blogging** database on your LocalDb instance as the exist
 
 <!-- [!code-sql[Main](platforms/_shared/create-blogging-database-script.sql)] -->
 ````sql
+CREATE DATABASE [Blogging]
+GO
 
-   CREATE DATABASE [Blogging]
-   GO
+USE [Blogging]
+GO
 
-   USE [Blogging]
-   GO
+CREATE TABLE [Blog] (
+    [BlogId] int NOT NULL IDENTITY,
+    [Url] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Blog] PRIMARY KEY ([BlogId])
+);
+GO
 
-   CREATE TABLE [Blog] (
-[BlogId] int NOT NULL IDENTITY,
-[Url] nvarchar(max) NOT NULL,
-CONSTRAINT [PK_Blog] PRIMARY KEY ([BlogId])
-   );
-   GO
+CREATE TABLE [Post] (
+    [PostId] int NOT NULL IDENTITY,
+    [BlogId] int NOT NULL,
+    [Content] nvarchar(max),
+    [Title] nvarchar(max),
+    CONSTRAINT [PK_Post] PRIMARY KEY ([PostId]),
+    CONSTRAINT [FK_Post_Blog_BlogId] FOREIGN KEY ([BlogId]) REFERENCES [Blog] ([BlogId]) ON DELETE CASCADE
+);
+GO
 
-   CREATE TABLE [Post] (
-[PostId] int NOT NULL IDENTITY,
-[BlogId] int NOT NULL,
-[Content] nvarchar(max),
-[Title] nvarchar(max),
-CONSTRAINT [PK_Post] PRIMARY KEY ([PostId]),
-CONSTRAINT [FK_Post_Blog_BlogId] FOREIGN KEY ([BlogId]) REFERENCES [Blog] ([BlogId]) ON DELETE CASCADE
-   );
-   GO
-
-   INSERT INTO [Blog] (Url) VALUES 
-   ('http://blogs.msdn.com/dotnet'), 
-   ('http://blogs.msdn.com/webdev'), 
-   ('http://blogs.msdn.com/visualstudio')
-   GO
+INSERT INTO [Blog] (Url) VALUES 
+('http://blogs.msdn.com/dotnet'), 
+('http://blogs.msdn.com/webdev'), 
+('http://blogs.msdn.com/visualstudio')
+GO
 ````
 
 ## Create a new project
@@ -119,70 +118,69 @@ Now it's time to create the EF model based on your existing database.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
-
-   Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
+Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
 ````
 
 The reverse engineer process created entity classes and a derived context based on the schema of the existing database. The entity classes are simple C# objects that represent the data you will be querying and saving.
 
 <!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/Blog.cs)] -->
 ````csharp
-   using System;
-   using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 
-   namespace EFGetStarted.ConsoleApp.ExistingDb
-   {
-public partial class Blog
+namespace EFGetStarted.ConsoleApp.ExistingDb
 {
-    public Blog()
+    public partial class Blog
     {
-        Post = new HashSet<Post>();
+        public Blog()
+        {
+            Post = new HashSet<Post>();
+        }
+
+        public int BlogId { get; set; }
+        public string Url { get; set; }
+
+        public virtual ICollection<Post> Post { get; set; }
     }
-
-    public int BlogId { get; set; }
-    public string Url { get; set; }
-
-    public virtual ICollection<Post> Post { get; set; }
 }
-   }
 ````
 
 The context represents a session with the database and allows you to query and save instances of the entity classes.
 
 <!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs)] -->
 ````csharp
-   using Microsoft.EntityFrameworkCore;
-   using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-   namespace EFGetStarted.ConsoleApp.ExistingDb
-   {
-public partial class BloggingContext : DbContext
+namespace EFGetStarted.ConsoleApp.ExistingDb
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public partial class BloggingContext : DbContext
     {
-      #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-        optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Blog>(entity =>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            entity.Property(e => e.Url).IsRequired();
-        });
+            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
+        }
 
-        modelBuilder.Entity<Post>(entity =>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            entity.HasOne(d => d.Blog)
-                .WithMany(p => p.Post)
-                .HasForeignKey(d => d.BlogId);
-        });
-    }
+            modelBuilder.Entity<Blog>(entity =>
+            {
+                entity.Property(e => e.Url).IsRequired();
+            });
 
-    public virtual DbSet<Blog> Blog { get; set; }
-    public virtual DbSet<Post> Post { get; set; }
+            modelBuilder.Entity<Post>(entity =>
+            {
+                entity.HasOne(d => d.Blog)
+                    .WithMany(p => p.Post)
+                    .HasForeignKey(d => d.BlogId);
+            });
+        }
+
+        public virtual DbSet<Blog> Blog { get; set; }
+        public virtual DbSet<Post> Post { get; set; }
+    }
 }
-   }
 ````
 
 ## Use your model
@@ -195,30 +193,30 @@ You can now use your model to perform data access.
 
 <!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/Program.cs)] -->
 ````csharp
-   using System;
+using System;
 
-   namespace EFGetStarted.ConsoleApp.ExistingDb
-   {
-class Program
+namespace EFGetStarted.ConsoleApp.ExistingDb
 {
-    static void Main(string[] args)
+    class Program
     {
-        using (var db = new BloggingContext())
+        static void Main(string[] args)
         {
-            db.Blog.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-            var count = db.SaveChanges();
-            Console.WriteLine("{0} records saved to database", count);
-
-            Console.WriteLine();
-            Console.WriteLine("All blogs in database:");
-            foreach (var blog in db.Blog)
+            using (var db = new BloggingContext())
             {
-                Console.WriteLine(" - {0}", blog.Url);
+                db.Blog.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+                var count = db.SaveChanges();
+                Console.WriteLine("{0} records saved to database", count);
+
+                Console.WriteLine();
+                Console.WriteLine("All blogs in database:");
+                foreach (var blog in db.Blog)
+                {
+                    Console.WriteLine(" - {0}", blog.Url);
+                }
             }
         }
     }
 }
-   }
 ````
 
 * Debug ‣ Start Without Debugging

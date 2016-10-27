@@ -14,8 +14,19 @@ Between RC1 and RC2, we changed from "Entity Framework 7" to "Entity Framework C
 
 **You will need to completely remove the RC1 packages and then install the RC2 ones.** Here is the mapping for some common packages.
 
-<!--     RC1 Package  RC2 Equivalent  EntityFramework.MicrosoftSqlServer        7.0.0-rc1-final  Microsoft.EntityFrameworkCore.SqlServer         1.0.0-rc2-final  EntityFramework.SQLite                    7.0.0-rc1-final  Microsoft.EntityFrameworkCore.SQLite            1.0.0-rc2-final  EntityFramework7.Npgsql                   3.1.0-rc1-3  NpgSql.EntityFrameworkCore.Postgres             <to be advised>  EntityFramework.SqlServerCompact35        7.0.0-rc1-final  EntityFrameworkCore.SqlServerCompact35          1.0.0-rc2-final  EntityFramework.SqlServerCompact40        7.0.0-rc1-final  EntityFrameworkCore.SqlServerCompact40          1.0.0-rc2-final  EntityFramework.InMemory                  7.0.0-rc1-final  Microsoft.EntityFrameworkCore.InMemory          1.0.0-rc2-final  EntityFramework.IBMDataServer             7.0.0-beta1  Not yet available for RC2  EntityFramework.Commands                  7.0.0-rc1-final  Microsoft.EntityFrameworkCore.Tools             1.0.0-preview1-final
-EntityFramework.MicrosoftSqlServer.Design 7.0.0-rc1-final  Microsoft.EntityFrameworkCore.SqlServer.Design  1.0.0-rc2-final -->## Namespaces
+| RC1 Package                                               | RC2 Equivalent                                                       |
+| --------------------------------------------------------- | -------------------------------------------------------------------- |
+| EntityFramework.MicrosoftSqlServer        7.0.0-rc1-final | Microsoft.EntityFrameworkCore.SqlServer         1.0.0-rc2-final      |
+| EntityFramework.SQLite                    7.0.0-rc1-final | Microsoft.EntityFrameworkCore.SQLite            1.0.0-rc2-final      |
+| EntityFramework7.Npgsql                   3.1.0-rc1-3     | NpgSql.EntityFrameworkCore.Postgres             <to be advised>      |
+| EntityFramework.SqlServerCompact35        7.0.0-rc1-final | EntityFrameworkCore.SqlServerCompact35          1.0.0-rc2-final      |
+| EntityFramework.SqlServerCompact40        7.0.0-rc1-final | EntityFrameworkCore.SqlServerCompact40          1.0.0-rc2-final      |
+| EntityFramework.InMemory                  7.0.0-rc1-final | Microsoft.EntityFrameworkCore.InMemory          1.0.0-rc2-final      |
+| EntityFramework.IBMDataServer             7.0.0-beta1     | Not yet available for RC2                                            |
+| EntityFramework.Commands                  7.0.0-rc1-final | Microsoft.EntityFrameworkCore.Tools             1.0.0-preview1-final |
+| EntityFramework.MicrosoftSqlServer.Design 7.0.0-rc1-final | Microsoft.EntityFrameworkCore.SqlServer.Design  1.0.0-rc2-final      |
+
+## Namespaces
 
 Along with package names, namespaces changed from `Microsoft.Data.Entity.*` to `Microsoft.EntityFrameworkCore.*`. You can handle this change with a find/replace of `using Microsoft.Data.Entity` with `using Microsoft.EntityFrameworkCore`.
 
@@ -27,11 +38,10 @@ For existing RC1 applications, we recommend adding the following code to the sta
 
 <!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
 ````
-
-   foreach (var entity in modelBuilder.Model.GetEntityTypes())
-   {
-entity.Relational().TableName = entity.DisplayName();
-   }
+foreach (var entity in modelBuilder.Model.GetEntityTypes())
+{
+    entity.Relational().TableName = entity.DisplayName();
+}
 ````
 
 If you want to adopt the new naming strategy, we would recommend successfully completing the rest of the upgrade steps and then removing the code and creating a migration to apply the table renames.
@@ -42,31 +52,28 @@ In RC1, you had to add Entity Framework services to the application service prov
 
 <!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
 ````
-
-   services.AddEntityFramework()
-     .AddSqlServer()
-     .AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+services.AddEntityFramework()
+  .AddSqlServer()
+  .AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 ````
 
 In RC2, you can remove the calls to `AddEntityFramework()`, `AddSqlServer()`, etc.:
 
 <!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
 ````
-
-   services.AddDbContext<ApplicationDbContext>(options =>
-     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+services.AddDbContext<ApplicationDbContext>(options =>
+  options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 ````
 
 You also need to add a constructor, to your derived context, that takes context options and passes them to the base constructor. This is needed because we removed some of the scary magic that snuck them in behind the scenes:
 
 <!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
 ````
-
-   public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-: base(options)
-   {
-   }
+public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    : base(options)
+{
+}
 ````
 
 ## Passing in an IServiceProvider
@@ -83,11 +90,10 @@ If you have an ASP.NET Core application and you want EF to resolve internal serv
 
 <!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
 ````
-
-   services.AddEntityFrameworkSqlServer()
-     .AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
-options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"])
-       .UseInternalServiceProvider(serviceProvider)); );
+services.AddEntityFrameworkSqlServer()
+  .AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
+    options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"])
+           .UseInternalServiceProvider(serviceProvider)); );
 ````
 
 > [!WARNING]
@@ -101,16 +107,15 @@ The way commands are registered has changed in RC2, due to DNX being replaced by
 
 <!-- literal_block"xml:space": "preserve", "classes  "backrefs  "names  "dupnames   -->
 ````
-
-   "tools": {
-     "Microsoft.EntityFrameworkCore.Tools": {
-"version": "1.0.0-preview1-final",
-"imports": [
-  "portable-net45+win8+dnxcore50",
-  "portable-net45+win8"
-]
-     }
-   }
+"tools": {
+  "Microsoft.EntityFrameworkCore.Tools": {
+    "version": "1.0.0-preview1-final",
+    "imports": [
+      "portable-net45+win8+dnxcore50",
+      "portable-net45+win8"
+    ]
+  }
+}
 ````
 
 > [!TIP]
@@ -128,16 +133,15 @@ When adding EF, NuGet restore will display this error message:
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
-
-   Package Ix-Async 1.2.5 is not compatible with netcoreapp1.0 (.NETCoreApp,Version=v1.0). Package Ix-Async 1.2.5 supports:
-     - net40 (.NETFramework,Version=v4.0)
-     - net45 (.NETFramework,Version=v4.5)
-     - portable-net45+win8+wp8 (.NETPortable,Version=v0.0,Profile=Profile78)
-   Package Remotion.Linq 2.0.2 is not compatible with netcoreapp1.0 (.NETCoreApp,Version=v1.0). Package Remotion.Linq 2.0.2 supports:
-     - net35 (.NETFramework,Version=v3.5)
-     - net40 (.NETFramework,Version=v4.0)
-     - net45 (.NETFramework,Version=v4.5)
-     - portable-net45+win8+wp8+wpa81 (.NETPortable,Version=v0.0,Profile=Profile259)
+Package Ix-Async 1.2.5 is not compatible with netcoreapp1.0 (.NETCoreApp,Version=v1.0). Package Ix-Async 1.2.5 supports:
+  - net40 (.NETFramework,Version=v4.0)
+  - net45 (.NETFramework,Version=v4.5)
+  - portable-net45+win8+wp8 (.NETPortable,Version=v0.0,Profile=Profile78)
+Package Remotion.Linq 2.0.2 is not compatible with netcoreapp1.0 (.NETCoreApp,Version=v1.0). Package Remotion.Linq 2.0.2 supports:
+  - net35 (.NETFramework,Version=v3.5)
+  - net40 (.NETFramework,Version=v4.0)
+  - net45 (.NETFramework,Version=v4.5)
+  - portable-net45+win8+wp8+wpa81 (.NETPortable,Version=v0.0,Profile=Profile259)
 ````
 
 The workaround is to manually import the portable profile "portable-net451+win8". This forces NuGet to treat this binaries that match this provide as a compatible framework with .NET Standard, even though they are not. Although "portable-net451+win8" is not 100% compatible with .NET Standard, it is compatible enough for the transition from PCL to .NET Standard. Imports can be removed when EF's dependencies eventually upgrade to .NET Standard.
@@ -146,13 +150,12 @@ Multiple frameworks can be added to "imports" in array syntax. Other imports may
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````json
-
-   {
-     "frameworks": {
-"netcoreapp1.0": {
-  "imports": ["dnxcore50", "portable-net451+win8"]
+{
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": ["dnxcore50", "portable-net451+win8"]
+    }
 }
-   }
 ````
 
 See [Issue #5176](https://github.com/aspnet/EntityFramework/issues/5176).
