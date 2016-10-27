@@ -48,35 +48,35 @@ This tutorial uses a **Blogging** database on your LocalDb instance as the exist
 
 <!-- [!code-sql[Main](platforms/_shared/create-blogging-database-script.sql)] Note: This file does not seem to exist -->
 ````sql
+CREATE DATABASE [Blogging]
+GO
 
-   CREATE DATABASE [Blogging]
-   GO
+USE [Blogging]
+GO
 
-   USE [Blogging]
-   GO
+CREATE TABLE [Blog] (
+    [BlogId] int NOT NULL IDENTITY,
+    [Url] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Blog] PRIMARY KEY ([BlogId])
+);
+GO
 
-   CREATE TABLE [Blog] (
-[BlogId] int NOT NULL IDENTITY,
-[Url] nvarchar(max) NOT NULL,
-CONSTRAINT [PK_Blog] PRIMARY KEY ([BlogId])
-   );
-   GO
+CREATE TABLE [Post] (
+    [PostId] int NOT NULL IDENTITY,
+    [BlogId] int NOT NULL,
+    [Content] nvarchar(max),
+    [Title] nvarchar(max),
+    CONSTRAINT [PK_Post] PRIMARY KEY ([PostId]),
+    CONSTRAINT [FK_Post_Blog_BlogId] FOREIGN KEY ([BlogId]) REFERENCES [Blog] ([BlogId]) ON DELETE CASCADE
+);
+GO
 
-   CREATE TABLE [Post] (
-[PostId] int NOT NULL IDENTITY,
-[BlogId] int NOT NULL,
-[Content] nvarchar(max),
-[Title] nvarchar(max),
-CONSTRAINT [PK_Post] PRIMARY KEY ([PostId]),
-CONSTRAINT [FK_Post_Blog_BlogId] FOREIGN KEY ([BlogId]) REFERENCES [Blog] ([BlogId]) ON DELETE CASCADE
-   );
-   GO
-
-   INSERT INTO [Blog] (Url) VALUES 
-   ('http://blogs.msdn.com/dotnet'), 
-   ('http://blogs.msdn.com/webdev'), 
-   ('http://blogs.msdn.com/visualstudio')
-   GO````
+INSERT INTO [Blog] (Url) VALUES 
+('http://blogs.msdn.com/dotnet'), 
+('http://blogs.msdn.com/webdev'), 
+('http://blogs.msdn.com/visualstudio')
+GO
+````
 
 ## Create a new project
 
@@ -118,15 +118,13 @@ To enable reverse engineering from an existing database we need to install a cou
 * Locate the `tools` section and add the highlighted lines as shown below
 
 <!-- [!code-json[Main](samples/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/project.json?highlight=2)] -->
-````
-
+````json
  "tools": {
    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
  },
-
-   ````
+````
 
 ## Reverse engineer your model
 
@@ -138,69 +136,70 @@ Now it's time to create the EF model based on your existing database.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
-
-   Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models````
+Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+````
 
 The reverse engineer process created entity classes and a derived context based on the schema of the existing database. The entity classes are simple C# objects that represent the data you will be querying and saving.
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/Blog.cs)] -->
 ````csharp
-   using System;
-   using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 
-   namespace EFGetStarted.AspNetCore.ExistingDb.Models
-   {
-public partial class Blog
+namespace EFGetStarted.AspNetCore.ExistingDb.Models
 {
-    public Blog()
+    public partial class Blog
     {
-        Post = new HashSet<Post>();
+        public Blog()
+        {
+            Post = new HashSet<Post>();
+        }
+
+        public int BlogId { get; set; }
+        public string Url { get; set; }
+
+        public virtual ICollection<Post> Post { get; set; }
     }
-
-    public int BlogId { get; set; }
-    public string Url { get; set; }
-
-    public virtual ICollection<Post> Post { get; set; }
 }
-   }
 ````
 
 The context represents a session with the database and allows you to query and save instances of the entity classes.
 
 <!-- [!code[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/BloggingContextUnmodified.txt)] -->
 ````csharp
-   using Microsoft.EntityFrameworkCore;
-   using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-   namespace EFGetStarted.AspNetCore.ExistingDb.Models
-   {
-public partial class BloggingContext : DbContext
+namespace EFGetStarted.AspNetCore.ExistingDb.Models
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public partial class BloggingContext : DbContext
     {
-      #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-        optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Blog>(entity =>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            entity.Property(e => e.Url).IsRequired();
-        });
+            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
+        }
 
-        modelBuilder.Entity<Post>(entity =>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            entity.HasOne(d => d.Blog)
-                .WithMany(p => p.Post)
-                .HasForeignKey(d => d.BlogId);
-        });
-    }
+            modelBuilder.Entity<Blog>(entity =>
+            {
+                entity.Property(e => e.Url).IsRequired();
+            });
 
-    public virtual DbSet<Blog> Blog { get; set; }
-    public virtual DbSet<Post> Post { get; set; }
+            modelBuilder.Entity<Post>(entity =>
+            {
+                entity.HasOne(d => d.Blog)
+                    .WithMany(p => p.Post)
+                    .HasForeignKey(d => d.BlogId);
+            });
+        }
+
+        public virtual DbSet<Blog> Blog { get; set; }
+        public virtual DbSet<Post> Post { get; set; }
+    }
 }
-   }````
+````
 
 ## Register your context with dependency injection
 
@@ -223,7 +222,6 @@ public partial class BloggingContext : DbContext
       #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
         optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
     }
-
 ````
 
 * Add the lines of code highlighted below
@@ -247,8 +245,8 @@ In order for our MVC controllers to make use of `BloggingContext` we are going t
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Startup.cs)] -->
 ````csharp
-   using EFGetStarted.AspNetCore.ExistingDb.Models;
-   using Microsoft.EntityFrameworkCore;
+using EFGetStarted.AspNetCore.ExistingDb.Models;
+using Microsoft.EntityFrameworkCore;
 ````
 
 Now we can use the `AddDbContext` method to register it as a service.
@@ -259,11 +257,10 @@ Now we can use the `AddDbContext` method to register it as a service.
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Startup.cs?highlight=3,4)] -->
 ````csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        var connection = @"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;";
-        services.AddDbContext<BloggingContext>(options => options.UseSqlServer(connection));
-
+public void ConfigureServices(IServiceCollection services)
+{
+    var connection = @"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;";
+    services.AddDbContext<BloggingContext>(options => options.UseSqlServer(connection));
 ````
 
 ## Create a controller
@@ -282,47 +279,47 @@ Next, we'll add an MVC controller that will use EF to query and save data.
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Controllers/BlogsController.cs)] -->
 ````csharp
-   using EFGetStarted.AspNetCore.ExistingDb.Models;
-   using Microsoft.AspNetCore.Mvc;
-   using System.Linq;
+using EFGetStarted.AspNetCore.ExistingDb.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
-   namespace EFGetStarted.AspNetCore.ExistingDb.Controllers
-   {
-public class BlogsController : Controller
+namespace EFGetStarted.AspNetCore.ExistingDb.Controllers
 {
-    private BloggingContext _context;
-
-    public BlogsController(BloggingContext context)
+    public class BlogsController : Controller
     {
-        _context = context;
-    }
+        private BloggingContext _context;
 
-    public IActionResult Index()
-    {
-        return View(_context.Blog.ToList());
-    }
-
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult Create(Blog blog)
-    {
-        if (ModelState.IsValid)
+        public BlogsController(BloggingContext context)
         {
-            _context.Blog.Add(blog);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            _context = context;
         }
 
-        return View(blog);
-    }
+        public IActionResult Index()
+        {
+            return View(_context.Blog.ToList());
+        }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Blog blog)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Blog.Add(blog);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(blog);
+        }
+
+    }
 }
-   }
 ````
 
 You'll notice that the controller takes a `BloggingContext` as a constructor parameter. ASP.NET dependency injection will take care of passing an instance of `BloggingContext` into your controller.
@@ -350,38 +347,38 @@ We'll start with the view for our `Index` action, that displays all blogs.
 * Replace the contents of the file with the following code
 
 <!-- [!code-html[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Views/Blogs/Index.cshtml)] -->
-````
+````html
+@model IEnumerable<EFGetStarted.AspNetCore.ExistingDb.Models.Blog>
 
-   @model IEnumerable<EFGetStarted.AspNetCore.ExistingDb.Models.Blog>
-
-   @{
-ViewBag.Title = "Blogs";
-   }
-
-   <h2>Blogs</h2>
-
-   <p>
-<a asp-controller="Blogs" asp-action="Create">Create New</a>
-   </p>
-
-   <table class="table">
-<tr>
-    <th>Id</th>
-    <th>Url</th>
-</tr>
-
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BlogId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Url)
-        </td>
-    </tr>
+@{
+    ViewBag.Title = "Blogs";
 }
-   </table>````
+
+<h2>Blogs</h2>
+
+<p>
+    <a asp-controller="Blogs" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Url</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+        </tr>
+    }
+</table>
+````
 
 We'll also add a view for the `Create` action, which allows the user to enter details for a new blog.
 
@@ -396,33 +393,33 @@ We'll also add a view for the `Create` action, which allows the user to enter de
 * Replace the contents of the file with the following code
 
 <!-- [!code-html[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Views/Blogs/Create.cshtml)] -->
+````html
+@model EFGetStarted.AspNetCore.ExistingDb.Models.Blog
+
+@{
+    ViewBag.Title = "New Blog";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-controller="Blogs" asp-action="Create" method="post" class="form-horizontal" role="form">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Url" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
 ````
-
-   @model EFGetStarted.AspNetCore.ExistingDb.Models.Blog
-
-   @{
-ViewBag.Title = "New Blog";
-   }
-
-   <h2>@ViewData["Title"]</h2>
-
-   <form asp-controller="Blogs" asp-action="Create" method="post" class="form-horizontal" role="form">
-<div class="form-horizontal">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Url" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Url" class="form-control" />
-            <span asp-validation-for="Url" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
-   </form>````
 
 ## Run the application
 
@@ -438,6 +435,6 @@ You can now run the application to see it in action.
 
 * Enter a **Url** for the new blog and click **Create**
 
-![image](aspnetcore/_static/create.png)
+![image](_static/create.png)
 
-![image](aspnetcore/_static/index-existing-db.png)
+![image](_static/index-existing-db.png)

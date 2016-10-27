@@ -259,7 +259,6 @@ Run the application from the command line.
    <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````bash
 
-      dotnet run
-   ````
+      dotnet run````
 
 After adding the new post, you can verify the data has been added by inspecting the SQLite database file, `bin/Debug/netcoreapp1.0/blog.db`.
