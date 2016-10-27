@@ -37,7 +37,8 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 {
   optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["BloggingDatabase"].ConnectionString);
 }
-   }````
+   }
+````
 
 ## Update your code
 

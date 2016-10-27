@@ -66,7 +66,8 @@ Add-Migration [-Name] <String> [-OutputDir <String>] [-Context <String>] [-Proje
     Specifies the startup project to use. If omitted, the solution's startup project is used.
 
 -Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.````
+    Specifies the environment to use. If omitted, "Development" is used.
+````
 
 ### Remove-Migration
 
@@ -93,7 +94,8 @@ Remove-Migration [-Context <String>] [-Project <String>] [-StartupProject <Strin
     Specifies the environment to use. If omitted, "Development" is used.
 
 -Force [<SwitchParameter>]
-    Removes the last migration without checking the database. If the last migration has been applied to the database, you will need to manually reverse the changes it made.````
+    Removes the last migration without checking the database. If the last migration has been applied to the database, you will need to manually reverse the changes it made.
+````
 
 ### Scaffold-DbContext
 
@@ -139,7 +141,8 @@ Scaffold-DbContext [-Connection] <String> [-Provider] <String> [-OutputDir <Stri
     Specifies the startup project to use. If omitted, the solution's startup project is used.
 
 -Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.````
+    Specifies the environment to use. If omitted, "Development" is used.
+````
 
 ### Script-Migration
 
@@ -175,7 +178,8 @@ Script-Migration [-From <String>] [-Idempotent] [-Context <String>] [-Project <S
     Specifies the startup project to use. If omitted, the solution's startup project is used.
 
 -Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.````
+    Specifies the environment to use. If omitted, "Development" is used.
+````
 
 ### Update-Database
 
@@ -202,7 +206,8 @@ Update-Database [[-Migration] <String>] [-Context <String>] [-Project <String>] 
     Specifies the startup project to use. If omitted, the solution's startup project is used.
 
 -Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.````
+    Specifies the environment to use. If omitted, "Development" is used.
+````
 
 ### Use-DbContext
 
@@ -226,7 +231,8 @@ Use-DbContext [-Context] <String> [-Project <String>] [-StartupProject <String>]
     Specifies the startup project to use. If omitted, the solution's startup project is used.
 
 -Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.````
+    Specifies the environment to use. If omitted, "Development" is used.
+````
 
 ## Using EF Core commands and EF 6 commands side-by-side
 
@@ -239,7 +245,8 @@ EF Core commands do not work on EF 6 or earlier version of EF. However, EF Core 
    PS> EntityFrameworkCore\Add-Migration
 
  # Invokes the EF 6 command
-   PS> EntityFramework\Add-Migration````
+   PS> EntityFramework\Add-Migration
+````
 
 ## Common Errors
 
@@ -252,7 +259,8 @@ Design-time tools attempt to automatically find how your application creates ins
 
    No parameterless constructor was found on 'TContext'. Either add a parameterless constructor to
    'TContext' or add an implementation of 'IDbContextFactory<TContext>' in the same assembly as
-   'TContext'.````
+   'TContext'.
+````
 
 As the error message suggests, one solution is to add an implementation of `IDbContextFactory<TContext>` to the current project. See [Using IDbContextFactory<TContext>](../configuring-dbcontext.md#use-idbcontextfactory.md) for an example of how to create this factory.
 

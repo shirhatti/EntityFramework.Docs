@@ -31,7 +31,8 @@ For existing RC1 applications, we recommend adding the following code to the sta
    foreach (var entity in modelBuilder.Model.GetEntityTypes())
    {
 entity.Relational().TableName = entity.DisplayName();
-   }````
+   }
+````
 
 If you want to adopt the new naming strategy, we would recommend successfully completing the rest of the upgrade steps and then removing the code and creating a migration to apply the table renames.
 
@@ -45,7 +46,8 @@ In RC1, you had to add Entity Framework services to the application service prov
    services.AddEntityFramework()
      .AddSqlServer()
      .AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));````
+options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+````
 
 In RC2, you can remove the calls to `AddEntityFramework()`, `AddSqlServer()`, etc.:
 
@@ -53,7 +55,8 @@ In RC2, you can remove the calls to `AddEntityFramework()`, `AddSqlServer()`, et
 ````
 
    services.AddDbContext<ApplicationDbContext>(options =>
-     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));````
+     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+````
 
 You also need to add a constructor, to your derived context, that takes context options and passes them to the base constructor. This is needed because we removed some of the scary magic that snuck them in behind the scenes:
 
@@ -63,7 +66,8 @@ You also need to add a constructor, to your derived context, that takes context 
    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 : base(options)
    {
-   }````
+   }
+````
 
 ## Passing in an IServiceProvider
 
@@ -83,7 +87,8 @@ If you have an ASP.NET Core application and you want EF to resolve internal serv
    services.AddEntityFrameworkSqlServer()
      .AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"])
-       .UseInternalServiceProvider(serviceProvider)); );````
+       .UseInternalServiceProvider(serviceProvider)); );
+````
 
 > [!WARNING]
 > We recommend allowing EF to internally manage its own services, unless you have a reason to combine the internal EF services into your application service provider. The main reason you may want to do this is to use your application service provider to replace services that EF uses internally
@@ -105,7 +110,8 @@ The way commands are registered has changed in RC2, due to DNX being replaced by
   "portable-net45+win8"
 ]
      }
-   }````
+   }
+````
 
 > [!TIP]
 > If you use Visual Studio, you can now use Package Manager Console to run EF commands for ASP.NET Core projects (this was not supported in RC1). You still need to register the commands in the `tools` section of `project.json` to do this.
@@ -131,7 +137,8 @@ When adding EF, NuGet restore will display this error message:
      - net35 (.NETFramework,Version=v3.5)
      - net40 (.NETFramework,Version=v4.0)
      - net45 (.NETFramework,Version=v4.5)
-     - portable-net45+win8+wp8+wpa81 (.NETPortable,Version=v0.0,Profile=Profile259)````
+     - portable-net45+win8+wp8+wpa81 (.NETPortable,Version=v0.0,Profile=Profile259)
+````
 
 The workaround is to manually import the portable profile "portable-net451+win8". This forces NuGet to treat this binaries that match this provide as a compatible framework with .NET Standard, even though they are not. Although "portable-net451+win8" is not 100% compatible with .NET Standard, it is compatible enough for the transition from PCL to .NET Standard. Imports can be removed when EF's dependencies eventually upgrade to .NET Standard.
 
@@ -145,6 +152,7 @@ Multiple frameworks can be added to "imports" in array syntax. Other imports may
 "netcoreapp1.0": {
   "imports": ["dnxcore50", "portable-net451+win8"]
 }
-   }````
+   }
+````
 
 See [Issue #5176](https://github.com/aspnet/EntityFramework/issues/5176).

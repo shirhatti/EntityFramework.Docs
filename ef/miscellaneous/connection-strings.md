@@ -22,7 +22,8 @@ Full .NET applications, such as WinForms, WPF, Console, and ASP.NET 4, have a tr
 <add name="BloggingDatabase"
      connectionString="Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" />
      </connectionStrings>
-   </configuration>````
+   </configuration>
+````
 
 > [!NOTE]
 > The `providerName` setting is not required on EF Core connection strings stored in App.config because the database provider is configured via code.
@@ -40,7 +41,8 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 {
   optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["BloggingDatabase"].ConnectionString);
 }
-   }````
+   }
+````
 
 ## Universal Windows Platform (UWP)
 
@@ -57,7 +59,8 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 {
         optionsBuilder.UseSqlite("Filename=Blogging.db");
 }
-   }````
+   }
+````
 
 ## ASP.NET Core
 
@@ -70,7 +73,8 @@ In ASP.NET Core the configuration system is very flexible, and the connection st
      "ConnectionStrings": {
 "BloggingDatabase": "Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;"
      },
-   }````
+   }
+````
 
 The context is typically configured in `Startup.cs` with the connection string being read from configuration. Note the `GetConnectionString()` method simply looks for a configuration value whose key is `ConnectionStrings:<connection string name>`.
 
@@ -80,4 +84,5 @@ The context is typically configured in `Startup.cs` with the connection string b
    {
 services.AddDbContext<BloggingContext>(options =>
     options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
-   }````
+   }
+````

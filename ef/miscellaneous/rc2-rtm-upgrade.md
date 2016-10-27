@@ -59,7 +59,8 @@ If you were targeting .NET Core with RC2, you needed to add `imports` to project
 "netcoreapp1.0": {
   "imports": ["dnxcore50", "portable-net451+win8"]
 }
-   }````
+   }
+````
 
 ## UWP: Add binding redirects
 
@@ -91,4 +92,5 @@ You need to manually add binding redirects to the UWP project. Create a file nam
  </dependentAssembly>
       </assemblyBinding>
     </runtime>
-   </configuration>````
+   </configuration>
+````

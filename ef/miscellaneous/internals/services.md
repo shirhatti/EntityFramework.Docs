@@ -100,7 +100,8 @@ Database provider writers should provided methods such as AddEntityFrameworkSqlS
 .UseSqlServer(connectionString);
 
    using (var context = new DbContext(options))
-   { }````
+   { }
+````
 
 ### Service provider caching
 

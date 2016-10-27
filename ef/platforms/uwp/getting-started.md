@@ -121,7 +121,8 @@ public class Post
 
 <!-- [!code-xml[Main](samples/Platforms/UWP/UWP.SQLite/App.config)] -->
 
-  ````xml
+  
+````xml
 
      <configuration>
 <runtime>
@@ -141,7 +142,8 @@ public class Post
   </assemblyBinding>
 </runtime>
      </configuration>
-  ````
+  
+````
 
   See [Issue #5471](https://github.com/aspnet/EntityFramework/issues/5471) for more details.
 

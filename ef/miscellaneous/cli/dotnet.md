@@ -37,23 +37,23 @@ The resulting project.json should include these items (in addition to your other
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````json
+{
+    "dependencies": {
+        "Microsoft.EntityFrameworkCore.Design": {
+            "type": "build",
+            "version": "1.0.0-preview2-final"
+        }
+    },
 
-   {
-"dependencies": {
-    "Microsoft.EntityFrameworkCore.Design": {
-        "type": "build",
-        "version": "1.0.0-preview2-final"
+    "tools": {
+        "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final"
+    },
+
+    "frameworks": {
+        "netcoreapp1.0": { }
     }
-},
-
-"tools": {
-    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final"
-},
-
-"frameworks": {
-    "netcoreapp1.0": { }
 }
-   }````
+````
 
 > [!TIP]
 > A build-only dependency (`"type": "build"`) means this dependency is local to the current project. For example, if Project A has a build only dependency and Project B depends on A, `dotnet restore` will not add A's build-only dependencies into Project B.
@@ -65,38 +65,38 @@ Commands can be run from the command line by navigating to the project directory
 ### dotnet-ef
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````none
+````csharp
+Usage: dotnet ef [options] [command]
 
-   Usage: dotnet ef [options] [command]
+Options:
+  -h|--help                           Show help information
+  -p|--project <PROJECT>              The project to target (defaults to the project in the current directory). Can be a path to a project.json or a project directory.
+  -s|--startup-project <PROJECT>      The path to the project containing Startup (defaults to the target project). Can be a path to a project.json or a project directory.
+  -c|--configuration <CONFIGURATION>  Configuration under which to load (defaults to Debug)
+  -f|--framework <FRAMEWORK>          Target framework to load from the startup project (defaults to the framework most compatible with .NETCoreApp,Version=v1.0).
+  -b|--build-base-path <OUTPUT_DIR>   Directory in which to find temporary outputs.
+  -o|--output <OUTPUT_DIR>            Directory in which to find outputs
 
-   Options:
-     -h|--help                           Show help information
-     -p|--project <PROJECT>              The project to target (defaults to the project in the current directory). Can be a path to a project.json or a project directory.
-     -s|--startup-project <PROJECT>      The path to the project containing Startup (defaults to the target project). Can be a path to a project.json or a project directory.
-     -c|--configuration <CONFIGURATION>  Configuration under which to load (defaults to Debug)
-     -f|--framework <FRAMEWORK>          Target framework to load from the startup project (defaults to the framework most compatible with .NETCoreApp,Version=v1.0).
-     -b|--build-base-path <OUTPUT_DIR>   Directory in which to find temporary outputs.
-     -o|--output <OUTPUT_DIR>            Directory in which to find outputs
-
-   Commands:
-     database    Commands to manage your database
-     dbcontext   Commands to manage your DbContext types
-     migrations  Commands to manage your migrations````
+Commands:
+  database    Commands to manage your database
+  dbcontext   Commands to manage your DbContext types
+  migrations  Commands to manage your migrations
+````
 
 ### dotnet-ef-database
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````csharp
+Usage: dotnet ef database [options] [command]
 
-   Usage: dotnet ef database [options] [command]
+Options:
+  -h|--help     Show help information
+  -v|--verbose  Enable verbose output
 
-   Options:
-     -h|--help     Show help information
-     -v|--verbose  Enable verbose output
-
-   Commands:
-     drop    Drop the database for specific environment
-     update  Updates the database to a specified migration````
+Commands:
+  drop    Drop the database for specific environment
+  update  Updates the database to a specified migration
+````
 
 ### dotnet-ef-database-drop
 
@@ -110,7 +110,8 @@ Commands can be run from the command line by navigating to the project directory
      -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
      -f|--force                      Drop without confirmation
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output````
+     -v|--verbose                    Enable verbose output
+````
 
 ### dotnet-ef-database-update
 
@@ -126,7 +127,8 @@ Commands can be run from the command line by navigating to the project directory
      -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output````
+     -v|--verbose                    Enable verbose output
+````
 
 ### dotnet-ef-dbcontext
 
@@ -141,7 +143,8 @@ Commands can be run from the command line by navigating to the project directory
 
    Commands:
      list      List your DbContext types
-     scaffold  Scaffolds a DbContext and entity type classes for a specified database````
+     scaffold  Scaffolds a DbContext and entity type classes for a specified database
+````
 
 ### dotnet-ef-dbcontext-list
 
@@ -154,7 +157,8 @@ Commands can be run from the command line by navigating to the project directory
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output````
+     -v|--verbose                    Enable verbose output
+````
 
 ### dotnet-ef-dbcontext-scaffold
 
@@ -176,7 +180,8 @@ Commands can be run from the command line by navigating to the project directory
      -t|--table <schema.table>       Selects a table for which to generate classes.
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output````
+     -v|--verbose                    Enable verbose output
+````
 
 ### dotnet-ef-migrations
 
@@ -193,7 +198,8 @@ Commands can be run from the command line by navigating to the project directory
      add     Add a new migration
      list    List the migrations
      remove  Remove the last migration
-     script  Generate a SQL script from migrations````
+     script  Generate a SQL script from migrations
+````
 
 ### dotnet-ef-migrations-add
 
@@ -211,7 +217,8 @@ Commands can be run from the command line by navigating to the project directory
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output````
+     -v|--verbose                    Enable verbose output
+````
 
 ### dotnet-ef-migrations-list
 
@@ -225,7 +232,8 @@ Commands can be run from the command line by navigating to the project directory
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output````
+     -v|--verbose                    Enable verbose output
+````
 
 ### dotnet-ef-migrations-remove
 
@@ -239,7 +247,8 @@ Commands can be run from the command line by navigating to the project directory
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      -f|--force                      Removes the last migration without checking the database. If the last migration has been applied to the database, you will need to manually reverse the changes it made.
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output````
+     -v|--verbose                    Enable verbose output
+````
 
 ### dotnet-ef-migrations-script
 
@@ -258,7 +267,8 @@ Commands can be run from the command line by navigating to the project directory
      -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
      -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
      -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output````
+     -v|--verbose                    Enable verbose output
+````
 
 ## Common Errors
 
@@ -271,7 +281,8 @@ Design-time tools attempt to automatically find how your application creates ins
 
    No parameterless constructor was found on 'TContext'. Either add a parameterless constructor to
    'TContext' or add an implementation of 'IDbContextFactory<TContext>' in the same assembly as
-   'TContext'.````
+   'TContext'.
+````
 
 As the error message suggests, one solution is to add an implementation of `IDbContextFactory<TContext>` to the current project. See [Using IDbContextFactory<TContext>](../configuring-dbcontext.md#use-idbcontextfactory.md) for an example of how to create this factory.
 
@@ -286,7 +297,8 @@ As the error message suggests, one solution is to add an implementation of `IDbC
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
 
-   Could not invoke this command on the startup project '(your project name)'. This preview of Entity Framework tools does not support commands on class library projects in ASP.NET Core and .NET Core applications.````
+   Could not invoke this command on the startup project '(your project name)'. This preview of Entity Framework tools does not support commands on class library projects in ASP.NET Core and .NET Core applications.
+````
 
 See issue [https://github.com/dotnet/cli/issues/2645](https://github.com/dotnet/cli/issues/2645).
 
@@ -318,7 +330,8 @@ Example:
         }
     }
 }
-   }````
+   }
+````
 
 Be sure to register the EntityFramework Tools as a project dependency and in the tools section of your project.json.
 
@@ -337,7 +350,8 @@ Example:
 "tools": {
     "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final"
 }
-   }````
+   }
+````
 
 Finally, specify a startup project that is a "runnable app."
 
@@ -346,7 +360,8 @@ Example:
 <!-- literal_block"language": "csharp",ole", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````console
 
-   dotnet ef --startup-project ../MyConsoleApplication/ migrations list````
+   dotnet ef --startup-project ../MyConsoleApplication/ migrations list
+````
 
 #### Workaround 2 - Modify your class library to be a startup application
 
@@ -371,7 +386,8 @@ To make the project a .NET Core App, add the "netcoreapp1.0" framework to projec
         }
     }
 }
-   }````
+   }
+````
 
 To make a desktop .NET app, ensure you project targets "net451" or newer (example "net461" also works) and ensure the build option `"emitEntryPoint"` is set to true.
 
@@ -385,4 +401,5 @@ To make a desktop .NET app, ensure you project targets "net451" or newer (exampl
 "frameworks": {
     "net451": { }
 }
-   }````
+   }
+````

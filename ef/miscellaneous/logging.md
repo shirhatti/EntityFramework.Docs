@@ -85,7 +85,8 @@ In an ASP.NET Core application, you register your logger in the Configure method
 loggerFactory.AddProvider(new MyLoggerProvider());
 
 ...
-   }````
+   }
+````
 
 ### Other applications
 

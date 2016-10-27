@@ -29,7 +29,8 @@ public BloggingContext(DbContextOptions<BloggingContext> options)
 { }
 
 public DbSet<Blog> Blogs { get; set; }
-   }````
+   }
+````
 
 > [!TIP]
 > The base constructor of DbContext also accepts the non-generic version of `DbContextOptions`. Using the non-generic version is not recommended for applications with multiple context types.
@@ -44,7 +45,8 @@ Application code to initialize from constructor argument
    using (var context = new BloggingContext(optionsBuilder.Options))
    {
 // do stuff
-   }````
+   }
+````
 
 ### OnConfiguring
 
@@ -63,7 +65,8 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 {
     optionsBuilder.UseSqlite("Filename=./blog.db");
 }
-   }````
+   }
+````
 
 Application code to initialize with "OnConfiguring"
 
@@ -72,7 +75,8 @@ Application code to initialize with "OnConfiguring"
    using (var context = new BloggingContext())
    {
 // do stuff
-   }````
+   }
+````
 
 ## Using DbContext with dependency injection
 
@@ -89,7 +93,8 @@ Adding dbcontext to dependency injection
    public void ConfigureServices(IServiceCollection services)
    {
 services.AddDbContext<BloggingContext>(options => options.UseSqlite("Filename=./blog.db"));
-   }````
+   }
+````
 
 This requires adding a [constructor argument](#constructor-argument) to you DbContext type that accepts `DbContextOptions`.
 
@@ -104,13 +109,15 @@ public BloggingContext(DbContextOptions<BloggingContext> options)
 { }
 
 public DbSet<Blog> Blogs { get; set; }
-   }````
+   }
+````
 
 Application code (in ASP.NET Core)
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````csharp
-   public MyController(BloggingContext context)````
+   public MyController(BloggingContext context)
+````
 
 Application code (using ServiceProvider directly, less common)
 
@@ -121,7 +128,8 @@ Application code (using ServiceProvider directly, less common)
      // do stuff
    }
 
-   var options = serviceProvider.GetService<DbContextOptions<BloggingContext>>();````
+   var options = serviceProvider.GetService<DbContextOptions<BloggingContext>>();
+````
 
 <a name=use-idbcontextfactory></a>
 
@@ -150,7 +158,8 @@ public class BloggingContextFactory : IDbContextFactory<BloggingContext>
         return new BloggingContext(optionsBuilder.Options);
     }
 }
-   }````
+   }
+````
 
 ## More reading
 

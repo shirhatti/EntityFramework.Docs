@@ -37,22 +37,26 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
  <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
-     ````bash
+     
+````bash
 
     mkdir ConsoleApp
     cd ConsoleApp/
- ````
+ 
+````
 
 * Execute the following .NET Core CLI commands to create a new console application, download dependencies, and run the .NET Core app.
 
      <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
-  ````bash
+  
+````bash
 
  dotnet new
  dotnet restore
  dotnet run
-     ````
+     
+````
 
 ## Install Entity Framework
 
@@ -60,7 +64,8 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
 <!-- [!code-json[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/project.json?highlight=8,9,10,11,12,25,26,27)] -->
 
-     ````json
+     
+````json
 
     {
       "version": "1.0.0-*",
@@ -91,25 +96,30 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
       } 
     }
 
- ````
+ 
+````
 
 * Run `dotnet restore` again to install the new packages.
 
  <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
-     ````bash
+     
+````bash
 
     dotnet restore
- ````
+ 
+````
 
 * Verify that Entity Framework is installed by running `dotnet ef --help`.
 
  <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
-     ````bash
+     
+````bash
 
     dotnet ef --help
- ````
+ 
+````
 
 ## Create your model
 
@@ -121,7 +131,8 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
 <!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Model.cs)] -->
 
- ````csharp
+ 
+````csharp
        using System.Collections.Generic;
        using System.IO;
        using Microsoft.EntityFrameworkCore;
@@ -129,7 +140,8 @@ With this new project, you are ready to begin using Entity Framework. The next s
        namespace ConsoleApp.SQLite
        {
 
-    ````
+    
+````
 
 * Add a new class to represent the SQLite database.
 
@@ -137,7 +149,8 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
 <!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Model.cs?highlight=1,8)] -->
 
- ````csharp
+ 
+````csharp
        public class BloggingContext : DbContext
        {
            public DbSet<Blog> Blogs { get; set; }
@@ -150,7 +163,8 @@ With this new project, you are ready to begin using Entity Framework. The next s
        }
 
 
-    ````
+    
+````
 
 * Add classes to represent tables.
 
@@ -158,7 +172,8 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
 <!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Model.cs)] -->
 
- ````csharp
+ 
+````csharp
        public class Blog
        {
            public int BlogId { get; set; }
@@ -178,16 +193,19 @@ With this new project, you are ready to begin using Entity Framework. The next s
            public Blog Blog { get; set; }
        }
 
-    ````
+    
+````
 
 * To make sure the files are correct, you can compile the project on the command line by running `dotnet build`
 
  <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
-     ````bash
+     
+````bash
 
     dotnet build
- ````
+ 
+````
 
 ## Create your database
 
@@ -199,10 +217,12 @@ We can now use Entity Framework command line tools to create and manage the sche
 
  <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
-     ````bash
+     
+````bash
 
     dotnet ef migrations add MyFirstMigration
- ````
+ 
+````
 
 * Apply the migrations.
 
@@ -210,10 +230,12 @@ We can now use Entity Framework command line tools to create and manage the sche
 
  <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
-     ````bash
+     
+````bash
 
     dotnet ef database update
- ````
+ 
+````
 
  This should create a new file `blog.db` in the output path. This SQLite file should now contain two empty tables.
 
@@ -259,6 +281,7 @@ Run the application from the command line.
    <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````bash
 
-      dotnet run````
+      dotnet run
+````
 
 After adding the new post, you can verify the data has been added by inspecting the SQLite database file, `bin/Debug/netcoreapp1.0/blog.db`.

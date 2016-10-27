@@ -78,7 +78,8 @@ CONSTRAINT [FK_Post_Blog_BlogId] FOREIGN KEY ([BlogId]) REFERENCES [Blog] ([Blog
    ('http://blogs.msdn.com/dotnet'), 
    ('http://blogs.msdn.com/webdev'), 
    ('http://blogs.msdn.com/visualstudio')
-   GO````
+   GO
+````
 
 ## Create a new project
 
@@ -119,7 +120,8 @@ Now it's time to create the EF model based on your existing database.
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
 
-   Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer````
+   Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
+````
 
 The reverse engineer process created entity classes and a derived context based on the schema of the existing database. The entity classes are simple C# objects that represent the data you will be querying and saving.
 
@@ -180,7 +182,8 @@ public partial class BloggingContext : DbContext
     public virtual DbSet<Blog> Blog { get; set; }
     public virtual DbSet<Post> Post { get; set; }
 }
-   }````
+   }
+````
 
 ## Use your model
 

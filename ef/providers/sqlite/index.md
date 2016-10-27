@@ -15,7 +15,8 @@ Install the [Microsoft.EntityFrameworkCore.SQLite NuGet package](https://www.nug
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
 
-   PM>  Install-Package Microsoft.EntityFrameworkCore.SQLite````
+   PM>  Install-Package Microsoft.EntityFrameworkCore.SQLite
+````
 
 ## Get Started
 

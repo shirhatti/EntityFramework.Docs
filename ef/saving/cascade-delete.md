@@ -48,7 +48,8 @@ Because all the Posts are tracked by the context, the cascade behavior is applie
    DELETE FROM [Post]
    WHERE [PostId] = @p1;
    DELETE FROM [Blog]
-   WHERE [BlogId] = @p2;````
+   WHERE [BlogId] = @p2;
+````
 
 ## Cascading to untracked entities
 
@@ -70,4 +71,5 @@ Because the Posts are not tracked by the context, a *DELETE* statement is only i
 ````
 
    DELETE FROM [Blog]
-   WHERE [BlogId] = @p0;````
+   WHERE [BlogId] = @p0;
+````

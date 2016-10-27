@@ -80,7 +80,8 @@ The code results in the following output, showing that the database generated a 
 ````
 
    1: John Doe, 1/28/2016 12:00:00 AM
-   2: Jane Doe, 1/1/2000 12:00:00 AM````
+   2: Jane Doe, 1/1/2000 12:00:00 AM
+````
 
 ### Explicit values into SQL Server IDENTITY columns
 

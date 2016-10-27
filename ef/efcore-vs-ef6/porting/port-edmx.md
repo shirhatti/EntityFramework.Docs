@@ -23,14 +23,16 @@ Run the following command in Package Manager Console (Tools –> NuGet Package M
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp",", highlight_args}, "names": [] -->
 ````text
 
-   Scaffold-DbContext "<connection string>" <database provider name>````
+   Scaffold-DbContext "<connection string>" <database provider name>
+````
 
 For example, here is the command to scaffold a model from the Blogging database on your SQL Server LocalDB instance.
 
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp",", highlight_args}, "names": [] -->
 ````text
 
-   Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer````
+   Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
+````
 
 ## Remove EF6.x model
 

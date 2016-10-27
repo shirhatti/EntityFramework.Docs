@@ -18,14 +18,16 @@ To work with SQL Server Compact Edition 4.0, install the [EntityFrameworkCore.Sq
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
 
-   PM>  Install-Package EntityFrameworkCore.SqlServerCompact40````
+   PM>  Install-Package EntityFrameworkCore.SqlServerCompact40
+````
 
 To work with SQL Server Compact Edition 3.5, install the [EntityFrameworkCore.SqlServerCompact35](https://www.nuget.org/packages/EntityFrameworkCore.SqlServerCompact35).
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
 
-   PM>  Install-Package EntityFrameworkCore.SqlServerCompact35````
+   PM>  Install-Package EntityFrameworkCore.SqlServerCompact35
+````
 
 ## Get Started
 

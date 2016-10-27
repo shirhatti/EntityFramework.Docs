@@ -92,7 +92,8 @@ public class Post
     public int BlogId { get; set; }
     public Blog Blog { get; set; }
 }
-   }````
+   }
+````
 
 > [!TIP]
 > In a real application you would put each class in a separate file and put the connection string in the `App.Config` file and read it out using `ConfigurationManager`. For the sake of simplicity, we are putting everything in a single code file for this tutorial.

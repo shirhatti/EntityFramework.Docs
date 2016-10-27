@@ -19,7 +19,8 @@ If you like to learn by writing code, we'd recommend one of our [Getting Started
 <!-- literal_block"ids  "dupnames  "names  "xml:space": "preserve", : "csharp",", "classes  "linenos": false, "backrefs  highlight_args} -->
 ````text
 
-   PM>  Install-Package Microsoft.EntityFrameworkCore.SqlServer````
+   PM>  Install-Package Microsoft.EntityFrameworkCore.SqlServer
+````
 
 ## The Model
 
@@ -62,7 +63,8 @@ public class Post
     public int BlogId { get; set; }
     public Blog Blog { get; set; }
 }
-   }````
+   }
+````
 
 ## Querying
 
@@ -76,7 +78,8 @@ var blogs = db.Blogs
     .Where(b => b.Rating > 3)
     .OrderBy(b => b.Url)
     .ToList();
-   }````
+   }
+````
 
 ## Saving Data
 
@@ -89,4 +92,5 @@ Data is created, deleted, and modified in the database using instances of your e
 var blog = new Blog { Url = "http://sample.com" };
 db.Blogs.Add(blog);
 db.SaveChanges();
-   }````
+   }
+````

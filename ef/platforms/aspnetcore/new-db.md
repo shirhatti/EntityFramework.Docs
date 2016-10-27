@@ -226,7 +226,8 @@ public class BlogsController : Controller
     }
 
 }
-   }````
+   }
+````
 
 You'll notice that the controller takes a `BloggingContext` as a constructor parameter. ASP.NET dependency injection will take care of passing an instance of `BloggingContext` into your controller.
 
@@ -326,7 +327,8 @@ ViewBag.Title = "New Blog";
         </div>
     </div>
 </div>
-   </form>````
+   </form>
+````
 
 ## Run the application
 

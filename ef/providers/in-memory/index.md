@@ -15,7 +15,8 @@ Install the [Microsoft.EntityFrameworkCore.InMemory NuGet package](https://www.n
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp",", highlight_args}, "names": [] -->
 ````text
 
-   PM>  Install-Package Microsoft.EntityFrameworkCore.InMemory````
+   PM>  Install-Package Microsoft.EntityFrameworkCore.InMemory
+````
 
 ## Get Started
 

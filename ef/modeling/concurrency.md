@@ -20,7 +20,8 @@ For example, relational database achieve this by including the concurrency token
 ````sql
 
    UPDATE [Person] SET [FirstName] = @p1
-   WHERE [PersonId] = @p0 AND [LastName] = @p2;````
+   WHERE [PersonId] = @p0 AND [LastName] = @p2;
+````
 
 ## Conventions
 

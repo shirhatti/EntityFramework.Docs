@@ -65,7 +65,8 @@ public class Post
 
     public int BlogId { get; set; }
     public Blog Blog { get; set; }
-}````
+}
+````
 
 ## Conventions
 
@@ -100,7 +101,8 @@ public class Post
 
     public int BlogId { get; set; }
     public Blog Blog { get; set; }
-}````
+}
+````
 
 > [!WARNING]
 > If there are multiple navigation properties defined between two types (i.e. more than one distinct pair of navigations that point to each other), then no relationships will be created by convention and you will need to manually configure them to identify how the navigation properties pair up.
