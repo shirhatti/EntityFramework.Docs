@@ -19,8 +19,8 @@ Shadow properties can be referenced in LINQ queries via the `EF.Property` static
 
 <!-- literal_block"language": "csharp",rp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````csharp
-   var blogs = context.Blogs
-.OrderBy(b => EF.Property<DateTime>(b, "LastUpdated"));
+var blogs = context.Blogs
+    .OrderBy(b => EF.Property<DateTime>(b, "LastUpdated"));
 ````
 
 ## Conventions
