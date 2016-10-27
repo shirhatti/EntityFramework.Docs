@@ -44,29 +44,28 @@ Adds a new migration.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
+SYNTAX
+    Add-Migration [-Name] <String> [-OutputDir <String>] [-Context <String>] [-Project <String>]
+     [-StartupProject <String>] [-Environment <String>] [<CommonParameters>]
 
-   SYNTAX
-Add-Migration [-Name] <String> [-OutputDir <String>] [-Context <String>] [-Project <String>]
- [-StartupProject <String>] [-Environment <String>] [<CommonParameters>]
+PARAMETERS
+    -Name <String>
+        Specifies the name of the migration.
 
-   PARAMETERS
--Name <String>
-    Specifies the name of the migration.
+    -OutputDir <String>
+        The directory (and sub-namespace) to use. If omitted, "Migrations" is used. Relative paths are relative to project directory.
 
--OutputDir <String>
-    The directory (and sub-namespace) to use. If omitted, "Migrations" is used. Relative paths are relative to project directory.
+    -Context <String>
+        Specifies the DbContext to use. If omitted, the default DbContext is used.
 
--Context <String>
-    Specifies the DbContext to use. If omitted, the default DbContext is used.
+    -Project <String>
+        Specifies the project to use. If omitted, the default project is used.
 
--Project <String>
-    Specifies the project to use. If omitted, the default project is used.
+    -StartupProject <String>
+        Specifies the startup project to use. If omitted, the solution's startup project is used.
 
--StartupProject <String>
-    Specifies the startup project to use. If omitted, the solution's startup project is used.
-
--Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.
+    -Environment <String>
+        Specifies the environment to use. If omitted, "Development" is used.
 ````
 
 ### Remove-Migration
@@ -75,26 +74,25 @@ Removes the last migration.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
+SYNTAX
+    Remove-Migration [-Context <String>] [-Project <String>] [-StartupProject <String>] [-Environment <String>]
+     [-Force] [<CommonParameters>]
 
-   SYNTAX
-Remove-Migration [-Context <String>] [-Project <String>] [-StartupProject <String>] [-Environment <String>]
- [-Force] [<CommonParameters>]
+PARAMETERS
+    -Context <String>
+        Specifies the DbContext to use. If omitted, the default DbContext is used.
 
-   PARAMETERS
--Context <String>
-    Specifies the DbContext to use. If omitted, the default DbContext is used.
+    -Project <String>
+        Specifies the project to use. If omitted, the default project is used.
 
--Project <String>
-    Specifies the project to use. If omitted, the default project is used.
+    -StartupProject <String>
+        Specifies the startup project to use. If omitted, the solution's startup project is used.
 
--StartupProject <String>
-    Specifies the startup project to use. If omitted, the solution's startup project is used.
+    -Environment <String>
+        Specifies the environment to use. If omitted, "Development" is used.
 
--Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.
-
--Force [<SwitchParameter>]
-    Removes the last migration without checking the database. If the last migration has been applied to the database, you will need to manually reverse the changes it made.
+    -Force [<SwitchParameter>]
+        Removes the last migration without checking the database. If the last migration has been applied to the database, you will need to manually reverse the changes it made.
 ````
 
 ### Scaffold-DbContext
@@ -103,45 +101,44 @@ Scaffolds a DbContext and entity type classes for a specified database.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
+SYNTAX
+    Scaffold-DbContext [-Connection] <String> [-Provider] <String> [-OutputDir <String>] [-Context <String>]
+      [-Schemas <String>] [-Tables <String>] [-DataAnnotations] [-Force] [-Project <String>]
+      [-StartupProject <String>] [-Environment <String>] [<CommonParameters>]
 
-   SYNTAX
-Scaffold-DbContext [-Connection] <String> [-Provider] <String> [-OutputDir <String>] [-Context <String>]
-  [-Schemas <String>] [-Tables <String>] [-DataAnnotations] [-Force] [-Project <String>]
-  [-StartupProject <String>] [-Environment <String>] [<CommonParameters>]
+PARAMETERS
+    -Connection <String>
+        Specifies the connection string of the database.
 
-   PARAMETERS
--Connection <String>
-    Specifies the connection string of the database.
+    -Provider <String>
+        Specifies the provider to use. For example, Microsoft.EntityFrameworkCore.SqlServer.
 
--Provider <String>
-    Specifies the provider to use. For example, Microsoft.EntityFrameworkCore.SqlServer.
+    -OutputDir <String>
+        Specifies the directory to use to output the classes. If omitted, the top-level project directory is used.
 
--OutputDir <String>
-    Specifies the directory to use to output the classes. If omitted, the top-level project directory is used.
+    -Context <String>
+        Specifies the name of the generated DbContext class.
 
--Context <String>
-    Specifies the name of the generated DbContext class.
+    -Schemas <String>
+        Specifies the schemas for which to generate classes.
 
--Schemas <String>
-    Specifies the schemas for which to generate classes.
+    -Tables <String>
+        Specifies the tables for which to generate classes.
 
--Tables <String>
-    Specifies the tables for which to generate classes.
+    -DataAnnotations [<SwitchParameter>]
+        Use DataAnnotation attributes to configure the model where possible. If omitted, the output code will use only the fluent API.
 
--DataAnnotations [<SwitchParameter>]
-    Use DataAnnotation attributes to configure the model where possible. If omitted, the output code will use only the fluent API.
+    -Force [<SwitchParameter>]
+        Force scaffolding to overwrite existing files. Otherwise, the code will only proceed if no output files would be overwritten.
 
--Force [<SwitchParameter>]
-    Force scaffolding to overwrite existing files. Otherwise, the code will only proceed if no output files would be overwritten.
+    -Project <String>
+        Specifies the project to use. If omitted, the default project is used.
 
--Project <String>
-    Specifies the project to use. If omitted, the default project is used.
+    -StartupProject <String>
+        Specifies the startup project to use. If omitted, the solution's startup project is used.
 
--StartupProject <String>
-    Specifies the startup project to use. If omitted, the solution's startup project is used.
-
--Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.
+    -Environment <String>
+        Specifies the environment to use. If omitted, "Development" is used.
 ````
 
 ### Script-Migration
@@ -150,35 +147,34 @@ Generates a SQL script from migrations.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
+SYNTAX
+    Script-Migration -From <String> -To <String> [-Idempotent] [-Context <String>] [-Project <String>]
+      [-StartupProject <String>] [-Environment <String>] [<CommonParameters>]
 
-   SYNTAX
-Script-Migration -From <String> -To <String> [-Idempotent] [-Context <String>] [-Project <String>]
-  [-StartupProject <String>] [-Environment <String>] [<CommonParameters>]
+    Script-Migration [-From <String>] [-Idempotent] [-Context <String>] [-Project <String>]
+      [-StartupProject <String>] [-Environment <String>] [<CommonParameters>]
 
-Script-Migration [-From <String>] [-Idempotent] [-Context <String>] [-Project <String>]
-  [-StartupProject <String>] [-Environment <String>] [<CommonParameters>]
+PARAMETERS
+    -From <String>
+        Specifies the starting migration. If omitted, '0' (the initial database) is used.
 
-   PARAMETERS
--From <String>
-    Specifies the starting migration. If omitted, '0' (the initial database) is used.
+    -To <String>
+        Specifies the ending migration. If omitted, the last migration is used.
 
--To <String>
-    Specifies the ending migration. If omitted, the last migration is used.
+    -Idempotent [<SwitchParameter>]
+        Generates an idempotent script that can be used on a database at any migration.
 
--Idempotent [<SwitchParameter>]
-    Generates an idempotent script that can be used on a database at any migration.
+    -Context <String>
+        Specifies the DbContext to use. If omitted, the default DbContext is used.
 
--Context <String>
-    Specifies the DbContext to use. If omitted, the default DbContext is used.
+    -Project <String>
+        Specifies the project to use. If omitted, the default project is used.
 
--Project <String>
-    Specifies the project to use. If omitted, the default project is used.
+    -StartupProject <String>
+        Specifies the startup project to use. If omitted, the solution's startup project is used.
 
--StartupProject <String>
-    Specifies the startup project to use. If omitted, the solution's startup project is used.
-
--Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.
+    -Environment <String>
+        Specifies the environment to use. If omitted, "Development" is used.
 ````
 
 ### Update-Database
@@ -187,26 +183,25 @@ Updates the database to a specified migration.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
+SYNTAX
+    Update-Database [[-Migration] <String>] [-Context <String>] [-Project <String>] [-StartupProject <String>]
+      [-Environment <String>] [<CommonParameters>]
 
-   SYNTAX
-Update-Database [[-Migration] <String>] [-Context <String>] [-Project <String>] [-StartupProject <String>]
-  [-Environment <String>] [<CommonParameters>]
+PARAMETERS
+    -Migration <String>
+        Specifies the target migration. If '0', all migrations will be reverted. If omitted, all pending migrations will be applied.
 
-   PARAMETERS
--Migration <String>
-    Specifies the target migration. If '0', all migrations will be reverted. If omitted, all pending migrations will be applied.
+    -Context <String>
+        Specifies the DbContext to use. If omitted, the default DbContext is used.
 
--Context <String>
-    Specifies the DbContext to use. If omitted, the default DbContext is used.
+    -Project <String>
+        Specifies the project to use. If omitted, the default project is used.
 
--Project <String>
-    Specifies the project to use. If omitted, the default project is used.
+    -StartupProject <String>
+        Specifies the startup project to use. If omitted, the solution's startup project is used.
 
--StartupProject <String>
-    Specifies the startup project to use. If omitted, the solution's startup project is used.
-
--Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.
+    -Environment <String>
+        Specifies the environment to use. If omitted, "Development" is used.
 ````
 
 ### Use-DbContext
@@ -215,23 +210,22 @@ Sets the default DbContext to use.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````text
+SYNTAX
+    Use-DbContext [-Context] <String> [-Project <String>] [-StartupProject <String>] [-Environment <String>]
+      [<CommonParameters>]
 
-   SYNTAX
-Use-DbContext [-Context] <String> [-Project <String>] [-StartupProject <String>] [-Environment <String>]
-  [<CommonParameters>]
+PARAMETERS
+    -Context <String>
+        Specifies the DbContext to use.
 
-   PARAMETERS
--Context <String>
-    Specifies the DbContext to use.
+    -Project <String>
+        Specifies the project to use. If omitted, the default project is used.
 
--Project <String>
-    Specifies the project to use. If omitted, the default project is used.
+    -StartupProject <String>
+        Specifies the startup project to use. If omitted, the solution's startup project is used.
 
--StartupProject <String>
-    Specifies the startup project to use. If omitted, the solution's startup project is used.
-
--Environment <String>
-    Specifies the environment to use. If omitted, "Development" is used.
+    -Environment <String>
+        Specifies the environment to use. If omitted, "Development" is used.
 ````
 
 ## Using EF Core commands and EF 6 commands side-by-side
@@ -240,12 +234,11 @@ EF Core commands do not work on EF 6 or earlier version of EF. However, EF Core 
 
 <!-- literal_block"language": "csharp",rShell", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````PowerShell
+# Invokes the EF Core command
+PS> EntityFrameworkCore\Add-Migration
 
- # Invokes the EF Core command
-   PS> EntityFrameworkCore\Add-Migration
-
- # Invokes the EF 6 command
-   PS> EntityFramework\Add-Migration
+# Invokes the EF 6 command
+PS> EntityFramework\Add-Migration
 ````
 
 ## Common Errors
@@ -255,11 +248,10 @@ EF Core commands do not work on EF 6 or earlier version of EF. However, EF Core 
 Design-time tools attempt to automatically find how your application creates instances of your DbContext type. If EF cannot find a suitable way to initialize your DbContext, you may encounter this error.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
-
-   No parameterless constructor was found on 'TContext'. Either add a parameterless constructor to
-   'TContext' or add an implementation of 'IDbContextFactory<TContext>' in the same assembly as
-   'TContext'.
+````
+No parameterless constructor was found on 'TContext'. Either add a parameterless constructor to
+'TContext' or add an implementation of 'IDbContextFactory<TContext>' in the same assembly as
+'TContext'.
 ````
 
 As the error message suggests, one solution is to add an implementation of `IDbContextFactory<TContext>` to the current project. See [Using IDbContextFactory<TContext>](../configuring-dbcontext.md#use-idbcontextfactory.md) for an example of how to create this factory.

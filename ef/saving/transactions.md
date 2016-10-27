@@ -84,22 +84,22 @@ An alternative is to keep using `DbContext.OnConfiguring`, but accept a `DbConne
 
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp", highlight_args}, "names": [] -->
 ````csharp
-   public class BloggingContext : DbContext
-   {
-private DbConnection _connection;
-
-public BloggingContext(DbConnection connection)
+public class BloggingContext : DbContext
 {
-  _connection = connection;
-}
+    private DbConnection _connection;
 
-public DbSet<Blog> Blogs { get; set; }
+    public BloggingContext(DbConnection connection)
+    {
+      _connection = connection;
+    }
 
-protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-{
-    optionsBuilder.UseSqlServer(_connection);
+    public DbSet<Blog> Blogs { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(_connection);
+    }
 }
-   }
 ````
 
 ### Share connection and transaction

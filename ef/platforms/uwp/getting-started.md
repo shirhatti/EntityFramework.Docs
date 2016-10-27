@@ -67,40 +67,40 @@ Now it's time to define a context and entity classes that make up your model.
 
 <!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/Model.cs)] -->
 ````csharp
-   using Microsoft.EntityFrameworkCore;
-   using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
-   namespace EFGetStarted.UWP
-   {
-public class BloggingContext : DbContext
+namespace EFGetStarted.UWP
 {
-    public DbSet<Blog> Blogs { get; set; }
-    public DbSet<Post> Posts { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public class BloggingContext : DbContext
     {
-        optionsBuilder.UseSqlite("Filename=Blogging.db");
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post> Posts { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Filename=Blogging.db");
+        }
+    }
+
+    public class Blog
+    {
+        public int BlogId { get; set; }
+        public string Url { get; set; }
+
+        public List<Post> Posts { get; set; }
+    }
+
+    public class Post
+    {
+        public int PostId { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+
+        public int BlogId { get; set; }
+        public Blog Blog { get; set; }
     }
 }
-
-public class Blog
-{
-    public int BlogId { get; set; }
-    public string Url { get; set; }
-
-    public List<Post> Posts { get; set; }
-}
-
-public class Post
-{
-    public int PostId { get; set; }
-    public string Title { get; set; }
-    public string Content { get; set; }
-
-    public int BlogId { get; set; }
-    public Blog Blog { get; set; }
-}
-   }
 ````
 
 > [!TIP]
@@ -110,42 +110,38 @@ public class Post
 
 > [!WARNING]
 > **Known Issue in Preview 2**Using EF Tools on UWP projects does not work without manually adding binding redirects.
-
-  * File –> New –> File...
-
-  * From the left menu select Visual C# -> General -> Text File
-
-  * Give the file the name "App.config"
-
-  * Add the following contents to the file
-
-<!-- [!code-xml[Main](samples/Platforms/UWP/UWP.SQLite/App.config)] -->
-
-  
-````xml
-
-     <configuration>
-<runtime>
-  <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-    <dependentAssembly>
-      <assemblyIdentity name="System.IO.FileSystem.Primitives" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
-      <bindingRedirect oldVersion="4.0.0.0" newVersion="4.0.1.0"/>
-    </dependentAssembly>
-    <dependentAssembly>
-      <assemblyIdentity name="System.Threading.Overlapped" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
-      <bindingRedirect oldVersion="4.0.0.0" newVersion="4.0.1.0"/>
-    </dependentAssembly>
-    <dependentAssembly>
-      <assemblyIdentity name="System.ComponentModel.Annotations" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
-      <bindingRedirect oldVersion="4.1.0.0" newVersion="4.0.0.0"/>
-    </dependentAssembly>
-  </assemblyBinding>
-</runtime>
-     </configuration>
-  
-````
-
-  See [Issue #5471](https://github.com/aspnet/EntityFramework/issues/5471) for more details.
+> 
+>   * File –> New –> File...
+> 
+>   * From the left menu select Visual C# -> General -> Text File
+> 
+>   * Give the file the name "App.config"
+> 
+>   * Add the following contents to the file
+> 
+> <!-- [!code-xml[Main](samples/Platforms/UWP/UWP.SQLite/App.config)] -->
+> ````xml
+> <configuration>
+>   <runtime>
+>     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+>       <dependentAssembly>
+>         <assemblyIdentity name="System.IO.FileSystem.Primitives" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+>         <bindingRedirect oldVersion="4.0.0.0" newVersion="4.0.1.0"/>
+>       </dependentAssembly>
+>       <dependentAssembly>
+>         <assemblyIdentity name="System.Threading.Overlapped" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+>         <bindingRedirect oldVersion="4.0.0.0" newVersion="4.0.1.0"/>
+>       </dependentAssembly>
+>       <dependentAssembly>
+>         <assemblyIdentity name="System.ComponentModel.Annotations" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+>         <bindingRedirect oldVersion="4.1.0.0" newVersion="4.0.0.0"/>
+>       </dependentAssembly>
+>     </assemblyBinding>
+>   </runtime>
+> </configuration>
+> ````
+> 
+>   See [Issue #5471](https://github.com/aspnet/EntityFramework/issues/5471) for more details.
 
 Now that you have a model, you can use migrations to create a database for you.
 
@@ -161,32 +157,34 @@ Since we want the database to be created on the device that the app runs on, we 
 
 <!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/App.xaml.cs?highlight=1)] -->
 ````csharp
-   using Microsoft.EntityFrameworkCore;
-   using System;
-   using System.Collections.Generic;
-   using System.IO;
-   using System.Linq;
-   using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 ````
 
 * Add the highlighted code to apply any pending migrations
 
 <!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/App.xaml.cs?highlight=6,7,8,9)] -->
 ````csharp
-    public App()
-    {
-        this.InitializeComponent();
-        this.Suspending += OnSuspending;
+public App()
+{
+    this.InitializeComponent();
+    this.Suspending += OnSuspending;
 
-        using (var db = new BloggingContext())
-        {
-            db.Database.Migrate();
-        }
+    using (var db = new BloggingContext())
+    {
+        db.Database.Migrate();
     }
+}
 ````
 
 > [!TIP]
-> If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to apply the corresponding changes to the database. Any pending migrations will be applied to the local database on each device when the application starts.EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.
+> If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to apply the corresponding changes to the database. Any pending migrations will be applied to the local database on each device when the application starts.
+>
+>EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.
 
 ## Use your model
 
@@ -198,30 +196,30 @@ You can now use your model to perform data access.
 
 <!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/MainPage.xaml?highlight=9,12,13,14,15,16,17,18,19,20,21,22)] -->
 ````csharp
-   <Page
-x:Class="EFGetStarted.UWP.MainPage"
-xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-xmlns:local="using:EFGetStarted.UWP"
-xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-mc:Ignorable="d"
-Loaded="Page_Loaded">
+<Page
+    x:Class="EFGetStarted.UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EFGetStarted.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
 
-<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <StackPanel>
-        <TextBox Name="NewBlogUrl"></TextBox>
-        <Button Click="Add_Click">Add</Button>
-        <ListView Name="Blogs">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Url}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackPanel>
-</Grid>
-   </Page>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
+            <TextBox Name="NewBlogUrl"></TextBox>
+            <Button Click="Add_Click">Add</Button>
+            <ListView Name="Blogs">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Url}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>
 ````
 
 Now we'll add code to wire up the UI with the database
