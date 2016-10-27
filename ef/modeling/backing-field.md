@@ -13,7 +13,8 @@ When a backing field is configured, EF will write directly to that field when ma
 
 ## Conventions
 
-By convention, the following fields will be discovered as backing fields for a given property (listed in precedence order):
+**By convention, the following fields will be discovered as backing fields for a given property (listed in precedence order):**
+
 * <propertyName> differing only by case
 
 * _<propertyName>
