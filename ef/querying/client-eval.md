@@ -1,13 +1,15 @@
 ---
 uid: querying/client-eval
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Client vs. Server Evaluation
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Entity Framework Core supports parts of the query being evaluated on the client and parts of it being pushed to the database. It is up to the database provider to determine which parts of the query will be evaluated in the database.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
 
 ## Client eval
 
@@ -15,7 +17,7 @@ In the following example a helper method is used to standardize URLs for blogs t
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/Sample.cs?highlight=6)] -->
 
-````c#
+````csharp
 
    var blogs = context.Blogs
        .OrderByDescending(blog => blog.Rating)
@@ -30,7 +32,7 @@ In the following example a helper method is used to standardize URLs for blogs t
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/Sample.cs)] -->
 
-````c#
+````csharp
 
    public static string StandardizeUrl(string url)
    {
@@ -52,7 +54,7 @@ While client evaluation can be very useful, in some instances it can result in p
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/Sample.cs)] -->
 
-````c#
+````csharp
 
    var blogs = context.Blogs
        .Where(blog => StandardizeUrl(blog.Url).Contains("dotnet"))
@@ -64,7 +66,7 @@ By default, EF Core will log a warning when client evaluation is performed. See 
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/ThrowOnClientEval/BloggingContext.cs?highlight=5)] -->
 
-````c#
+````csharp
 
    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
    {

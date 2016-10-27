@@ -1,11 +1,13 @@
 ---
 uid: modeling/relational/primary-keys
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
-Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
-
 # Primary Keys
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
+> [!NOTE]
+> The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
 A primary key constraint is introduced for the key of each entity type.
 
@@ -23,7 +25,7 @@ You can use the Fluent API to configure the name of the primary key constraint i
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/KeyName.cs?highlight=9)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

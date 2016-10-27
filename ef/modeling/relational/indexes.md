@@ -1,11 +1,13 @@
 ---
 uid: modeling/relational/indexes
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
-Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
-
 # Indexes
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
+> [!NOTE]
+> The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
 An index in a relational database maps to the same concept as an index in the core of Entity Framework.
 
@@ -23,7 +25,7 @@ You can use the Fluent API to configure the name of an index.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/IndexName.cs?highlight=9)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

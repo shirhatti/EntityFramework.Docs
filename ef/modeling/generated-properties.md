@@ -1,9 +1,10 @@
 ---
 uid: modeling/generated-properties
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Generated Properties## Value Generation Patterns
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 There are three value generation patterns that can be used for properties.
 
@@ -15,7 +16,8 @@ No value generation means that you will always supply a valid value to be saved 
 
 Value generated on add means that a value is generated for new entities.
 
-Caution: How the value is generated for added entities will depend on the database provider being used. Database providers may automatically setup value generation for some property types, but others may require you to manually setup how the value is generated.For example, when using SQL Server, values will be automatically generated for *GUID* properties (using the SQL Server sequential GUID algorithm). However, if you specify that a *DateTime* property is generated on add, then you must setup a way for the values to be generated (such as setting default value SQL of *GETDATE()*, see [Default Values](relational/default-values.md)).
+> [!WARNING]
+> How the value is generated for added entities will depend on the database provider being used. Database providers may automatically setup value generation for some property types, but others may require you to manually setup how the value is generated.For example, when using SQL Server, values will be automatically generated for *GUID* properties (using the SQL Server sequential GUID algorithm). However, if you specify that a *DateTime* property is generated on add, then you must setup a way for the values to be generated (such as setting default value SQL of *GETDATE()*, see [Default Values](relational/default-values.md)).
 
 If you add an entity to the context that has a value assigned to the primary key property, then EF will attempt to insert that value rather than generating a new one. A property is considered to have a value assigned if it is not assigned the CLR default value (`null` for `string`, `0` for `int`, `Guid.Empty` for `Guid`, etc.).
 
@@ -25,7 +27,8 @@ Depending on the database provider being used, values may be generated client si
 
 Value generated on add or update means that a new value is generated every time the record is saved (insert or update).
 
-Caution: How the value is generated for added and updated entities will depend on the database provider being used. Database providers may automatically setup value generation for some property types, while others will require you to manually setup how the value is generated.For example, when using SQL Server, *byte[]* properties that are set as generated on add or update and marked as concurrency tokens, will be setup with the *rowversion* data type - so that values will be generated in the database. However, if you specify that a *DateTime* property is generated on add or update, then you must setup a way for the values to be generated (such as a database trigger).
+> [!WARNING]
+> How the value is generated for added and updated entities will depend on the database provider being used. Database providers may automatically setup value generation for some property types, while others will require you to manually setup how the value is generated.For example, when using SQL Server, *byte[]* properties that are set as generated on add or update and marked as concurrency tokens, will be setup with the *rowversion* data type - so that values will be generated in the database. However, if you specify that a *DateTime* property is generated on add or update, then you must setup a way for the values to be generated (such as a database trigger).
 
 Like 'value generated on add', if you specify a value for the property on a newly added instance of an entity, that value will be inserted rather than a value being generated. Also, if you explicitly change the value assigned to the property (thus marking it as modified) then that new value will be set in the database rather than a value being generated.
 
@@ -37,7 +40,7 @@ By convention, primary keys that are of an integer or GUID data type will be set
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/ValueGeneratedNever.cs?highlight=3)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -52,7 +55,7 @@ By convention, primary keys that are of an integer or GUID data type will be set
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/ValueGeneratedOnAdd.cs?highlight=5)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -64,13 +67,14 @@ By convention, primary keys that are of an integer or GUID data type will be set
 
    ````
 
-Caution: This just lets EF know that values are generated for added entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add](#value-generated-on-add) section for more details.
+> [!WARNING]
+> This just lets EF know that values are generated for added entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add](#value-generated-on-add) section for more details.
 
 ### Value generated on add or update (Data Annotations)
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/ValueGeneratedOnAddOrUpdate.cs?highlight=5)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -82,7 +86,8 @@ Caution: This just lets EF know that values are generated for added entities, it
 
    ````
 
-Caution: This just lets EF know that values are generated for added or updated entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add or update](#value-generated-on-add-or-update) section for more details.
+> [!WARNING]
+> This just lets EF know that values are generated for added or updated entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add or update](#value-generated-on-add-or-update) section for more details.
 
 ## Fluent API
 
@@ -92,7 +97,7 @@ You can use the Fluent API to change the value generation pattern for a given pr
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/ValueGeneratedNever.cs?highlight=7,8,9)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -118,7 +123,7 @@ You can use the Fluent API to change the value generation pattern for a given pr
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/ValueGeneratedOnAdd.cs?highlight=7,8,9)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -141,13 +146,14 @@ You can use the Fluent API to change the value generation pattern for a given pr
 
    ````
 
-Caution: This just lets EF know that values are generated for added entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add](#value-generated-on-add) section for more details.
+> [!WARNING]
+> This just lets EF know that values are generated for added entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add](#value-generated-on-add) section for more details.
 
 ### Value generated on add or update (Fluent API)
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/ValueGeneratedOnAddOrUpdate.cs?highlight=7,8,9)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -170,4 +176,5 @@ Caution: This just lets EF know that values are generated for added entities, it
 
    ````
 
-Caution: This just lets EF know that values are generated for added or updated entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add or update](#value-generated-on-add-or-update) section for more details.
+> [!WARNING]
+> This just lets EF know that values are generated for added or updated entities, it does not guarantee that EF will setup the actual mechanism to generate values. See [Value generated on add or update](#value-generated-on-add-or-update) section for more details.

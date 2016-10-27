@@ -1,18 +1,20 @@
 ---
 uid: miscellaneous/logging
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Logging
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Miscellaneous/Logging) on GitHub.
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Miscellaneous/Logging) on GitHub.
 
 ## Create a logger
 
 The first step is to create an implementation of `ILoggerProvider` and `ILogger`.
-   * `ILoggerProvider` is the component that decides when to create instances of your logger(s). The provider may choose to create different loggers in different situations.
+    * `ILoggerProvider` is the component that decides when to create instances of your logger(s). The provider may choose to create different loggers in different situations.
 
-   * `ILogger` is the component that does the actual logging. It will be passed information from the framework when certain events occur.
+    * `ILogger` is the component that does the actual logging. It will be passed information from the framework when certain events occur.
 
 Here is a simple implementation that logs a human readable representation of every event to a text file and the Console.
 
@@ -92,7 +94,8 @@ In an ASP.NET Core application, you register your logger in the Configure method
 
 In your application startup code, create and instance of you context and register your logger.
 
-Note: You only need to register the logger with a single context instance. Once you have registered it, it will be used for all other instances of the context in the same AppDomain.
+> [!NOTE]
+> You only need to register the logger with a single context instance. Once you have registered it, it will be used for all other instances of the context in the same AppDomain.
 
 <!-- [!code-csharp[Main](samples/Miscellaneous/Logging/Logging.ConsoleApp/Program.cs)] -->
 

@@ -1,29 +1,32 @@
 ﻿---
 uid: platforms/aspnetcore/existing-db
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # ASP.NET Core Application to Existing Database (Database First)
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 In this walkthrough, you will build an ASP.NET Core MVC application that performs basic data access using Entity Framework.  You will use reverse engineering to create an Entity Framework model based on an existing database.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/AspNetCore/AspNetCore.ExistingDb) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/AspNetCore/AspNetCore.ExistingDb) on GitHub.
 
 ## Prerequisites
 
 The following prerequisites are needed to complete this walkthrough:
 
-   * [Visual Studio 2015 Update 3](https://go.microsoft.com/fwlink/?LinkId=691129)
+    * [Visual Studio 2015 Update 3](https://go.microsoft.com/fwlink/?LinkId=691129)
 
-   * [.NET Core for Visual Studio](https://go.microsoft.com/fwlink/?LinkId=817245)
+    * [.NET Core for Visual Studio](https://go.microsoft.com/fwlink/?LinkId=817245)
 
-   * [Blogging database](#blogging-database)
+    * [Blogging database](#blogging-database)
 
 ### Blogging database
 
 This tutorial uses a **Blogging** database on your LocalDb instance as the existing database.
 
-Note: If you have already created the **Blogging** database as part of another tutorial, you can skip these steps.
+> [!NOTE]
+> If you have already created the **Blogging** database as part of another tutorial, you can skip these steps.
 
 * Open Visual Studio
 
@@ -103,17 +106,18 @@ To use EF Core, install the package for the database provider(s) you want to tar
 
 * Run `Install-Package Microsoft.EntityFrameworkCore.SqlServer`
 
-Note: In ASP.NET Core projects the `Install-Package` will complete quickly and the package installation will occur in the background. You will see **(Restoring...)** appear next to **References** in **Solution Explorer** while the install occurs.
+> [!NOTE]
+> In ASP.NET Core projects the `Install-Package` will complete quickly and the package installation will occur in the background. You will see **(Restoring...)** appear next to **References** in **Solution Explorer** while the install occurs.
 
 To enable reverse engineering from an existing database we need to install a couple of other packages too.
 
-   * Run `Install-Package Microsoft.EntityFrameworkCore.Tools –Pre`
+    * Run `Install-Package Microsoft.EntityFrameworkCore.Tools –Pre`
 
-   * Run `Install-Package Microsoft.EntityFrameworkCore.SqlServer.Design`
+    * Run `Install-Package Microsoft.EntityFrameworkCore.SqlServer.Design`
 
-   * Open **project.json**
+    * Open **project.json**
 
-   * Locate the `tools` section and add the highlighted lines as shown below
+    * Locate the `tools` section and add the highlighted lines as shown below
 
 <!-- [!code-json[Main](samples/aspnetcore/Platforms/AspNetCore/AspNetCore.NewDb/project.json?highlight=2)] -->
 
@@ -146,7 +150,7 @@ The reverse engineer process created entity classes and a derived context based 
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/Blog.cs)] -->
 
-````c#
+````csharp
 
    using System;
    using System.Collections.Generic;
@@ -173,7 +177,7 @@ The context represents a session with the database and allows you to query and s
 
 <!-- [!code[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/BloggingContextUnmodified.txt)] -->
 
-````c#
+````csharp
 
    using Microsoft.EntityFrameworkCore;
    using Microsoft.EntityFrameworkCore.Metadata;
@@ -217,13 +221,13 @@ The concept of dependency injection is central to ASP.NET Core. Services (such a
 
 In ASP.NET Core, configuration is generally performed in **Startup.cs**. To conform to this pattern, we will move configuration of the database provider to **Startup.cs**.
 
-   * Open **Models\BloggingContext.cs**
+    * Open **Models\BloggingContext.cs**
 
-   * Delete the lines of code highlighted below
+    * Delete the lines of code highlighted below
 
 <!-- [!code[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/BloggingContextUnmodified.txt?highlight=3,4,5,6,7)] -->
 
-````c#
+````csharp
 
        public partial class BloggingContext : DbContext
        {
@@ -240,7 +244,7 @@ In ASP.NET Core, configuration is generally performed in **Startup.cs**. To conf
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Models/BloggingContext.cs?highlight=3,4,5)] -->
 
-````c#
+````csharp
 
        public partial class BloggingContext : DbContext
        {
@@ -254,13 +258,13 @@ In ASP.NET Core, configuration is generally performed in **Startup.cs**. To conf
 
 In order for our MVC controllers to make use of `BloggingContext` we are going to register it as a service.
 
-   * Open **Startup.cs**
+    * Open **Startup.cs**
 
-   * Add the following `using` statements at the start of the file
+    * Add the following `using` statements at the start of the file
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Startup.cs)] -->
 
-````c#
+````csharp
 
    using EFGetStarted.AspNetCore.ExistingDb.Models;
    using Microsoft.EntityFrameworkCore;
@@ -269,13 +273,13 @@ In order for our MVC controllers to make use of `BloggingContext` we are going t
 
 Now we can use the `AddDbContext` method to register it as a service.
 
-   * Locate the `ConfigureServices` method
+    * Locate the `ConfigureServices` method
 
-   * Add the lines that are highlighted in the following code
+    * Add the lines that are highlighted in the following code
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Startup.cs?highlight=3,4)] -->
 
-````c#
+````csharp
 
            public void ConfigureServices(IServiceCollection services)
            {
@@ -289,19 +293,19 @@ Now we can use the `AddDbContext` method to register it as a service.
 
 Next, we'll add an MVC controller that will use EF to query and save data.
 
-   * Right-click on the **Controllers** folder in **Solution Explorer** and select Add ‣ New Item...
+    * Right-click on the **Controllers** folder in **Solution Explorer** and select Add ‣ New Item...
 
-   * From the left menu select Installed ‣ Code
+    * From the left menu select Installed ‣ Code
 
-   * Select the **Class** item template
+    * Select the **Class** item template
 
-   * Enter **BlogsController.cs** as the name and click **OK**
+    * Enter **BlogsController.cs** as the name and click **OK**
 
-   * Replace the contents of the file with the following code
+    * Replace the contents of the file with the following code
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Controllers/BlogsController.cs)] -->
 
-````c#
+````csharp
 
    using EFGetStarted.AspNetCore.ExistingDb.Models;
    using Microsoft.AspNetCore.Mvc;
@@ -357,19 +361,19 @@ Now that we have a controller it's time to add the views that will make up the u
 
 We'll start with the view for our `Index` action, that displays all blogs.
 
-   * Right-click on the **Views** folder in **Solution Explorer** and select Add ‣ New Folder
+    * Right-click on the **Views** folder in **Solution Explorer** and select Add ‣ New Folder
 
-   * Enter **Blogs** as the name of the folder
+    * Enter **Blogs** as the name of the folder
 
-   * Right-click on the **Blogs** folder and select Add ‣ New Item...
+    * Right-click on the **Blogs** folder and select Add ‣ New Item...
 
-   * From the left menu select Installed ‣ ASP.NET
+    * From the left menu select Installed ‣ ASP.NET
 
-   * Select the **MVC View Page** item template
+    * Select the **MVC View Page** item template
 
-   * Enter **Index.cshtml** as the name and click **Add**
+    * Enter **Index.cshtml** as the name and click **Add**
 
-   * Replace the contents of the file with the following code
+    * Replace the contents of the file with the following code
 
 <!-- [!code-html[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Views/Blogs/Index.cshtml)] -->
 
@@ -409,15 +413,15 @@ We'll start with the view for our `Index` action, that displays all blogs.
 
 We'll also add a view for the `Create` action, which allows the user to enter details for a new blog.
 
-   * Right-click on the **Blogs** folder and select Add ‣ New Item...
+    * Right-click on the **Blogs** folder and select Add ‣ New Item...
 
-   * From the left menu select Installed ‣ ASP.NET
+    * From the left menu select Installed ‣ ASP.NET
 
-   * Select the **MVC View Page** item template
+    * Select the **MVC View Page** item template
 
-   * Enter **Create.cshtml** as the name and click **Add**
+    * Enter **Create.cshtml** as the name and click **Add**
 
-   * Replace the contents of the file with the following code
+    * Replace the contents of the file with the following code
 
 <!-- [!code-html[Main](samples/Platforms/AspNetCore/AspNetCore.ExistingDb/Views/Blogs/Create.cshtml)] -->
 
@@ -454,15 +458,15 @@ We'll also add a view for the `Create` action, which allows the user to enter de
 
 You can now run the application to see it in action.
 
-   * Debug ‣ Start Without Debugging
+    * Debug ‣ Start Without Debugging
 
-   * The application will build and open in a web browser
+    * The application will build and open in a web browser
 
-   * Navigate to **/Blogs**
+    * Navigate to **/Blogs**
 
-   * Click **Create New**
+    * Click **Create New**
 
-   * Enter a **Url** for the new blog and click **Create**
+    * Enter a **Url** for the new blog and click **Create**
 
 ![image](aspnetcore/_static/create.png)
 

@@ -1,11 +1,13 @@
 ---
 uid: modeling/relational/inheritance
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
-Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
-
 # Inheritance (Relational Database)
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
+> [!NOTE]
+> The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
 Inheritance in the EF model is used to control how inheritance in the entity classes is represented in the database.
 
@@ -19,7 +21,7 @@ Below is an example showing a simple inheritance scenario and the data stored in
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/Conventions/Samples/InheritanceDbSets.cs)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -52,7 +54,7 @@ You can use the Fluent API to configure the name and type of the discriminator c
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/InheritanceTPHDiscriminator.cs?highlight=7,8,9,10)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

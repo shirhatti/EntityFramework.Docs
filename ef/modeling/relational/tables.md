@@ -1,11 +1,13 @@
 ---
 uid: modeling/relational/tables
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
-Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
-
 # Table Mapping
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
+> [!NOTE]
+> The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
 Table mapping identifies which table data should be queried from and saved to in the database.
 
@@ -19,7 +21,7 @@ You can use Data Annotations to configure the table that a type maps to.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/Table.cs?highlight=1)] -->
 
-````c#
+````csharp
 
        [Table("blogs")]
        public class Blog
@@ -34,7 +36,7 @@ You can also specify a schema that the table belongs to.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/TableAndSchema.cs?highlight=1)] -->
 
-````c#
+````csharp
 
        [Table("blogs", Schema = "blogging")]
        public class Blog
@@ -51,7 +53,7 @@ You can use the Fluent API to configure the table that a type maps to.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/Table.cs?highlight=7,8)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -76,7 +78,7 @@ You can also specify a schema that the table belongs to.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/TableAndSchema.cs?highlight=2)] -->
 
-````c#
+````csharp
 
                modelBuilder.Entity<Blog>()
                    .ToTable("blogs", schema: "blogging");

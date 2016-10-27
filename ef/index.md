@@ -1,9 +1,10 @@
 ---
 uid: index
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Entity Framework Core
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Entity Framework (EF) Core is a lightweight and extensible version of the popular Entity Framework data access technology.
 
@@ -30,7 +31,7 @@ You can generate a model from an existing database, hand code a model to match y
 
 <!-- literal_block"ids  "dupnames  "names  "xml:space": "preserve", : "csharp", "classes  "linenos": true, "backrefs  highlight_args} -->
 
-````c#
+````csharp
 
    using Microsoft.EntityFrameworkCore;
    using System.Collections.Generic;
@@ -74,7 +75,7 @@ Instances of your entity classes are retrieved from the database using Language 
 
 <!-- literal_block"ids  "dupnames  "names  "xml:space": "preserve", : "csharp", "classes  "linenos": true, "backrefs  highlight_args} -->
 
-````c#
+````csharp
 
    using (var db = new BloggingContext())
    {
@@ -91,7 +92,7 @@ Data is created, deleted, and modified in the database using instances of your e
 
 <!-- literal_block"ids  "dupnames  "names  "xml:space": "preserve", : "csharp", "classes  "linenos": true, "backrefs  highlight_args} -->
 
-````c#
+````csharp
 
    using (var db = new BloggingContext())
    {

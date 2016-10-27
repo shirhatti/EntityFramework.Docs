@@ -1,9 +1,10 @@
 ---
 uid: modeling/indexes
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Indexes
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Indexes are a common concept across many data stores. While their implementation in the data store may vary, they are used to make lookups based on a column (or set of columns) more efficient.
 
@@ -21,7 +22,7 @@ You can use the Fluent API specify an index on a single property. By default, in
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Index.cs?highlight=7,8)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -46,7 +47,7 @@ You can also specify that an index should be unique, meaning that no two entitie
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/IndexUnique.cs?highlight=3)] -->
 
-````c#
+````csharp
 
                modelBuilder.Entity<Blog>()
                    .HasIndex(b => b.Url)
@@ -58,7 +59,7 @@ You can also specify an index over more than one column.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/IndexComposite.cs?highlight=7,8)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -80,4 +81,5 @@ You can also specify an index over more than one column.
 
    ````
 
-Note: There is only one index per distinct set of properties. If you use the Fluent API to configure an index on a set of properties that already has an index defined, either by convention or previous configuration, then you will be changing the definition of that index. This is useful if you want to further configure an index that was created by convention.
+> [!NOTE]
+> There is only one index per distinct set of properties. If you use the Fluent API to configure an index on a set of properties that already has an index defined, either by convention or previous configuration, then you will be changing the definition of that index. This is useful if you want to further configure an index that was created by convention.

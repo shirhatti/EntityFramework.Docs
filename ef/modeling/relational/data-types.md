@@ -1,11 +1,13 @@
 ---
 uid: modeling/relational/data-types
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
-Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
-
 # Data Types
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
+> [!NOTE]
+> The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
 Data type refers to the database specific type of the column to which a property is mapped.
 
@@ -21,7 +23,7 @@ You can use Data Annotations to specify an exact data type for the column.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/DataAnnotations/Samples/Relational/DataType.cs?highlight=4)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -38,7 +40,7 @@ You can use the Fluent API to specify an exact data type for the column.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/DataType.cs?highlight=7,8,9)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -64,7 +66,7 @@ If you are targeting more than one relational provider with the same model then 
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/DataTypeForProvider.cs?highlight=3)] -->
 
-````c#
+````csharp
 
                modelBuilder.Entity<Blog>()
                    .Property(b => b.Url)

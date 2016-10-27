@@ -1,24 +1,27 @@
 ﻿---
 uid: platforms/uwp/getting-started
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Local SQLite on UWP
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 In this walkthrough, you will build a Universal Windows Platform (UWP) application that performs basic data access against a local SQLite database using Entity Framework.
 
-Caution: **Avoid using anonymous types in LINQ queries on UWP**. Deploying a UWP application to the app store requires your application to be compiled with .NET Native. Queries with anonymous types have poor performance on .NET Native or may crash the application.
+> [!WARNING]
+> **Avoid using anonymous types in LINQ queries on UWP**. Deploying a UWP application to the app store requires your application to be compiled with .NET Native. Queries with anonymous types have poor performance on .NET Native or may crash the application.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/UWP/UWP.SQLite) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/UWP/UWP.SQLite) on GitHub.
 
 ## Prerequisites
 
 The following items are required to complete this walkthrough:
-   * Windows 10
+    * Windows 10
 
-   * [Visual Studio 2015 Update 3](https://go.microsoft.com/fwlink/?LinkId=691129)
+    * [Visual Studio 2015 Update 3](https://go.microsoft.com/fwlink/?LinkId=691129)
 
-   * The latest version of [Windows 10 Developer Tools](https://dev.windows.com/en-us/downloads)
+    * The latest version of [Windows 10 Developer Tools](https://dev.windows.com/en-us/downloads)
 
 ## Create a new project
 
@@ -103,11 +106,13 @@ Now it's time to define a context and entity classes that make up your model.
 
    ````
 
-Tip: In a real application you would put each class in a separate file and put the connection string in the `App.Config` file and read it out using `ConfigurationManager`. For the sake of simplicity, we are putting everything in a single code file for this tutorial.
+> [!TIP]
+> In a real application you would put each class in a separate file and put the connection string in the `App.Config` file and read it out using `ConfigurationManager`. For the sake of simplicity, we are putting everything in a single code file for this tutorial.
 
 ## Create your database
 
-Warning: **Known Issue in Preview 2**Using EF Tools on UWP projects does not work without manually adding binding redirects.
+> [!WARNING]
+> **Known Issue in Preview 2**Using EF Tools on UWP projects does not work without manually adding binding redirects.
 
   * File –> New –> File...
 
@@ -157,7 +162,7 @@ Since we want the database to be created on the device that the app runs on, we 
 
 <!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/App.xaml.cs?highlight=1)] -->
 
-````c#
+````csharp
 
    using Microsoft.EntityFrameworkCore;
    using System;
@@ -172,7 +177,7 @@ Since we want the database to be created on the device that the app runs on, we 
 
 <!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/App.xaml.cs?highlight=6,7,8,9)] -->
 
-````c#
+````csharp
 
            public App()
            {
@@ -187,7 +192,8 @@ Since we want the database to be created on the device that the app runs on, we 
 
    ````
 
-Tip: If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to apply the corresponding changes to the database. Any pending migrations will be applied to the local database on each device when the application starts.EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.
+> [!TIP]
+> If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to apply the corresponding changes to the database. Any pending migrations will be applied to the local database on each device when the application starts.EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.
 
 ## Use your model
 
@@ -199,7 +205,7 @@ You can now use your model to perform data access.
 
 <!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/MainPage.xaml?highlight=9,12,13,14,15,16,17,18,19,20,21,22)] -->
 
-````c#
+````csharp
 
    <Page
        x:Class="EFGetStarted.UWP.MainPage"
@@ -236,7 +242,7 @@ Now we'll add code to wire up the UI with the database
 
 <!-- [!code-csharp[Main](samples/Platforms/UWP/UWP.SQLite/MainPage.xaml.cs?highlight=8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26)] -->
 
-````c#
+````csharp
 
        public sealed partial class MainPage : Page
        {

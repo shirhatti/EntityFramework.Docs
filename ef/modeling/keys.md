@@ -1,9 +1,10 @@
 ---
 uid: modeling/keys
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Keys (primary)
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 A key serves as the primary unique identifier for each entity instance. When using a relational database this maps to the concept of a *primary key*. You can also configure a unique identifier that is not the primary key (see [Alternate Keys](alternate-keys.md) for more information).
 
@@ -13,7 +14,7 @@ By convention, a property named `Id` or `<type name>Id` will be configured as th
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/KeyId.cs?highlight=3)] -->
 
-````c#
+````csharp
 
        class Car
        {
@@ -27,7 +28,7 @@ By convention, a property named `Id` or `<type name>Id` will be configured as th
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/KeyTypeNameId.cs?highlight=3)] -->
 
-````c#
+````csharp
 
        class Car
        {
@@ -45,7 +46,7 @@ You can use Data Annotations to configure a single property to be the key of an 
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/KeySingle.cs?highlight=3,4)] -->
 
-````c#
+````csharp
 
        class Car
        {
@@ -64,7 +65,7 @@ You can use the Fluent API to configure a single property to be the key of an en
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/KeySingle.cs?highlight=7,8)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -91,7 +92,7 @@ You can also use the Fluent API to configure multiple properties to be the key o
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/KeyComposite.cs?highlight=7,8)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

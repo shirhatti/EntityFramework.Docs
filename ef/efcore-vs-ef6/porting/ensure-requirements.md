@@ -1,9 +1,10 @@
 ---
 uid: efcore-vs-ef6/porting/ensure-requirements
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Ensure EF Core Will Work for Your Application
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Before you start the porting process it is important to validate that EF Core meets the data access requirements for your application.
 
@@ -20,9 +21,9 @@ This is a non-exhaustive list of some changes in behavior between EF6.x and EF C
 In EF6.x, calling `DbSet.Add()` on an entity results in a recursive search for all entities referenced in its navigation properties. Any entities that are found, and are not already tracked by the context, are also be marked as added. `DbSet.Attach()` behaves the same, except all entities are marked as unchanged.
 
 EF Core performs a similar recursive search, but with some slightly different rules.
-   * The root entity is always in the requested state (added for `DbSet.Add` and unchanged for `DbSet.Attach`).
+    * The root entity is always in the requested state (added for `DbSet.Add` and unchanged for `DbSet.Attach`).
 
-   * For entities that are found during the recursive search of navigation properties:
+    * For entities that are found during the recursive search of navigation properties:
 
         * If the primary key of the entity is store generated
 
@@ -35,20 +36,20 @@ EF Core performs a similar recursive search, but with some slightly different ru
 ### Code First database initialization
 
 EF6.x has a significant amount of magic it performs around selecting the database connection and initializing the database. Some of these rules include:
-   * If no configuration is performed, EF6.x will select a database on SQL Express or LocalDb.
+    * If no configuration is performed, EF6.x will select a database on SQL Express or LocalDb.
 
-   * If a connection string with the same name as the context is in the applications `App/Web.config` file, this connection will be used.
+    * If a connection string with the same name as the context is in the applications `App/Web.config` file, this connection will be used.
 
-   * If the database does not exist, it is created.
+    * If the database does not exist, it is created.
 
-   * If none of the tables from the model exist in the database, the schema for the current model is added to the database. If migrations are enabled, then they are used to create the database.
+    * If none of the tables from the model exist in the database, the schema for the current model is added to the database. If migrations are enabled, then they are used to create the database.
 
-   * If the database exists and EF6.x had previously created the schema, then the schema is checked for compatibility with the current model. An exception is thrown if the model has changed since the schema was created.
+    * If the database exists and EF6.x had previously created the schema, then the schema is checked for compatibility with the current model. An exception is thrown if the model has changed since the schema was created.
 
 EF Core does not perform any of this magic.
-   * The database connection must be explicitly configured in code.
+    * The database connection must be explicitly configured in code.
 
-   * No initialization is performed. You must use `DbContext.Database.Migrate()` to apply migrations (or `DbContext.Database.EnsureCreated()` and `EnsureDeleted()` to create/delete the database without using migrations).
+    * No initialization is performed. You must use `DbContext.Database.Migrate()` to apply migrations (or `DbContext.Database.EnsureCreated()` and `EnsureDeleted()` to create/delete the database without using migrations).
 
 ### Code First table naming convention
 

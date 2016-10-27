@@ -1,15 +1,18 @@
 ---
 uid: miscellaneous/internals/writing-a-provider
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Writing a Database Provider
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 EF Core is designed to be extensible. It provides general purpose building blocks that are intended for use in multiple providers. The purpose of this article is to provide basic guidance on creating a new provider that is compatible with EF Core.
 
-Tip: [EF Core source code is open-source](https://github.com/aspnet/EntityFramework). The best source of information is the code itself.
+> [!TIP]
+> [EF Core source code is open-source](https://github.com/aspnet/EntityFramework). The best source of information is the code itself.
 
-Tip: This article shows snippets from an empty EF provider. You can view the [full stubbed-out provider](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Miscellaneous/Internals/WritingAProvider) on GitHub.
+> [!TIP]
+> This article shows snippets from an empty EF provider. You can view the [full stubbed-out provider](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Miscellaneous/Internals/WritingAProvider) on GitHub.
 
 <a name=entry-point></a>
 
@@ -27,13 +30,15 @@ A user's interaction with EF begins with the `DbContext` constructor. Before the
 
 See also [Understanding EF Services](services.md).
 
-Note: EF uses [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/) to implement dependency injection. Documentation for this project [is available on docs.asp.net](https://docs.asp.net/en/latest/fundamentals/dependency-injection.html).
+> [!NOTE]
+> EF uses [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/) to implement dependency injection. Documentation for this project [is available on docs.asp.net](https://docs.asp.net/en/latest/fundamentals/dependency-injection.html).
 
 ## Plugging in a Provider
 
 As explained above, EF uses options and services. Each provider must create API so users to add provider-specific options and services. This API is best created by using extension methods.
 
-Tip: When defining an extension method, define it in the namespace of the object being extended so Visual Studio auto-complete will include the extension method as a possible completion.
+> [!TIP]
+> When defining an extension method, define it in the namespace of the object being extended so Visual Studio auto-complete will include the extension method as a possible completion.
 
 ### The *Use* Method
 
@@ -71,7 +76,8 @@ An example implementation of the "Use" method
 
    ````
 
-Tip: The `UseX()` method can also be used to return a special wrapper around `DbContextOptionsBuilder` that allows users to configure multiple options with chained calls. See `SqlServerDbContextOptionsBuilder` as an example.
+> [!TIP]
+> The `UseX()` method can also be used to return a special wrapper around `DbContextOptionsBuilder` that allows users to configure multiple options with chained calls. See `SqlServerDbContextOptionsBuilder` as an example.
 
 ### The *Add* Method
 

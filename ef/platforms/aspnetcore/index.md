@@ -1,9 +1,10 @@
 ---
 uid: platforms/aspnetcore/index
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Getting Started on ASP.NET Core
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 These 101 tutorials require no previous knowledge of Entity Framework (EF) or Visual Studio. They will take you step-by-step through creating a simple application that queries and saves data from a database.
 

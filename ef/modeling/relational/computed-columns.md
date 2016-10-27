@@ -1,11 +1,13 @@
 ---
 uid: modeling/relational/computed-columns
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
-Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
-
 # Computed Columns
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
+> [!NOTE]
+> The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
 A computed column is a column whose value is calculated in the database. A computed column can use other columns in the table to calculate its value.
 
@@ -23,7 +25,7 @@ You can use the Fluent API to specify that a property should map to a computed c
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/ComputedColumn.cs?highlight=9)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

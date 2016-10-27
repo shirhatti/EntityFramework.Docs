@@ -1,9 +1,10 @@
 ---
 uid: miscellaneous/configuring-dbcontext
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Configuring a DbContext
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 This article shows patterns for configuring a `DbContext` with `DbContextOptions`. Options are primarily used to select and configure the data store.
 
@@ -33,7 +34,8 @@ If both are used, "OnConfiguring" takes higher priority, which means it can over
    }
    ````
 
-Tip: The base constructor of DbContext also accepts the non-generic version of `DbContextOptions`. Using the non-generic version is not recommended for applications with multiple context types.
+> [!TIP]
+> The base constructor of DbContext also accepts the non-generic version of `DbContextOptions`. Using the non-generic version is not recommended for applications with multiple context types.
 
 Application code to initialize from constructor argument
 
@@ -52,7 +54,8 @@ Application code to initialize from constructor argument
 
 ### OnConfiguring
 
-Caution: `OnConfiguring` occurs last and can overwrite options obtained from DI or the constructor. This approach does not lend itself to testing (unless you target the full database).
+> [!WARNING]
+> `OnConfiguring` occurs last and can overwrite options obtained from DI or the constructor. This approach does not lend itself to testing (unless you target the full database).
 
 Context code with OnConfiguring
 

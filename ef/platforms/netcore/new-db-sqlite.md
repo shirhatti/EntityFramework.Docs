@@ -1,24 +1,27 @@
 ---
 uid: platforms/netcore/new-db-sqlite
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # .NET Core Application to New SQLite Database
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 In this walkthrough, you will build a .NET Core console application that performs basic data access using Entity Framework. You will use migrations to create the database from your model.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/NetCore/ConsoleApp.SQLite) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/NetCore/ConsoleApp.SQLite) on GitHub.
 
 ## Prerequisites
 
 Minimum system requirements
-   * An operating system that supports .NET Core
+    * An operating system that supports .NET Core
 
-   * [.NET Core SDK Preview 2](https://www.microsoft.com/net/core)
+    * [.NET Core SDK Preview 2](https://www.microsoft.com/net/core)
 
-   * A text editor
+    * A text editor
 
-Caution: **Known Issues**
+> [!WARNING]
+> **Known Issues**
 
   * Migrations on SQLite do not support more complex schema changes due to limitations in SQLite itself. See [SQLite Limitations](../../providers/sqlite/limitations.md)
 
@@ -30,7 +33,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
 ## Create a new project
 
-   * Create a new folder `ConsoleApp/` for your project. All files for the project should be in this folder.
+    * Create a new folder `ConsoleApp/` for your project. All files for the project should be in this folder.
 
         <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -40,7 +43,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
            cd ConsoleApp/
            ````
 
-   * Execute the following .NET Core CLI commands to create a new console application, download dependencies, and run the .NET Core app.
+    * Execute the following .NET Core CLI commands to create a new console application, download dependencies, and run the .NET Core app.
 
      <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -53,7 +56,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
 ## Install Entity Framework
 
-   * To add EF to your project, modify `project.json` so it matches the following sample.
+    * To add EF to your project, modify `project.json` so it matches the following sample.
 
 <!-- [!code-json[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/project.json?highlight=8,9,10,11,12,25,26,27)] -->
 
@@ -90,7 +93,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
            ````
 
-   * Run `dotnet restore` again to install the new packages.
+    * Run `dotnet restore` again to install the new packages.
 
         <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -99,7 +102,7 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
            dotnet restore
            ````
 
-   * Verify that Entity Framework is installed by running `dotnet ef --help`.
+    * Verify that Entity Framework is installed by running `dotnet ef --help`.
 
         <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -112,13 +115,13 @@ See the [.NET Core website](https://www.microsoft.com/net/core) for instructions
 
 With this new project, you are ready to begin using Entity Framework. The next steps will add code to configure and access a SQLite database file.
 
-   * Create a new file called `Model.cs`
+    * Create a new file called `Model.cs`
 
         All classes in the following steps will be added to this file.
 
 <!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Model.cs)] -->
 
-           ````c#
+           ````csharp
 
               using System.Collections.Generic;
               using System.IO;
@@ -129,13 +132,13 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
               ````
 
-   * Add a new class to represent the SQLite database.
+    * Add a new class to represent the SQLite database.
 
         We will call this `BloggingContext`. The call to `UseSqlite()` configures EF to point to a *.db file.
 
 <!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Model.cs?highlight=1,8)] -->
 
-           ````c#
+           ````csharp
 
               public class BloggingContext : DbContext
               {
@@ -151,13 +154,13 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
               ````
 
-   * Add classes to represent tables.
+    * Add classes to represent tables.
 
         Note that we will be using foreign keys to associate many posts to one blog.
 
 <!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Model.cs)] -->
 
-           ````c#
+           ````csharp
 
               public class Blog
               {
@@ -180,7 +183,7 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
               ````
 
-   * To make sure the files are correct, you can compile the project on the command line by running `dotnet build`
+    * To make sure the files are correct, you can compile the project on the command line by running `dotnet build`
 
         <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 
@@ -193,7 +196,7 @@ With this new project, you are ready to begin using Entity Framework. The next s
 
 We can now use Entity Framework command line tools to create and manage the schema of the database.
 
-   * Create the first migration.
+    * Create the first migration.
 
         Execute the command below to generate your first migration. This will find our context and models, and generate a migration for us in a folder named `Migrations/`
 
@@ -204,7 +207,7 @@ We can now use Entity Framework command line tools to create and manage the sche
            dotnet ef migrations add MyFirstMigration
            ````
 
-   * Apply the migrations.
+    * Apply the migrations.
 
         You can now begin using the existing migration to create the database file and creates the tables.
 
@@ -217,7 +220,8 @@ We can now use Entity Framework command line tools to create and manage the sche
 
         This should create a new file `blog.db` in the output path. This SQLite file should now contain two empty tables.
 
-Note: When using relative paths with SQLite, the path will be relative to the application's main assembly. In this sample, the main binary is `bin/Debug/netcoreapp1.0/ConsoleApp.dll`, so the SQLite database will be in `bin/Debug/netcoreapp1.0/blog.db`
+> [!NOTE]
+> When using relative paths with SQLite, the path will be relative to the application's main assembly. In this sample, the main binary is `bin/Debug/netcoreapp1.0/ConsoleApp.dll`, so the SQLite database will be in `bin/Debug/netcoreapp1.0/blog.db`
 
 ## Use your model
 
@@ -225,7 +229,7 @@ Now that we have configured our model and created the database schema, we can us
 
 <!-- [!code-csharp[Main](samples/Platforms/NetCore/ConsoleApp.SQLite/Program.cs)] -->
 
-````c#
+````csharp
 
    using System;
 

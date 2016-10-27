@@ -1,13 +1,15 @@
 ---
 uid: saving/transactions
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Transactions
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Transactions allow several database operations to be processed in an atomic manner. If the transaction is committed, all of the operations are successfully applied to the database. If the transaction is rolled back, none of the operations are applied to the database.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/Transactions/) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/Transactions/) on GitHub.
 
 ## Default transaction behavior
 
@@ -23,7 +25,7 @@ Not all database providers support transactions. Some providers may throw or no-
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/ControllingTransaction/Sample.cs?highlight=3,17,18,19)] -->
 
-````c#
+````csharp
 
                using (var context = new BloggingContext())
                {
@@ -66,11 +68,12 @@ Sharing a `DbConnection` requires the ability to pass a connection into a contex
 
 The easiest way to allow `DbConnection` to be externally provided, is to stop using the `DbContext.OnConfiguring` method to configure the context and externally create `DbContextOptions` and pass them to the context constructor.
 
-Tip: `DbContextOptionsBuilder` is the API you used in `DbContext.OnConfiguring` to configure the context, you are now going to use it externally to create `DbContextOptions`.
+> [!TIP]
+> `DbContextOptionsBuilder` is the API you used in `DbContext.OnConfiguring` to configure the context, you are now going to use it externally to create `DbContextOptions`.
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/SharingTransaction/Sample.cs?highlight=3,4,5)] -->
 
-````c#
+````csharp
 
            public class BloggingContext : DbContext
            {
@@ -87,7 +90,7 @@ An alternative is to keep using `DbContext.OnConfiguring`, but accept a `DbConne
 
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": false, "dupnames  : "csharp", highlight_args}, "names": [] -->
 
-````c#
+````csharp
 
    public class BloggingContext : DbContext
    {
@@ -113,7 +116,7 @@ You can now create multiple context instances that share the same connection. Th
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/SharingTransaction/Sample.cs?highlight=1,2,3,7,16,23,24,25)] -->
 
-````c#
+````csharp
 
                var options = new DbContextOptionsBuilder<BloggingContext>()
                    .UseSqlServer(new SqlConnection(connectionString))
@@ -158,7 +161,7 @@ The following example, shows how to perform an ADO.NET SqlClient operation and a
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Transactions/ExternalDbTransaction/Sample.cs?highlight=4,10,21,26,27,28)] -->
 
-````c#
+````csharp
 
                var connection = new SqlConnection(connectionString);
                connection.Open();

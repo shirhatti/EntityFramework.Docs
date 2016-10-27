@@ -1,9 +1,10 @@
 ---
 uid: modeling/inheritance
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Inheritance
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Inheritance in the EF model is used to control how inheritance in the entity classes is represented in the database.
 
@@ -15,7 +16,7 @@ EF will only setup inheritance if two or more inherited types are explicitly inc
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/InheritanceDbSets.cs?highlight=3,4)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -40,7 +41,7 @@ If you don't want to expose a *DbSet<TEntity>* for one or more entities in the h
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/InheritanceModelBuilder.cs?highlight=7)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

@@ -1,18 +1,20 @@
 ---
 uid: querying/related-data
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Loading Related Data
 
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
 Entity Framework Core allows you to use the navigation properties in your model to load related entities. There are three common O/RM patterns used to load related data.
-   * **Eager loading** means that the related data is loaded from the database as part of the initial query.
+    * **Eager loading** means that the related data is loaded from the database as part of the initial query.
 
-   * **Explicit loading** means that the related data is explicitly loaded from the database at a later time.
+    * **Explicit loading** means that the related data is explicitly loaded from the database at a later time.
 
-   * **Lazy loading** means that the related data is transparently loaded from the database when the navigation property is accessed. Lazy loading is not yet possible with EF Core.
+    * **Lazy loading** means that the related data is transparently loaded from the database when the navigation property is accessed. Lazy loading is not yet possible with EF Core.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
 
 ## Eager loading
 
@@ -20,7 +22,7 @@ You can use the `Include` method to specify related data to be included in query
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
    var blogs = context.Blogs
        .Include(blog => blog.Posts)
@@ -28,13 +30,14 @@ You can use the `Include` method to specify related data to be included in query
 
    ````
 
-Tip: Entity Framework Core will automatically fix-up navigation properties to any other entities that were previously loaded into the context instance. So even if you don't explicitly include the data for a navigation property, the property may still be populated if some or all of the related entities were previously loaded.
+> [!TIP]
+> Entity Framework Core will automatically fix-up navigation properties to any other entities that were previously loaded into the context instance. So even if you don't explicitly include the data for a navigation property, the property may still be populated if some or all of the related entities were previously loaded.
 
 You can include related data from multiple relationships in a single query.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
    var blogs = context.Blogs
        .Include(blog => blog.Posts)
@@ -49,7 +52,7 @@ You can drill down thru relationships to include multiple levels of related data
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
    var blogs = context.Blogs
        .Include(blog => blog.Posts)
@@ -62,7 +65,7 @@ You can chain multiple calls to `ThenInclude` to continue including further leve
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
    var blogs = context.Blogs
        .Include(blog => blog.Posts)
@@ -76,7 +79,7 @@ You can combine all of this to include related data from multiple levels and mul
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
    var blogs = context.Blogs
        .Include(blog => blog.Posts)
@@ -96,7 +99,7 @@ In the following example, the include operators are based on the `Blog`, but the
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
    var blogs = context.Blogs
        .Include(blog => blog.Posts)
@@ -113,7 +116,7 @@ By default, EF Core will log a warning when include operators are ignored. See [
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/ThrowOnIgnoredInclude/BloggingContext.cs?highlight=5)] -->
 
-````c#
+````csharp
 
    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
    {
@@ -134,7 +137,7 @@ In the following example, a query is used to load a blog, and then a later query
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
    var blog = context.Blogs
        .Single(b => b.BlogId == 1);

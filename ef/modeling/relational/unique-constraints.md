@@ -1,11 +1,13 @@
 ---
 uid: modeling/relational/unique-constraints
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
-Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
-
 # Alternate Keys (Unique Constraints)
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
+> [!NOTE]
+> The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
 A unique constraint is introduced for each alternate key in the model.
 
@@ -23,7 +25,7 @@ You can use the Fluent API to configure the index and constraint name for an alt
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/AlternateKeyName.cs?highlight=9)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

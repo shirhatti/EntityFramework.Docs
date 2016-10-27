@@ -1,13 +1,15 @@
 ---
 uid: querying/basic
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Basic Query
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Entity Framework Core uses Language Integrate Query (LINQ) to query data from the database. LINQ allows you to use C# (or your .NET language of choice) to write strongly typed queries based on your derived context and entity classes.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
 
 ## 101 LINQ samples
 
@@ -17,7 +19,7 @@ This page shows a few examples to achieve common tasks with Entity Framework Cor
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Basics/Sample.cs)] -->
 
-````c#
+````csharp
 
    using (var context = new BloggingContext())
    {
@@ -30,7 +32,7 @@ This page shows a few examples to achieve common tasks with Entity Framework Cor
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Basics/Sample.cs)] -->
 
-````c#
+````csharp
 
    using (var context = new BloggingContext())
    {
@@ -44,7 +46,7 @@ This page shows a few examples to achieve common tasks with Entity Framework Cor
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Basics/Sample.cs)] -->
 
-````c#
+````csharp
 
    using (var context = new BloggingContext())
    {

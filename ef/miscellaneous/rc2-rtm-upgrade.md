@@ -1,9 +1,10 @@
 ---
 uid: miscellaneous/rc2-rtm-upgrade
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Upgrading from RC2 to RTM
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 This article provides guidance for moving an application built with the RC2 packages to 1.0.0 RTM.
 
@@ -12,9 +13,9 @@ This article provides guidance for moving an application built with the RC2 pack
 The names of the top level packages that you would typically install into an application did not change between RC2 and RTM.
 
 You need to upgrade the installed packages to the RTM versions:
-   * Runtime packages (e.g. `Microsoft.EntityFrameworkCore.SqlServer`) changed from `1.0.0-rc2-final` to `1.0.0`.
+    * Runtime packages (e.g. `Microsoft.EntityFrameworkCore.SqlServer`) changed from `1.0.0-rc2-final` to `1.0.0`.
 
-   * The `Microsoft.EntityFrameworkCore.Tools` package changed from `1.0.0-preview1-final` to `1.0.0-preview2-final`. Note that tooling is still pre-release.
+    * The `Microsoft.EntityFrameworkCore.Tools` package changed from `1.0.0-preview1-final` to `1.0.0-preview2-final`. Note that tooling is still pre-release.
 
 ## Existing migrations may need maxLength added
 
@@ -26,13 +27,13 @@ Any existing migrations that were scaffolded prior to using RTM will not have th
 
 This change impacts projects that use ASP.NET Identity and were created from a pre-RTM project template. The project template includes a migration used to create the database. This migration must be edited to specify a maximum length of `256` for the following columns.
 
-   * AspNetRoles
+    * AspNetRoles
 
         * Name
 
         * NormalizedName
 
-   * AspNetUsers
+    * AspNetUsers
 
         * Email
 

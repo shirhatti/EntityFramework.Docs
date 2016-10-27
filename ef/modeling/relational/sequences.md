@@ -1,11 +1,13 @@
 ---
 uid: modeling/relational/sequences
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
-Note: The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
-
 # Sequences
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
+
+> [!NOTE]
+> The configuration in this section is applicable to relational databases in general. The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).
 
 A sequence generates a sequential numeric values in the database. Sequences are not associated with a specific table.
 
@@ -23,7 +25,7 @@ You can use the Fluent API to create a sequence in the model.
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/Sequence.cs?highlight=7)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -48,7 +50,7 @@ You can also configure additional aspect of the sequence, such as its schema, st
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/SequenceConfigured.cs?highlight=7,8,9)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -68,7 +70,7 @@ Once a sequence is introduced, you can use it to generate values for properties 
 
 <!-- [!code-csharp[Main](samples/relational/Modeling/FluentAPI/Samples/Relational/SequenceUsed.cs?highlight=11,12,13)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

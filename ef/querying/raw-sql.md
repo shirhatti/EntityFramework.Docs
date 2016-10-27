@@ -1,24 +1,26 @@
 ---
 uid: querying/raw-sql
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Raw SQL Queries
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Entity Framework Core allows you to drop down to raw SQL queries when working with a relational database. This can be useful if the query you want to perform can't be expressed using LINQ, or if using a LINQ query is resulting in inefficient SQL being sent to the database.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
 
 ## Limitations
 
 There are a couple of limitations to be aware of when using raw SQL queries:
-   * SQL queries can only be used to return entity types that are part of your model. There is an enhancement on our backlog to [enable returning ad-hoc types from raw SQL queries](https://github.com/aspnet/EntityFramework/issues/1862).
+    * SQL queries can only be used to return entity types that are part of your model. There is an enhancement on our backlog to [enable returning ad-hoc types from raw SQL queries](https://github.com/aspnet/EntityFramework/issues/1862).
 
-   * The SQL query must return data for all properties of the entity type.
+    * The SQL query must return data for all properties of the entity type.
 
-   * The column names in the result set must match the column names that properties are mapped to. Note this is different from EF6.x where property/column mapping was ignored for raw SQL queries and result set column names had to match the property names.
+    * The column names in the result set must match the column names that properties are mapped to. Note this is different from EF6.x where property/column mapping was ignored for raw SQL queries and result set column names had to match the property names.
 
-   * The SQL query cannot contain related data. However, in many cases you can compose on top of the query using the `Include` operator to return related data (see [Including related data](#including-related-data)).
+    * The SQL query cannot contain related data. However, in many cases you can compose on top of the query using the `Include` operator to return related data (see [Including related data](#including-related-data)).
 
 ## Basic raw SQL queries
 
@@ -26,7 +28,7 @@ You can use the *FromSql* extension method to begin a LINQ query based on a raw 
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RawSQL/Sample.cs)] -->
 
-````c#
+````csharp
 
    var blogs = context.Blogs
        .FromSql("SELECT * FROM dbo.Blogs")
@@ -38,7 +40,7 @@ Raw SQL queries can be used to execute a stored procedure.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RawSQL/Sample.cs)] -->
 
-````c#
+````csharp
 
    var blogs = context.Blogs
        .FromSql("EXECUTE dbo.GetMostPopularBlogs")
@@ -54,7 +56,7 @@ The following example passes a single parameter to a stored procedure. While thi
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RawSQL/Sample.cs)] -->
 
-````c#
+````csharp
 
    var user = "johndoe";
 
@@ -68,7 +70,7 @@ You can also construct a DbParameter and supply it as a parameter value. This al
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RawSQL/Sample.cs)] -->
 
-````c#
+````csharp
 
    var user = new SqlParameter("user", "johndoe");
 
@@ -86,7 +88,7 @@ The following example uses a raw SQL query that selects from a Table-Valued Func
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RawSQL/Sample.cs)] -->
 
-````c#
+````csharp
 
    var searchTerm = ".NET";
 
@@ -104,7 +106,7 @@ Composing with LINQ operators can be used to include related data in the query.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/RawSQL/Sample.cs)] -->
 
-````c#
+````csharp
 
    var searchTerm = ".NET";
 

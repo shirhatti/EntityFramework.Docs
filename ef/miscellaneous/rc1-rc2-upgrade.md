@@ -1,9 +1,10 @@
 ---
 uid: miscellaneous/rc1-rc2-upgrade
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Upgrading from RC1 to RC2
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 This article provides guidance for moving an application built with the RC1 packages to RC2.
 
@@ -94,7 +95,8 @@ If you have an ASP.NET Core application and you want EF to resolve internal serv
               .UseInternalServiceProvider(serviceProvider)); );
    ````
 
-Caution: We recommend allowing EF to internally manage its own services, unless you have a reason to combine the internal EF services into your application service provider. The main reason you may want to do this is to use your application service provider to replace services that EF uses internally
+> [!WARNING]
+> We recommend allowing EF to internally manage its own services, unless you have a reason to combine the internal EF services into your application service provider. The main reason you may want to do this is to use your application service provider to replace services that EF uses internally
 
 ## DNX Commands => .NET CLI (ASP.NET Core Projects Only)
 
@@ -117,7 +119,8 @@ The way commands are registered has changed in RC2, due to DNX being replaced by
    }
    ````
 
-Tip: If you use Visual Studio, you can now use Package Manager Console to run EF commands for ASP.NET Core projects (this was not supported in RC1). You still need to register the commands in the `tools` section of `project.json` to do this.
+> [!TIP]
+> If you use Visual Studio, you can now use Package Manager Console to run EF commands for ASP.NET Core projects (this was not supported in RC1). You still need to register the commands in the `tools` section of `project.json` to do this.
 
 ## Package Manager Commands Require PowerShell 5
 

@@ -1,13 +1,15 @@
 ---
 uid: miscellaneous/cli/dotnet
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # .NET Core CLI
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 EF command-line tools for .NET Core Command Line Interface (CLI).
 
-Note: Command-line tools for .NET Core CLI has known issues. See [Preview 2 Known Issues](#preview-2-known-issues) for more details.
+> [!NOTE]
+> Command-line tools for .NET Core CLI has known issues. See [Preview 2 Known Issues](#preview-2-known-issues) for more details.
 
 ## Installation### Prerequisites
 
@@ -17,9 +19,9 @@ EF command-line tools requires .NET Core CLI Preview 2 or newer. See the [.NET C
 
 EF supports .NET Core CLI commands on these frameworks:
 
-   * .NET Framework 4.5.1 and newer. ("net451", "net452", "net46", etc.)
+    * .NET Framework 4.5.1 and newer. ("net451", "net452", "net46", etc.)
 
-   * .NET Core App 1.0. ("netcoreapp1.0")
+    * .NET Core App 1.0. ("netcoreapp1.0")
 
 ### Install by editing project.json
 
@@ -53,7 +55,8 @@ The resulting project.json should include these items (in addition to your other
    }
    ````
 
-Tip: A build-only dependency (`"type": "build"`) means this dependency is local to the current project. For example, if Project A has a build only dependency and Project B depends on A, `dotnet restore` will not add A's build-only dependencies into Project B.
+> [!TIP]
+> A build-only dependency (`"type": "build"`) means this dependency is local to the current project. For example, if Project A has a build only dependency and Project B depends on A, `dotnet restore` will not add A's build-only dependencies into Project B.
 
 ## Usage
 

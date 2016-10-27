@@ -1,9 +1,10 @@
 ---
 uid: efcore-vs-ef6/porting/port-code
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Porting a Code-Based Model (Code First & Code First to Existing Database)
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 If you've read all the caveats and you are ready to port, then here are some guidelines to help you get started.
 
@@ -27,7 +28,7 @@ Most EF6.x applications store the connection string in the applications `App/Web
 
 <!-- literal_block"ids  "classes  "xml:space": "preserve", "backrefs  "linenos": true, "dupnames  : "csharp", highlight_args}, "names": [] -->
 
-````c#
+````csharp
 
    public class BloggingContext : DbContext
    {

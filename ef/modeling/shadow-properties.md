@@ -1,9 +1,10 @@
 ---
 uid: modeling/shadow-properties
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Shadow Properties
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Shadow properties are properties that do not exist in your entity class. The value and state of these properties is maintained purely in the Change Tracker.
 
@@ -34,7 +35,7 @@ For example, the following code listing will result in a `BlogId` shadow propert
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/ShadowForeignKey.cs)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -73,7 +74,7 @@ If the name supplied to the `Property` method matches the name of an existing pr
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/ShadowProperty.cs?highlight=7,8)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

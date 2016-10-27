@@ -1,13 +1,15 @@
 ---
 uid: querying/tracking
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Tracking vs. No-Tracking
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Tracking behavior controls whether or not Entity Framework Core will keep information about an entity instance in its change tracker. If an entity is tracked, any changes detected in the entity will be persisted to the database during `SaveChanges()`. Entity Framework Core will also fix-up navigation properties between entities that are obtained from a tracking query and entities that were previously loaded into the DbContext instance.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Querying) on GitHub.
 
 ## Tracking queries
 
@@ -17,7 +19,7 @@ In the following example, the change to the blogs rating will be detected and pe
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Tracking/Sample.cs)] -->
 
-````c#
+````csharp
 
    using (var context = new BloggingContext())
    {
@@ -36,7 +38,7 @@ You can swap an individual query to be no-tracking:
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Tracking/Sample.cs?highlight=4)] -->
 
-````c#
+````csharp
 
    using (var context = new BloggingContext())
    {
@@ -51,7 +53,7 @@ You can also change the default tracking behavior at the context instance level:
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Tracking/Sample.cs?highlight=3)] -->
 
-````c#
+````csharp
 
    using (var context = new BloggingContext())
    {
@@ -68,7 +70,7 @@ Even if the result type of the query isn't an entity type, if the result contain
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Tracking/Sample.cs?highlight=7)] -->
 
-````c#
+````csharp
 
    using (var context = new BloggingContext())
    {
@@ -87,7 +89,7 @@ If the result set does not contain any entity types, then no tracking is perform
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/Tracking/Sample.cs)] -->
 
-````c#
+````csharp
 
    using (var context = new BloggingContext())
    {

@@ -1,9 +1,10 @@
 ---
 uid: miscellaneous/connection-strings
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Connection Strings
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Most database providers require some form of connection string to connect to the database. Sometimes this connection string contains sensitive information that needs to be protected. You may also need to change the connection string as you move your application between environments, such as development, testing, and production.
 
@@ -25,13 +26,14 @@ Full .NET applications, such as WinForms, WPF, Console, and ASP.NET 4, have a tr
    </configuration>
    ````
 
-Note: The `providerName` setting is not required on EF Core connection strings stored in App.config because the database provider is configured via code.
+> [!NOTE]
+> The `providerName` setting is not required on EF Core connection strings stored in App.config because the database provider is configured via code.
 
 You can then read the connection string using the `ConfigurationManager` API in your context's `OnConfiguring` method. You may need to add a reference to the `System.Configuration` framework assembly to be able to use this API.
 
 <!-- literal_block"language": "csharp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": true -->
 
-````c#
+````csharp
 
    public class BloggingContext : DbContext
    {
@@ -51,7 +53,7 @@ Connection strings in a UWP application are typically a SQLite connection that j
 
 <!-- literal_block"language": "csharp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": true -->
 
-````c#
+````csharp
 
    public class BloggingContext : DbContext
    {
@@ -84,7 +86,7 @@ The context is typically configured in `Startup.cs` with the connection string b
 
 <!-- literal_block"language": "csharp", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": true -->
 
-````c#
+````csharp
 
    public void ConfigureServices(IServiceCollection services)
    {

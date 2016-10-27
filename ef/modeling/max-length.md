@@ -1,13 +1,15 @@
 ---
 uid: modeling/max-length
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Maximum Length
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Configuring a maximum length provides a hint to the data store about the appropriate data type to use for a given property. Maximum length only applies to array data types, such as `string` and `byte[]`.
 
-Note: Entity Framework does not do any validation of maximum length before passing data to the provider. It is up to the provider or data store to validate if appropriate. For example, when targeting SQL Server, exceeding the maximum length will result in an exception as the data type of the underlying column will not allow excess data to be stored.
+> [!NOTE]
+> Entity Framework does not do any validation of maximum length before passing data to the provider. It is up to the provider or data store to validate if appropriate. For example, when targeting SQL Server, exceeding the maximum length will result in an exception as the data type of the underlying column will not allow excess data to be stored.
 
 ## Conventions
 
@@ -19,7 +21,7 @@ You can use the Data Annotations to configure a maximum length for a property. I
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/MaxLength.cs?highlight=4)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -36,7 +38,7 @@ You can use the Fluent API to configure a maximum length for a property. In this
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/MaxLength.cs?highlight=7,8,9)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

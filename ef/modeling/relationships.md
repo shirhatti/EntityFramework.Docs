@@ -1,51 +1,53 @@
 ---
 uid: modeling/relationships
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Relationships
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 A relationship defines how two entities relate to each other. In a relational database, this is represented by a foreign key constraint.
 
-Note: Most of the samples in this article use a one-to-many relationship to demonstrate concepts. For examples of one-to-one and many-to-many relationships see the [Other Relationship Patterns](#other-relationship-patterns) section at the end of the article.
+> [!NOTE]
+> Most of the samples in this article use a one-to-many relationship to demonstrate concepts. For examples of one-to-one and many-to-many relationships see the [Other Relationship Patterns](#other-relationship-patterns) section at the end of the article.
 
 ## Definition of Terms
 
 There are a number of terms used to describe relationships
-   * **Dependent entity:** This is the entity that contains the foreign key property(s). Sometimes referred to as the 'child' of the relationship.
+    * **Dependent entity:** This is the entity that contains the foreign key property(s). Sometimes referred to as the 'child' of the relationship.
 
-   * **Principal entity:** This is the entity that contains the primary/alternate key property(s). Sometimes referred to as the 'parent' of the relationship.
+    * **Principal entity:** This is the entity that contains the primary/alternate key property(s). Sometimes referred to as the 'parent' of the relationship.
 
-   * **Foreign key:** The property(s) in the dependent entity that is used to store the values of the principal key property that the entity is related to.
+    * **Foreign key:** The property(s) in the dependent entity that is used to store the values of the principal key property that the entity is related to.
 
-   * **Principal key:** The property(s) that uniquely identifies the principal entity. This may be the primary key or an alternate key.
+    * **Principal key:** The property(s) that uniquely identifies the principal entity. This may be the primary key or an alternate key.
 
-   * **Navigation property:** A property defined on the principal and/or dependent entity that contains a reference(s) to the related entity(s).
+    * **Navigation property:** A property defined on the principal and/or dependent entity that contains a reference(s) to the related entity(s).
 
-   * **Collection navigation property:** A navigation property that contains references to many related entities.
+    * **Collection navigation property:** A navigation property that contains references to many related entities.
 
-   * **Reference navigation property:** A navigation property that holds a reference to a single related entity.
+    * **Reference navigation property:** A navigation property that holds a reference to a single related entity.
 
-   * **Inverse navigation property:** When discussing a particular navigation property, this term refers to the navigation property on the other end of the relationship.
+    * **Inverse navigation property:** When discussing a particular navigation property, this term refers to the navigation property on the other end of the relationship.
 
 The following code listing shows a one-to-many relationship between `Blog` and `Post`
-   * `Post` is the dependent entity
+    * `Post` is the dependent entity
 
-   * `Blog` is the principal entity
+    * `Blog` is the principal entity
 
-   * `Post.BlogId` is the foreign key
+    * `Post.BlogId` is the foreign key
 
-   * `Blog.BlogId` is the principal key (in this case it is a primary key rather than an alternate key)
+    * `Blog.BlogId` is the principal key (in this case it is a primary key rather than an alternate key)
 
-   * `Post.Blog` is a reference navigation property
+    * `Post.Blog` is a reference navigation property
 
-   * `Blog.Posts` is a collection navigation property
+    * `Blog.Posts` is a collection navigation property
 
-   * `Post.Blog` is the inverse navigation property of `Blog.Posts` (and vice versa)
+    * `Post.Blog` is the inverse navigation property of `Blog.Posts` (and vice versa)
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/Relationships/Full.cs)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -71,18 +73,19 @@ The following code listing shows a one-to-many relationship between `Blog` and `
 
 By convention, a relationship will be created when there is a navigation property discovered on a type. A property is considered a navigation property if the type it points to can not be mapped as a scalar type by the current database provider.
 
-Note: Relationships that are discovered by convention will always target the primary key of the principal entity. To target an alternate key, additional configuration must be performed using the Fluent API.
+> [!NOTE]
+> Relationships that are discovered by convention will always target the primary key of the principal entity. To target an alternate key, additional configuration must be performed using the Fluent API.
 
 ### Fully Defined Relationships
 
 The most common pattern for relationships is to have navigation properties defined on both ends of the relationship and a foreign key property defined in dependent entity class.
-   * If a pair of navigation properties is found between two types, then they will be configured as inverse navigation properties of the same relationship.
+    * If a pair of navigation properties is found between two types, then they will be configured as inverse navigation properties of the same relationship.
 
-   * If the dependent entity contains a property named `<primary key property name>`, `<navigation property name><primary key property name>`, or `<principal entity name><primary key property name>` then it will be configured as the foreign key.
+    * If the dependent entity contains a property named `<primary key property name>`, `<navigation property name><primary key property name>`, or `<principal entity name><primary key property name>` then it will be configured as the foreign key.
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/Relationships/Full.cs?highlight=6,15,16)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -104,7 +107,8 @@ The most common pattern for relationships is to have navigation properties defin
 
    ````
 
-Caution: If there are multiple navigation properties defined between two types (i.e. more than one distinct pair of navigations that point to each other), then no relationships will be created by convention and you will need to manually configure them to identify how the navigation properties pair up.
+> [!WARNING]
+> If there are multiple navigation properties defined between two types (i.e. more than one distinct pair of navigations that point to each other), then no relationships will be created by convention and you will need to manually configure them to identify how the navigation properties pair up.
 
 ### No Foreign Key Property
 
@@ -112,7 +116,7 @@ While it is recommended to have a foreign key property defined in the dependent 
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/Relationships/NoForeignKey.cs?highlight=6,15)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -139,7 +143,7 @@ Including just one navigation property (no inverse navigation, and no foreign ke
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/Relationships/OneNavigation.cs?highlight=6)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -162,7 +166,8 @@ Including just one navigation property (no inverse navigation, and no foreign ke
 
 By convention, cascade delete will be set to *Cascade* for required relationships and *SetNull* for optional relationships. *Cascade* means dependent entities are also deleted. *SetNull* means that foreign key properties in dependent entities are set to null.
 
-Note: This cascading behavior is only applied to entities that are being tracked by the context. A corresponding cascade behavior should be setup in the database to ensure data that is not being tracked by the context has the same action applied. If you use EF to create the database, this cascade behavior will be setup for you.
+> [!NOTE]
+> This cascading behavior is only applied to entities that are being tracked by the context. A corresponding cascade behavior should be setup in the database to ensure data that is not being tracked by the context has the same action applied. If you use EF to create the database, this cascade behavior will be setup for you.
 
 ## Data Annotations
 
@@ -174,7 +179,7 @@ You can use the Data Annotations to configure which property should be used as t
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/Relationships/ForeignKey.cs?highlight=17)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -198,7 +203,8 @@ You can use the Data Annotations to configure which property should be used as t
 
    ````
 
-Note: The `[ForeignKey]` annotation can be placed on either navigation property in the relationship. It does not need to go on the navigation property in the dependent entity class.
+> [!NOTE]
+> The `[ForeignKey]` annotation can be placed on either navigation property in the relationship. It does not need to go on the navigation property in the dependent entity class.
 
 ### [InverseProperty]
 
@@ -206,7 +212,7 @@ You can use the Data Annotations to configure how navigation properties on the d
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/Relationships/InverseProperty.cs?highlight=20,23)] -->
 
-````c#
+````csharp
 
        public class Post
        {
@@ -242,7 +248,7 @@ To configure a relationship in the Fluent API, you start by identifying the navi
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/NoForeignKey.cs?highlight=8,9,10)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -282,7 +288,7 @@ If you only have one navigation property then there are parameterless overloads 
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/OneNavigation.cs?highlight=10)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -320,7 +326,7 @@ You can use the Fluent API to configure which property should be used as the for
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/ForeignKey.cs?highlight=11)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -360,7 +366,7 @@ The following code listing shows how to configure a composite foreign key.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/CompositeForeignKey.cs?highlight=13)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -407,7 +413,7 @@ If you want the foreign key to reference a property other than the primary key, 
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/PrincipalKey.cs?highlight=11)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -449,7 +455,7 @@ The following code listing shows how to configure a composite principal key.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/CompositePrincipalKey.cs?highlight=11)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -489,7 +495,8 @@ The following code listing shows how to configure a composite principal key.
 
    ````
 
-Caution: The order that you specify principal key properties must match the order they are specified for the foreign key.
+> [!WARNING]
+> The order that you specify principal key properties must match the order they are specified for the foreign key.
 
 ### Required
 
@@ -497,7 +504,7 @@ You can use the Fluent API to configure whether the relationship is required or 
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/Required.cs?highlight=11)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -537,17 +544,18 @@ You can use the Fluent API to configure whether the relationship is required or 
 You can use the Fluent API to configure the cascade delete behavior for a given relationship.
 
 There are three behaviors that control how a delete operation is applied to dependent entities in a relationship when the principal is deleted or the relationship is severed.
-   * **Cascade:** Dependent entities are also deleted.
+    * **Cascade:** Dependent entities are also deleted.
 
-   * **SetNull:** The foreign key properties in dependent entities are set to null.
+    * **SetNull:** The foreign key properties in dependent entities are set to null.
 
-   * **Restrict:** The delete operation is not applied to dependent entities. The dependent entities remain unchanged.
+    * **Restrict:** The delete operation is not applied to dependent entities. The dependent entities remain unchanged.
 
-Note: This cascading behavior is only applied to entities that are being tracked by the context. A corresponding cascade behavior should be setup in the database to ensure data that is not being tracked by the context has the same action applied. If you use EF to create the database, this cascade behavior will be setup for you.
+> [!NOTE]
+> This cascading behavior is only applied to entities that are being tracked by the context. A corresponding cascade behavior should be setup in the database to ensure data that is not being tracked by the context has the same action applied. If you use EF to create the database, this cascade behavior will be setup for you.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/CascadeDelete.cs?highlight=11)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -589,7 +597,7 @@ One to one relationships have a reference navigation property on both sides. The
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/Relationships/OneToOne.cs?highlight=6,15,16)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -611,7 +619,8 @@ One to one relationships have a reference navigation property on both sides. The
 
    ````
 
-Note: EF will choose one of the entities to be the dependent based on its ability to detect a foreign key property. If the wrong entity is chosen as the dependent you can use the Fluent API to correct this.
+> [!NOTE]
+> EF will choose one of the entities to be the dependent based on its ability to detect a foreign key property. If the wrong entity is chosen as the dependent you can use the Fluent API to correct this.
 
 When configuring the relationship with the Fluent API, you use the `HasOne` and `WithOne` methods.
 
@@ -619,7 +628,7 @@ When configuring the foreign key you need to specify the dependent entity type -
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/OneToOne.cs?highlight=11)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -661,7 +670,7 @@ Many-to-many relationships without an entity class to represent the join table a
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/Relationships/ManyToMany.cs?highlight=11,12,13,14,16,17,18,19,39,40,41,42,43,44,45,46)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

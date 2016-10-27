@@ -1,9 +1,10 @@
 ---
 uid: modeling/included-properties
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Including & Excluding Properties
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Including a property in the model means that EF has metadata about that property and will attempt to read and write values from/to the database.
 
@@ -17,7 +18,7 @@ You can use Data Annotations to exclude a property from the model.
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/IgnoreProperty.cs?highlight=6)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -36,7 +37,7 @@ You can use the Fluent API to exclude a property from the model.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/IgnoreProperty.cs?highlight=7,8)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

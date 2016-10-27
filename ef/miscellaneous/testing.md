@@ -1,15 +1,18 @@
 ---
 uid: miscellaneous/testing
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Testing with InMemory
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 This article covers how to use the InMemory provider to write efficient tests with minimal impact to the code being tested.
 
-Caution: Currently you need to use `ServiceCollection` and `IServiceProvider` to control the scope of the InMemory database, which adds complexity to your tests. In the next release after RC2, there will be improvements to make this easier, [see issue #3253](https://github.com/aspnet/EntityFramework/issues/3253) for more details.
+> [!WARNING]
+> Currently you need to use `ServiceCollection` and `IServiceProvider` to control the scope of the InMemory database, which adds complexity to your tests. In the next release after RC2, there will be improvements to make this easier, [see issue #3253](https://github.com/aspnet/EntityFramework/issues/3253) for more details.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Miscellaneous/Testing) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Miscellaneous/Testing) on GitHub.
 
 ## When to use InMemory for testing
 
@@ -53,17 +56,19 @@ For example, consider the following service that allows application code to perf
 EF Core database providers do not have to be relational databases. InMemory is designed to be a general purpose database for testing, and is not designed to mimic a relational database.
 
 Some examples of this include:
-   * InMemory will allow you to save data that would violate referential integrity constraints in a relational database.
+    * InMemory will allow you to save data that would violate referential integrity constraints in a relational database.
 
-   * If you use DefaultValueSql(string) for a property in your model, this is a relational database API and will have no effect when running against InMemory.
+    * If you use DefaultValueSql(string) for a property in your model, this is a relational database API and will have no effect when running against InMemory.
 
-Tip: For many test purposes these difference will not matter. However, if you want to test against something that behaves more like a true relational database, then consider using [SQLite in-memory mode](http://www.sqlite.org/inmemorydb.html).
+> [!TIP]
+> For many test purposes these difference will not matter. However, if you want to test against something that behaves more like a true relational database, then consider using [SQLite in-memory mode](http://www.sqlite.org/inmemorydb.html).
 
 ## Get your context ready### Avoid configuring two database providers
 
 In your tests you are going to externally configure the context to use the InMemory provider. If you are configuring a database provider by overriding `OnConfiguring` in your context, then you need to add some conditional code to ensure that you only configure the database provider if one has not already been configured.
 
-Note: If you are using ASP.NET Core, then you should not need this code since your database provider is configured outside of the context (in Startup.cs).
+> [!NOTE]
+> If you are using ASP.NET Core, then you should not need this code since your database provider is configured outside of the context (in Startup.cs).
 
 <!-- [!code-csharp[Main](samples/Miscellaneous/Testing/BusinessLogic/BloggingContext.cs?highlight=3)] -->
 
@@ -98,7 +103,8 @@ The simplest way to enable testing with the InMemory provider is to modify your 
 
    ````
 
-Note: `DbContextOptions<TContext>` tells the context all of its settings, such as which database to connect to. This is the same object that is built by running the OnConfiguring method in your context.
+> [!NOTE]
+> `DbContextOptions<TContext>` tells the context all of its settings, such as which database to connect to. This is the same object that is built by running the OnConfiguring method in your context.
 
 ## Writing tests
 

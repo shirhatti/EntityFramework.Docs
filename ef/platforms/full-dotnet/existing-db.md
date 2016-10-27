@@ -1,13 +1,15 @@
 ﻿---
 uid: platforms/full-dotnet/existing-db
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Console Application to Existing Database (Database First)
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 In this walkthrough, you will build a console application that performs basic data access against a Microsoft SQL Server database using Entity Framework. You will use reverse engineering to create an Entity Framework model based on an existing database.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/FullNet/ConsoleApp.ExistingDb) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Platforms/FullNet/ConsoleApp.ExistingDb) on GitHub.
 
 ## Prerequisites
 
@@ -25,7 +27,8 @@ The following prerequisites are needed to complete this walkthrough:
 
 This tutorial uses a **Blogging** database on your LocalDb instance as the existing database.
 
-Note: If you have already created the **Blogging** database as part of another tutorial, you can skip these steps.
+> [!NOTE]
+> If you have already created the **Blogging** database as part of another tutorial, you can skip these steps.
 
 * Open Visual Studio
 
@@ -126,7 +129,7 @@ The reverse engineer process created entity classes and a derived context based 
 
 <!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/Blog.cs)] -->
 
-````c#
+````csharp
 
    using System;
    using System.Collections.Generic;
@@ -153,7 +156,7 @@ The context represents a session with the database and allows you to query and s
 
 <!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs)] -->
 
-````c#
+````csharp
 
    using Microsoft.EntityFrameworkCore;
    using Microsoft.EntityFrameworkCore.Metadata;
@@ -199,7 +202,7 @@ You can now use your model to perform data access.
 
 <!-- [!code-csharp[Main](samples/Platforms/FullNet/ConsoleApp.ExistingDb/Program.cs)] -->
 
-````c#
+````csharp
 
    using System;
 

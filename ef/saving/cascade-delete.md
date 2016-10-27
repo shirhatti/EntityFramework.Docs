@@ -1,22 +1,24 @@
 ---
 uid: saving/cascade-delete
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Cascade Delete
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Cascade delete allows deletion of a principal/parent entity to have a side effect on dependent/child entities it is related to.
 
 There are three cascade delete behaviors:
-   * **Cascade:** Dependent entities are also deleted.
+    * **Cascade:** Dependent entities are also deleted.
 
-   * **SetNull:** The foreign key properties in dependent entities are set to null.
+    * **SetNull:** The foreign key properties in dependent entities are set to null.
 
-   * **Restrict:** The delete operation is not applied to dependent entities. The dependent entities remain unchanged.
+    * **Restrict:** The delete operation is not applied to dependent entities. The dependent entities remain unchanged.
 
 See [Relationships](../modeling/relationships.md) for more information about conventions and configuration for cascade delete.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/CascadeDelete/) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/CascadeDelete/) on GitHub.
 
 ## Cascading to tracked entities
 
@@ -28,7 +30,7 @@ The following code loads a Blog and all its related Posts from the database (usi
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/CascadeDelete/Sample.cs)] -->
 
-````c#
+````csharp
 
                using (var db = new BloggingContext())
                {
@@ -59,7 +61,7 @@ The following code is almost the same as our previous example, except it does no
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/CascadeDelete/Sample.cs)] -->
 
-````c#
+````csharp
 
                using (var db = new BloggingContext())
                {

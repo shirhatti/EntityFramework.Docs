@@ -1,13 +1,15 @@
 ﻿---
 uid: miscellaneous/cli/powershell
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Package Manager Console (Visual Studio)
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 EF command line tools for Visual Studio's Package Manager Console (PMC) window.
 
-Caution: The commands require the [latest version of Windows PowerShell](https://www.microsoft.com/en-us/download/details.aspx?id=50395)
+> [!WARNING]
+> The commands require the [latest version of Windows PowerShell](https://www.microsoft.com/en-us/download/details.aspx?id=50395)
 
 ## Installation
 
@@ -25,13 +27,16 @@ To open the console, follow these steps.
 
 .NET Core and ASP.NET Core projects also require installing .NET Core CLI. See [.NET Core CLI](dotnet.md) for more information about this installation.
 
-Note: .NET Core CLI has known issues in Preview 1. Because PMC commands call .NET Core CLI commands, these known issues also apply to PMC commands. See [Preview 2 Known Issues](dotnet.md#dotnet-cli-issues.md).
+> [!NOTE]
+> .NET Core CLI has known issues in Preview 1. Because PMC commands call .NET Core CLI commands, these known issues also apply to PMC commands. See [Preview 2 Known Issues](dotnet.md#dotnet-cli-issues.md).
 
-Tip: On .NET Core and ASP.NET Core projects, add `-Verbose` to any Package Manager Console command to see the equivalent .NET Core CLI command that was invoked.
+> [!TIP]
+> On .NET Core and ASP.NET Core projects, add `-Verbose` to any Package Manager Console command to see the equivalent .NET Core CLI command that was invoked.
 
 ## Usage
 
-Note: All commands support the common parameters: `-Verbose`, `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-WarningAction`, `-WarningVariable`, `-OutBuffer`, `-PipelineVariable`, and `-OutVariable`. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+> [!NOTE]
+> All commands support the common parameters: `-Verbose`, `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-WarningAction`, `-WarningVariable`, `-OutBuffer`, `-PipelineVariable`, and `-OutVariable`. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ### Add-Migration
 

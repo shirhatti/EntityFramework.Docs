@@ -1,9 +1,10 @@
 ---
 uid: miscellaneous/internals/services
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Understanding EF Services
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Entity Framework executes as a collection of services working together. A service is a reusable component. A service is typically an implementation of an interface. Services are available to other services via [dependency injection (DI)](https://wikipedia.org/wiki/Dependency_injection), which is implemented in EF using [Microsoft.Extensions.DependencyInjection](https://docs.asp.net/en/latest/fundamentals/dependency-injection.html).
 
@@ -39,7 +40,8 @@ Design-time services
 User services
    A user can define custom services to interact with EF. These are written in application code, not provider code. For example, users can provide an implementation of `IModelCustomizer` for controlling how a model is created.
 
-Note: Service provider is not to be confused with a "provider's services".
+> [!NOTE]
+> Service provider is not to be confused with a "provider's services".
 
 ## Service Lifetime
 
@@ -58,11 +60,11 @@ Singleton
 
 EF provides an extension method `AddDbContext<TContext>()` for adding using EF into a service collection. This method adds the following into a service collection:
 
-   * `TContext` as "scoped"
+    * `TContext` as "scoped"
 
-   * `DbContextOptions` as a "singleton"
+    * `DbContextOptions` as a "singleton"
 
-   * `DbContextOptionsFactory<T>` as a "singleton"
+    * `DbContextOptionsFactory<T>` as a "singleton"
 
 `AddDbContext` does not add any context services, provider services, or design-time services to the service collection (except for [special cases](#special-cases)). DbContext constructs its own internal service provider for this.
 

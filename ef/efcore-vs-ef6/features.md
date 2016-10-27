@@ -1,9 +1,10 @@
 ---
 uid: efcore-vs-ef6/features
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Feature Comparison
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 The following information will help you choose between Entity Framework Core and Entity Framework 6.x.
 
@@ -64,6 +65,6 @@ Moderate queries  Stable  Stabilizing  LINQ: Complex queries  Stable  In-Progres
 Connection resiliency  Yes    Lifecycle hooks (events, command interception, ...)  Yes          Database Providers  EF6.x  EF Core 1.0.0  SQL Server  Yes  Yes  MySQL  Yes  Paid only, unpaid coming soon 1  PostgreSQL  Yes  Yes  Oracle  Yes  Paid only, unpaid coming soon 1  SQLite  Yes  Yes  SQL Compact  Yes  Yes  DB2  Yes  Yes  InMemory (for testing)    Yes  Azure Table Storage    Prototype  Redis    Prototype        Application Models  EF6.x  EF Core 1.0.0  WinForms  Yes  Yes  WPF  Yes  Yes  Console  Yes  Yes  ASP.NET  Yes  Yes  ASP.NET Core    Yes  Xamarin    Coming soon 2  UWP    Yes -->
 
 Footnotes:
-   * ^1 Paid providers are available, unpaid providers are being worked on. The teams working on the unpaid providers have not shared public details of timeline etc.
+    * ^1 Paid providers are available, unpaid providers are being worked on. The teams working on the unpaid providers have not shared public details of timeline etc.
 
-   * ^2 EF Core is built to work on Xamarin when support for .NET Standard is enabled in Xamarin.
+    * ^2 EF Core is built to work on Xamarin when support for .NET Standard is enabled in Xamarin.

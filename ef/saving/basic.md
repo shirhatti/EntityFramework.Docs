@@ -1,13 +1,15 @@
 ---
 uid: saving/basic
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Basic Save
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Learn how to add, modify, and remove data using your context and entity classes.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/Basics/) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/Basics/) on GitHub.
 
 ## ChangeTracker & SaveChanges
 
@@ -19,7 +21,7 @@ Use the *DbSet.Add* method to add new instances of your entity classes. The data
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Basics/Sample.cs)] -->
 
-````c#
+````csharp
 
                using (var db = new BloggingContext())
                {
@@ -40,7 +42,7 @@ Simply modify the values assigned to properties and then call *SaveChanges*.
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Basics/Sample.cs)] -->
 
-````c#
+````csharp
 
                using (var db = new BloggingContext())
                {
@@ -59,7 +61,7 @@ If the entity already exists in the database, it will be deleted during *SaveCha
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Basics/Sample.cs)] -->
 
-````c#
+````csharp
 
                using (var db = new BloggingContext())
                {
@@ -74,11 +76,12 @@ If the entity already exists in the database, it will be deleted during *SaveCha
 
 You can combine multiple Add/Update/Remove operations into a single call to *SaveChanges*.
 
-Note: For most database providers, *SaveChanges* is transactional. This means  all the operations will either succeed or fail and the operations will never be left partially applied.
+> [!NOTE]
+> For most database providers, *SaveChanges* is transactional. This means  all the operations will either succeed or fail and the operations will never be left partially applied.
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/Basics/Sample.cs)] -->
 
-````c#
+````csharp
 
                using (var db = new BloggingContext())
                {

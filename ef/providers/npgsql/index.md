@@ -1,13 +1,15 @@
 ---
 uid: providers/npgsql/index
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Npgsql (PostgreSQL)
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 This database provider allows Entity Framework Core to be used with PostgreSQL. The provider is maintained as part of the [Npgsql project](http://www.npgsql.org).
 
-Note: This provider is not maintained as part of the Entity Framework Core project. When considering a third party provider, be sure to evaluate quality, licensing, support, etc. to ensure they meet your requirements.
+> [!NOTE]
+> This provider is not maintained as part of the Entity Framework Core project. When considering a third party provider, be sure to evaluate quality, licensing, support, etc. to ensure they meet your requirements.
 
 ## Install
 
@@ -26,12 +28,12 @@ See the [Npgsql documentation](http://www.npgsql.org/doc/efcore.html) to get sta
 
 ## Supported Database Engines
 
-   * PostgreSQL
+    * PostgreSQL
 
 ## Supported Platforms
 
-   * Full .NET (4.5.1 onwards)
+    * Full .NET (4.5.1 onwards)
 
-   * .NET Core
+    * .NET Core
 
-   * Mono (4.2.0 onwards)
+    * Mono (4.2.0 onwards)

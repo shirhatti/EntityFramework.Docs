@@ -1,9 +1,10 @@
 ---
 uid: modeling/included-types
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Including & Excluding Types
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 Including a type in the model means that EF has metadata about that type and will attempt to read and write instances from/to the database.
 
@@ -12,15 +13,15 @@ Including a type in the model means that EF has metadata about that type and wil
 By convention, types that are exposed in `DbSet` properties on your context are included in your model. In addition, types that are mentioned in the `OnModelCreating` method are also included. Finally, any types that are found by recursively exploring the navigation properties of discovered types are also included in the model.
 
 For example, in the following code listing all three types are discovered:
-   * `Blog` because it is exposed in a `DbSet` property on the context
+    * `Blog` because it is exposed in a `DbSet` property on the context
 
-   * `Post` because it is discovered via the `Blog.Posts` navigation property
+    * `Post` because it is discovered via the `Blog.Posts` navigation property
 
-   * `AuditEntry` because it is mentioned in `OnModelCreating`
+    * `AuditEntry` because it is mentioned in `OnModelCreating`
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/IncludedTypes.cs?highlight=3,7,16)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -64,7 +65,7 @@ You can use Data Annotations to exclude a type from the model.
 
 <!-- [!code-csharp[Main](samples/Modeling/DataAnnotations/Samples/IgnoreType.cs?highlight=9)] -->
 
-````c#
+````csharp
 
        public class Blog
        {
@@ -88,7 +89,7 @@ You can use the Fluent API to exclude a type from the model.
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/IgnoreType.cs?highlight=7)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {

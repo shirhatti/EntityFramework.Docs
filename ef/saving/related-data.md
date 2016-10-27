@@ -1,13 +1,15 @@
 ---
 uid: saving/related-data
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Related Data
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 In addition to isolated entities, you can also make use of the relationships defined in your model.
 
-Tip: You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/RelatedData/) on GitHub.
+> [!TIP]
+> You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/Saving/Saving/RelatedData/) on GitHub.
 
 ## Adding a graph of new entities
 
@@ -17,7 +19,7 @@ In the following example, the blog and three related posts are all inserted into
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
                using (var context = new BloggingContext())
                {
@@ -46,7 +48,7 @@ In the following example, the `post` entity is inserted because it is added to t
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
                using (var context = new BloggingContext())
                {
@@ -67,7 +69,7 @@ In the following example, the `post` entity is updated to belong to the new `blo
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
                using (var context = new BloggingContext())
                {
@@ -90,7 +92,7 @@ In the following example, a cascade delete is configured on the relationship bet
 
 <!-- [!code-csharp[Main](samples/Saving/Saving/RelatedData/Sample.cs)] -->
 
-````c#
+````csharp
 
                using (var context = new BloggingContext())
                {

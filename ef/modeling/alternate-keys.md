@@ -1,13 +1,15 @@
 ---
 uid: modeling/alternate-keys
 ---
-Caution: This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
-
 # Alternate Keys
+
+> [!WARNING]
+> This documentation is for EF Core. For EF6.x and earlier release see [http://msdn.com/data/ef](http://msdn.com/data/ef).
 
 An alternate key serves as an alternate unique identifier for each entity instance in addition to the primary key. Alternate keys can be used as the target of a relationship. When using a relational database this maps to the concept of a unique index/constraint on the alternate key column(s) and one or more foreign key constraints that reference the column(s).
 
-Note: If you just want to enforce uniqeness of a column then you want a unique index rather than an alternate key, see [Indexes](indexes.md). In EF, alternate keys provide greater functionality than unique indexes because they can be used as the target of a foreign key.
+> [!NOTE]
+> If you just want to enforce uniqeness of a column then you want a unique index rather than an alternate key, see [Indexes](indexes.md). In EF, alternate keys provide greater functionality than unique indexes because they can be used as the target of a foreign key.
 
 Alternate keys are typically introduced for you when needed and you do not need to manually configure them. See [Conventions](#conventions) for more details.
 
@@ -17,7 +19,7 @@ By convention, an alternate key is introduced for you when you identify a proper
 
 <!-- [!code-csharp[Main](samples/Modeling/Conventions/Samples/AlternateKey.cs?highlight=12)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -64,7 +66,7 @@ You can use the Fluent API to configure a single property to be an alternate key
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/AlternateKeySingle.cs?highlight=7,8)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
@@ -91,7 +93,7 @@ You can also use the Fluent API to configure multiple properties to be an altern
 
 <!-- [!code-csharp[Main](samples/Modeling/FluentAPI/Samples/AlternateKeyComposite.cs?highlight=7,8)] -->
 
-````c#
+````csharp
 
        class MyContext : DbContext
        {
