@@ -17,29 +17,29 @@ In the following example a helper method is used to standardize URLs for blogs t
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/Sample.cs?highlight=6)] -->
 ````csharp
-   var blogs = context.Blogs
-.OrderByDescending(blog => blog.Rating)
-.Select(blog => new
-{
-    Id = blog.BlogId,
-    Url = StandardizeUrl(blog.Url)
-})
-.ToList();
+var blogs = context.Blogs
+    .OrderByDescending(blog => blog.Rating)
+    .Select(blog => new
+    {
+        Id = blog.BlogId,
+        Url = StandardizeUrl(blog.Url)
+    })
+    .ToList();
 ````
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/Sample.cs)] -->
 ````csharp
-   public static string StandardizeUrl(string url)
-   {
-url = url.ToLower();
-
-if (!url.StartsWith("http://"))
+public static string StandardizeUrl(string url)
 {
-    url = string.Concat("http://", url);
-}
+    url = url.ToLower();
 
-return url;
-   }
+    if (!url.StartsWith("http://"))
+    {
+        url = string.Concat("http://", url);
+    }
+
+    return url;
+}
 ````
 
 ## Disabling client evaluation
@@ -48,19 +48,19 @@ While client evaluation can be very useful, in some instances it can result in p
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/Sample.cs)] -->
 ````csharp
-   var blogs = context.Blogs
-.Where(blog => StandardizeUrl(blog.Url).Contains("dotnet"))
-.ToList();
+var blogs = context.Blogs
+    .Where(blog => StandardizeUrl(blog.Url).Contains("dotnet"))
+    .ToList();
 ````
 
 By default, EF Core will log a warning when client evaluation is performed. See [Logging](../miscellaneous/logging.md) for more information on viewing logging output. You can change the behavior when client evaluation occurs to either throw or do nothing. This is done when setting up the options for your context - typically in `DbContext.OnConfiguring`, or in `Startup.cs` if you are using ASP.NET Core.
 
 <!-- [!code-csharp[Main](samples/Querying/Querying/ClientEval/ThrowOnClientEval/BloggingContext.cs?highlight=5)] -->
 ````csharp
-   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-   {
-optionsBuilder
-    .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFQuerying;Trusted_Connection=True;")
-    .ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning));
-   }
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    optionsBuilder
+        .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFQuerying;Trusted_Connection=True;")
+        .ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning));
+}
 ````

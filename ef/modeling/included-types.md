@@ -12,7 +12,8 @@ Including a type in the model means that EF has metadata about that type and wil
 
 By convention, types that are exposed in `DbSet` properties on your context are included in your model. In addition, types that are mentioned in the `OnModelCreating` method are also included. Finally, any types that are found by recursively exploring the navigation properties of discovered types are also included in the model.
 
-For example, in the following code listing all three types are discovered:
+**For example, in the following code listing all three types are discovered:**
+
 * `Blog` because it is exposed in a `DbSet` property on the context
 
 * `Post` because it is discovered via the `Blog.Posts` navigation property
