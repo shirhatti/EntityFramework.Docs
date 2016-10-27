@@ -151,4 +151,4 @@ class Program
 
 You will see that one blog is saved to the database and then the details of all blogs are printed to the console.
 
-![image](full-dotnet/_static/output-new-db.png)
+![image](_static/output-new-db.png)

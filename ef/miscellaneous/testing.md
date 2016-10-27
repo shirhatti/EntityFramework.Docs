@@ -71,13 +71,12 @@ In your tests you are going to externally configure the context to use the InMem
 
 <!-- [!code-csharp[Main](samples/Miscellaneous/Testing/BusinessLogic/BloggingContext.cs?highlight=3)] -->
 ````csharp
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;");
-        }
+ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+ {
+     if (!optionsBuilder.IsConfigured)
+     {
+         optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;");
+     }
 ````
 
 ### Add a constructor for testing
@@ -109,81 +108,81 @@ Here is an example of a test class that uses the InMemory database. Each test me
 
 <!-- [!code-csharp[Main](samples/Miscellaneous/Testing/TestProject/BlogServiceTests.cs)] -->
 ````csharp
-   using BusinessLogic;
-   using Microsoft.EntityFrameworkCore;
-   using Microsoft.EntityFrameworkCore.Infrastructure;
-   using Microsoft.Extensions.DependencyInjection;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
-   using System.Linq;
+using BusinessLogic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
-   namespace TestProject
-   {
-[TestClass]
-public class BlogServiceTests
+namespace TestProject
 {
-    private static DbContextOptions<BloggingContext> CreateNewContextOptions()
+    [TestClass]
+    public class BlogServiceTests
     {
-        // Create a fresh service provider, and therefore a fresh 
-        // InMemory database instance.
-        var serviceProvider = new ServiceCollection()
-            .AddEntityFrameworkInMemoryDatabase()
-            .BuildServiceProvider();
-
-        // Create a new options instance telling the context to use an
-        // InMemory database and the new service provider.
-        var builder = new DbContextOptionsBuilder<BloggingContext>();
-        builder.UseInMemoryDatabase()
-               .UseInternalServiceProvider(serviceProvider);
-
-        return builder.Options;
-    }
-
-    [TestMethod]
-    public void Add_writes_to_database()
-    {
-        // All contexts that share the same service provider will share the same InMemory database
-        var options = CreateNewContextOptions();
-
-        // Run the test against one instance of the context
-        using (var context = new BloggingContext(options))
+        private static DbContextOptions<BloggingContext> CreateNewContextOptions()
         {
-            var service = new BlogService(context);
-            service.Add("http://sample.com");
+            // Create a fresh service provider, and therefore a fresh 
+            // InMemory database instance.
+            var serviceProvider = new ServiceCollection()
+                .AddEntityFrameworkInMemoryDatabase()
+                .BuildServiceProvider();
+
+            // Create a new options instance telling the context to use an
+            // InMemory database and the new service provider.
+            var builder = new DbContextOptionsBuilder<BloggingContext>();
+            builder.UseInMemoryDatabase()
+                   .UseInternalServiceProvider(serviceProvider);
+
+            return builder.Options;
         }
 
-        // Use a separate instance of the context to verify correct data was saved to database
-        using (var context = new BloggingContext(options))
+        [TestMethod]
+        public void Add_writes_to_database()
         {
-            Assert.AreEqual(1, context.Blogs.Count());
-            Assert.AreEqual("http://sample.com", context.Blogs.Single().Url);
-        }
-    }
+            // All contexts that share the same service provider will share the same InMemory database
+            var options = CreateNewContextOptions();
 
-    [TestMethod]
-    public void Find_searches_url()
-    {
-        // All contexts that share the same service provider will share the same InMemory database
-        var options = CreateNewContextOptions();
+            // Run the test against one instance of the context
+            using (var context = new BloggingContext(options))
+            {
+                var service = new BlogService(context);
+                service.Add("http://sample.com");
+            }
 
-        // Insert seed data into the database using one instance of the context
-        using (var context = new BloggingContext(options))
-        {
-            context.Blogs.Add(new Blog { Url = "http://sample.com/cats" });
-            context.Blogs.Add(new Blog { Url = "http://sample.com/catfish" });
-            context.Blogs.Add(new Blog { Url = "http://sample.com/dogs" });
-            context.SaveChanges();
+            // Use a separate instance of the context to verify correct data was saved to database
+            using (var context = new BloggingContext(options))
+            {
+                Assert.AreEqual(1, context.Blogs.Count());
+                Assert.AreEqual("http://sample.com", context.Blogs.Single().Url);
+            }
         }
 
-        // Use a clean instance of the context to run the test
-        using (var context = new BloggingContext(options))
+        [TestMethod]
+        public void Find_searches_url()
         {
-            var service = new BlogService(context);
-            var result = service.Find("cat");
-            Assert.AreEqual(2, result.Count());
+            // All contexts that share the same service provider will share the same InMemory database
+            var options = CreateNewContextOptions();
+
+            // Insert seed data into the database using one instance of the context
+            using (var context = new BloggingContext(options))
+            {
+                context.Blogs.Add(new Blog { Url = "http://sample.com/cats" });
+                context.Blogs.Add(new Blog { Url = "http://sample.com/catfish" });
+                context.Blogs.Add(new Blog { Url = "http://sample.com/dogs" });
+                context.SaveChanges();
+            }
+
+            // Use a clean instance of the context to run the test
+            using (var context = new BloggingContext(options))
+            {
+                var service = new BlogService(context);
+                var result = service.Find("cat");
+                Assert.AreEqual(2, result.Count());
+            }
         }
     }
 }
-   }
 ````
 
 ## Sharing a database instance for read-only tests
@@ -192,77 +191,77 @@ If a test class has read-only tests that share the same seed data, then you can 
 
 <!-- [!code-csharp[Main](samples/Miscellaneous/Testing/TestProject/BlogServiceTestsReadOnly.cs)] -->
 ````csharp
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
-   using Microsoft.Extensions.DependencyInjection;
-   using BusinessLogic;
-   using Microsoft.EntityFrameworkCore;
-   using System.Linq;
-   using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Extensions.DependencyInjection;
+using BusinessLogic;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System;
 
-   namespace TestProject
-   {
-[TestClass]
-public class BlogServiceTestsReadOnly
+namespace TestProject
 {
-    private DbContextOptions<BloggingContext> _contextOptions;
-
-    public BlogServiceTestsReadOnly()
+    [TestClass]
+    public class BlogServiceTestsReadOnly
     {
-        // Create a service provider to be shared by all test methods
-        var serviceProvider = new ServiceCollection()
-             .AddEntityFrameworkInMemoryDatabase()
-             .BuildServiceProvider();
+        private DbContextOptions<BloggingContext> _contextOptions;
 
-        // Create options telling the context to use an
-        // InMemory database and the service provider.
-        var builder = new DbContextOptionsBuilder<BloggingContext>();
-        builder.UseInMemoryDatabase()
-               .UseInternalServiceProvider(serviceProvider);
-
-        _contextOptions = builder.Options;
-
-        // Insert the seed data that is expected by all test methods
-        using (var context = new BloggingContext(_contextOptions))
+        public BlogServiceTestsReadOnly()
         {
-            context.Blogs.Add(new Blog { Url = "http://sample.com/cats" });
-            context.Blogs.Add(new Blog { Url = "http://sample.com/catfish" });
-            context.Blogs.Add(new Blog { Url = "http://sample.com/dogs" });
-            context.SaveChanges();
+            // Create a service provider to be shared by all test methods
+            var serviceProvider = new ServiceCollection()
+                 .AddEntityFrameworkInMemoryDatabase()
+                 .BuildServiceProvider();
+
+            // Create options telling the context to use an
+            // InMemory database and the service provider.
+            var builder = new DbContextOptionsBuilder<BloggingContext>();
+            builder.UseInMemoryDatabase()
+                   .UseInternalServiceProvider(serviceProvider);
+
+            _contextOptions = builder.Options;
+
+            // Insert the seed data that is expected by all test methods
+            using (var context = new BloggingContext(_contextOptions))
+            {
+                context.Blogs.Add(new Blog { Url = "http://sample.com/cats" });
+                context.Blogs.Add(new Blog { Url = "http://sample.com/catfish" });
+                context.Blogs.Add(new Blog { Url = "http://sample.com/dogs" });
+                context.SaveChanges();
+            }
         }
-    }
 
-    [TestMethod]
-    public void Find_with_empty_term()
-    {
-        using (var context = new BloggingContext(_contextOptions))
+        [TestMethod]
+        public void Find_with_empty_term()
         {
-            var service = new BlogService(context);
-            var result = service.Find("");
-            Assert.AreEqual(3, result.Count());
+            using (var context = new BloggingContext(_contextOptions))
+            {
+                var service = new BlogService(context);
+                var result = service.Find("");
+                Assert.AreEqual(3, result.Count());
+            }
         }
-    }
 
-    [TestMethod]
-    public void Find_with_unmatched_term()
-    {
-        using (var context = new BloggingContext(_contextOptions))
+        [TestMethod]
+        public void Find_with_unmatched_term()
         {
-            var service = new BlogService(context);
-            var result = service.Find("horse");
-            Assert.AreEqual(0, result.Count());
+            using (var context = new BloggingContext(_contextOptions))
+            {
+                var service = new BlogService(context);
+                var result = service.Find("horse");
+                Assert.AreEqual(0, result.Count());
+            }
         }
-    }
 
-    [TestMethod]
-    public void Find_with_some_matched()
-    {
-        using (var context = new BloggingContext(_contextOptions))
+        [TestMethod]
+        public void Find_with_some_matched()
         {
-            var service = new BlogService(context);
-            var result = service.Find("cat");
-            Assert.AreEqual(2, result.Count());
+            using (var context = new BloggingContext(_contextOptions))
+            {
+                var service = new BlogService(context);
+                var result = service.Find("cat");
+                Assert.AreEqual(2, result.Count());
+            }
         }
     }
 }
-   }
 ````

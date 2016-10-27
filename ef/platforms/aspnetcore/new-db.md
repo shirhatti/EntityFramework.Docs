@@ -60,13 +60,12 @@ Later in this walkthrough we will also be using some Entity Framework commands t
 * Locate the `tools` section and add the `ef` command as shown below
 
 <!-- [!code-json[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/project.json?highlight=2)] -->
-````
-
-     "tools": {
-"Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
-"Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
-"Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
-     },
+````json
+  "tools": {
+    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
+    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+  },
 ````
 
 ## Create your model
@@ -89,39 +88,39 @@ Now it's time to define a context and entity classes that make up your model.
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Models/Model.cs)] -->
 ````csharp
-   using Microsoft.EntityFrameworkCore;
-   using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
-   namespace EFGetStarted.AspNetCore.NewDb.Models
-   {
-public class BloggingContext : DbContext
+namespace EFGetStarted.AspNetCore.NewDb.Models
 {
-    public BloggingContext(DbContextOptions<BloggingContext> options)
-        : base(options)
-    { }
+    public class BloggingContext : DbContext
+    {
+        public BloggingContext(DbContextOptions<BloggingContext> options)
+            : base(options)
+        { }
 
-    public DbSet<Blog> Blogs { get; set; }
-    public DbSet<Post> Posts { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post> Posts { get; set; }
+    }
+
+    public class Blog
+    {
+        public int BlogId { get; set; }
+        public string Url { get; set; }
+
+        public List<Post> Posts { get; set; }
+    }
+
+    public class Post
+    {
+        public int PostId { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+
+        public int BlogId { get; set; }
+        public Blog Blog { get; set; }
+    }
 }
-
-public class Blog
-{
-    public int BlogId { get; set; }
-    public string Url { get; set; }
-
-    public List<Post> Posts { get; set; }
-}
-
-public class Post
-{
-    public int PostId { get; set; }
-    public string Title { get; set; }
-    public string Content { get; set; }
-
-    public int BlogId { get; set; }
-    public Blog Blog { get; set; }
-}
-   }
 ````
 
 > [!NOTE]
@@ -139,8 +138,8 @@ In order for our MVC controllers to make use of `BloggingContext` we are going t
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Startup.cs)] -->
 ````csharp
-   using EFGetStarted.AspNetCore.NewDb.Models;
-   using Microsoft.EntityFrameworkCore;
+using EFGetStarted.AspNetCore.NewDb.Models;
+using Microsoft.EntityFrameworkCore;
 ````
 
 Now we can use the `AddDbContext` method to register it as a service.
@@ -151,10 +150,10 @@ Now we can use the `AddDbContext` method to register it as a service.
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Startup.cs?highlight=3,4)] -->
 ````csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        var connection = @"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
-        services.AddDbContext<BloggingContext>(options => options.UseSqlServer(connection));
+public void ConfigureServices(IServiceCollection services)
+{
+    var connection = @"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
+    services.AddDbContext<BloggingContext>(options => options.UseSqlServer(connection));
 ````
 
 ## Create your database
@@ -168,7 +167,9 @@ Now that you have a model, you can use migrations to create a database for you.
 * Run `Update-Database` to apply the new migration to the database. Because your database doesn't exist yet, it will be created for you before the migration is applied.
 
 > [!TIP]
-> If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to make the corresponding schema changes to the database. Once you have checked the scaffolded code (and made any required changes), you can use the `Update-Database` command to apply the changes to the database.EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.
+> If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to make the corresponding schema changes to the database. Once you have checked the scaffolded code (and made any required changes), you can use the `Update-Database` command to apply the changes to the database.
+>
+>EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.
 
 ## Create a controller
 
@@ -186,47 +187,47 @@ Next, we'll add an MVC controller that will use EF to query and save data.
 
 <!-- [!code-csharp[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Controllers/BlogsController.cs)] -->
 ````csharp
-   using EFGetStarted.AspNetCore.NewDb.Models;
-   using Microsoft.AspNetCore.Mvc;
-   using System.Linq;
+using EFGetStarted.AspNetCore.NewDb.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
-   namespace EFGetStarted.AspNetCore.NewDb.Controllers
-   {
-public class BlogsController : Controller
+namespace EFGetStarted.AspNetCore.NewDb.Controllers
 {
-    private BloggingContext _context;
-
-    public BlogsController(BloggingContext context)
+    public class BlogsController : Controller
     {
-        _context = context;
-    }
+        private BloggingContext _context;
 
-    public IActionResult Index()
-    {
-        return View(_context.Blogs.ToList());
-    }
-
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult Create(Blog blog)
-    {
-        if (ModelState.IsValid)
+        public BlogsController(BloggingContext context)
         {
-            _context.Blogs.Add(blog);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            _context = context;
         }
 
-        return View(blog);
-    }
+        public IActionResult Index()
+        {
+            return View(_context.Blogs.ToList());
+        }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Blog blog)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Blogs.Add(blog);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(blog);
+        }
+
+    }
 }
-   }
 ````
 
 You'll notice that the controller takes a `BloggingContext` as a constructor parameter. ASP.NET dependency injection will take care of passing an instance of `BloggingContext` into your controller.
@@ -254,38 +255,37 @@ We'll start with the view for our `Index` action, that displays all blogs.
 * Replace the contents of the file with the following code
 
 <!-- [!code-html[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Views/Blogs/Index.cshtml)] -->
-````
+````html
+@model IEnumerable<EFGetStarted.AspNetCore.NewDb.Models.Blog>
 
-   @model IEnumerable<EFGetStarted.AspNetCore.NewDb.Models.Blog>
-
-   @{
-ViewBag.Title = "Blogs";
-   }
-
-   <h2>Blogs</h2>
-
-   <p>
-<a asp-controller="Blogs" asp-action="Create">Create New</a>
-   </p>
-
-   <table class="table">
-<tr>
-    <th>Id</th>
-    <th>Url</th>
-</tr>
-
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BlogId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Url)
-        </td>
-    </tr>
+@{
+    ViewBag.Title = "Blogs";
 }
-   </table>
+
+<h2>Blogs</h2>
+
+<p>
+    <a asp-controller="Blogs" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Url</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+        </tr>
+    }
+</table>
 ````
 
 We'll also add a view for the `Create` action, which allows the user to enter details for a new blog.
@@ -301,33 +301,32 @@ We'll also add a view for the `Create` action, which allows the user to enter de
 * Replace the contents of the file with the following code
 
 <!-- [!code-html[Main](samples/Platforms/AspNetCore/AspNetCore.NewDb/Views/Blogs/Create.cshtml)] -->
-````
+````html
+@model EFGetStarted.AspNetCore.NewDb.Models.Blog
 
-   @model EFGetStarted.AspNetCore.NewDb.Models.Blog
+@{
+    ViewBag.Title = "New Blog";
+}
 
-   @{
-ViewBag.Title = "New Blog";
-   }
+<h2>@ViewData["Title"]</h2>
 
-   <h2>@ViewData["Title"]</h2>
-
-   <form asp-controller="Blogs" asp-action="Create" method="post" class="form-horizontal" role="form">
-<div class="form-horizontal">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Url" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Url" class="form-control" />
-            <span asp-validation-for="Url" class="text-danger"></span>
+<form asp-controller="Blogs" asp-action="Create" method="post" class="form-horizontal" role="form">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Url" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
-   </form>
+</form>
 ````
 
 ## Run the application
@@ -344,6 +343,6 @@ You can now run the application to see it in action.
 
 * Enter a **Url** for the new blog and click **Create**
 
-![image](aspnetcore/_static/create.png)
+![image](_static/create.png)
 
-![image](aspnetcore/_static/index-new-db.png)
+![image](_static/index-new-db.png)

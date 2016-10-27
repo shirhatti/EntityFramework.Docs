@@ -269,9 +269,9 @@ You can now run the application to see it in action.
 
 * Enter a URL and click the **Add** button
 
-![image](uwp/_static/create.png)
+![image](_static/create.png)
 
-![image](uwp/_static/list.png)
+![image](_static/list.png)
 
 ## Next steps
 

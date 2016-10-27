@@ -39,7 +39,7 @@ public class RssBlog : Blog
 }
 ````
 
-![image](relational/_static/inheritance-tph-data.png)
+![image](_static/inheritance-tph-data.png)
 
 ## Data Annotations
 

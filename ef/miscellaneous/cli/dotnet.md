@@ -65,7 +65,7 @@ Commands can be run from the command line by navigating to the project directory
 ### dotnet-ef
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````csharp
+````
 Usage: dotnet ef [options] [command]
 
 Options:
@@ -86,7 +86,7 @@ Commands:
 ### dotnet-ef-database
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````csharp
+````
 Usage: dotnet ef database [options] [command]
 
 Options:
@@ -101,173 +101,163 @@ Commands:
 ### dotnet-ef-database-drop
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````
+Usage: dotnet ef database drop [options]
 
-   Usage: dotnet ef database drop [options]
-
-   Options:
-     -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
-     -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
-     -f|--force                      Drop without confirmation
-     -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
+Options:
+  -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
+  -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
+  -f|--force                      Drop without confirmation
+  -h|--help                       Show help information
+  -v|--verbose                    Enable verbose output
 ````
 
 ### dotnet-ef-database-update
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````
+Usage: dotnet ef database update [arguments] [options]
 
-   Usage: dotnet ef database update [arguments] [options]
+Arguments:
+  [migration]  The target migration. If '0', all migrations will be reverted. If omitted, all pending migrations will be applied
 
-   Arguments:
-     [migration]  The target migration. If '0', all migrations will be reverted. If omitted, all pending migrations will be applied
-
-   Options:
-     -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
-     -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
-     -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
+Options:
+  -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
+  -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
+  -h|--help                       Show help information
+  -v|--verbose                    Enable verbose output
 ````
 
 ### dotnet-ef-dbcontext
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````
+Usage: dotnet ef dbcontext [options] [command]
 
-   Usage: dotnet ef dbcontext [options] [command]
+Options:
+  -h|--help     Show help information
+  -v|--verbose  Enable verbose output
 
-   Options:
-     -h|--help     Show help information
-     -v|--verbose  Enable verbose output
-
-   Commands:
-     list      List your DbContext types
-     scaffold  Scaffolds a DbContext and entity type classes for a specified database
+Commands:
+  list      List your DbContext types
+  scaffold  Scaffolds a DbContext and entity type classes for a specified database
 ````
 
 ### dotnet-ef-dbcontext-list
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````
+Usage: dotnet ef dbcontext list [options]
 
-   Usage: dotnet ef dbcontext list [options]
-
-   Options:
-     -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
-     --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
-     -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
+Options:
+  -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
+  --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
+  -h|--help                       Show help information
+  -v|--verbose                    Enable verbose output
 ````
 
 ### dotnet-ef-dbcontext-scaffold
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````
+Usage: dotnet ef dbcontext scaffold [arguments] [options]
 
-   Usage: dotnet ef dbcontext scaffold [arguments] [options]
+Arguments:
+  [connection]  The connection string of the database
+  [provider]    The provider to use. For example, Microsoft.EntityFrameworkCore.SqlServer
 
-   Arguments:
-     [connection]  The connection string of the database
-     [provider]    The provider to use. For example, Microsoft.EntityFrameworkCore.SqlServer
-
-   Options:
-     -a|--data-annotations           Use DataAnnotation attributes to configure the model where possible. If omitted, the output code will use only the fluent API.
-     -c|--context <name>             Name of the generated DbContext class.
-     -f|--force                      Force scaffolding to overwrite existing files. Otherwise, the code will only proceed if no output files would be overwritten.
-     -o|--output-dir <path>          Directory of the project where the classes should be output. If omitted, the top-level project directory is used.
-     --schema <schema>               Selects a schema for which to generate classes.
-     -t|--table <schema.table>       Selects a table for which to generate classes.
-     -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
-     -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
+Options:
+  -a|--data-annotations           Use DataAnnotation attributes to configure the model where possible. If omitted, the output code will use only the fluent API.
+  -c|--context <name>             Name of the generated DbContext class.
+  -f|--force                      Force scaffolding to overwrite existing files. Otherwise, the code will only proceed if no output files would be overwritten.
+  -o|--output-dir <path>          Directory of the project where the classes should be output. If omitted, the top-level project directory is used.
+  --schema <schema>               Selects a schema for which to generate classes.
+  -t|--table <schema.table>       Selects a table for which to generate classes.
+  -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
+  -h|--help                       Show help information
+  -v|--verbose                    Enable verbose output
 ````
 
 ### dotnet-ef-migrations
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````
+Usage: dotnet ef migrations [options] [command]
 
-   Usage: dotnet ef migrations [options] [command]
+Options:
+  -h|--help     Show help information
+  -v|--verbose  Enable verbose output
 
-   Options:
-     -h|--help     Show help information
-     -v|--verbose  Enable verbose output
-
-   Commands:
-     add     Add a new migration
-     list    List the migrations
-     remove  Remove the last migration
-     script  Generate a SQL script from migrations
+Commands:
+  add     Add a new migration
+  list    List the migrations
+  remove  Remove the last migration
+  script  Generate a SQL script from migrations
 ````
 
 ### dotnet-ef-migrations-add
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````
+Usage: dotnet ef migrations add [arguments] [options]
 
-   Usage: dotnet ef migrations add [arguments] [options]
+Arguments:
+  [name]  The name of the migration
 
-   Arguments:
-     [name]  The name of the migration
-
-   Options:
-     -o|--output-dir <path>          The directory (and sub-namespace) to use. If omitted, "Migrations" is used. Relative paths are relative the directory in which the command is executed.
-     -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
-     -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
-     --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
-     -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
+Options:
+  -o|--output-dir <path>          The directory (and sub-namespace) to use. If omitted, "Migrations" is used. Relative paths are relative the directory in which the command is executed.
+  -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
+  -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
+  --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
+  -h|--help                       Show help information
+  -v|--verbose                    Enable verbose output
 ````
 
 ### dotnet-ef-migrations-list
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````
+Usage: dotnet ef migrations list [options]
 
-   Usage: dotnet ef migrations list [options]
-
-   Options:
-     -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
-     -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
-     --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
-     -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
+Options:
+  -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
+  -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
+  --json                          Use json output. JSON is wrapped by '//BEGIN' and '//END'
+  -h|--help                       Show help information
+  -v|--verbose                    Enable verbose output
 ````
 
 ### dotnet-ef-migrations-remove
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````
+Usage: dotnet ef migrations remove [options]
 
-   Usage: dotnet ef migrations remove [options]
-
-   Options:
-     -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
-     -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
-     -f|--force                      Removes the last migration without checking the database. If the last migration has been applied to the database, you will need to manually reverse the changes it made.
-     -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
+Options:
+  -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
+  -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
+  -f|--force                      Removes the last migration without checking the database. If the last migration has been applied to the database, you will need to manually reverse the changes it made.
+  -h|--help                       Show help information
+  -v|--verbose                    Enable verbose output
 ````
 
 ### dotnet-ef-migrations-script
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
+````
+Usage: dotnet ef migrations script [arguments] [options]
 
-   Usage: dotnet ef migrations script [arguments] [options]
+Arguments:
+  [from]  The starting migration. If omitted, '0' (the initial database) is used
+  [to]    The ending migration. If omitted, the last migration is used
 
-   Arguments:
-     [from]  The starting migration. If omitted, '0' (the initial database) is used
-     [to]    The ending migration. If omitted, the last migration is used
-
-   Options:
-     -o|--output <file>              The file to write the script to instead of stdout
-     -i|--idempotent                 Generates an idempotent script that can used on a database at any migration
-     -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
-     -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
-     -h|--help                       Show help information
-     -v|--verbose                    Enable verbose output
+Options:
+  -o|--output <file>              The file to write the script to instead of stdout
+  -i|--idempotent                 Generates an idempotent script that can used on a database at any migration
+  -c|--context <context>          The DbContext to use. If omitted, the default DbContext is used
+  -e|--environment <environment>  The environment to use. If omitted, "Development" is used.
+  -h|--help                       Show help information
+  -v|--verbose                    Enable verbose output
 ````
 
 ## Common Errors
@@ -277,11 +267,10 @@ Commands:
 Design-time tools attempt to automatically find how your application creates instances of your DbContext type. If EF cannot find a suitable way to initialize your DbContext, you may encounter this error.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
-
-   No parameterless constructor was found on 'TContext'. Either add a parameterless constructor to
-   'TContext' or add an implementation of 'IDbContextFactory<TContext>' in the same assembly as
-   'TContext'.
+````
+No parameterless constructor was found on 'TContext'. Either add a parameterless constructor to
+'TContext' or add an implementation of 'IDbContextFactory<TContext>' in the same assembly as
+'TContext'.
 ````
 
 As the error message suggests, one solution is to add an implementation of `IDbContextFactory<TContext>` to the current project. See [Using IDbContextFactory<TContext>](../configuring-dbcontext.md#use-idbcontextfactory.md) for an example of how to create this factory.
@@ -295,9 +284,8 @@ As the error message suggests, one solution is to add an implementation of `IDbC
 .NET Core CLI does not support running commands on class libraries as of Preview 2. Despite being able to install EF tools, executing commands may throw this error message.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
-````text
-
-   Could not invoke this command on the startup project '(your project name)'. This preview of Entity Framework tools does not support commands on class library projects in ASP.NET Core and .NET Core applications.
+````
+Could not invoke this command on the startup project '(your project name)'. This preview of Entity Framework tools does not support commands on class library projects in ASP.NET Core and .NET Core applications.
 ````
 
 See issue [https://github.com/dotnet/cli/issues/2645](https://github.com/dotnet/cli/issues/2645).
@@ -318,19 +306,18 @@ Example:
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````json
-
-   {
-"frameworks": {
-    "netcoreapp1.0": {
-        "dependencies": {
-            "Microsoft.NETCore.App": {
-                "type": "platform",
-                "version": "1.0.0-*"
+{
+    "frameworks": {
+        "netcoreapp1.0": {
+            "dependencies": {
+                "Microsoft.NETCore.App": {
+                    "type": "platform",
+                    "version": "1.0.0-*"
+                }
             }
         }
     }
 }
-   }
 ````
 
 Be sure to register the EntityFramework Tools as a project dependency and in the tools section of your project.json.
@@ -339,18 +326,17 @@ Example:
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````json
-
-   {
-"dependencies": {
-    "Microsoft.EntityFrameworkCore.Tools": {
-        "version": "1.0.0-preview2-final",
-        "type": "build"
+{
+    "dependencies": {
+        "Microsoft.EntityFrameworkCore.Tools": {
+            "version": "1.0.0-preview2-final",
+            "type": "build"
+        }
+    },
+    "tools": {
+        "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final"
     }
-},
-"tools": {
-    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final"
 }
-   }
 ````
 
 Finally, specify a startup project that is a "runnable app."
@@ -359,8 +345,7 @@ Example:
 
 <!-- literal_block"language": "csharp",ole", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````console
-
-   dotnet ef --startup-project ../MyConsoleApplication/ migrations list
+dotnet ef --startup-project ../MyConsoleApplication/ migrations list
 ````
 
 #### Workaround 2 - Modify your class library to be a startup application
@@ -371,35 +356,33 @@ To make the project a .NET Core App, add the "netcoreapp1.0" framework to projec
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````json
-
-   {
-"buildOptions": {
-    "emitEntryPoint": true
-},
-"frameworks": {
-    "netcoreapp1.0": {
-        "dependencies": {
-            "Microsoft.NETCore.App": {
-                "type": "platform",
-                "version": "1.0.0-*"
+{
+    "buildOptions": {
+        "emitEntryPoint": true
+    },
+    "frameworks": {
+        "netcoreapp1.0": {
+            "dependencies": {
+                "Microsoft.NETCore.App": {
+                    "type": "platform",
+                    "version": "1.0.0-*"
+                }
             }
         }
     }
 }
-   }
 ````
 
 To make a desktop .NET app, ensure you project targets "net451" or newer (example "net461" also works) and ensure the build option `"emitEntryPoint"` is set to true.
 
 <!-- literal_block"language": "csharp",", "xml:space": "preserve", "classes  "backrefs  "names  "dupnames  highlight_args}, "ids  "linenos": false -->
 ````json
-
-   {
-"buildOptions": {
-    "emitEntryPoint": true
-},
-"frameworks": {
-    "net451": { }
+{
+    "buildOptions": {
+        "emitEntryPoint": true
+    },
+    "frameworks": {
+        "net451": { }
+    }
 }
-   }
 ````
